@@ -19,7 +19,6 @@ class GeneralSettingsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
         $this->middleware('permission:general-settings-site-identity',['only'=>['site_identity','update_site_identity']]);
         $this->middleware('permission:general-settings-reading-settings',['only'=>['reading','update_reading']]);
         $this->middleware('permission:general-settings-global-navbar-settings',['only'=>['global_variant_navbar','update_global_variant_navbar']]);
@@ -138,8 +137,6 @@ class GeneralSettingsController extends Controller
         $this->validate($request, [
             'language_select_option' => 'nullable|string',
             'disable_user_email_verify' => 'nullable|string',
-            'site_main_color' => 'nullable|string',
-            'site_secondary_color' => 'nullable|string',
             'site_maintenance_mode' => 'nullable|string',
             'admin_loader_animation' => 'nullable|string',
             'site_loader_animation' => 'nullable|string',
@@ -192,17 +189,31 @@ class GeneralSettingsController extends Controller
         $this->validate($request, [
             'site_main_color_one' => 'nullable|string',
             'site_main_color_two' => 'nullable|string',
-            'site_main_color_three' => 'nullable|string',
+            'site_secondary_color' => 'nullable|string',
+            'site_heading_color' => 'nullable|string',
+            'site_paragraph_color' => 'nullable|string',
+            'site_bg_light_one' => 'nullable|string',
+            'site_bg_light_two' => 'nullable|string',
+            'site_bg_dark_one' => 'nullable|string',
+            'site_bg_dark_two' => 'nullable|string',
+            'site_bg_dark_three' => 'nullable|string',
+            'site_bg_dark_four' => 'nullable|string',
+            'site_bg_dark_five' => 'nullable|string',
         ]);
 
         $all_fields = [
           'site_main_color_one',
           'site_main_color_two',
+          'site_secondary_color',
           'site_heading_color',
           'site_paragraph_color',
-          'site_light_color_one',
-          'site_light_color_two',
-          'site_black_theme',
+          'site_bg_light_one',
+          'site_bg_light_two',
+          'site_bg_dark_one',
+          'site_bg_dark_two',
+          'site_bg_dark_three',
+          'site_bg_dark_four',
+          'site_bg_dark_five',
         ];
 
         foreach ($all_fields as $field) {

@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="{{asset('assets/common/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/common/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/line-awesome.min-v1.0.3.css')}}">
     <link rel="stylesheet" href="{{asset('assets/common/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/common/css/toastr.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/css/metisMenu.css')}}">

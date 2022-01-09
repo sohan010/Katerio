@@ -140,7 +140,7 @@
 
 .sidebar-header {
     padding: 19px 32px 20px;
-    background: #303641;
+    background: #151C2B;
     border-bottom: 1px solid #343e50;
 }
 .sidebar-menu .logo{
@@ -171,7 +171,7 @@
 }
 
 .metismenu li a i {
-    color: #f13b3a;
+    color: #fc3c68;
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
@@ -722,7 +722,7 @@ ul.breadcrumbs {
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    background: #7F65DC;
+    background: #151C2B;
     padding: 17px 38px;
     position: relative;
 }

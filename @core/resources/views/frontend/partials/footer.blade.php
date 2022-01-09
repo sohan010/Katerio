@@ -22,7 +22,7 @@
 @endif
 
 @if(preg_match('/(bytesed)/',url('/')))
-<div class="buy-now-wrap">
+<div class="buy-now-wrap">s
     <ul class="buy-list">
         <li><a target="_blank" href="https://bytesed.com/docs-category/intoday-new-magazine-php-laravel-scripts/" data-container="body" data-toggle="popover" data-placement="left" data-content="Documentation"><i class="las la-file-alt"></i></a></li>
         <li><a target="_blank" href="https://codecanyon.net/checkout/from_item/35217402?license=regular&aid=byteseed&aso=xgenius-website&aca=purchase-btn-click"><i class="las la-shopping-cart"></i></a></li>
@@ -32,15 +32,10 @@
 @endif
 
 
-<script src="{{asset('assets/common/js/jquery-3.6.0.min.js')}}"></script>
-<script src="{{asset('assets/common/js/jquery-migrate-3.3.2.min.js')}}"></script>
-<script src="{{asset('assets/frontend/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('assets/frontend/js/jquery.magnific-popup.js')}}"></script>
-<script src="{{asset('assets/frontend/js/wow.min.js')}}"></script>
-<script src="{{asset('assets/frontend/js/slick.js')}}"></script>
-<script src="{{asset('assets/backend/js/sweetalert2.js')}}"></script>
-<script src="{{asset('assets/frontend/js/imagesloaded.pkgd.min.js')}}"></script>
-<script src="{{asset('assets/frontend/js/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/frontend/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/frontend/js/dynamic-script.js')}}"></script>
+<script src="{{asset('assets/frontend/js/slick.min.js')}}"></script>
+<script src="{{asset('assets/frontend/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/main.js')}}"></script>
 
 

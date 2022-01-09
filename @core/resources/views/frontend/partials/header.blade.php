@@ -12,17 +12,14 @@
     {!! render_favicon_by_id(get_static_option('site_favicon')) !!}
     {!! load_google_fonts() !!}
 
-   <!-- favicon -->
-       <link rel=icon href=favicon.ico sizes="20x20" type="image/png">
-       <link rel="stylesheet" href="{{asset('assets/frontend/css/animate.css')}}">
-       <link rel="stylesheet" href="{{asset('assets/frontend/css/bootstrap.min.css')}}">
+       <link rel="stylesheet" href="{{asset('assets/frontend/css/bootstrap.min-v4.6.0.css')}}">
+       <link rel="stylesheet" href="{{asset('assets/frontend/css/line-awesome.min-v1.0.3.css')}}">
+       <link rel="stylesheet" href="{{asset('assets/frontend/css/slick.min.css')}}">
        <link rel="stylesheet" href="{{asset('assets/frontend/css/magnific-popup.css')}}">
-       <link rel="stylesheet" href="{{asset('assets/frontend/css/slick.css')}}">
-       <link rel="stylesheet" href="{{asset('assets/frontend/css/line-awesome.min.css')}}">
-       <link rel="stylesheet" href="{{asset('assets/frontend/css/font-awesome.min.css')}}">
-       <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
-       <link rel="stylesheet" href="{{asset('assets/frontend/css/responsive.css')}}">
+       <link rel="stylesheet" href="{{asset('assets/frontend/css/main-style.css')}}">
        <link rel="stylesheet" href="{{asset('assets/frontend/css/helpers.css')}}">
+       <link rel="stylesheet" href="{{asset('assets/frontend/css/responsive.css')}}">
+       <link rel="stylesheet" href="{{asset('assets/frontend/css/dynamic-style.css')}}">
 
     {{-- Dark Mode--}}
     @if(get_static_option('site_frontend_dark_mode') === 'on')

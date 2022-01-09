@@ -1,223 +1,119 @@
-;
-(function($) {
+(function ($) {
     "use strict";
 
-    $(document).ready(function() {
+    jQuery(document).ready(function ($) {
 
-        // JS for rtl
-        var rtlEnable = $('html').attr('dir');
-        var sliderRtlValue = !(typeof rtlEnable === 'undefined' || rtlEnable === 'ltr');
-        var OwlRtlValue = !(typeof rtlEnable === 'undefined' || rtlEnable === 'ltr');
+        /*-----------------------------------------
+            global slick slicer control
+        ------------------------------------------*/
+        var globalSlickInit = $('.global-slick-init');
 
-        /*--------------------
-            wow js init
-        ---------------------*/
-        new WOW().init();
+        if (globalSlickInit.length > 0) {
+            //todo have to check slider item 
 
-        /*------------------------------------
-            magnific popup activation
-        --------------------------------------*/
+            $.each(globalSlickInit, function (index, value) {
 
-        $('.videos-play, .videos-play-global').magnificPopup({
-            type: 'iframe',
-        });
+                if ($(this).children('div').length > 1) {
+                    //todo configure slider settings object
+                    var sliderSettings = {};
+                    var allData = $(this).data();
 
-        /* 
-        ----------------------------------------
+
+                    var infinite = typeof allData.infinite == 'undefined' ? false : allData.infinite;
+                    var slidesToShow = typeof allData.slidestoshow == 'undefined' ? 1 : allData.slidestoshow;
+                    var slidesToScroll = typeof allData.slidestoscroll == 'undefined' ? 1 : allData.slidestoscroll;
+                    var speed = typeof allData.speed == 'undefined' ? '500' : allData.speed;
+                    var dots = typeof allData.dots == 'undefined' ? false : allData.dots;
+                    var cssEase = typeof allData.cssease == 'undefined' ? 'linear' : allData.cssease;
+
+                    var prevArrow = typeof allData.prevarrow == 'undefined' ? '' : allData.prevarrow;
+                    var nextArrow = typeof allData.nextarrow == 'undefined' ? '' : allData.nextarrow;
+                    var centerMode = typeof allData.centermode == 'undefined' ? false : allData.centermode;
+                    var centerPadding = typeof allData.centerpadding == 'undefined' ? false : allData.centerpadding;
+                    var rows = typeof allData.rows == 'undefined' ? 1 : parseInt(allData.rows);
+                    var autoplaySpeed = typeof allData.autoplayspeed == 'undefined' ? 2000 : parseInt(allData.autoplayspeed);
+                    var lazyLoad = typeof allData.lazyload == 'undefined' ? false : allData.lazyload; // have to remove it from settings object if it undefined
+                    var appendDots = typeof allData.appenddots == 'undefined' ? false : allData.appenddots;
+                    var appendArrows = typeof allData.appendarrows == 'undefined' ? false : allData.appendarrows;
+                    var asNavFor = typeof allData.asnavfor == 'undefined' ? false : allData.asnavfor;
+                    var fade = typeof allData.fade == 'undefined' ? false : allData.fade;
+                    var responsive = typeof $(this).data('responsive') == 'undefined' ? false : $(this).data('responsive');
+
+                    //slider settings object setup
+                    sliderSettings.infinite = infinite;
+                    sliderSettings.slidesToShow = slidesToShow;
+                    sliderSettings.slidesToScroll = slidesToScroll;
+                    sliderSettings.speed = speed;
+                    sliderSettings.dots = dots;
+                    sliderSettings.cssEase = cssEase;
+                    sliderSettings.prevArrow = prevArrow;
+                    sliderSettings.nextArrow = nextArrow;
+                    sliderSettings.rows = rows;
+                    sliderSettings.autoplaySpeed = autoplaySpeed;
+
+                    if (typeof centerMode != false) {
+                        sliderSettings.centerMode = centerMode;
+                    }
+                    if (typeof centerPadding != false) {
+                        sliderSettings.centerPadding = centerPadding;
+                    }
+                    if (typeof lazyLoad != false) {
+                        sliderSettings.lazyLoad = lazyLoad;
+                    }
+                    if (typeof appendDots != false) {
+                        sliderSettings.appendDots = appendDots;
+                    }
+                    if (typeof appendArrows != false) {
+                        sliderSettings.appendArrows = appendArrows;
+                    }
+
+                    if (typeof asNavFor != false) {
+                        sliderSettings.asNavFor = asNavFor;
+                    }
+                    if (typeof fade != false) {
+                        sliderSettings.fade = fade;
+                    }
+                    if (typeof responsive != false) {
+                        sliderSettings.responsive = responsive;
+                    }
+                    console.log(sliderSettings)
+                    $(this).slick(sliderSettings);
+                }
+            });
+        }
+
+
+        /*----------------------------------------
             SearchBar
-        ----------------------------------------
-        */
+        ----------------------------------------*/
 
-        $(document).ready(function() {
-            $('.search-close').on('click', function() {
+        $(document).ready(function () {
+            $('.search-close').on('click', function () {
                 $('.search-bar').removeClass('active');
             });
-            $('.search-open').on('click', function() {
+            $('.search-open').on('click', function () {
                 $('.search-bar').toggleClass('active');
             });
         });
 
-        /* 
-        ----------------------------------------
-            Sidebars
-        ----------------------------------------
-        */
 
-        $(document).ready(function() {
-            $('.sidebars-close').on('click', function() {
-                $('.sidebars-wrappers').removeClass('active');
-            });
-            $('.sidebars-item').on('click', function() {
-                $('.sidebars-wrappers').toggleClass('active');
-            });
-        });
-
-
-        /*----------------------
-            Slick Slider
-        -----------------------*/
-
-        $('.slick-slider-one').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            rtl: OwlRtlValue,
-            arrows: true,
-            dots: false,
-            prevArrow: '<i class="las la-angle-left"></i>',
-            nextArrow: '<i class="las la-angle-right"></i>',
+        /*------------------------------
+            Recent Stories Slick Slider
+        -------------------------------*/
+        $('.popular-stories-index-01-slider-inst').slick({
             infinite: true,
-            autoplay: false,
-            pauseOnHover: true,
-        });
-
-        $('.slick-slider-two').slick({
-            slidesToShow: 1,
-            rtl: OwlRtlValue,
-            slidesToScroll: 1,
-            arrows: false,
-            dots: false,
-            prevArrow: '<i class="las la-angle-left"></i>',
-            nextArrow: '<i class="las la-angle-right"></i>',
-            infinite: true,
-            autoplay: false,
-            pauseOnHover: true,
-        });
-
-        $('.slick-slider-three,.video-slider-two,.comments-sldier').slick({
-            rtl: OwlRtlValue,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: true,
-            dots: false,
-            prevArrow: '<i class="las la-arrow-left"></i>',
-            nextArrow: '<i class="las la-arrow-right"></i>',
-            infinite: true,
-            autoplay: true,
-            pauseOnHover: true,
-        });
-        $('.slick-slider-four').slick({
-            rtl: OwlRtlValue,
-            slidesToShow: 6,
-            slidesToScroll: 1,
-            arrows: false,
-            dots: false,
-            prevArrow: '<i class="las la-arrow-left"></i>',
-            nextArrow: '<i class="las la-arrow-right"></i>',
-            infinite: true,
-            autoplay: true,
-            pauseOnHover: true,
-            swipeToSlide: true,
-            responsive: [{
-                    breakpoint: 1400,
-                    settings: {
-                        slidesToShow: 5,
-                    }
-                },
-                {
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 3,
-                    }
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        slidesToShow: 2,
-                    }
-                },
-                {
-                    breakpoint: 375,
-                    settings: {
-                        slidesToShow: 1,
-                    }
-                }
-            ]
-        });
-
-        $('.team-slider').slick({
             slidesToShow: 4,
-            rtl: OwlRtlValue,
             slidesToScroll: 1,
+            speed: 500,
             arrows: true,
             dots: false,
-            prevArrow: '<i class="las la-arrow-left"></i>',
-            nextArrow: '<i class="las la-arrow-right"></i>',
-            infinite: true,
-            autoplay: true,
-            pauseOnHover: true,
-            swipeToSlide: true,
-            responsive: [{
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 2,
-                    }
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        slidesToShow: 2,
-                    }
-                },
-                {
-                    breakpoint: 400,
-                    settings: {
-                        slidesToShow: 1,
-                    }
-                }
-            ]
-        });
-
-        /*----------------------
-            Banner Ads
-        -----------------------*/
-
-        $('.banner-ads-slider').slick({
-            slidesToShow: 1,
-            rtl: OwlRtlValue,
-            slidesToScroll: 1,
-            arrows: false,
-            dots: false,
-            prevArrow: '<i class="las la-angle-left"></i>',
-            nextArrow: '<i class="las la-angle-right"></i>',
-            infinite: true,
             autoplay: false,
-            pauseOnHover: true,
-        });
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
 
-        /*----------------------
-            Video Slider
-        -----------------------*/
-
-        $('.video-slider').slick({
-            slidesToShow: 1,
-            rtl: OwlRtlValue,
-            slidesToScroll: 1,
-            arrows: true,
-            dots: false,
-            prevArrow: '<i class="las la-angle-left"></i>',
-            nextArrow: '<i class="las la-angle-right"></i>',
-            infinite: true,
-            autoplay: true,
-            pauseOnHover: true,
-        });
-
-        /*----------------------
-            Sports Slider
-        -----------------------*/
-
-        $('.sports-slider').slick({
-            slidesToShow: 4,
-            rtl: OwlRtlValue,
-            slidesToScroll: 1,
-            arrows: true,
-            dots: false,
-            prevArrow: '<i class="las la-angle-left"></i>',
-            nextArrow: '<i class="las la-angle-right"></i>',
-            infinite: true,
-            autoplay: false,
-            pauseOnHover: true,
             responsive: [{
-                    breakpoint: 1300,
+                    breakpoint: 1201,
                     settings: {
                         slidesToShow: 3,
                     }
@@ -229,7 +125,7 @@
                     }
                 },
                 {
-                    breakpoint: 576,
+                    breakpoint: 600,
                     settings: {
                         slidesToShow: 1,
                     }
@@ -237,186 +133,424 @@
             ]
         });
 
-        /*----------------------
-            News Filter isotoop
-        -----------------------*/
-        $('#imageloader').imagesLoaded(function() {
-            var $grid = $('.news-grids').isotope({
-                itemSelector: '.grid-item',
-                percentPosition: true,
-                masonry: {
-                    columnWidth: '.grid-item',
+
+        /*------------------------------
+            Recent Stories Slick Slider
+        -------------------------------*/
+        $('.popular-stories-index-02-slider-inst').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: true,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
+
+            responsive: [{
+                    breakpoint: 993,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1,
+                    }
                 }
-            });
-            // filter items on button click
-            $('.news-button-list').on('click', '.lists', function() {
-                var filterValue = $(this).attr('data-filter');
-                $grid.isotope({ filter: filterValue });
-                // filter items add class
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-            });
+            ]
         });
 
 
-        /*
-        ========================================
-            accordion
-        ========================================
-        */
+        /*------------------------------
+            weekly highlight Slick Slider
+        -------------------------------*/
+        $('.weekly-highlights-index-01-slider-inst').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: true,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
 
-        $('.faq-contents .faq-title').on('click', function(e) {
-            var element = $(this).parent('.faq-item');
-            if (element.hasClass('open')) {
-                element.removeClass('open');
-                element.find('.faq-panel').removeClass('open');
-                element.find('.faq-panel').slideUp(300, "swing");
-            } else {
-                element.addClass('open');
-                element.children('.faq-panel').slideDown(300, "swing");
-                element.siblings('.faq-item').children('.faq-panel').slideUp(300, "swing");
-                element.siblings('.faq-item').removeClass('open');
-                element.siblings('.faq-item').find('.faq-title').removeClass('open');
-                element.siblings('.faq-item').find('.faq-panel').slideUp(300, "swing");
-            }
+            responsive: [{
+                breakpoint: 576,
+                settings: {
+                    arrows: false,
+                    slidesToShow: 1,
+                }
+            }]
         });
 
-    });
+
+        /*------------------------------
+            magnific popup
+        -------------------------------*/
+
+        $('.magnific-inst').magnificPopup({
+            type: 'video',
+            // other options
+        });
+
+        /*------------------------------------------------------------------
+            latest video index-02 Slick Slider
+         -------------------------------------------------------------------*/
+        $('.latest-video-index-02-slider-inst, .popular-video-index-04-slider-inst').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: true,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
+
+            responsive: [{
+                breakpoint: 576,
+                settings: {
+                    arrows: false,
+                    slidesToShow: 1,
+                }
+            }]
+        });
 
 
-    $(window).on('scroll', function() {
+        /*------------------------------------------------------------------
+            popular stories index-03 Slick Slider
+        -------------------------------------------------------------------*/
+        $('.popular-stories-index-03-slider-inst').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: true,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
 
-        //back to top show/hide
-        var ScrollTop = $('.back-to-top');
-        if ($(window).scrollTop() > 300) {
-            ScrollTop.fadeIn(300);
-        } else {
-            ScrollTop.fadeOut(300);
-        }
-    });
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3,
+                    }
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        });
 
-    /*------------------
-        back to top
-    ------------------*/
-    $(document).on('click', '.back-to-top', function() {
-        $("html,body").animate({
-            scrollTop: 0
-        }, 1500);
-    });
 
-    /*-------------------------------
-        Navbar Fix
-    ------------------------------*/
-    $(window).on('resize', function() {
-        if ($(window).width() < 991) {
-            navbarFix()
-        }
-    });
+        /*------------------------------------------------------------------
+            popular stories index-04 Slick Slider
+         -------------------------------------------------------------------*/
+        $('.popular-news-index-04-inst').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: true,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
 
-    function navbarFix() {
-        $(document).on('click', '.navbar-area .navbar-nav li.menu-item-has-children>a, .navbar-area .navbar-nav li.appside-megamenu>a', function(e) {
+            responsive: [{
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        });
+
+
+        /*------------------------------------------------------------------
+            popular stories index-04 Slick Slider
+         -------------------------------------------------------------------*/
+        $('.sports-update-news-index-05-inst').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: false,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
+
+            responsive: [{
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        });
+
+
+        /*------------------------------------------------------------------
+            feature news index-04 Slick Slider
+         -------------------------------------------------------------------*/
+        $('.feature-news-index-04-inst').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: true,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
+
+            responsive: [{
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 3,
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1,
+                    }
+                }
+            ]
+        });
+
+        /*------------------------------------------------------------------
+            feature news index-04 Slick Slider
+         -------------------------------------------------------------------*/
+        $('.header-recent-post-index-05-slider-inst').slick({
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: false,
+            dots: false,
+            autoplay: false,
+            cssEase: 'linear',
+            prevArrow: '<div class="prev-arrow"><i class="las la-arrow-left"></i></div>',
+            nextArrow: '<div class="next-arrow"><i class="las la-arrow-right"></i></div>',
+
+            responsive: [{
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 2,
+                    }
+                },
+                {
+                    breakpoint: 451,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                },
+
+            ]
+        });
+
+        /*------------------------------------------------------------------
+            author feedback
+         -------------------------------------------------------------------*/
+        $('.authors-feedback-slider').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            speed: 500,
+            arrows: false,
+            dots: true,
+            autoplay: true,
+            cssEase: 'linear',
+        });
+
+        /*------------------------------------------------------------------
+            partner with
+         -------------------------------------------------------------------*/
+        $('.partner-with-slider').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            speed: 400,
+            arrows: false,
+            dots: false,
+            autoplay: true,
+            cssEase: 'linear',
+
+            responsive: [{
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+
+        ]
+        });
+
+        /*------------------------------------
+        search popup
+        -----------------------------------*/
+        $(document).on('click', '#search_icon', function (e) {
             e.preventDefault();
-        })
-    }
-
-
-    /*-----------------
-        preloader
-    ------------------*/
-
-    $(window).on('load', function() {
-        $('#preloader').delay(1000).fadeOut('slow');
-        $('body').delay(1000).css({
-            'overflow': 'visible',
+            $('#search_popup').addClass('show');
         });
+        $(document).on('click', '#search-popup-close-btn', function (e) {
+            e.preventDefault();
+            $('#search_popup').removeClass('show');
+        });
+
+        /*------------------------------------
+        user account
+        -----------------------------------*/
+        $(".navigation-button-x").on('click', function () {
+            $(".user-account-widget").slideToggle("1000");
+        });
+        if ($(window).width() < 768) {
+            $(".user-account-widget").hide();
+        }
+
     });
 
-    /* $(window).on('load', function() {
-        var preLoder = $("#preloader");
-        preLoder.fadeOut(1000);
 
-    }); */
+    /*------------------------------
+           Scroll to top
+    -------------------------------*/
 
+    $(window).scroll(function () {
 
-    /*-----------------------------------------
-           global slick slicer control
-       ------------------------------------------*/
-    var globalSlickInit = $('.global-slick-init');
+        if ($(this).scrollTop() > 800) {
+            $(".scroll-to-top").fadeIn();
+        } else {
+            $(".scroll-to-top").fadeOut();
+        }
+    })
 
-    if (globalSlickInit.length > 0) {
-        //todo have to check slider item
+    $(".scroll-to-top").click(function () {
 
-        $.each(globalSlickInit, function (index, value) {
-
-            if ($(this).children('div').length > 1) {
-                //todo configure slider settings object
-                var sliderSettings = {};
-                var allData = $(this).data();
-
-
-                var infinite = typeof allData.infinite == 'undefined' ? false : allData.infinite;
-                var slidesToShow = typeof allData.slidestoshow == 'undefined' ? 1 : allData.slidestoshow;
-                var slidesToScroll = typeof allData.slidestoscroll == 'undefined' ? 1 : allData.slidestoscroll;
-                var speed = typeof allData.speed == 'undefined' ? '500' : allData.speed;
-                var dots = typeof allData.dots == 'undefined' ? false : allData.dots;
-                var cssEase = typeof allData.cssease == 'undefined' ? 'linear' : allData.cssease;
-
-                var prevArrow = typeof allData.prevarrow == 'undefined' ? '' : allData.prevarrow;
-                var nextArrow = typeof allData.nextarrow == 'undefined' ? '' : allData.nextarrow;
-                var centerMode = typeof allData.centermode == 'undefined' ? false : allData.centermode;
-                var centerPadding = typeof allData.centerpadding == 'undefined' ? false : allData.centerpadding;
-                var rows = typeof allData.rows == 'undefined' ? 1 : parseInt(allData.rows);
-                var autoplaySpeed = typeof allData.autoplayspeed == 'undefined' ? 2000 : parseInt(allData.autoplayspeed);
-                var lazyLoad = typeof allData.lazyload == 'undefined' ? false : allData.lazyload; // have to remove it from settings object if it undefined
-                var appendDots = typeof allData.appenddots == 'undefined' ? false : allData.appenddots;
-                var appendArrows = typeof allData.appendarrows == 'undefined' ? false : allData.appendarrows;
-                var asNavFor = typeof allData.asnavfor == 'undefined' ? false : allData.asnavfor;
-                var fade = typeof allData.fade == 'undefined' ? false : allData.fade;
-                var responsive = typeof $(this).data('responsive') == 'undefined' ? false : $(this).data('responsive');
-
-                //slider settings object setup
-                sliderSettings.infinite = infinite;
-                sliderSettings.slidesToShow = slidesToShow;
-                sliderSettings.slidesToScroll = slidesToScroll;
-                sliderSettings.speed = speed;
-                sliderSettings.dots = dots;
-                sliderSettings.cssEase = cssEase;
-                sliderSettings.prevArrow = prevArrow;
-                sliderSettings.nextArrow = nextArrow;
-                sliderSettings.rows = rows;
-                sliderSettings.autoplaySpeed = autoplaySpeed;
-
-                if (typeof centerMode != false) {
-                    sliderSettings.centerMode = centerMode;
-                }
-                if (typeof centerPadding != false) {
-                    sliderSettings.centerPadding = centerPadding;
-                }
-                if (typeof lazyLoad != false) {
-                    sliderSettings.lazyLoad = lazyLoad;
-                }
-                if (typeof appendDots != false) {
-                    sliderSettings.appendDots = appendDots;
-                }
-                if (typeof appendArrows != false) {
-                    sliderSettings.appendArrows = appendArrows;
-                }
-
-                if (typeof asNavFor != false) {
-                    sliderSettings.asNavFor = asNavFor;
-                }
-                if (typeof fade != false) {
-                    sliderSettings.fade = fade;
-                }
-                if (typeof responsive != false) {
-                    sliderSettings.responsive = responsive;
-                }
-                $(this).slick(sliderSettings);
-
-            }
-        });
-    }
+        $("html, body").animate({
+            scrollTop: 0
+        }, 2000);
+    })
 
 
+    $(window).on('load', function () {
 
-})(jQuery);
+        /*------------------------------
+           Preloader
+        -------------------------------*/
+
+        $('.preloader-inner').fadeOut(1000);
+    });
+
+}(jQuery));
+
+
+/*------------------------------
+       Shop View Details
+-------------------------------*/
+
+var sandwiches = document.querySelectorAll('.zoom-js-handle');
+
+sandwiches.forEach(function (sandwich, index) {
+    sandwich.addEventListener('mousemove', function (e) {
+        zoomin(e)
+    })
+    sandwich.addEventListener('mouseleave', function (e) {
+        var zoomer = e.currentTarget;
+        zoomer.style.backgroundImage = '';
+    })
+});
+
+function zoomin(e) {
+    var zoomer = e.currentTarget;
+    zoomer.style.backgroundImage = 'url(' + zoomer.getAttribute('data-src') + ')';
+    e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+    e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+    x = offsetX / zoomer.offsetWidth * 100
+    y = offsetY / zoomer.offsetHeight * 100
+    zoomer.style.backgroundPosition = x + '% ' + y + '%';
+}
+
+
+function w3_open() {
+    document.getElementById("mySidebar").style.transform = "translateX(0px)";
+  }
+  
+  function w3_close() {
+    document.getElementById("mySidebar").style.transform = "translateX(-100%)";
+  }
