@@ -1,0 +1,153 @@
+/* video area */
+
+.video-slider {
+    .slick-slide {
+        &.slick-current {
+            .video-contents {
+                animation: slideInLeft 2s 0s both;
+            }
+        }
+    }
+}
+
+.video-area {}
+
+.video-wrapper {}
+
+.single-videos {
+    position: relative;
+    z-index: 1;
+    &:hover {
+        .popup-videos {
+            .videos-play {
+                background: var(--main-color-one);
+            }
+        }
+    }
+    .video-thumbs {
+        position: relative;
+        z-index: 1;
+        img {}
+    }
+    .video-contents {
+        background: $white;
+        padding: 30px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin-right: 170px;
+        z-index: 9;
+        &.black-theme {
+            background: var(--black-theme);
+            .video-title {
+                color: $white;
+            }
+            .span-title {
+                color: $white;
+            }
+        }
+        &.style-02 {
+            margin: -120px 140px 0;
+            background: #FBFBFB;
+            position: relative;
+            z-index: 9;
+            .video-title {
+                font-size: 42px;
+                line-height: 54px;
+                font-weight: 500;
+                font-family: var(--heading-font-two);
+            }
+            .beauty-title {
+                color: var(--main-color-one);
+                margin-bottom: 20px;
+                display: block;
+            }
+        }
+        .video-title {
+            line-height: 50px;
+            margin-bottom: 0;
+            transition: all .3s;
+            &:hover {
+                color: var(--main-color-one);
+            }
+        }
+        .span-title {
+            margin-top: 12px;
+        }
+    }
+    .popup-videos {
+        &.style-02 {
+            .videos-play {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--main-color-one);
+                border-radius: 50%;
+                transition: all .3s;
+                &:hover {
+                    background: $white;
+                    color: var(--main-color-one);
+                    &::before {
+                        background: $white;
+                    }
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    left: 50%;
+                    top: 50%;
+                    -webkit-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+                    background: var(--main-color-one);
+                    z-index: -2;
+                    border-radius: 50%;
+                    transition: all .3s;
+                    -webkit-animation: pulse-border 2s linear infinite;
+                    animation: pulse-border 2s linear infinite;
+                }
+            }
+        }
+        &.black-theme {
+            .videos-play {
+                background: $Vulcan;
+                &:hover {
+                    background: var(--main-color-two);
+                }
+            }
+        }
+        .videos-play {
+            font-size: 50px;
+            color: $white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            width: 100px;
+            background: var(--heading-color);
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 99;
+            transition: all .3s;
+            &:hover {
+                background: var(--main-color-one);
+            }
+        }
+    }
+}
+
+@keyframes pulse-border {
+    0% {
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(1);
+        transform: translateX(-50%) translateY(-50%) scale(1);
+        opacity: .5;
+    }
+    100% {
+        -webkit-transform: translateX(-50%) translateY(-50%) scale(1.5);
+        transform: translateX(-50%) translateY(-50%) scale(1.5);
+        opacity: 0;
+    }
+}

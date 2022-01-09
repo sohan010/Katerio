@@ -1,0 +1,31 @@
+/* Recent Stories */
+
+.recent-stories-area {}
+
+.single-stories-slider {
+    margin-top: 30px;
+    .recent-stories-thumbs {
+        img {}
+    }
+    .recent-stories-contents {
+        .popular-stories-tag {
+            margin-top: 30px;
+            .tags {
+                strong {}
+            }
+        }
+        .recent-stories-title {
+            font-size: 36px;
+            font-weight: 500;
+            font-family: var(--heading-font-two);
+            line-height: 54px;
+            margin-top: 15px;
+            transition: all .3s;
+            &:hover {
+                color: var(--main-color-one);
+            }
+        }
+    }
+}
+
+.recent-stories-slider {}

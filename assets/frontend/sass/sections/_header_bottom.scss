@@ -1,0 +1,97 @@
+/* Header Bottom Starts */
+
+.header-bottom {}
+
+.header-bottom-list {
+    padding: 5px 20px;
+    border-left: 3px solid var(--main-color-one);
+    background: $Gray;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    &.black-theme {
+        background: $Vulcan;
+        border-left: 3px solid var(--main-color-two);
+        .update-news {
+            color: var(--main-color-two);
+        }
+        .news-list-all {
+            .news-lists {
+                .list {
+                    a {
+                        color: $white;
+                        &:hover {
+                            color: var(--main-color-two);
+                        }
+                        &::before {
+                            background: var(--main-color-two);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .update-news {
+        color: var(--main-color-one);
+        font-size: 16px;
+        font-weight: 500;
+        min-width: 110px;
+    }
+    .news-list-all {
+        overflow: hidden;
+        .news-lists {
+            display: inline-flex;
+            animation: 30s runnings linear infinite;
+            animation-delay: .1s;
+            width: 100%;
+            .list {
+                margin: 5px 0;
+                position: relative;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                &:not(:last-child) {
+                    a {
+                        margin-right: 20px;
+                    }
+                }
+                a {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 28px;
+                    padding-left: 30px;
+                    position: relative;
+                    transition: all .2s;
+                    &:hover {
+                        color: var(--main-color-one);
+                    }
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 0%;
+                        left: 0;
+                        background: var(--main-color-one);
+                        height: 15px;
+                        width: 15px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes runnings {
+    0% {
+        transform: translateX(100%);
+    }
+    50% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* Header bottom end */

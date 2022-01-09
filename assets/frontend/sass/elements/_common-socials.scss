@@ -1,0 +1,76 @@
+/* Common Socials */
+
+.common-socials {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    &.black-theme {
+        li {
+            a {
+                background: $Vulcan;
+                &.facebook {
+                    border: 1px solid $facebook;
+                }
+                &.twitter {
+                    border: 1px solid $twitter;
+                }
+                &.instagram {
+                    border: 1px solid $instagram;
+                }
+                &.linkedin {
+                    border: 1px solid $linkedin;
+                }
+                &.youtube {
+                    border: 1px solid $youtube;
+                }
+            }
+        }
+    }
+    li {
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: $Gray;
+            height: 30px;
+            width: 30px;
+            color: $facebook;
+            transition: all .4s;
+            &:hover {
+                background: $facebook;
+                color: $white;
+            }
+            &.twitter {
+                color: $twitter;
+                &:hover {
+                    background: $twitter;
+                    color: $white;
+                }
+            }
+            &.instagram {
+                color: $instagram;
+                &:hover {
+                    background: $instagram;
+                    color: $white;
+                }
+            }
+            &.linkedin {
+                color: $linkedin;
+                &:hover {
+                    background: $linkedin;
+                    color: $white;
+                }
+            }
+            &.youtube {
+                color: $youtube;
+                &:hover {
+                    background: $youtube;
+                    color: $white;
+                }
+            }
+        }
+    }
+}

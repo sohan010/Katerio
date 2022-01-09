@@ -1,0 +1,36 @@
+/*---------------------------------------
+    ## Button
+---------------------------------------*/
+.btn-wrapper {
+    display: block;
+
+    .btn-default {
+        font-size: 16px;
+        display: inline-block;
+        text-align: center;
+        font-weight: 500;
+        cursor: pointer;
+        border: 2px solid var(--main-color-one);
+        background-color: var(--main-color-one);
+        color: #fff !important;
+        line-height: 50px;
+        text-transform: capitalize;
+        padding: 0 35px;
+        transition: all linear 0.2s;
+        &:hover {
+            background-color: transparent;
+            color: var(--main-color-one) !important;
+        }
+
+        &.transparent {
+            background-color: transparent;
+            color: var(--main-color-one) !important;
+            transition: all linear 0.2s;
+
+            &:hover {
+                background-color: var(--main-color-one);
+                color: $white !important;
+            }
+        }
+    }
+}

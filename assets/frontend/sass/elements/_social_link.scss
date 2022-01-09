@@ -1,0 +1,59 @@
+.social-link {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        li {
+            color: $white;
+            display: inline-block;
+            font-size: 15px;
+            transition: all 0.3s ease-in;
+            +li {
+                margin-left: 5px;
+            }
+            &:hover {
+                color: var(--secondary-color);
+            }
+        }
+    }
+    &.style-01 {
+        ul {
+            li {
+                display: block;
+                +li {
+                    margin-left: 0;
+                }
+                &:hover {
+                    color: var(--main-color-one);
+                }
+            }
+        }
+    }
+    &.style-02 {
+        ul {
+            li {
+                font-size: 20px;
+                display: inline-block;
+                +li {
+                    margin-left: 5px;
+                }
+                i {
+                    &.facebook {
+                        color: $facebook;
+                    }
+                    &.twitter {
+                        color: $twitter;
+                    }
+                    &.g-plus {
+                        color: $google-plus;
+                    }
+                    &.instagram {
+                        color: $instagram;
+                    }
+                }
+            }
+        }
+    }
+}

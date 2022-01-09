@@ -1,0 +1,114 @@
+/*
+Theme Name: Newspaper Magazine Bussiness
+Theme URI: 
+Author: 
+Author URI: 
+Description: Newspaper Magazine is a business website template
+Version: 1.0.0
+*/
+
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+
+# Typography
+# Normalize
+# Accessibility
+# Globals
+# Alignments
+# Clearings
+# Posts and pages
+# Captions
+# Galleries
+# Unit test
+# Block Color Palette Colors
+# Sections
+    ## navbar
+    ## top_bar
+    ## header_bottom
+    ## banner
+    ## banner_ads
+    ## news
+    ## video
+    ## sports
+    ## right_side_item
+    ## topics
+    ## widgets
+    ## popular_stories
+    ## recent-stories
+    ## highlights
+    ## trendy
+    ## photogallery
+    ## blog-details
+    ## details_tag_area
+    ## details_comments
+    ## details_replay
+    ## author
+    ## about
+    ## contact
+    ## 404
+    ## search_area
+
+# Elements
+    ## section_title
+    ## button
+    ## back_top
+    ## preloader
+    ## search_popup
+    ## sidebars
+    ## social-connects
+    ## tags-area
+    ## categories
+    ## whats_new
+    ## inner-page-menu
+    ## common-socials
+    ## faq
+
+--------------------------------------------------------------*/
+
+//== Global Design
+@import "global/_mixins";
+@import "global/_variables";
+@import "global/_global";
+//== Pages
+//== Sections
+@import "sections/_navbar";
+@import "sections/_top_bar";
+@import "sections/_header_bottom";
+@import "sections/_banner";
+@import "sections/_banner_ads";
+@import "sections/_news";
+@import "sections/_video";
+@import "sections/_sports";
+@import "sections/_right_side_item";
+@import "sections/_topics";
+@import "sections/_widgets";
+@import "sections/_popular_stories";
+@import "sections/_recent-stories";
+@import "sections/_highlights";
+@import "sections/_trendy";
+@import "sections/_photogallery";
+@import "sections/_blog-details";
+@import "sections/_details_tag_area";
+@import "sections/_details_comments";
+@import "sections/_details_replay";
+@import "sections/_author";
+@import "sections/_about";
+@import "sections/_contact";
+@import "sections/_404";
+@import "sections/_search_area";
+//== Elements
+@import "elements/_section_title";
+@import "elements/_button";
+@import "elements/_back_top";
+@import "elements/_preloader";
+@import "elements/_search_popup";
+@import "elements/_sidebars";
+@import "elements/_social-connects";
+@import "elements/_tags-area";
+@import "elements/_categories";
+@import "elements/_whats_new";
+@import "elements/_inner-page-menu";
+@import "elements/_common-socials";
+@import "elements/_faq";

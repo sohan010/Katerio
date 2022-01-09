@@ -1,0 +1,38 @@
+/* sports area */
+
+.sports-area {}
+
+.single-sports-slider {
+    .single-sports {
+        margin: 15px;
+        &.black-theme {}
+        &:hover {
+            .sports-thumbs {
+                img {
+                    transform: scale(1.2);
+                }
+            }
+        }
+        .sports-thumbs {
+            overflow: hidden;
+            img {
+                width: 100%;
+                transition: all .4s;
+            }
+        }
+        .sports-contents {
+            .span-title {
+                margin-top: 20px;
+            }
+            .common-title {
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+.sports-slider {
+    .slick-list {
+        margin: -15px;
+    }
+}

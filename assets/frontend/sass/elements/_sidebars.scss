@@ -1,0 +1,119 @@
+/* Sidebars */
+
+.sidebars-item {
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 40px;
+    position: relative;
+    z-index: 9;
+    transition: all .3s;
+    &:hover {
+        color: var(--main-color-one);
+    }
+}
+
+.sidebars-wrappers {
+    width: 400px;
+    height: 100vh;
+    padding: 30px 20px;
+    background: $white;
+    top: 0;
+    left: -100%;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 9999;
+    transition: all .6s;
+    &.active {
+        visibility: visible;
+        opacity: 1;
+        left: 0;
+        border-right: 1px solid rgba($black, .1);
+    }
+    &.black-theme {
+        background: var(--black-theme);
+        .sidebars-close {
+            background: var(--main-color-two);
+            color: $white;
+            border: 1px solid rgba($main-color-two, .5);
+            &:hover {
+                background: $Vulcan;
+            }
+        }
+        .sidebar-inner {
+            &::-webkit-scrollbar-track {
+                background: $Vulcan;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: var(--main-color-two);
+                border-radius: 10px;
+            }
+        }
+    }
+    .sidebars-close {
+        position: absolute;
+        right: -50px;
+        top: 0%;
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--heading-color);
+        background: $Gray;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 50px;
+        transition: all .3s;
+        &:hover {
+            color: $white;
+            background: var(--main-color-one);
+        }
+    }
+    .sidebar-inner {
+        text-align: center;
+        overflow-y: scroll;
+        height: 100%;
+        &::-webkit-scrollbar {
+            width: 7px;
+            border-radius: 10px;
+        }
+        &::-webkit-scrollbar-track {
+            background: $Gray;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: var(--main-color-one);
+            border-radius: 10px;
+        }
+        .connets-title {
+            font-family: var(--body-font);
+            font-size: 24px;
+            font-weight: 500;
+            &.black-theme {
+                color: $white;
+            }
+        }
+        .sidebar-logo {
+            img {}
+        }
+        .contents-wrapper {
+            margin-top: 40px;
+            .updated-socials {
+                .common-socials {
+                    justify-content: center;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}
+
+.sidebar-updated-content {
+    margin-top: 50px;
+    text-align: left;
+    .tag-new-contents {
+        margin-top: 50px;
+        .tag-list {
+            margin-top: 40px;
+        }
+    }
+}

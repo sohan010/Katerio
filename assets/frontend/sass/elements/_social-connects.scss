@@ -1,0 +1,52 @@
+/* Social Connects */
+
+.social-connects {
+    .social-connects-list {
+        margin-top: 40px;
+    }
+}
+
+.social-connects-list {
+    .single-list {
+        background: #F2F3F5;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+        .list-left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 40px;
+                width: 40px;
+                background-color: inherit;
+                color: $white;
+                font-size: 20px;
+            }
+            .followers {
+                font-size: 14px;
+                line-height: 28px;
+                color: var(--heading-color);
+                strong {
+                    margin-right: 5px;
+                }
+            }
+        }
+        .list-right {
+            .likes {
+                font-size: 14px;
+                font-weight: 500;
+                font-size: var(--heading-color);
+            }
+        }
+    }
+}

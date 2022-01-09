@@ -1,0 +1,71 @@
+/*----------------------------
+    Top Bar
+----------------------------*/
+
+.topbar-area {
+    padding: 50px 0;
+}
+
+.topbar-socials {
+    &.style-02 {
+        ul {
+            justify-content: flex-end;
+        }
+    }
+    &.black-theme {
+        ul {
+            li {
+                a {
+                    color: $white;
+                    &:hover {
+                        color: var(--main-color-two);
+                    }
+                }
+            }
+        }
+    }
+    ul {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        li {
+            &:not(:last-child) {
+                margin-right: 5px;
+            }
+            a {
+                font-size: 18px;
+                color: var(--paragraph-color);
+                transition: .2s;
+                &:hover {
+                    color: var(--main-color-one);
+                }
+            }
+        }
+    }
+}
+
+.topbar-logo {
+    text-align: center;
+    img {}
+}
+
+.topbar-right-contents {
+    &.style-02 {
+        .dates {
+            text-align: left;
+            font-family: var(--heading-font-two);
+            font-weight: 500;
+        }
+    }
+    &.black-theme {
+        .dates {
+            color: $white;
+        }
+    }
+    .dates {
+        text-align: right;
+        font-size: 18px;
+        font-weight: 600;
+        font-family: var(--heading-font);
+    }
+}

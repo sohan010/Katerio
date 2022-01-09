@@ -1,0 +1,51 @@
+/* Details Comments area */
+
+.details-comment-area {
+    .section-title-two {
+        margin-bottom: 0;
+    }
+}
+
+.comments-inner {}
+
+.single-comments {
+    background: $Gray;
+    padding: 30px;
+    margin-top: 40px;
+    &.style-02 {
+        background: none;
+        border: 1px solid rgba($black, .1);
+    }
+    .comments-flex-contents {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+        .comment-author {
+            img {
+                max-width: 80px;
+                height: 80px;
+            }
+        }
+        .comments-content {
+            .flex-replay {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .author-title {
+                    font-weight: 500;
+                }
+                .btn-wrapper {
+                    .btn-replay {}
+                }
+            }
+            .comment-date {
+                display: block;
+                margin-top: 8px;
+                color: var(--light-color);
+            }
+            .common-para {
+                margin-top: 15px;
+            }
+        }
+    }
+}

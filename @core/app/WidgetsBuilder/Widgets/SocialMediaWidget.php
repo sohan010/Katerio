@@ -1,0 +1,170 @@
+<?php
+
+namespace App\WidgetsBuilder\Widgets;
+use App\Helpers\SanitizeInput;
+use App\Language;
+use App\PageBuilder\Fields\IconPicker;
+use App\PageBuilder\Fields\Image;
+use App\PageBuilder\Fields\Repeater;
+use App\PageBuilder\Fields\Text;
+use App\PageBuilder\Helpers\RepeaterField;
+use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
+use App\WidgetsBuilder\WidgetBase;
+use Mews\Purifier\Facades\Purifier;
+
+class SocialMediaWidget extends WidgetBase
+{
+
+    public function admin_render()
+    {
+        $output = $this->admin_form_before();
+        $output .= $this->admin_form_start();
+        $output .= $this->default_fields();
+        $widget_saved_values = $this->get_settings();
+
+
+
+        //render language tab
+        $output .= $this->admin_language_tab();
+        $output .= $this->admin_language_tab_start();
+
+        $all_languages = Language::all();
+        foreach ($all_languages as $key => $lang) {
+            $output .= $this->admin_language_tab_content_start([
+                'class' => $key == 0 ? 'tab-pane fade show active' : 'tab-pane fade',
+                'id' => "nav-home-" . $lang->slug
+            ]);
+            $widget_title = $widget_saved_values['widget_title_' . $lang->slug] ?? '';
+            $output .= '<div class="form-group"><input type="text" name="widget_title_' . $lang->slug . '" class="form-control" placeholder="' . __('Widget Title') . '" value="' . $widget_title . '"></div>';
+
+            $output .= $this->admin_language_tab_content_end();
+        }
+        $output .= $this->admin_language_tab_end();
+        //end multi langual tab option
+
+
+        $output .= IconPicker::get([
+            'name' => 'facebook_icon',
+            'label' => __('Facebook Icon'),
+            'value' => $widget_saved_values['facebook_icon'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'facebook_url',
+            'label' => __('Facebook URL'),
+            'value' => $widget_saved_values['facebook_url'] ?? null,
+        ]);
+
+        $output .= IconPicker::get([
+            'name' => 'twitter_icon',
+            'label' => __('Twitter Icon'),
+            'value' => $widget_saved_values['twitter_icon'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'twitter_url',
+            'label' => __('Twitter URL'),
+            'value' => $widget_saved_values['twitter_url'] ?? null,
+        ]);
+
+        $output .= IconPicker::get([
+            'name' => 'instagram_icon',
+            'label' => __('Instagram Icon'),
+            'value' => $widget_saved_values['instagram_icon'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'instagram_url',
+            'label' => __('Instagram URL'),
+            'value' => $widget_saved_values['instagram_url'] ?? null,
+        ]);
+
+        $output .= IconPicker::get([
+            'name' => 'email_icon',
+            'label' => __('Email Icon'),
+            'value' => $widget_saved_values['email_icon'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'email_url',
+            'label' => __('Email URL'),
+            'value' => $widget_saved_values['email_url'] ?? null,
+          ]);
+
+        $output .= IconPicker::get([
+            'name' => 'youtube_icon',
+            'label' => __('Youtube Icon'),
+            'value' => $widget_saved_values['youtube_icon'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'youtube_url',
+            'label' => __('Youtube URL'),
+            'value' => $widget_saved_values['youtube_url'] ?? null,
+        ]);
+
+
+        $output .= $this->admin_form_submit_button();
+        $output .= $this->admin_form_end();
+        $output .= $this->admin_form_after();
+
+        return $output;
+    }
+
+    public function frontend_render()
+    {
+        $settings = $this->get_settings();
+        $user_selected_language = get_user_lang();
+        $widget_title = $settings['widget_title_' . $user_selected_language] ?? '';
+
+        $facebook_icon = $settings['facebook_icon'];
+        $facebook_url =  $settings['facebook_url'];
+        $twitter_icon = $settings['twitter_icon'];
+        $twitter_url =  $settings['twitter_url'];
+        $instagram_icon = $settings['instagram_icon'];
+        $instagram_url =  $settings['instagram_url'];
+        $email_icon = $settings['email_icon'];
+        $email_url =  $settings['email_url'];
+        $youtube_icon = $settings['youtube_icon'];
+        $youtube_url =  $settings['youtube_url'];
+
+
+
+    return <<<HTML
+
+        <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="footer-widget widget">
+                <div class="footer-inner style-02">
+                    <div class="footer-socials">
+                        <h4 class="footer-follow"> {$widget_title} </h4>
+                        <ul class="footer-social-list-two">
+                            <li class="lists">
+                                <a class="facebook" href="{$facebook_url}"> <i class="{$facebook_icon}"></i> </a>
+                            </li>
+                            <li class="lists">
+                                <a class="twitter" href="{$twitter_url}"> <i class="{$twitter_icon}"></i> </a>
+                            </li>
+                            <li class="lists">
+                                <a class="twitter" href="{$email_url}"> <i class="{$email_icon}"></i> </a>
+                            </li>
+                            <li class="lists">
+                                <a class="instagram" href="{$instagram_url}"> <i class="{$instagram_icon}"></i> </a>
+                            </li>
+                            <li class="lists">
+                                <a class="youtube" href="{$youtube_url}"> <i class="{$youtube_icon}"></i> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+HTML;
+}
+
+    public function widget_title()
+    {
+        return __('Social Media : 01');
+    }
+
+}

@@ -1,0 +1,73 @@
+/* Popular Stories */
+
+.popular-stories-area {}
+
+.single-popular-stories {
+    &:hover {
+        .popular-stories-thumb {
+            img {
+                transform: scale(1.2);
+            }
+        }
+    }
+    .popular-stories-thumb {
+        overflow: hidden;
+        img {
+            width: 100%;
+            transition: all .4s;
+        }
+    }
+    .popular-stories-contents {
+        .common-title-two {
+            margin-top: 20px;
+        }
+    }
+}
+
+.popular-stories-tag {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    .tags {
+        position: relative;
+        color: var(--light-color);
+        font-size: 16px;
+        font-weight: 400;
+        &:not(:last-child) {
+            padding-right: 20px;
+            &::after {
+                position: absolute;
+                content: "";
+                height: 10px;
+                width: 1px;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background: var(--light-color);
+            }
+        }
+        &:not(:first-child) {
+            padding-left: 20px;
+        }
+        strong {
+            font-weight: 500;
+            color: var(--paragraph-color);
+        }
+        .item {
+            transition: all .3s;
+            position: relative;
+            &:hover {
+                color: var(--main-color-one);
+                &::before {
+                    color: var(--light-color);
+                }
+            }
+            &:not(:first-child) {
+                &::before {
+                    content: ",";
+                    padding-left: 3px;
+                }
+            }
+        }
+    }
+}

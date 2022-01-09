@@ -1,0 +1,44 @@
+/* Inner Page Menu */
+
+.inner-menu-area {
+    padding-top: 40px;
+    .inner-menu-list {
+        ul {
+            display: flex;
+            align-items: center;
+            li {
+                font-size: 16px;
+                transition: all .3s;
+                position: relative;
+                z-index: 1;
+                color: var(--heading-color);
+                a {
+                    color: var(--light-color);
+                    transition: all .3s;
+                }
+                &:not(:last-child) {
+                    padding-right: 20px;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        right: 0;
+                        background: rgba($black, .1);
+                        width: 1px;
+                        height: 12px;
+                    }
+                }
+                &:not(:first-child) {
+                    padding-left: 20px;
+                }
+                &:hover {
+                    color: var(--main-color-one);
+                    a {
+                        color: var(--main-color-one);
+                    }
+                }
+            }
+        }
+    }
+}

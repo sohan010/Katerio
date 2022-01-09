@@ -1,0 +1,192 @@
+@media only screen and (min-width:1601px) and (max-width: 1850px) {}
+
+@media only screen and (min-width: 1400px) and (max-width: 1600px) {}
+
+@media only screen and (min-width: 1367px) and (max-width: 1399px) {}
+
+@media only screen and (min-width: 1201px) and (max-width: 1366px) {}
+
+
+/* Medium Layout: 1200px. */
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .header-area .content .header-title {
+        font-size: 75px;
+    }
+    .gallery-area-wrapper .single-page-item .btn-page {
+        text-align: center;
+        margin-top: -22px;
+    }
+    .gallery-area-wrapper .single-page-item .btn-page a {
+        font-size: 20px;
+        padding: 7px 40px;
+    }
+    .content-wrap {
+        margin: 0 0px 70px;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .header-area .content .header-title {
+        font-size: 65px;
+        line-height: 100px;
+    }
+    .section-title-wrapper .section-heading {
+        font-size: 42px;
+    }
+}
+
+
+/* Tablet Layout: 768px. */
+
+@media only screen and (max-width: 991px) {
+    .navbar-area .nav-container .responsive-mobile-menu {
+        width: auto;
+    }
+    .header-area .content .header-title {
+        font-size: 50px;
+        line-height: 80px;
+    }
+    .header-area .content .header-title .top-title {
+        font-size: 40px;
+    }
+    .header-area .content {
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }
+    .gallery-area-wrapper .single-page-item .btn-page {
+        margin-top: -20px;
+    }
+    .gallery-area-wrapper .single-page-item .btn-page a {
+        font-size: 17px;
+        padding: 6px 34px;
+    }
+    .content-wrap {
+        margin: 0 0px 70px;
+    }
+    .section-title-wrapper .section-heading {
+        font-size: 38px;
+    }
+}
+
+
+/* Tablet Layout wide: 768px. */
+
+@media only screen and (max-width: 767px) {
+    .header-area .content .header-title {
+        font-size: 37px;
+        line-height: 65px;
+    }
+    .header-area .content .header-title .top-title {
+        font-size: 35px;
+    }
+    .btn-wrapper .btn-default {
+        line-height: 45px;
+        padding: 0 28px;
+    }
+    .section-title-wrapper .section-heading {
+        font-size: 34px;
+    }
+    .gallery-area-wrapper .single-page-item img {
+        width: 100%;
+    }
+}
+
+
+/* medium tablet layout 599px */
+
+@media only screen and (max-width: 599px) {
+    .navbar-area.nav-style-02 .nav-container {
+        padding: 0;
+    }
+    .navbar-area.nav-style-02.has-topbar {
+        top: 12px;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .header-area .content .header-title {
+        font-size: 32px;
+        line-height: 54px;
+    }
+    .btn-wrapper .btn-default {
+        line-height: 43px;
+        font-size: 15px;
+        padding: 0 20px;
+    }
+    .section-title-wrapper .section-heading {
+        font-size: 28px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .navbar-area.nav-style-02 .nav-container .logo-wrapper img {
+        width: 124px;
+    }
+    .header-area .content {
+        padding-top: 140px;
+        padding-bottom: 70px;
+    }
+    .header-area .content .header-title {
+        font-size: 30px;
+        line-height: 48px;
+    }
+    .header-area .content .header-title .top-title {
+        font-size: 26px;
+        line-height: 40px;
+    }
+    .section-title-wrapper .section-heading {
+        font-size: 24px;
+        padding-bottom: 30px;
+    }
+}
+
+
+/* mobile tablet layout 414px */
+
+@media only screen and (max-width: 414px) {
+    .header-area .content .header-title br {
+        display: none;
+    }
+    .section-title-wrapper .section-heading {
+        font-size: 20px;
+        padding-bottom: 25px;
+    }
+}
+
+
+/* mobile tablet layout 375px */
+
+@media only screen and (max-width: 375px) {
+    .header-area .content .header-title .top-title {
+        font-size: 24px;
+    }
+    .btn-wrapper .btn-default {
+        line-height: 40px;
+        font-size: 14px;
+        padding: 0 15px;
+    }
+}
+
+
+/* mobile tablet layout 360px */
+
+@media only screen and (max-width: 360px) {
+    .header-area .content .btn-wrapper a {
+        margin: 0 5px;
+    }
+    .content-wrap .single-feature-item .title {
+        font-size: 16px;
+        line-height: 26px;
+    }
+    .gallery-area-wrapper .single-page-item .btn-page a {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 340px) {}
+
+
+/* mobile tablet layout 320px */
+
+@media only screen and (max-width: 330px) {}

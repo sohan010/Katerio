@@ -1,0 +1,14 @@
+/* banner ads */
+
+.banner-ads-area {
+    margin: 0 70px;
+    &.no-margins {
+        margin: 0 0;
+    }
+}
+
+.single-banner-ads {
+    img {
+        width: 100%;
+    }
+}

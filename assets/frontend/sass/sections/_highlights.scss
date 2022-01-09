@@ -1,0 +1,51 @@
+/* Highlihts area */
+
+.higlights-area {}
+
+.single-highlights {
+    &.style-02 {
+        .highlights-flex-contents {
+            .highlights-thumb {
+                height: 250px;
+                min-width: 350px;
+            }
+            .highlights-contents {
+                .popular-stories-tag {
+                    margin-bottom: 30px;
+                }
+                .common-para {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+    .highlights-flex-contents {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        .highlights-thumb {
+            height: 200px;
+            min-width: 255px;
+            img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .highlights-contents {
+            .popular-stories-tag {
+                margin-bottom: 30px;
+            }
+            .highlights-title {
+                font-family: var(--heading-font-two);
+                font-weight: 500;
+                line-height: 38px;
+                font-size: 28px;
+                transition: all .3s;
+                &:hover {
+                    color: var(--main-color-one);
+                }
+            }
+        }
+    }
+}

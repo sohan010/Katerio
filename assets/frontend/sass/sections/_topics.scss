@@ -1,0 +1,32 @@
+/* topics area */
+
+.topics-area {}
+
+.single-topics {
+    &:hover {
+        .topics-thumb {
+            img {
+                width: 100%;
+                transform: scale(1.2);
+            }
+        }
+    }
+    .topics-thumb {
+        overflow: hidden;
+        img {
+            width: 100%;
+            transition: all .4s;
+        }
+    }
+    .topic-contents {
+        .span-title {
+            margin-top: 25px;
+        }
+        .common-title {
+            margin-top: 25px;
+        }
+        .common-para {
+            margin-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,152 @@
+/* Banner  */
+
+.slick-slider-one {
+    .slick-slide {
+        &.slick-current {
+            .banner-contents {
+                .banner-title {
+                    animation: flipInX 2s 1s both;
+                }
+                .common-para {
+                    animation: fadeInUp 2s 0s both;
+                }
+                .cmn-btn {
+                    animation: flipInY 2s 0s both;
+                }
+                .banner-dates {
+                    animation: fadeInRight 2s 0s both;
+                }
+            }
+        }
+    }
+}
+
+.banner-slider {
+    .slick-slide {
+        &.slick-current {
+            .banner-contents-02 {
+                .banner-title {
+                    animation: flipInX 1.2s 1s both;
+                }
+                .span-title {
+                    animation: fadeInRight 2s 0s both;
+                }
+            }
+        }
+    }
+}
+
+.banner-area {}
+
+.banner-contents {
+    width: 450px;
+    position: relative;
+    z-index: 9;
+    background: $white;
+    padding: 30px 30px;
+    &.black-theme {
+        background: var(--black-theme);
+        .banner-title {
+            color: $white;
+        }
+        .common-para {
+            color: rgba($white, .8);
+        }
+        .btn-wrapper {
+            .black-theme {
+                color: $white;
+                &:hover {
+                    color: var(--main-color-two);
+                }
+            }
+        }
+        .banner-dates {
+            color: $white;
+        }
+    }
+    .banner-title {
+        font-size: 36px;
+        line-height: 48px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        transition: all .3s;
+        &:hover {
+            color: var(--main-color-one);
+        }
+    }
+    .common-para {}
+    .btn-wrapper {
+        .cmn-btn {}
+    }
+    .banner-dates {
+        font-size: 16px;
+        line-height: 28px;
+        color: var(--light-color);
+        display: block;
+        margin-top: 30px;
+    }
+}
+
+.slick-slider-one {
+    position: relative;
+    &.black-theme {
+        .las.la-angle-left.slick-arrow,
+        .las.la-angle-right.slick-arrow {
+            &:hover {
+                color: var(--main-color-two);
+            }
+        }
+    }
+    .las.la-angle-left.slick-arrow,
+    .las.la-angle-right.slick-arrow {
+        position: absolute;
+        bottom: 80px;
+        left: 400px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 99;
+        transition: all .3s;
+        &:hover {
+            color: var(--main-color-one);
+        }
+    }
+    & .las.la-angle-left.slick-arrow {
+        left: 370px;
+    }
+}
+
+
+/* banner slider two */
+
+.banner-area {
+    .banner-slider {
+        &.slick-slider-two {
+            margin: 30px 30px 0;
+        }
+    }
+}
+
+.banner-contents-02 {
+    text-align: center;
+    background: $white;
+    padding: 40px;
+    margin-top: 570px;
+    .span-title {
+        margin-bottom: 20px;
+    }
+    .banner-title {
+        font-size: 55px;
+        font-weight: 500;
+        line-height: 65px;
+        font-family: var(--heading-font-two);
+        transition: all .3s;
+        &:hover {
+            color: var(--main-color-one);
+        }
+    }
+}
+
+.single-banner-slider {
+    min-height: 814px;
+    position: relative;
+}

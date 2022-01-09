@@ -1,0 +1,21 @@
+/* About area */
+
+.about-area {}
+
+.about-wrapper {
+    .about-thumb {
+        img {}
+    }
+    .about-contents {
+        margin-top: 30px;
+        .about-title {
+            font-size: 48px;
+            font-family: var(--heading-font-two);
+            line-height: 64px;
+            font-weight: 500;
+        }
+        .common-para {
+            margin-top: 30px;
+        }
+    }
+}

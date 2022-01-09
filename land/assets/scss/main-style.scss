@@ -1,0 +1,86 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+
+# Typography
+# Normalize
+# Accessibility
+# Globals
+# Alignments
+# Clearings
+# Posts and pages
+# Captions
+# Galleries
+# Unit test
+# guterberg
+# Gutenberg	Default Style
+# Block Color Palette Colors
+# Sections
+    ## Breadcrumb
+    ## Comments
+    ## Widgets
+    ## Nav Bar
+    ## Info Bar
+    ## Header
+    ## Header Bottom Area
+    ## Footer Area
+    ## Error 404 Area
+    ## Why us Area
+    ## Highly Skilled Area
+    ## Call TO Action Area
+    ## Testimonial Area
+    ## Top Lawyer Style 02
+    ## Counterup Area
+    ## Case Category Area
+    ## Legal Support Area
+    ## Practice Details Area
+    ## Attorney Details Area
+
+# Elements
+    ## Back Top
+    ## Preloader
+    ## Video Popup
+    ## Button
+    ## Blog
+    ## Accordion
+    ## contact Info Item
+    ## Quote block with sign
+    ## Counterup Item
+    ## Video With Image
+    ## Video Play Button
+    ## Why Us Item
+    ## Section Title
+    ## What we cover item
+    ## Icon Box Item
+    ## Testimonial Item
+    ## Case Categories Item
+    ## Quote With Image
+    ## Price Plan Item
+
+--------------------------------------------------------------*/
+
+//== Global Design
+@import "global/_mixins";
+@import "global/_variables";
+@import "global/_global";
+@import "global/_gutenberg";
+//== Pages
+//== Sections
+@import "sections/_navbar";
+@import "sections/_header";
+@import "sections/_footer";
+@import "sections/_gallery";
+//== Elements
+@import "elements/_back_top";
+@import "elements/_preloader";
+@import "elements/_button";
+//WP Unite_test
+@import "wp_unite_test/_default_navbar";
+@import "wp_unite_test/_wp_block";
+@import "wp_unite_test/_wp_caption";
+@import "wp_unite_test/_post_navigation";
+@import "wp_unite_test/_wp_block_color";
+@import "wp_unite_test/_wp_gallery";
+@import "wp_unite_test/_wp_table";
+@import "wp_unite_test/_wp_list";
+@import "wp_unite_test/_wp_pagination";

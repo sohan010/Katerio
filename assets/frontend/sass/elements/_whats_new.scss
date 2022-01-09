@@ -1,0 +1,31 @@
+/* Whats New */
+
+.what-new-area {}
+
+.what-contents {
+    margin-top: 40px;
+    .single-what-flex {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+        .what-thumb {
+            height: 95px;
+            min-width: 95px;
+            img {}
+        }
+        .what-inner-contents {
+            .what-title {
+                font-family: var(--heading-font-two);
+                font-weight: 500;
+                line-height: 28px;
+            }
+            .what-dates {
+                display: block;
+                margin-top: 15px;
+            }
+        }
+    }
+}

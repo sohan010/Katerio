@@ -1,0 +1,102 @@
+/*--------------------------------------------------------------
+	## Gallery
+--------------------------------------------------------------*/
+
+.section-title-wrapper {
+    text-align: center;
+    margin-bottom: 55px;
+    .section-heading {
+        font-family: var(--extra-font);
+        color: #040B25;
+        font-weight: 700;
+        font-size: 45px;
+        text-transform: uppercase;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 50px;
+        .shape {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+.gallery-area-wrapper {
+    margin: 90px 50px 0;
+    .single-page-item {
+        margin: 0 15px 70px;
+        a {
+            position: relative;
+            display: block;
+            box-shadow: 0px 0px 12px -1px #00000021;
+            transition: all linear 0.3s;
+            &:hover {
+                transform: scale(1.009);
+            }
+        }
+        .btn-page {
+            text-align: center;
+            margin-top: -28px;
+            a {
+                display: inline-block;
+                background-color: #FFF8F5;
+                font-family: var(--extra-font);
+                font-size: 24px;
+                font-weight: 700;
+                color: var(--heading-color-three);
+                transition: all linear 0.2s;
+                text-transform: capitalize;
+                padding: 10px 70px;
+                &:hover {
+                    color: var(--main-color-one);
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}
+
+.feature-area {
+    margin: 0px 50px 0;
+}
+
+.content-wrap {
+    margin: 0 15px 70px;
+    height: 240px;
+    background-color: #f7f7f7;
+    .single-feature-item {
+        text-align: center;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .icon-box {
+            height: 64px;
+            width: 64px;
+            margin: 0 auto;
+            .icon {
+                display: block;
+                padding-top: 3px;
+                font-size: 40px;
+                color: var(--main-color-one);
+            }
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .title {
+            margin: auto;
+            padding-top: 10px;
+            font-family: var(--extra-font);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--heading-color-three);
+            text-transform: capitalize;
+        }
+    }
+}

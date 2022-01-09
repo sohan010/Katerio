@@ -1,0 +1,28 @@
+/*-------------------------
+    Footer Area
+-------------------------*/
+
+.footer-area {
+  margin-top: 20px;
+
+  .footer-bottom {
+    background-color: #DDDDDD;
+
+    .copyright-area {
+      text-align: center;
+      padding: 24px 0 20px 0;
+
+      .copyright-area-inner {
+        text-align: center;
+
+        .copyright {
+          font-family: var(--extra-font);
+          font-weight: 400;
+          font-size: 14px;
+          color: #666666;
+          text-transform: initial;
+        }
+      }
+    }
+  }
+}
