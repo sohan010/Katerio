@@ -61,19 +61,14 @@ class BlogInstagramWidget extends WidgetBase
 
         $before = $this->widget_before('widget_archive'); //render widget before content
 
-        $output = ' <div class="widget-gallery wow bounceInUp" data-wow-duration="1.5s">';
-        if (!empty($widget_title)) {
-            $output .= '<h4 class="widget-title">' . $widget_title . '</h4>';
-        }
 
         $instagram_data = InstagramFeed::fetch($post_items);
-     
-        $output= '';
+
+        $output = ' ';
         foreach($instagram_data->data as $item){
-            $output.= '<li>
+            $output.= '<li class="content-item">
                         <a href="#">
-                        
-                          <img data-toggle="tooltip" src="'.$item->media_url.'" src="'.$item->media_url.'" alt="">
+                         <img src="'.$item->media_url.'" src="'.$item->media_url.'" alt="">
                         </a>
                     </li>';
         }
@@ -81,13 +76,12 @@ class BlogInstagramWidget extends WidgetBase
     $after = $this->widget_after();
  return <<<HTML
 {$before}
-            <div class="widget-gallery wow bounceInUp" data-wow-duration="3.9s">
-                <h5 class="widget-title">{$widget_title}</h5>
-                <ul class="list">
-                    {$output}
-                   
-                </ul>
-            </div>
+    <div class="footer-widget">
+    <h4 class="widget-title">{$widget_title}</h4>
+        <ul class="footer-content-list instragram">
+            {$output}
+        </ul>
+    </div>
  {$after}
 HTML;
 

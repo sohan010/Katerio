@@ -1,1 +1,1 @@
-<?php echo $__env->make('frontend.partials.pages-portion.navbars.navbar-01', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\katerio\@core\resources\views/frontend/partials/navbar.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('frontend.partials.pages-portion.navbars.navbar-'.get_navbar_style(), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\katerio\@core\resources\views/frontend/partials/navbar.blade.php ENDPATH**/ ?>

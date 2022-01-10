@@ -286,7 +286,6 @@
                     @canany([
                         'general-settings-reading-settings',
                         'general-settings-global-navbar-settings',
-                        'general-settings-global-footer-settings',
                         'general-settings-site-identity',
                         'general-settings-basic-settings',
                         'general-settings-color-settings',

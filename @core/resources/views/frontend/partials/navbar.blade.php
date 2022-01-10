@@ -1,1 +1,1 @@
-@include('frontend.partials.pages-portion.navbars.navbar-01')
+@include('frontend.partials.pages-portion.navbars.navbar-'.get_navbar_style())

@@ -38,14 +38,11 @@ class WidgetBuilderSetup
     }
     private static function registerd_sidebars(){
         return [
-            'footer_one',
-            'footer_two',
+            'footer_01',
+            'footer_02',
             'sidebar_01',
             'sidebar_02',
-            'sidebar_03',
-            'sidebar_04',
-            'sidebar_05',
-            'sidebar_06',
+
         ];
     }
 

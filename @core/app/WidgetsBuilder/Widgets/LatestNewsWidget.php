@@ -44,9 +44,7 @@ class LatestNewsWidget extends WidgetBase
         $output .= $this->admin_language_tab_end();
         //end multi langual tab option
         $post_items = $widget_saved_values['post_items'] ?? '';
-        $last_days = $widget_saved_values['last_days'] ?? '';
         $output .= '<div class="form-group"><input type="number" name="post_items" class="form-control" placeholder="' . __('Post Items') . '" value="' . $post_items . '"></div>';
-        $output .= '<div class="form-group"><input type="number" name="last_days" class="form-control" placeholder="' . __('How Many Last Days') . '" value="' . $last_days . '"></div>';
 
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
@@ -65,27 +63,36 @@ class LatestNewsWidget extends WidgetBase
         $user_selected_language = get_user_lang();
         $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
         $post_items = $this->setting_item('post_items') ?? '';
-        $last_days = $this->setting_item('last_days') ?? '';
-        $date = Carbon::now()->subDays($last_days);
-        $blog_posts = Blog::where(['status' => 'publish'])->where('created_at', '>=', $date)->take($post_items)->get();
+        $blog_posts = Blog::where(['status' => 'publish'])->take($post_items)->get();
 
         $output = $this->widget_before(); //render widget before content
 
-        $output .= ' <div class="single-sidebar-item padding-top-30">';
+        $output .= ' <div class="footer-widget">';
         if (!empty($widget_title)) {
-            $output .= '<div class="section-title"><h4 class="title">' .purify_html($widget_title) . '</h4></div>';
+            $output .= '<h4 class="widget-title">' .purify_html($widget_title) . '</h4>';
         }
-        $output .= '<div class="sidebar-contents">';
+        $output .= '<div class="recent-blog-post-style-01">';
 
         foreach ($blog_posts as $post) {
+            $image = render_image_markup_by_attachment_id($post->image);
+            $output.= '<div class="single-blog-post-item">
+                       <div class="thumb">
+                            '.$image.'
+                        </div>
+                        <div class="content">
+                            <h4 class="title">
+                                <a href="' . route('frontend.blog.single',$post->slug) . '">'.$post->getTranslation('title',$user_selected_language).'</a>
+                            </h4>
+                            <div class="post-meta">
+                                <ul class="post-meta-list style-02">
+                                    <li class="post-meta-item date">
+                                        <span class="text">'.date('d M, Y',strtotime($post->created_at)).'</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
 
-            foreach ($post->category_id as $cat){
-               $category_count = Blog::whereJsonContains('category_id',(string) $cat->id)->count();
-            }
-
-            $output.= '<div class="recent-contents style-02 wow animated fadeInUp" data-wow-delay=".1s">
-                        <span class="span-num">'.$category_count.'</span>
-                        <h4 class="common-title"><a href="' . route('frontend.blog.single',$post->slug) . '">'.Str::words($post->getTranslation('title',$user_selected_language),15).'</a></h4>
                      </div>';
         }
         $output .= '</div>';

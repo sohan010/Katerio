@@ -2680,6 +2680,10 @@ function render_attachment_preview_for_admin($id)
  function get_page_slug($id,$default = null){
     return Page::where('id',$id)->first()->slug ?? $default;
 }
+function get_page_slug_two($slug){
+    return Page::where('slug',$slug)->first();
+}
+
 
 function get_navbar_style(){
     $fallback = get_static_option('global_navbar_variant');

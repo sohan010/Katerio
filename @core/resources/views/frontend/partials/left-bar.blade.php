@@ -1,58 +1,157 @@
 @if(!empty(get_static_option('leftbar_show_hide')))
-<div class="sidebars-wrappers">
-    <div class="sidebars-close"> <i class="las la-times"></i> </div>
-    <div class="sidebar-inner">
-        <div class="sidebar-logo">
-            <a href="{{url('/')}}">
-                {!! render_image_markup_by_attachment_id(get_static_option('site_logo_two')) !!}
-            </a>
-        </div>
-        <div class="contents-wrapper">
-            <h4 class="connets-title"> {!! get_static_option('leftbar_social_'.$user_select_lang_slug.'_title') !!}</h4>
-            <div class="updated-socials">
-                <ul class="common-socials">
-                    @php
-                        $classes = ['facebook','twitter','instagram','linkedin','youtube' ];
-                        $con = 0;
-                    @endphp
-                    @foreach($social_icons_for_leftbar as  $social)
-                    <li>
-                        <a class="{{$classes[$con] ?? ''}}" href="{{$social->details}}"> <i class="{{$social->icon}}"></i> </a>
-                    </li>
-
-                        @php $con == 5 ? $con = 0 : $con ++   @endphp
-                    @endforeach
-                </ul>
+    <!-- hamburger content -->
+    <div class="hamburger-c w3-sidebar w3-bar-block w3-border-right" id="mySidebar">
+        <button onclick="w3_close()" class="close-h w3-bar-item w3-large"> &times;</button>
+        <div class="main-content">
+            <div class="logo-wrapper">
+                <a href="#">
+                    <img src="assets/img/logo/02.png" alt="logo">
+                </a>
             </div>
-            <div class="sidebar-updated-content">
-                <div class="section-title">
-                    <h4 class="title"> {!! get_static_option('leftbar_category_'.$user_select_lang_slug.'_title') !!} </h4>
-                </div>
-                <div class="categories-contents-inner">
-                    <div class="categories-lists">
-                        @foreach($category_for_leftbar as  $category)
-                            @php
-                                $count_blog_item = \App\Blog::whereJsonContains('category_id', (string) $category->id)->count();
-                            @endphp
-                        <div class="single-list">
-                             <span class="follow-para"><a href="{{route('frontend.blog.category', ['id' => $category->id,'any' => Str::slug($category->title)])}}"> {{$category->title}}</a> </span>
-                            <span class="followers"> {{$count_blog_item}}</span>
-                        </div>
-                        @endforeach
+
+            <div class="widget-area-wrapper">
+                <div class="widget">
+                    <div class="recent-post style-01">
+                        <h4 class="widget-title style-01">most visited</h4>
+                        <ul class="news-headline-list style-01">
+                            <li class="news-heading-item">
+                                <h3 class="title">
+                                    <a href="#">Covid-19 vaccine: MoU on Sinopharm co-production to be signed on
+                                        August 16, 2021</a>
+                                </h3>
+                                <div class="post-meta">
+                                    <ul class="post-meta-list style-02">
+                                        <li class="post-meta-item">
+                                            <a href="#">
+                                                <span class="text author">Xgenious</span>
+                                            </a>
+                                        </li>
+                                        <li class="post-meta-item date">
+                                            <span class="text">June 19, 2021</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="news-heading-item">
+                                <h3 class="title">
+                                    <a href="#">Anyone can get dressed up and glamorous, but it is how people
+                                        dress in their days off.</a>
+                                </h3>
+                                <div class="post-meta">
+                                    <ul class="post-meta-list style-02">
+                                        <li class="post-meta-item">
+                                            <a href="#">
+                                                <span class="text author">Xgenious</span>
+                                            </a>
+                                        </li>
+                                        <li class="post-meta-item date">
+                                            <span class="text">June 19, 2021</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="news-heading-item">
+                                <h3 class="title">
+                                    <a href="#">I always felt that my greatest asset was not my physical
+                                        ability, it was my mental ability.</a>
+                                </h3>
+                                <div class="post-meta">
+                                    <ul class="post-meta-list style-02">
+                                        <li class="post-meta-item">
+                                            <a href="#">
+                                                <span class="text author">Xgenious</span>
+                                            </a>
+                                        </li>
+                                        <li class="post-meta-item date">
+                                            <span class="text">June 19, 2021</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="tag-new-contents">
-                    <div class="section-title">
-                        <h4 class="title"> {!! get_static_option('leftbar_tag_'.$user_select_lang_slug.'_title') !!} </h4>
+
+                <div class="widget">
+                    <div class="tag style-03">
+                        <h4 class="widget-title style-01">tags</h4>
+                        <ul class="tag-list">
+                            <li class="single-tag-item">
+                                <a href="#" class="color-a">News</a>
+                            </li>
+                            <li class="single-tag-item">
+                                <a href="#" class="color-b">Fashion</a>
+                            </li>
+                            <li class="single-tag-item">
+                                <a href="#" class="color-c">Politics</a>
+                            </li>
+                            <li class="single-tag-item">
+                                <a href="#" class="color-d">Sport</a>
+                            </li>
+                            <li class="single-tag-item">
+                                <a href="#" class="color-e">Food</a>
+                            </li>
+                            <li class="single-tag-item">
+                                <a href="#" class="color-f">Videos</a>
+                            </li>
+                            <li class="single-tag-item">
+                                <a href="#" class="color-g">Business</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="tag-list">
-                        @foreach($tags_for_leftbar as  $tag)
-                        <a class="list" href="{{route('frontend.blog.tags.page', ['any' => $tag->name])}}"> {{$tag->name}} </a>
-                        @endforeach
+                </div>
+
+                <div class="widget">
+                    <div class="social-link style-04 v-02">
+                        <h4 class="widget-title style-01">Follow Us</h4>
+                        <ul class="widget-social-link-list">
+                            <li class="single-item">
+                                <a href="#" class="left-content">
+                                    <span class="icon facebook">
+                                        <i class="lab la-facebook-f"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="single-item">
+                                <a href="#" class="left-content">
+                                    <span class="icon twitter">
+                                        <i class="lab la-twitter"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="single-item">
+                                <a href="#" class="left-content">
+                                    <span class="icon youtube">
+                                        <i class="lab la-youtube"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="single-item">
+                                <a href="#" class="left-content">
+                                    <span class="icon instagram">
+                                        <i class="lab la-instagram"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="single-item">
+                                <a href="#" class="left-content">
+                                    <span class="icon pinterest">
+                                        <i class="lab la-pinterest-p"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="single-item">
+                                <a href="#" class="left-content">
+                                    <span class="icon linkedin">
+                                        <i class="lab la-linkedin-in"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- hamburger content -->
 @endif

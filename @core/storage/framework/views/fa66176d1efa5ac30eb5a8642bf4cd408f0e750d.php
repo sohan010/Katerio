@@ -1,19 +1,107 @@
-<?php
-    $dt = \Illuminate\Support\Carbon::now()->format('l, d M Y');;
-    $container = request()->is('/') || request()->is('blog-grid') || request()->is('home-page-one') || request()->routeIs('frontend.blog.single')
-    || request()->is('blog-7')  ?  'container-two' : '';
-?>
-
+<!-- top bar area start -->
 <div class="topbar-area">
-    <div class="container <?php echo e($container); ?>">
-        <div class="row align-items-center">
-            <?php if(request()->routeIs('homepage') || request()->is('home-page-one') || request()->is('blog-grid') || request()->routeIs('frontend.blog.single') || request()->is('blog-7')): ?>
-                 <?php echo $__env->make('frontend.partials.pages-portion.topbar-content.home-one', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            <?php else: ?>
-                  <?php echo $__env->make('frontend.partials.pages-portion.topbar-content.other-pages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            <?php endif; ?>
+    <div class="container custom-container-01">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="topbar-inner">
+                    <div class="left-content">
+                        <div class="topbar-item">
+                            <div class="extra-menu">
+                                <ul class="extra-menu-list">
+                                    <li class="link-item">
+                                        <a href="#">
+                                            advertisement
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#">
+                                            contact
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#">
+                                            author
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#">
+                                            forum
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="topbar-item d-none">
+                            <div class="social-icon">
+                                <ul class="social-link-list">
+                                    <li class="link-item">
+                                        <a href="#" class="facebook">
+                                            <i class="lab la-facebook-f icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#" class="twitter">
+                                            <i class="lab la-twitter icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#" class="linkedin">
+                                            <i class="lab la-linkedin-in icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#" class="rss">
+                                            <i class="las la-rss icon icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-content">
+                        <div class="topbar-item">
+                            <div class="social-icon">
+                                <ul class="social-link-list">
+                                    <li class="link-item">
+                                        <a href="#" class="facebook">
+                                            <i class="lab la-facebook-f icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#" class="twitter">
+                                            <i class="lab la-twitter icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#" class="linkedin">
+                                            <i class="lab la-linkedin-in icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="#" class="rss">
+                                            <i class="las la-rss icon icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="topbar-item">
+                            <a href="#" class="topbar-login-btn">login | register</a>
+                        </div>
+                        <div class="topbar-item">
+                            <div class="select-option">
+                                <div class="single-select">
+                                    <select class="lang">
+                                        <option value="volvo">English</option>
+                                        <option value="saab">Arabic</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-<?php /**PATH D:\laragon\www\katerio\@core\resources\views/frontend/partials/support.blade.php ENDPATH**/ ?>
+<!-- top bar area end --><?php /**PATH D:\laragon\www\katerio\@core\resources\views/frontend/partials/support.blade.php ENDPATH**/ ?>

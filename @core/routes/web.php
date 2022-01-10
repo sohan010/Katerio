@@ -10,16 +10,9 @@ Route::group(['middleware' =>['setlang','globalVariable','maintains_mode']],func
 | FRONTEND ROUTES
 |----------------------------------------------------------------------------------------------------------------------------*/
 Route::get('/','FrontendController@index')->name('homepage');
-
-Route::get('/dark-mode-toggle', 'FrontendController@dark_mode_toggle')->name('frontend.dark.mode.toggle');
-Route::post('/blog/comment/store','Frontend\BlogController@blog_comment_store')->name('blog.comment.store');
-Route::post('blog/all/comment','Frontend\BlogController@load_more_comments')->name('frontend.load.blog.comment.data');
-
-
 Route::post('poll/vote/store','FrontendController@poll_vote_store')->name('frontend.poll.vote.store');
 Route::get('home/advertisement/click/store','FrontendController@home_advertisement_click_store')->name('frontend.home.advertisement.click.store');
 Route::get('home/advertisement/impression/store','FrontendController@home_advertisement_impression_store')->name('frontend.home.advertisement.impression.store');
-
 
 //Newsletter
 Route::get('/subscriber/email-verify/{token}','FrontendController@subscriber_verify')->name('subscriber.verify');
@@ -43,28 +36,7 @@ Route::post('/subscribe-newsletter','FrontendController@subscribe_newsletter')->
 Route::post('submit-custom-form', 'FrontendFormController@custom_form_builder_message')->name('frontend.form.builder.custom.submit');
 
 
-/*----------------------------------------------------------------------------------------------------------------------------
-| BLOG AREA FRONTEND ROUTES
-|----------------------------------------------------------------------------------------------------------------------------*/
-    $blog_page_slug = get_page_slug(get_static_option('blog_page'),'blog');
 
-    Route::group(['prefix' => $blog_page_slug,'namespace' => 'Frontend'],function (){
-        Route::get('/search','BlogController@blog_search_page')->name('frontend.blog.search');
-        Route::get('/get/search','BlogController@blog_get_search')->name('frontend.blog.get.search');
-        Route::get('/{slug}','BlogController@blog_single')->name('frontend.blog.single');
-        Route::get('/category/{id}/{any}','BlogController@category_wise_blog_page')->name('frontend.blog.category');
-        Route::get('/tags/{any}','BlogController@tags_wise_blog_page')->name('frontend.blog.tags.page');
-        Route::get('blog/autocomplete-search','BlogController@autocompleteSearch')->name('frontend.blog.autocomplete.search');
-        Route::get('blog/autocomplete/search/tag/page','BlogController@auto_complete_search_tag_blogs');
-         Route::get('/get/tags','BlogController@get_tags_by_ajax')->name('frontend.get.tags.by.ajax');
-         Route::get('/get/blog/by/ajax','BlogController@get_blog_by_ajax')->name('frontend.get.blogs.by.ajax');
-    });
-
-    //Image Gallery With Category
-    Route::get('/gallery/category/{id}/{any}','Frontend\ImageGalleryController@category_wise_gallery_page')->name('frontend.gallery.category');
-    Route::get('author/profile/{id}','Frontend\BlogController@author_profile')->name('frontend.author.profile');
-    Route::get('blog-by-{user}/{id}','Frontend\BlogController@user_created_blogs')->name('frontend.user.created.blog');
-    Route::get('user/blg-password','Frontend\BlogController@user_blog_password')->name('frontend.user.blog.password');
 
 
     /*----------------------------------------------------------------------------------------------------------------------------

@@ -57,26 +57,34 @@ class NewsletterWidget extends WidgetBase
 
     public function frontend_render()
     {
+
         // TODO: Implement frontend_render() method.
         $widget_saved_values = $this->get_settings();
         $selected_lang = get_user_lang();
         $widget_title = $this->setting_item('widget_title_'.$selected_lang) ??  '';
         $description = $this->setting_item('widget_description_'.$selected_lang) ??  '';
 
-        $output = '<div class="col-lg-3 col-md-6"><div class="footer-widget widget newsletter-widget">';
+        $output = '<div class="footer-widget">';
         if (!empty($widget_title)){
             $output .= '<h4 class="widget-title">'.purify_html($widget_title).'</h4>';
         }
-        $output .= '<p>'.purify_html($description).'</p>';
-        $output .= '<div class="form-message-show"></div><div class="newsletter-form-wrap">';
+        $output .= '<p class="info">'.purify_html($description).'</p>';
+        $output .= '<div class="form-message-show"></div>
+                    <div class="search-form style-01">';
 
         $output .= '<form action="'.route('frontend.subscribe.newsletter').'" method="post" enctype="multipart/form-data">';
 
-        $output .= '<input type="hidden" name="_token" value="'.csrf_token().'">
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="'.__('your email').'" class="form-control">
+        $output .= ' <div class="form-row">
+                    <input type="hidden" name="_token" value="'.csrf_token().'">
+   
+                    <div class="newsletter-footer">
+                        <input type="text" name="email" class="form-control"placeholder="'.__('your email').'">
+                        <div class="btn-wrapper">
+                            <button type="submit" class="btn-default btn-rounded submit-btn" >'.__('Subscribe').'</button>
+                        </div>
                     </div>
-                    <button type="submit" class="submit-btn"><i class="las la-paper-plane"></i></button>
+
+                </div>
                 </form>';
 
         $output .= '</div></div></div>';

@@ -109,11 +109,11 @@
                                 <input type="hidden" class="form-control" id="navbar_variant" value="01" name="navbar_variant">
                             </div>
                             <div class="row">
-                                @for($i = 1; $i < 2; $i++)
+                                @for($i = 1; $i < 6; $i++)
                                     <div class="col-lg-12 col-md-12">
                                         <div class="img-select selected">
                                             <div class="img-wrap">
-                                                <img src="{{asset('assets/frontend/navbar-variant/'.$i.'.jpg')}}" data-home_id="0{{$i}}" alt="">
+                                                <img src="{{asset('assets/frontend/navbar-variant/'.$i.'.png')}}" data-home_id="0{{$i}}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +133,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="img-select selected">
                                         <div class="img-wrap">
-                                            <img src="{{asset('assets/frontend/footer-variant/'.$i.'.jpg')}}" data-home_id="0{{$i}}" alt="">
+                                            <img src="{{asset('assets/frontend/footer-variant/'.$i.'.png')}}" data-home_id="0{{$i}}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -200,6 +200,7 @@
                                     <label>{{__('Sidebar Layout')}}</label>
                                     <select name="sidebar_layout" class="form-control">
                                         <option selected disabled>{{__('Select Sidebar')}}</option>
+                                        <option value="none">{{__('None')}}</option>
                                         <option value="footer">{{__('Footer Widget Area')}}</option>
                                         <option value="sidebar_01">{{__('Page Sidebar 01 Area')}}</option>
                                         <option value="sidebar_02">{{__('Page Sidebar 02 Area')}}</option>
@@ -356,6 +357,7 @@
                     });
                 }
             });
+
 
             //For Navbar
             var imgSelect = $('.img-select');

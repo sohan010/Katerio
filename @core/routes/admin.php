@@ -24,61 +24,6 @@ use Illuminate\Support\Facades\Route;
     Route::post('/update-order', 'PageBuilderController@update_addon_order')->name('admin.page.builder.update.addon.order');
     Route::post('/get-admin-markup', 'PageBuilderController@get_admin_panel_addon_markup')->name('admin.page.builder.get.addon.markup');
 
-    /*----------------------------------------------------------------------------------------------------------------------------
-    |  BLOG AREA
-    |----------------------------------------------------------------------------------------------------------------------------*/
-    Route::group(['prefix'=>'blog'],function() {
-        Route::get('/', 'BlogController@index')->name('admin.blog');
-        Route::get('/new', 'BlogController@new_blog')->name('admin.blog.new');
-        Route::post('/new', 'BlogController@store_new_blog');
-        Route::get('/get/tags','BlogController@get_tags_by_ajax')->name('admin.get.tags.by.ajax');
-        Route::get('/edit/{id}', 'BlogController@edit_blog')->name('admin.blog.edit');
-        Route::post('/update/{id}', 'BlogController@update_blog')->name('admin.blog.update');
-        Route::post('/clone', 'BlogController@clone_blog')->name('admin.blog.clone');
-        Route::post('/delete/all/lang/{id}', 'BlogController@delete_blog_all_lang')->name('admin.blog.delete.all.lang');
-        Route::post('/bulk-action', 'BlogController@bulk_action_blog')->name('admin.blog.bulk.action');
-        Route::get('/view/analytics/{id}', 'BlogController@view_analytics')->name('admin.blog.view.analytics');
-        Route::post('/view/data/monthly', 'BlogController@view_data_monthly')->name('admin.blog.view.data.monthly');
-
-        //Blog Comments Route
-        Route::get('/comments/view/{id}', 'BlogController@view_comments')->name('admin.blog.comments.view');
-        Route::post('/comments/delete/all/lang/{id}', 'BlogController@delete_all_comments')->name('admin.blog.comments.delete.all.lang');
-        Route::post('/comments/bulk-action', 'BlogController@bulk_action_comments')->name('admin.blog.comments.bulk.action');
-
-        //Trashed & Restore
-        Route::get('/trashed', 'BlogController@trashed_blogs')->name('admin.blog.trashed');
-        Route::get('/trashed/restore/{id}', 'BlogController@restore_trashed_blog')->name('admin.blog.trashed.restore');
-        Route::post('/trashed/delete/{id}', 'BlogController@delete_trashed_blog')->name('admin.blog.trashed.delete');
-        Route::post('/trashed/bulk-action', 'BlogController@trashed_bulk_action_blog')->name('admin.blog.trashed.bulk.action');
-
-        //Single Page Settings
-        Route::get('/single-settings', 'BlogController@blog_single_page_settings')->name('admin.blog.single.settings');
-        Route::post('/single-settings', 'BlogController@update_blog_single_page_settings');
-
-        //Others Page Settings
-        Route::get('/others-settings', 'BlogController@blog_others_page_settings')->name('admin.blog.others.settings');
-        Route::post('/others-settings', 'BlogController@update_blog_others_page_settings');
-        Route::post('/blog-approve', 'BlogController@blog_approve')->name('admin.blog.approve');
-    });
-
-
-    //BACKEND BLOG CATEGORY AREA
-    Route::group(['prefix'=>'blog-category'],function(){
-        Route::get('/','BlogCategoryController@index')->name('admin.blog.category');
-        Route::post('/store','BlogCategoryController@new_category')->name('admin.blog.category.store');
-        Route::post('/update','BlogCategoryController@update_category')->name('admin.blog.category.update');
-        Route::post('/delete/all/lang/{id}','BlogCategoryController@delete_category_all_lang')->name('admin.blog.category.delete.all.lang');
-        Route::post('/bulk-action', 'BlogCategoryController@bulk_action')->name('admin.blog.category.bulk.action');
-    });
-
-    //BACKEND BLOG TAGS
-    Route::group(['prefix'=>'blog-tags'],function(){
-        Route::get('/','BlogTagsController@index')->name('admin.blog.tags');
-        Route::post('/store','BlogTagsController@new_tags')->name('admin.blog.tags.store');
-        Route::post('/update','BlogTagsController@update_tags')->name('admin.blog.tags.update');
-        Route::post('/delete/all/lang/{id}','BlogTagsController@delete_tags_all_lang')->name('admin.blog.tags.delete.all.lang');
-        Route::post('/bulk-action', 'BlogTagsController@bulk_action')->name('admin.blog.tags.bulk.action');
-    });
 
 
 /*----------------------------------------------------------------------------------------------------------------------------
