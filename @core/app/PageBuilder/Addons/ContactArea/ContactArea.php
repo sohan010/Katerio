@@ -25,7 +25,7 @@ class ContactArea extends PageBuilderBase
 
     public function preview_image()
     {
-        return 'contact-page/contact-new.jpg';
+        return 'contact-page/contact.png';
     }
 
     public function admin_render()
@@ -71,33 +71,15 @@ class ContactArea extends PageBuilderBase
                     'info' => __('new line count as a separate text')
                 ],
 
-            ]
-        ]);
-
-        $output .= Repeater::get([
-            'multi_lang' => true,
-            'settings' => $widget_saved_values,
-            'id' => 'contact_page_social',
-            'fields' => [
-                [
-                    'type' => RepeaterField::TEXT,
-                    'name' => 'social_title',
-                    'label' => __('Title')
-                ],
                 [
                     'type' => RepeaterField::ICON_PICKER,
                     'name' => 'icon',
                     'label' => __('Icon'),
                 ],
 
-                [
-                    'type' => RepeaterField::TEXT,
-                    'name' => 'icon_url',
-                    'label' => __('URL'),
-                ],
-
             ]
         ]);
+
 
         $output .= Select::get([
            'name' => 'custom_form_id',
@@ -133,22 +115,16 @@ class ContactArea extends PageBuilderBase
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
         $custom_form_id = SanitizeInput::esc_html($this->setting_item('custom_form_id'));
         $title = SanitizeInput::esc_html($this->setting_item('title_' . $current_lang));
+        $icon = SanitizeInput::esc_html($this->setting_item('icon_' . $current_lang));
 
-        $all_social_icons = TopbarInfo::take(4)->get();
 
-        $social_items = '';
-        $classes = ['facebook','twitter','instagram','linkedin'];
-        foreach ($all_social_icons as $key=> $Socialdata){
-            $social_items .= '<li> <a class="'.$classes[$key % count($classes)] .'" href="'.$Socialdata->details.'"><i class="'.$Socialdata->icon.'"></i></a></li>';
-        }
-
-        $output = '<div class="contact-area res-padding" data-padding-top="'.$padding_top.'" data-padding-bottom="'.$padding_bottom.'">';
+        $output = '<div class="contact-us-area-wrapper" data-padding-top="'.$padding_top.'" data-padding-bottom="'.$padding_bottom.'">';
 
         $output .='<div class="container">';
         $output .= '<div class="row">';
 
-        $output .= '<div class="col-xl-3 col-lg-4">
-                        <div class="contact-address">';
+        $output .= '<div class="col-md-5 col-lg-4">
+                        <div class="address-wrapper"> <ul class="address-list">';
         $this->args['settings'] = RepeaterField::remove_default_fields($all_settings);
 
         foreach ($this->args['settings'] as $key => $setting){
@@ -157,7 +133,6 @@ class ContactArea extends PageBuilderBase
                 $array_lang_item = $setting[array_key_last($setting)];
                 if (!empty($array_lang_item) && is_array($array_lang_item) && count($array_lang_item) > 0) {
                     foreach ($array_lang_item as $index => $value) {
-
                         $output .= $this->render_slider_markup($index); // for multiple array index
                     }
                 } else {
@@ -166,16 +141,13 @@ class ContactArea extends PageBuilderBase
                 }
             }
         }
-        $output.=  ' <div class="single-contacts"><span class="contact-title"> Follow us </span>
-                        <ul class="common-socials">
-                            '. $social_items.'
-                        </ul></div>';
 
 
-        $output .= '</div></div>'; //contact info column wrap
+
+        $output .= '</ul></div></div>'; //contact info column wrap
 
         if (!empty($custom_form_id)){
-            $output .= '<div class="col-xl-8 col-lg-8 offset-xl-1"> <div class="contacts-form-wrapper" ><h3 class="title">'.$title.'</h3>';
+            $output .= '<div class="col-md-7 col-lg-8"> <div class="get-in-touch-wrapper" ><h3 class="title">'.$title.'</h3>';
             $form_details = FormBuilder::find($custom_form_id);
             $output .= FormBuilderCustom::render_form(optional($form_details)->id,null,null,'btn-default');
             $output .= '</div></div>';
@@ -193,6 +165,8 @@ class ContactArea extends PageBuilderBase
     private function render_slider_markup(int $index = null): string
     {
         $title = $this->get_repeater_field_value('title', $index, LanguageHelper::user_lang_slug());
+        $icon = $this->get_repeater_field_value('icon', $index, LanguageHelper::user_lang_slug());
+
         $description = $this->get_repeater_field_value('description', $index, LanguageHelper::user_lang_slug());
         $description = explode("\n",$description);
         $description_markup = '';
@@ -203,12 +177,16 @@ class ContactArea extends PageBuilderBase
         }
 
 
-        return <<<HTML
-
-        <div class="single-contacts">
-            <span class="contact-title">{$title}  </span>
-            <span class="contact-span"> {$description_markup} </span>
-        </div>
+   return <<<HTML
+        <li class="single-address-item">
+            <div class="icon-box">
+                <i class="{$icon} icon"></i>
+            </div>
+            <div class="content">
+                <h5 class="title">{$title}</h5>
+                <p class="info">{$description_markup}</p>
+            </div>
+        </li>
 
 HTML;
 

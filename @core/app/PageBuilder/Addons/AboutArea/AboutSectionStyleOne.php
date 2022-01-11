@@ -17,13 +17,15 @@ use App\PageBuilder\Fields\Textarea;
 use App\PageBuilder\Helpers\RepeaterField;
 use App\PageBuilder\Helpers\Traits\RepeaterHelper;
 use App\PageBuilder\PageBuilderBase;
+use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
 
 class AboutSectionStyleOne extends PageBuilderBase
 {
+    use LanguageFallbackForPageBuilder;
 
     public function preview_image()
     {
-        return 'about-section/01.jpg';
+        return 'about-section/about-01.png';
     }
 
     public function admin_render()
@@ -49,6 +51,18 @@ class AboutSectionStyleOne extends PageBuilderBase
                 'value' => $widget_saved_values['title_' . $lang->slug] ?? null,
             ]);
 
+            $output .= Text::get([
+                'name' => 'subtitle_'.$lang->slug,
+                'label' => __('Subtitle'),
+                'value' => $widget_saved_values['subtitle_' . $lang->slug] ?? null,
+            ]);
+
+            $output .= Text::get([
+                'name' => 'designation_'.$lang->slug,
+                'label' => __('Designation'),
+                'value' => $widget_saved_values['designation_' . $lang->slug] ?? null,
+            ]);
+
             $output .= Summernote::get([
                 'name' => 'description_'.$lang->slug,
                 'label' => __('Description'),
@@ -58,12 +72,37 @@ class AboutSectionStyleOne extends PageBuilderBase
                 'name' => 'image_'.$lang->slug,
                 'label' => __('Image'),
                 'value' => $widget_saved_values['image_' . $lang->slug] ?? null,
-                'dimensions' => '1109x672px'
+                'dimensions' => '480 x 634px'
             ]);
             $output .= $this->admin_language_tab_content_end();
+
         }
 
         $output .= $this->admin_language_tab_end(); //have to end language tab
+
+        $output .= Text::get([
+            'name' => 'facebook_url',
+            'label' => __('Facebook URL'),
+            'value' => $widget_saved_values['facebook_url'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'twitter_url',
+            'label' => __('Twitter URL'),
+            'value' => $widget_saved_values['twitter_url'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'linkedin_url',
+            'label' => __('Linkedin URL'),
+            'value' => $widget_saved_values['linkedin_url'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'instagram_url',
+            'label' => __('Instagram URL'),
+            'value' => $widget_saved_values['instagram_url'] ?? null,
+        ]);
 
 
         $output .= Slider::get([
@@ -87,14 +126,20 @@ class AboutSectionStyleOne extends PageBuilderBase
 
     public function frontend_render(): string
     {
-        $settings = $this->get_settings();
         $current_lang = LanguageHelper::user_lang_slug();
-        $padding_top = SanitizeInput::esc_html($settings['padding_top']);
-        $padding_bottom = SanitizeInput::esc_html($settings['padding_bottom']);
-        $title = SanitizeInput::esc_html($settings['title_'.$current_lang]);
+        $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top') ?? '');
+        $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom') ?? '');
 
-        $description = SanitizeInput::kses_basic($settings['description_'.$current_lang]);
-        $image = render_image_markup_by_attachment_id($settings['image_'.$current_lang],'','full');
+        $title = SanitizeInput::esc_html($this->setting_item('title_'.$current_lang));
+        $subtitle = SanitizeInput::esc_html($this->setting_item('subtitle_'.$current_lang) ?? '');
+        $designation = SanitizeInput::esc_html($this->setting_item('designation_'.$current_lang) ?? '');
+        $description = SanitizeInput::kses_basic($this->setting_item('description_'.$current_lang) ?? '');
+
+        $facebook_url = SanitizeInput::kses_basic($this->setting_item('facebook_url') ?? '');
+        $twitter_url = SanitizeInput::kses_basic($this->setting_item('twitter_url') ?? '');
+        $linkedin_url = SanitizeInput::kses_basic($this->setting_item('linkedin_url') ?? '');
+        $instagram_url = SanitizeInput::kses_basic($this->setting_item('instagram_url') ?? '');
+        $bg_image = render_background_image_markup_by_attachment_id($this->setting_item('image_'.$current_lang),'','full');
 
 
         $right_content_markup = '';
@@ -107,20 +152,54 @@ HTML;
         }
 
 return <<<HTML
-    <section class="about-area" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
-        <div class="container">
-            <div class="about-wrapper">
-                <div class="about-thumb">
-                    {$image}
-                </div>
-                <div class="about-contents">
-                    <h2 class="about-title"> {$title} </h2>
-                    <p class="common-para">{$description}</p>
-      
+<div class="about-us-wrapper" >
+        <div class="about-ceo-wrapper" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="img-box">
+                            <div class="ceo-bg" {$bg_image}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="content">
+                            <h3 class="title">{$title}</h3>
+
+                            <p class="info">{$description}</p>
+
+                            <div class="other">
+                                <h4 class="owner-title">{$subtitle} </h4>
+                                <p class="post">{$designation}</p>
+                                <ul class="author-social-link">
+                                    <li class="link-item">
+                                        <a href="{$facebook_url}" class="facebook">
+                                            <i class="lab la-facebook-f icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="{$twitter_url}" class="twitter">
+                                            <i class="lab la-twitter icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="{$linkedin_url}" class="linkedin">
+                                            <i class="lab la-linkedin-in icon"></i>
+                                        </a>
+                                    </li>
+                                    <li class="link-item">
+                                        <a href="{$instagram_url}" class="instgram">
+                                            <i class="lab la-instagram icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+      </div>
 HTML;
 
     }

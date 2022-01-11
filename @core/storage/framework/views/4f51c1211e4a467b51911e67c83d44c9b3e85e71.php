@@ -137,6 +137,14 @@
                     </li>
                     <?php endif; ?>
 
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('testimonial-list')): ?>
+                        <li class="main_dropdown <?php echo e(active_menu('admin-home/testimonial/all')); ?>">
+                            <a href="<?php echo e(route('admin.testimonial')); ?>" aria-expanded="true"><i
+                                        class="ti-control-forward"></i>
+                                <span><?php echo e(__('Testimonial')); ?></span></a>
+                        </li>
+                    <?php endif; ?>
+
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['pages-list','pages-create'])): ?>
                     <li class="<?php echo e(active_menu('admin-home/advertisement')); ?>
 

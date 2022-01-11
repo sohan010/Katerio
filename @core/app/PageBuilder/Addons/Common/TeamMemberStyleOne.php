@@ -27,7 +27,7 @@ class TeamMemberStyleOne extends PageBuilderBase
 
     public function preview_image()
     {
-       return 'team/1.jpg';
+       return 'team/team-01.png';
     }
 
     public function admin_render()
@@ -61,9 +61,9 @@ class TeamMemberStyleOne extends PageBuilderBase
             'name' => 'section_title_alignment',
             'label' => __('Section Title Alignment'),
             'options' => [
-                'left-align' => __('Left Align'),
-                'center-align' => __('Center Align'),
-                'right-align' => __('Right Align'),
+                'text-left' => __('Left Align'),
+                'text-center' => __('Center Align'),
+                'text-right' => __('Right Align'),
             ],
             'value' => $widget_saved_values['section_title_alignment'] ?? null,
             'info' => __('set alignment of section title')
@@ -147,7 +147,6 @@ class TeamMemberStyleOne extends PageBuilderBase
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
         $columns = SanitizeInput::esc_html($this->setting_item('columns'));
 
-
         $team_member = User::query()->orderBy($order_by,$order);
         if(!empty($items)){
             $team_member = $team_member->paginate($items);
@@ -155,64 +154,69 @@ class TeamMemberStyleOne extends PageBuilderBase
             $team_member =  $team_member->get();
         }
 
-
         if(!empty($items)){
             $team_member = $team_member->take($items);
         }
-        $category_markup = '';
+
+        $column_markup = '';
         foreach ($team_member as $item){
             $image = render_image_markup_by_attachment_id($item->image);
             $name = $item->name;
-            $designation = $item->designation;
             $member_url =  route('frontend.author.profile', $item->id);
 
             $social_links_markup = '<ul class="author-socials">';
             $social_fields = array(
-                'lab la-facebook-f' => $item->facebook_url,
-                'lab la-twitter' => $item->twitter_url,
-                'lab la-instagram' => $item->instagram_url,
-                'lab la-linkedin-in' => $item->linkedin_url,
+                'lab la-facebook-f icon' => $item->facebook_url,
+                'lab la-twitter icon' => $item->twitter_url,
+                'lab la-instagram icon' => $item->instagram_url,
+                'lab la-linkedin-in icon' => $item->linkedin_url,
             );
-            $classes = ['facebook','twitter','instagram','linkedin'];
+            $classes = ['facebook','twitter','instgram','linkedin'];
             $number = 0;
             foreach($social_fields as $key => $value){
-                $social_links_markup .= '<li><a class="'.$classes[$number].'" href="'.$value.'"><i class="'.$key.'"></i></a></li>';
+                $social_links_markup .= '<li class="link-item"><a class="'.$classes[$number].'" href="'.$value.'"><i class="'.$key.'"></i></a></li>';
                  $number == 4 ? $number = 0 : $number++;
             }
 
-            $social_links_markup .= '</ul>';
-            $category_markup .= <<<HTML
+     $social_links_markup .= '</ul>';
 
-    <div class="team-single-slider">
-        <div class="single-author">
-            <div class="author-thumb">
+ $column_markup .= <<<HTML
+
+ <div class="col-sm-6 col-md-6 {$columns}">
+    <div class="single-author-item">
+        <div class="img-box">
               {$image}
-               {$social_links_markup}
-            </div>
-            <div class="author-contents">
-                <h5 class="author-title"> <a href="{$member_url}"> {$name} </a> </h5>
-                <span class="title">{$designation} </span>
-            </div>
+        </div>
+        <div class="content">
+            <h4 class="title">
+                <a href="{$member_url}">{$name}</a>
+            </h4>
+
+            <ul class="author-social-link">
+           
+             {$social_links_markup}
+
+            </ul>
         </div>
     </div>
+</div>
 HTML;
         }
 
   return <<<HTML
-<div class="author-area padding-bottom-100 padding-top-45" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
-        <div class="container">
-            <div class="section-title-two">
-                <h4 class="title {$section_title_alignment}">  {$section_title} </h4>
-            </div>
-            <div class="row">
-                <div class="{$columns}">
-                    <div class="team-slider slider-nav-style-two">
-                        {$category_markup}
+
+        <div class="author-area-wrapper three-column" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="author-post-title {$section_title_alignment} "> {$section_title}</h3>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                <div class="row">
+                       {$column_markup}
+                </div>
+              </div>
+          </div>
 HTML;
 
     }

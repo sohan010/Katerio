@@ -43,7 +43,7 @@
                                                         <x-edit-icon :url="route('admin.user.role.edit',$role->id)"/>
                                                         <x-delete-popover :url="route('admin.user.role.delete',$role->id)"/>
                                                         @else
-                                                            <span class="ale rt alert-warning text-capitalize">{{__('super admin has all access')}}</span>
+                                                            <span class="alert alert-warning text-capitalize">{{__('super admin has all access')}}</span>
                                                         @endif
                                                     </td>
                                                 </tr>

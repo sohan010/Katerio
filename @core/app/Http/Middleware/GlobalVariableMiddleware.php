@@ -91,7 +91,6 @@ class GlobalVariableMiddleware
             'all_topbar_infos' => $all_topbar_infos,
             'all_social_icons' => $all_social_icons,
             'navbar_number' => $navbar_number,
-
             'social_icons_for_leftbar' => $social_icons_for_leftbar,
             'category_for_leftbar' => $category_for_leftbar,
             'tags_for_leftbar' => $tags_for_leftbar,

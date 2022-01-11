@@ -69,6 +69,19 @@ Route::group(['prefix'=>'polls'],function(){
     Route::post('/bulk-action', 'PollController@bulk_action')->name('admin.poll.bulk.action');
 });
 
+/*----------------------------------------------------------------------------------------------------------------------------
+| TESTIMONIAL  ROUTES
+|----------------------------------------------------------------------------------------------------------------------------*/
+Route::group(['prefix' => 'testimonial'], function () {
+    Route::get('/all','TestimonialController@index')->name('admin.testimonial');
+    Route::post('/all','TestimonialController@store');
+    Route::post('/clone','TestimonialController@clone')->name('admin.testimonial.clone');
+    Route::post('/update','TestimonialController@update')->name('admin.testimonial.update');
+    Route::post('/delete/{id}','TestimonialController@delete')->name('admin.testimonial.delete');
+    Route::post('/bulk-action','TestimonialController@bulk_action')->name('admin.testimonial.bulk.action');
+});
+
+
 
 /*----------------------------------------------------------------------------------------------------------------------------
 |NEWSLETTER PAGE MANAGE

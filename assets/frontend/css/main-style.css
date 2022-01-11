@@ -7981,8 +7981,11 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 
 
 
-/*New Css From Sohan*/
+/*==========================================  !*New Css From Sohan*! =============================================*/
 .get-in-touch-wrapper textarea{
-  
 border: 1px solid #ddd;
+}
+
+.google-map iframe {
+    width: 100%;
 }

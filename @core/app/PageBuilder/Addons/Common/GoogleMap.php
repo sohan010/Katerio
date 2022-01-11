@@ -48,6 +48,20 @@ class GoogleMap extends PageBuilderBase
             'value' => $widget_saved_values['map_height'] ?? 500,
             'max' => 2000,
         ]);
+
+        $output .= Slider::get([
+            'name' => 'padding_top',
+            'label' => __('Padding Top'),
+            'value' => $widget_saved_values['padding_top'] ?? 120,
+            'max' => 500,
+        ]);
+        $output .= Slider::get([
+            'name' => 'padding_bottom',
+            'label' => __('Padding Bottom'),
+            'value' => $widget_saved_values['padding_bottom'] ?? 120,
+            'max' => 500,
+        ]);
+
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
         $output .= $this->admin_form_after();
@@ -57,29 +71,29 @@ class GoogleMap extends PageBuilderBase
 
     public function frontend_render(): string
     {
-        $all_settings = $this->get_settings();
         $map_height = SanitizeInput::esc_html($this->setting_item('map_height'));
         $location = SanitizeInput::esc_html($this->setting_item('location'));
+
+        $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
+        $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
         $location =  sprintf(
-            '<div class="custom-embed-map"><iframe frameborder="0" scrolling="no" marginheight="0" height="'.$map_height.'px" marginwidth="0" src="https://maps.google.com/maps?q=%s&amp;t=m&amp;z=%d&amp;output=embed&amp;iwloc=near" aria-label="%s"></iframe></div>',
+            '<iframe frameborder="0" scrolling="no" marginheight="0" height="'.$map_height.'px" marginwidth="0" src="https://maps.google.com/maps?q=%s&amp;t=m&amp;z=%d&amp;output=embed&amp;iwloc=near" aria-label="%s"></iframe>',
             rawurlencode($location),
             10,
             $location
         );
 
         return <<<HTML
-
- <div class="map-area">
-            <div class="container-fluid p-0">
-                <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                        <div class="contact_map">
-                           {$location}
-                        </div>
-                    </div>
-                </div>
+     <div class="container" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+        <div class="row">
+            <div class="col-lg-12">
+                 <div class="google-map">
+                    {$location}
+                 </div>
             </div>
         </div>
+     </div>
+ 
 HTML;
     }
 

@@ -64,10 +64,11 @@ class BlogInstagramWidget extends WidgetBase
 
         $instagram_data = InstagramFeed::fetch($post_items);
 
-        $output = ' ';
-        foreach($instagram_data->data as $item){
+
+        $output = '';
+        foreach($instagram_data->data ?? [] as $item){
             $output.= '<li class="content-item">
-                        <a href="#">
+                        <a href="'.$item->media_url.'">
                          <img src="'.$item->media_url.'" src="'.$item->media_url.'" alt="">
                         </a>
                     </li>';
@@ -75,6 +76,7 @@ class BlogInstagramWidget extends WidgetBase
 
     $after = $this->widget_after();
  return <<<HTML
+
 {$before}
     <div class="footer-widget">
     <h4 class="widget-title">{$widget_title}</h4>

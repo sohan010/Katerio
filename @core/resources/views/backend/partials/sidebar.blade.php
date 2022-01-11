@@ -130,6 +130,14 @@
                     </li>
                     @endcanany
 
+                    @can('testimonial-list')
+                        <li class="main_dropdown {{active_menu('admin-home/testimonial/all')}}">
+                            <a href="{{route('admin.testimonial')}}" aria-expanded="true"><i
+                                        class="ti-control-forward"></i>
+                                <span>{{__('Testimonial')}}</span></a>
+                        </li>
+                    @endcan
+
                     @canany(['pages-list','pages-create'])
                     <li class="{{active_menu('admin-home/advertisement')}}
                            {{active_menu('admin-home/advertisement/new')}}

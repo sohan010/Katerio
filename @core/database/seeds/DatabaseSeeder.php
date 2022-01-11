@@ -9,17 +9,20 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
-//          $permissions = [
-//            'faq-list',
-//            'faq-create',
-//            'faq-edit',
-//            'faq-delete',
-//           'appearance-leftbar-settings',
-//
-//          ];
-//        foreach ($permissions as $permission){
-//            \Spatie\Permission\Models\Permission::where(['name' => $permission])->delete();
-//            \Spatie\Permission\Models\Permission::create(['name' => $permission,'guard_name' => 'admin']);
-//        }
+          $permissions = [
+            'testimonial-list',
+            'testimonial-create',
+            'testimonial-edit',
+            'testimonial-delete',
+              'partner-list',
+              'partner-create',
+              'partner-edit',
+              'partner-delete',
+
+          ];
+        foreach ($permissions as $permission){
+            \Spatie\Permission\Models\Permission::where(['name' => $permission])->delete();
+            \Spatie\Permission\Models\Permission::create(['name' => $permission,'guard_name' => 'admin']);
+        }
     }
 }
