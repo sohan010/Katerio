@@ -25,6 +25,7 @@ class TestimonialController extends Controller
         ]);
     }
     public function store(Request $request){
+
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'description' => 'required',
@@ -32,13 +33,16 @@ class TestimonialController extends Controller
             'status' => 'string|max:191',
             'image' => 'nullable|string|max:191',
         ]);
-        Testimonial::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'status' => $request->status,
-            'designation' => $request->designation,
-            'image' => $request->image
-        ]);
+
+        $testimonial = new Testimonial();
+        $testimonial->setTranslation('name',$request->lang, purify_html($request->name))
+        ->setTranslation('description',$request->lang, purify_html($request->description))
+        ->setTranslation('designation',$request->lang, purify_html($request->designation));
+        $testimonial->image = $request->image;
+        $testimonial->status = $request->status;
+        $testimonial->save();
+
+
         return redirect()->back()->with(FlashMsg::item_new('New Testimonial Added'));
     }
 
@@ -50,16 +54,18 @@ class TestimonialController extends Controller
             'status' => 'string|max:191',
             'image' => 'nullable|string|max:191',
         ]);
-        Testimonial::find($request->id)->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'status' => $request->status,
-            'designation' => $request->designation,
-            'image' => $request->image
-        ]);
+
+        $testimonial = Testimonial::find($request->id);
+        $testimonial->setTranslation('name',$request->lang, purify_html($request->name))
+                    ->setTranslation('description',$request->lang, $request->description)
+                    ->setTranslation('designation',$request->lang, $request->designation);
+                $testimonial->image = $request->image;
+                $testimonial->status = $request->status;
+                $testimonial->save();
 
         return redirect()->back()->with(FlashMsg::item_update('Testimonial Updated'));
     }
+
     public function clone(Request $request){
         $testimonial = Testimonial::find($request->item_id);
 

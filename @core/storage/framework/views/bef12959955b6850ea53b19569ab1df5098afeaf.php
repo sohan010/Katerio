@@ -151,8 +151,8 @@
                                                 <?php  $img_url = $testimonial_img['img_url']; ?>
                                             <?php endif; ?>
                                         </td>
-                                        <td><?php echo e($data->name); ?></td>
-                                        <td><?php echo e($data->designation); ?></td>
+                                        <td><?php echo e($data->getTranslation('name',$default_lang)); ?></td>
+                                        <td><?php echo e($data->getTranslation('designation',$default_lang)); ?></td>
                                         <td>
                                             <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.status-span','data' => ['status' => $data->status]]); ?>
@@ -189,11 +189,10 @@
                                                    class="btn btn-primary btn-xs mb-3 mr-1 testimonial_edit_btn"
                                                    data-id="<?php echo e($data->id); ?>"
                                                    data-action="<?php echo e(route('admin.testimonial.update')); ?>"
-                                                   data-name="<?php echo e($data->name); ?>"
-                                                   data-lang="<?php echo e($data->lang); ?>"
+                                                   data-name="<?php echo e($data->getTranslation('name',$default_lang)); ?>"
                                                    data-status="<?php echo e($data->status); ?>"
-                                                   data-description="<?php echo e($data->description); ?>"
-                                                   data-designation="<?php echo e($data->designation); ?>"
+                                                   data-description="<?php echo e($data->getTranslation('description',$default_lang)); ?>"
+                                                   data-designation="<?php echo e($data->getTranslation('designation',$default_lang)); ?>"
                                                    data-imageid="<?php echo e($data->image); ?>"
                                                    data-image="<?php echo e($img_url); ?>"
                                                 >
@@ -234,7 +233,7 @@
                             <form action="<?php echo e(route('admin.testimonial')); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <?php echo csrf_field(); ?>
-
+                                    <input type="hidden" name="lang" value="<?php echo e($default_lang); ?>">
                                     <div class="form-group">
                                         <label for="edit_name"><?php echo e(__('Name')); ?></label>
                                         <input type="text" class="form-control" name="name"
@@ -295,6 +294,7 @@
                                   enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="lang" value="<?php echo e($default_lang); ?>">
                                     <input type="hidden" name="id" id="testimonial_id" value="">
                                     <div class="form-group">
                                         <label for="edit_name"><?php echo e(__('Name')); ?></label>

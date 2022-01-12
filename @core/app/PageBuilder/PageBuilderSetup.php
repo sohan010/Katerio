@@ -17,7 +17,6 @@ class PageBuilderSetup
             PageBuilder\Addons\Common\CustomFormStyleOne::class,
             PageBuilder\Addons\Common\GoogleMap::class,
             PageBuilder\Addons\Common\Advertise::class,
-            PageBuilder\Addons\Blog\BlogGridTwo::class,
             PageBuilder\Addons\HeaderSlider\HeaderSliderOne::class,
             PageBuilder\Addons\Common\Search::class,
             PageBuilder\Addons\AboutArea\AboutSectionStyleOne::class,
@@ -25,18 +24,12 @@ class PageBuilderSetup
             PageBuilder\Addons\Common\AuthorGrid::class,
             PageBuilder\Addons\Faq\FaqStyleOne::class,
             PageBuilder\Addons\Common\BreakingNews::class,
-            PageBuilder\Addons\Blog\BlogListStyleOne::class,
-            PageBuilder\Addons\Blog\PopularNewsMasornyOne::class,
-            PageBuilder\Addons\Blog\VideoAreaStyleOne::class,
-            PageBuilder\Addons\Blog\BlogGridSliderOne::class,
             PageBuilder\Addons\HeaderSlider\HeaderSliderTwo::class,
-            PageBuilder\Addons\Blog\BlogGridThree::class,
             PageBuilder\Addons\Common\BodySliderOne::class,
-            PageBuilder\Addons\Blog\VideoAreaStyleTwo::class,
             PageBuilder\Addons\Common\InstagramImage::class,
-            PageBuilder\Addons\Blog\BlogGridOne::class,
-            PageBuilder\Addons\Blog\BlogListStyleTwo::class,
-            PageBuilder\Addons\Blog\BlogListStyleThree::class
+            PageBuilder\Addons\Common\AuthorsFeedback::class,
+            PageBuilder\Addons\Common\BrandsPartners::class
+
 
         ];
     }

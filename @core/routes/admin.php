@@ -54,6 +54,18 @@ Route::group(['prefix'=>'advertisement'],function(){
     Route::post('/bulk-action', 'AdvertisementController@bulk_action')->name('admin.advertisement.bulk.action');
 });
 
+/*----------------------------------------------------------------------------------------------------------------------------
+ | CLIENT AREA ROUTES
+ |----------------------------------------------------------------------------------------------------------------------------*/
+Route::group(['prefix' => 'partner'], function () {
+    Route::get('/', 'PartnerController@index')->name('admin.partner');
+    Route::post('/', 'PartnerController@store');
+    Route::post('/update', 'PartnerController@update')->name('admin.partner.update');
+    Route::post('/delete/{id}', 'PartnerController@delete')->name('admin.partner.delete');
+    Route::post('/bulk-action', 'PartnerController@bulk_action')->name('admin.partner.bulk.action');
+});
+
+
 
 /*----------------------------------------------------------------------------------------------------------------------------
 | POLL AND VOTING ROUTES

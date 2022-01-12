@@ -1,6 +1,6 @@
 @extends('backend.admin-master')
 @section('site-title')
-    {{__('Clent Area ')}}
+    {{__('Partner ')}}
 @endsection
 @section('style')
     <x-media.css/>
@@ -23,11 +23,11 @@
                 @endif
             </div>
 
-            <div class="col-lg-8 mt-5">
+            <div class="col-lg-7 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">{{__('All Clent Area Items')}}</h4>
-                        @can('client-area-delete')
+                        <h4 class="header-title">{{__('All Partner Items')}}</h4>
+                        @can('partner-delete')
                         <div class="bulk-delete-wrapper">
                             <div class="select-box-wrap">
                                 <select name="bulk_option" id="bulk_option">
@@ -47,13 +47,12 @@
                                 </div>
                             </th>
                             <th>{{__('ID')}}</th>
-                            <th>{{__('Title')}}</th>
                             <th>{{__('Url')}}</th>
                             <th>{{__('Image')}}</th>
                             <th>{{__('Action')}}</th>
                             </thead>
                             <tbody>
-                            @foreach($all_client_area as $data)
+                            @foreach($all_partners as $data)
                                 <tr>
                                     <td>
                                         <div class="bulk-checkbox-wrapper">
@@ -61,7 +60,6 @@
                                         </div>
                                     </td>
                                     <td>{{$data->id}}</td>
-                                    <td>{{$data->title}}</td>
                                     <td>{{$data->url}}</td>
                                     <td>
                                         @php
@@ -80,17 +78,16 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @can('client-area-delete')
-                                        <x-delete-popover :url="route('admin.client.area.delete',$data->id)"/>
+                                        @can('partner-delete')
+                                        <x-delete-popover :url="route('admin.partner.delete',$data->id)"/>
                                         @endcan
 
-                                       @can('client-area-edit')
+                                       @can('partner-edit')
                                         <a href="#"
                                            data-toggle="modal"
                                            data-target="#brand_item_edit_modal"
                                            class="btn btn-lg btn-primary btn-sm mb-3 mr-1 brand_edit_btn"
                                            data-id="{{$data->id}}"
-                                           data-title="{{$data->title}}"
                                            data-url="{{$data->url}}"
                                            data-imageid="{{$data->image}}"
                                            data-image="{{$img_url}}"
@@ -108,17 +105,13 @@
                 </div>
             </div>
 
-            @can('client-area-create')
-            <div class="col-lg-4 mt-5">
+            @can('partner-create')
+            <div class="col-lg-5 mt-5">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">{{__('Add New Client')}}</h4>
-                        <form action="{{route('admin.client.area')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('admin.partner')}}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="title">{{__('Title')}}</label>
-                                <input type="text" class="form-control"  id="title"  name="title" placeholder="{{__('Title')}}">
-                            </div>
                             <div class="form-group">
                                 <label for="url">{{__('URl')}}</label>
                                 <input type="text" class="form-control"  id="url"  name="url" placeholder="{{__('Url')}}">
@@ -143,7 +136,7 @@
         </div>
     </div>
 
-    @can('client-area-edit')
+    @can('partner-edit')
     <div class="modal fade" id="brand_item_edit_modal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -151,14 +144,10 @@
                     <h5 class="modal-title">{{__('Edit Client Item')}}</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                 </div>
-                <form action="{{route('admin.client.area.update')}}" id="brand_edit_modal_form"  method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.partner.update')}}" id="brand_edit_modal_form"  method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         @csrf
-                        <input type="hidden" class="form-control" name="id"  id="client_id" >
-                        <div class="form-group">
-                            <label for="edit_title">{{__('Title')}}</label>
-                            <input type="text" class="form-control"  id="edit_title"  name="title" placeholder="{{__('Title')}}">
-                        </div>
+                        <input type="hidden" class="form-control" name="id"  id="partner_id" >
                         <div class="form-group">
                             <label for="edit_url">{{__('URl')}}</label>
                             <input type="text" class="form-control"  id="edit_url"  name="url" placeholder="{{__('Url')}}">
@@ -189,18 +178,16 @@
 @section('script')
     <script>
         $(document).ready(function () {
-        <x-bulk-action-js :url="route('admin.client.area.bulk.action')"/>
+        <x-bulk-action-js :url="route('admin.partner.bulk.action')"/>
 
             $(document).on('click','.brand_edit_btn',function(){
                 var el = $(this);
                 var id = el.data('id');
-                var title = el.data('title');
                 var form = $('#brand_edit_modal_form');
                 var image = el.data('image');
                 var imageid = el.data('imageid');
 
-                form.find('#client_id').val(id);
-                form.find('#edit_title').val(title);
+                form.find('#partner_id').val(id);
                 form.find('#edit_url').val(el.data('url'));
 
                 if(imageid != ''){
@@ -214,6 +201,5 @@
 
     <x-datatable.js/>
     </script>
-    <script src="{{asset('assets/backend/js/dropzone.js')}}"></script>
-    @include('backend.partials.media-upload.media-js')
+    <x-media.js/>
 @endsection

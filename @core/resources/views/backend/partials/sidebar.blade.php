@@ -138,6 +138,13 @@
                         </li>
                     @endcan
 
+                    @can('partner-list')
+                        <li class="main_dropdown {{active_menu('admin-home/partner')}}">
+                            <a href="{{route('admin.partner')}}" aria-expanded="true"><i class="ti-control-forward"></i>
+                                <span>{{__('Partners')}}</span></a>
+                        </li>
+                    @endcan
+
                     @canany(['pages-list','pages-create'])
                     <li class="{{active_menu('admin-home/advertisement')}}
                            {{active_menu('admin-home/advertisement/new')}}

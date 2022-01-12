@@ -87,6 +87,7 @@ class BodySliderOne extends PageBuilderBase
             'value' => $widget_saved_values['order'] ?? null,
             'info' => __('set order')
         ]);
+
         $output .= Number::get([
             'name' => 'blog_items',
             'label' => __('Blog Items'),

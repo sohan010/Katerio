@@ -145,6 +145,13 @@
                         </li>
                     <?php endif; ?>
 
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('partner-list')): ?>
+                        <li class="main_dropdown <?php echo e(active_menu('admin-home/partner')); ?>">
+                            <a href="<?php echo e(route('admin.partner')); ?>" aria-expanded="true"><i class="ti-control-forward"></i>
+                                <span><?php echo e(__('Partners')); ?></span></a>
+                        </li>
+                    <?php endif; ?>
+
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['pages-list','pages-create'])): ?>
                     <li class="<?php echo e(active_menu('admin-home/advertisement')); ?>
 

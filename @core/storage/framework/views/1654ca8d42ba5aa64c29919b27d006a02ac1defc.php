@@ -24,6 +24,7 @@
 <?php endif; ?>
 
 <script src="<?php echo e(asset('assets/frontend/js/popper.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/frontend/js/bootstrap.min-v4.6.0.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/dynamic-script.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/slick.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/jquery.magnific-popup.min.js')); ?>"></script>

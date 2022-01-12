@@ -25,7 +25,7 @@ class FaqStyleOne extends PageBuilderBase
 
     public function preview_image()
     {
-       return 'Faq/01.jpg';
+       return 'Faq/faq-01.png';
     }
 
     public function admin_render()
@@ -67,12 +67,10 @@ class FaqStyleOne extends PageBuilderBase
             'name' => 'columns',
             'label' => __('Column'),
             'options' => [
-                'col-lg-12' => __('12 Column'),
-                'col-lg-3' => __('03 Column'),
-                'col-lg-4' => __('04 Column'),
-                'col-lg-6' => __('06 Column'),
-                'col-lg-8' => __('08 Column'),
-                'col-lg-10' => __('10 Column'),
+                'col-lg-12' => __('01 Column'),
+                'col-lg-3' => __('04 Column'),
+                'col-lg-4' => __('03 Column'),
+                'col-lg-6' => __('02 Column'),
             ],
             'value' => $widget_saved_values['columns'] ?? null,
             'info' => __('set column')
@@ -103,11 +101,7 @@ class FaqStyleOne extends PageBuilderBase
            'type' => 'secondary',
            'text' => __('Section Settings')
         ]);
-        $output .= ColorPicker::get([
-            'name' => 'background_color',
-            'label' => __('Background Color'),
-            'value' => $widget_saved_values['background_color'] ?? '',
-        ]);
+
         $output .= Slider::get([
             'name' => 'padding_top',
             'label' => __('Padding Top'),
@@ -132,13 +126,11 @@ class FaqStyleOne extends PageBuilderBase
 
     public function frontend_render()
     {
-        $current_lang = LanguageHelper::user_lang_slug();
         $order_by = SanitizeInput::esc_html($this->setting_item('order_by'));
         $order = SanitizeInput::esc_html($this->setting_item('order'));
         $items = SanitizeInput::esc_html($this->setting_item('items'));
         $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
-        $background_color = SanitizeInput::esc_html($this->setting_item('background_color'));
         $pagination_alignment = $this->setting_item('pagination_alignment');
         $pagination_status = $this->setting_item('pagination_status')?? '';
         $columns = SanitizeInput::esc_html($this->setting_item('columns'));
@@ -152,55 +144,78 @@ class FaqStyleOne extends PageBuilderBase
 
         $pagination_markup = '';
         if (!empty($pagination_status) && !empty($items)){
-            $pagination_markup = '<div class="col-lg-12"><div class="pagination-wrapper '.$pagination_alignment.'">'.$faq_items->links().'</div></div>';
+            $pagination_markup = '<div class="col-lg-12"><div class="pagination-wrapper mt-5 '.$pagination_alignment.'">'.$faq_items->links().'</div></div>';
         }
 
-        $rand_number = random_int(9999,99999999);
-        $faq_markup = '';
-        $faq_markup .='<div class="accordion-wrapper"><div id="accordion_'.$rand_number.'">';
-        foreach ($faq_items as $index => $faq){
+        $rand_number = rand(9999,99999999);
+        $faq_markup ='<div class="faq-area-wrapper">';
+        foreach ($faq_items as $key=> $faq){
 
-            $title = SanitizeInput::esc_html($faq->title);
-            $description = SanitizeInput::kses_basic($faq->description);
             $aria_expanded = 'false';
-            $collapse = '';
             if($faq->is_open == 'on'){
                 $aria_expanded = 'true';
             }
-            if($faq->is_open == 'on') {
-                $collapse = 'show';
-            }
 
-   $faq_markup .= <<<HTML
- <div class="faq-item wow fadeInLeft" data-wow-delay=".2s">
-    <div class="faq-title">
-         {$title}
-    </div>
-    <div class="faq-panel">
-        <p class="common-para"> {$description} </p>
-    </div>
-</div>
-HTML;
-        }
-$faq_markup .= '</div></div>';
+            $open_condition = $faq->is_open == 'on' ? 'show' : '';
+            $title = SanitizeInput::esc_html($faq->title);
+            $description = SanitizeInput::kses_basic($faq->description);
 
-        return <<<HTML
-   <div class="faq-area padding-top-100 padding-bottom-100" style="background-color: {$background_color}">
-       <div class="container">
-         <div class="row justify-content-center">
-               <div class="{$columns}">
-                   <div class="faq-contents">
-                            {$faq_markup}
+        $faq_markup .= <<<HTML
+            <div class="card">
+                <div class="card-header" id="headingOne_{$key}">
+                    <h5 class="mb-0">
+                        <a href="#" class="accordion-btn btn-link collapsed"
+                            data-toggle="collapse" data-target="#collapseOne_{$key}"
+                            aria-expanded="{$aria_expanded}" aria-controls="collapseOne_{$key}">
+                           {$title}
+                            <span class="color-1">
+                                <i class="las la-plus open"></i>
+                                <i class="las la-minus close"></i>
+                            </span>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseOne_{$key}" class="collapse {$open_condition}" aria-labelledby="headingOne_{$key}"
+                   data-parent="#accordion_{$rand_number}">
+                    <div class="card-body">
+                        <p class="info">{$description} </p>
                     </div>
-                    {$pagination_markup}
-              </div>
+                </div>
+            </div>
+
+HTML;
+}
+
+$faq_markup .= '</div>';
+
+return <<<HTML
+ 
+    <div class="container" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="faq-accordion">
+                    <div class="accordion" id="accordion_{$rand_number}">
+                        <div class="row">
+                          <div class="{$columns}">
+                            {$faq_markup}
+                        </div>
+                        </div>
+            
+                        </div>
+                    </div>
+                </div>
+                   {$pagination_markup}
+            </div>    
         </div>
     </div>
-</div>
+
+
 
 HTML;
 
 }
+
+
 
     public function addon_title()
     {

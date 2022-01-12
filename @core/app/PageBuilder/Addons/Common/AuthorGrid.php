@@ -27,7 +27,7 @@ class AuthorGrid extends PageBuilderBase
   use LanguageFallbackForPageBuilder;
     public function preview_image()
     {
-       return 'common/author.jpg';
+       return 'common/authors.png';
     }
 
 
@@ -129,9 +129,7 @@ class AuthorGrid extends PageBuilderBase
         return $output;
     }
 
-    /**
-     * @inheritDoc
-     */
+
     public function frontend_render()
     {
         $settings = $this->get_settings();
@@ -156,7 +154,7 @@ class AuthorGrid extends PageBuilderBase
 
         $pagination_markup = '';
         if (!empty($pagination_status) && !empty($items)){
-            $pagination_markup = '<div class="col-lg-12"><div class="pagination-wrapper '.$pagination_alignment.'">'.$team_member->links().'</div></div>';
+            $pagination_markup = '<div class="col-lg-12 mt-5"><div class="pagination-wrapper '.$pagination_alignment.'">'.$team_member->links().'</div></div>';
         }
 
         if(!empty($items)){
@@ -166,51 +164,57 @@ class AuthorGrid extends PageBuilderBase
         foreach ($team_member as $item){
             $image = render_image_markup_by_attachment_id($item->image);
             $name = $item->name;
-            $designation = $item->designation;
 
             $social_links_markup = '<ul class="author-socials">';
             $social_fields = array(
-                'lab la-facebook-f' => $item->facebook_url,
-                'lab la-twitter' => $item->twitter_url,
-                'lab la-instagram' => $item->instagram_url,
-                'lab la-linkedin-in' => $item->linkedin_url,
+                'lab la-facebook-f icon' => $item->facebook_url,
+                'lab la-twitter icon' => $item->twitter_url,
+                'lab la-instagram icon' => $item->instagram_url,
+                'lab la-linkedin-in icon' => $item->linkedin_url,
             );
-            $classes = ['facebook','twitter','instagram','linkedin'];
+            $classes = ['facebook','twitter','instgram','linkedin'];
             $number = 0;
             foreach($social_fields as $key => $value){
-                $social_links_markup .= '<li><a class="'.$classes[$number].'" href="'.$value.'"><i class="'.$key.'"></i></a></li>';
+
+                $social_links_markup .= '<li class="link-item"><a class="'.$classes[$number].'" href="'.$value.'"><i class="'.$key.'"></i></a></li>';
                 $number == 4 ? $number = 0 : $number++;
             }
             $social_links_markup .= '</ul>';
             $author_url =  route('frontend.author.profile', $item->id);
 
      $category_markup .= <<<HTML
-         <div class="{$columns} col-md-4 col-sm-6 wow animated zoomIn" data-wow-delay=".1s">
-             <div class="single-author margin-top-30">  
-          <div class="author-thumb">
-              {$image}
-              {$social_links_markup}
+
+     <div class="col-sm-6 col-md-6 {$columns}">
+        <div class="single-author-item">
+            <div class="img-box">
+               {$image}
+             
             </div>
-            <div class="author-contents">
-                <h5 class="author-title"> <a href="{$author_url}"> {$name} </a> </h5>
-                <span class="title"> {$designation} </span>
+            <div class="content">
+                <h4 class="title">
+                    <a href="{$author_url}">{$name}</a>
+                </h4>
+
+                <ul class="author-social-link">
+                     {$social_links_markup}
+                </ul>
             </div>
-      </div>
-</div>
-     
+        </div>
+    </div>
 HTML;
 }
 
 
  return <<<HTML
-    <div class="author-area res-author-padding" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}"{$background_color}>
-            <div class="container">
-                <div class="row">
-                            {$category_markup}                       
-                            {$pagination_markup}
-                        </div>
-                    </div>
-                </div>
+
+    <div class="author-area-wrapper three-column" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}"{$background_color}>
+        <div class="container">
+            <div class="row">
+               {$category_markup}                       
+                {$pagination_markup}
+            </div>
+        </div>
+    </div>
   
 HTML;
 }

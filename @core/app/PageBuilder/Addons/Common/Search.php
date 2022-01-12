@@ -95,42 +95,43 @@ class Search extends PageBuilderBase
 
         $tag_markup = '';
         foreach ($tags as $tag){
-            $tag_markup.= '<li> <a href="'.route('frontend.blog.tags.page', ['any' => $tag->name]).'" class="tag">'.$tag->getTranslation('name',$current_lang).'</a></li>';
+            $tag_markup.= ' <a href="'.route('frontend.blog.tags.page', ['any' => $tag->name]).'" class="tag">'.$tag->getTranslation('name',$current_lang).'</a>';
         }
 
 
  return <<<HTML
 
-    <div class="search-area padding-top-100 padding-bottom-50" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+
+
+    <div class="search-box-area-wrapper" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="search-contents">
-                        <form class="search-form" action="{$search_route}">
-                            <div class="single-form">
-                                <div class="single-form-control">
-                                    <input class="form--control" type="text" name="search" placeholder="Search News, Post & People">
-                                    <div class="icon"><i class="las la-search"></i></div>
-                                </div>
-                                <button type="submit"> Search </button>
-                            </div>
-                        </form>
+                <div class="col-lg-9">
+                    <form class="form" action="{$search_route}">
+                        <div class="form-group">
+                            <input type="search" name="search" class="form-control"
+                                placeholder="Search Stories, Places &amp; people here">
+                        </div>
+                        <div class="btn-wrapper">
+                            <button type="submit" class="btn-default">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="content">
+                        <h4 class="title">{$tag_title}</h4>
+                        <div class="tag-box">          
+                             {$tag_markup}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 
-    <div class="keywords-area padding-top-50 padding-bottom-95">
-        <div class="container">
-            <div class="keyword-contents">
-                <h3 class="keyword-title"> {$tag_title} </h3>
-                <ul class="keyword-list">
-                       {$tag_markup}
-                </ul>
-            </div>
-        </div>
-    </div>
 
 
 HTML;

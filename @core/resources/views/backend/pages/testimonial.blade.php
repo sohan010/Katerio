@@ -74,8 +74,8 @@
                                                 @php  $img_url = $testimonial_img['img_url']; @endphp
                                             @endif
                                         </td>
-                                        <td>{{$data->name}}</td>
-                                        <td>{{$data->designation}}</td>
+                                        <td>{{$data->getTranslation('name',$default_lang)}}</td>
+                                        <td>{{$data->getTranslation('designation',$default_lang)}}</td>
                                         <td>
                                             <x-status-span :status="$data->status"/>
                                         </td>
@@ -90,11 +90,10 @@
                                                    class="btn btn-primary btn-xs mb-3 mr-1 testimonial_edit_btn"
                                                    data-id="{{$data->id}}"
                                                    data-action="{{route('admin.testimonial.update')}}"
-                                                   data-name="{{$data->name}}"
-                                                   data-lang="{{$data->lang}}"
+                                                   data-name="{{$data->getTranslation('name',$default_lang)}}"
                                                    data-status="{{$data->status}}"
-                                                   data-description="{{$data->description}}"
-                                                   data-designation="{{$data->designation}}"
+                                                   data-description="{{$data->getTranslation('description',$default_lang)}}"
+                                                   data-designation="{{$data->getTranslation('designation',$default_lang)}}"
                                                    data-imageid="{{$data->image}}"
                                                    data-image="{{$img_url}}"
                                                 >
@@ -125,7 +124,7 @@
                             <form action="{{route('admin.testimonial')}}" method="post" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     @csrf
-
+                                    <input type="hidden" name="lang" value="{{$default_lang}}">
                                     <div class="form-group">
                                         <label for="edit_name">{{__('Name')}}</label>
                                         <input type="text" class="form-control" name="name"
@@ -185,6 +184,7 @@
                                   enctype="multipart/form-data">
                                 <div class="modal-body">
                                     @csrf
+                                    <input type="hidden" name="lang" value="{{$default_lang}}">
                                     <input type="hidden" name="id" id="testimonial_id" value="">
                                     <div class="form-group">
                                         <label for="edit_name">{{__('Name')}}</label>
