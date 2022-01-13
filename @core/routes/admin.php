@@ -152,6 +152,16 @@ Route::group(['prefix' => 'page-builder','middleware' => 'auth:admin'],function 
 
 });
 
+
+/*-------------------------
+    MISC Routes
+-------------------------*/
+Route::prefix('misc')->group(function (){
+    Route::get('/settings', 'MiscellaneousController@misc_index')->name('admin.misc.settings');
+    Route::post('/settings', 'MiscellaneousController@misc_update');
+});
+
+
 /*----------------------------------------------------------------------------------------------------------------------------
 | GENERAL SETTINGS MANAGE
 |----------------------------------------------------------------------------------------------------------------------------*/

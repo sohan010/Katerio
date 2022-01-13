@@ -276,6 +276,7 @@
                             'admin-home/contact-page/*',
                             'admin-home/404-page-manage',
                             'admin-home/maintains-page/settings',
+                            'admin-home/misc/settings',
 
                         ])) active @endif ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-panel"></i>
@@ -293,6 +294,10 @@
                                 <a href="{{route('admin.maintains.page.settings')}}">{{__('Maintain Page Manage')}}</a>
                             </li>
                             @endcan
+
+                           <li class="{{active_menu('admin-home/misc/settings')}}">
+                               <a href="{{route('admin.misc.settings')}}">{{__('Miscellaneous Settings')}}</a>
+                           </li>
 
                         </ul>
                     </li>

@@ -28,7 +28,8 @@ class PageBuilderSetup
             PageBuilder\Addons\Common\BodySliderOne::class,
             PageBuilder\Addons\Common\InstagramImage::class,
             PageBuilder\Addons\Common\AuthorsFeedback::class,
-            PageBuilder\Addons\Common\BrandsPartners::class
+            PageBuilder\Addons\Common\BrandsPartners::class,
+            PageBuilder\Addons\Common\VideoGridOne::class
 
 
         ];

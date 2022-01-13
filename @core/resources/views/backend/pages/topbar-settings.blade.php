@@ -18,6 +18,7 @@
                     <div class="card-body">
                         <div class="header-wrapp">
                             <h4 class="header-title">{{__('Support Info Leftbar Items')}}  </h4>
+
                             <div class="header-title">
                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4" data-toggle="modal"
                                         data-target="#add_support_info">{{__('Add New Support Info')}}</button>
@@ -27,27 +28,19 @@
                         <div class="table-wrap table-responsive">
                             <table class="table table-default">
                                 <thead>
-                                <th class="no-sort">
-                                    <div class="mark-all-checkbox">
-                                        <input type="checkbox" class="all-checkbox">
-                                    </div>
-                                </th>
+
                                 <th>{{__('ID')}}</th>
                                 <th>{{__('Title')}}</th>
-                                <th>{{__('Icon')}}</th>
-                                <th>{{__('Details')}}</th>
+                                <th>{{__('URL')}}</th>
                                 <th>{{__('Action')}}</th>
                                 </thead>
                                 <tbody>
                                 @foreach($all_topbar_infos as $data)
                                     <tr>
-                                        <td>
-                                            <x-bulk-delete-checkbox :id="$data->id"/>
-                                        </td>
+
                                         <td>{{$data->id}}</td>
                                         <td>{{$data->title}}</td>
-                                        <td><i class="{{$data->icon}}"></i></td>
-                                        <td>{{$data->details}}</td>
+                                        <td>{{$data->url}}</td>
                                         <td>
                                             <x-delete-popover :url="route('admin.delete.support.info',$data->id)"/>
                                             <a href="#"
@@ -57,9 +50,7 @@
                                                data-id="{{$data->id}}"
                                                data-action="{{route('admin.update.support.info')}}"
                                                data-title="{{$data->title}}"
-                                               data-iconSupport="{{$data->icon}}"
-                                               data-details="{{$data->details}}"
-                                               data-lang="{{$data->lang}}"
+                                               data-infourl="{{$data->url}}"
                                             >
                                                 <i class="ti-pencil"></i>
                                             </a>
@@ -132,25 +123,11 @@
                             <input type="text" class="form-control" id="title" name="title"
                                    placeholder="{{__('Title')}}">
                         </div>
+
                         <div class="form-group">
-                            <label for="icon" class="d-block">{{__('Social Profile Icon')}}</label>
-                            <div class="btn-group icon">
-                                <button type="button" class="btn btn-primary iconpicker-component">
-                                    <i class="fas fa-phone"></i>
-                                </button>
-                                <button type="button" class="icp icp-dd btn btn-primary dropdown-toggle"
-                                        data-selected="fas fa-phone" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">{{__('Toggle Dropdown')}}</span>
-                                </button>
-                                <div class="dropdown-menu"></div>
-                            </div>
-                            <input type="hidden" class="form-control" id="icon" value="fas fa-phone" name="icon">
-                        </div>
-                        <div class="form-group">
-                            <label for="details">{{__('Details')}}</label>
-                            <input type="text" class="form-control" id="details" name="details"
-                              placeholder="{{__('Details')}}">
+                            <label for="details">{{__('URL')}}</label>
+                            <input type="text" class="form-control" id="url" name="url"
+                              placeholder="{{__('URL')}}">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -179,26 +156,11 @@
                             <input type="text" class="form-control" id="edit_title" name="title"
                                    placeholder="{{__('Title')}}">
                         </div>
+
                         <div class="form-group">
-                            <label for="edit_icon" class="d-block">{{__('Support Info Icon')}}</label>
-                            <div class="btn-group edit_icon">
-                                <button type="button" class="btn btn-primary iconpicker-component">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                </button>
-                                <button type="button" class="icp icp-dd btn btn-primary dropdown-toggle"
-                                        data-selected="fas fa-exclamation-triangle" data-toggle="dropdown">
-                                    <span class="caret"></span>
-                                    <span class="sr-only">{{__('Toggle Dropdown')}}</span>
-                                </button>
-                                <div class="dropdown-menu"></div>
-                            </div>
-                            <input type="hidden" class="form-control" id="edit_icon" value="fas fa-exclamation-triangle"
-                                   name="icon">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_details">{{__('Details')}}</label>
-                            <input type="text" class="form-control" id="edit_details" name="details"
-                                   placeholder="{{__('Details')}}">
+                            <label for="edit_details">{{__('URL')}}</label>
+                            <input type="text" class="form-control edit_info_url" name="url"
+                                   placeholder="{{__('URL')}}">
                         </div>
 
                     </div>
@@ -307,15 +269,12 @@
                     var el = $(this);
                     var id = el.data('id');
                     var title = el.data('title');
-                    var details = el.data('details');
+                    var url = el.data('infourl');
                     var form = $('#support_info_item_edit_modal_form');
                     form.find('#support_info_id').val(id);
                     form.find('#edit_title').val(title);
-                    form.find('#edit_details').val(details);
-
-                    form.find('#edit_icon').val(el.data('iconsupport'));
-                    form.find('.edit_icon .icp-dd').attr('data-selected', el.data('iconsupport'));
-                    form.find('.edit_icon .iconpicker-component i').attr('class', el.data('iconsupport'));
+                    form.find('.edit_info_url').val(url);
+                    ;
                 });
 
                 $(document).on('click', '.social_item_edit_btn', function () {

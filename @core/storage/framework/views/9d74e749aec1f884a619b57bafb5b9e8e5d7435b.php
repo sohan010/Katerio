@@ -309,6 +309,11 @@
                                                 <label for="slug"><?php echo e(__('Video Url')); ?></label>
                                                 <input type="text" class="form-control" name="video_url" value=" <?php echo $blog_post->video_url ?? ''; ?>">
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="slug"><?php echo e(__('Video Duation')); ?></label>
+                                                <input type="text" class="form-control" name="video_duration" value=" <?php echo $blog_post->video_duration ?? ''; ?>">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

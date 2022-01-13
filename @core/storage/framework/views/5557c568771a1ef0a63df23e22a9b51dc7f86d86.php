@@ -46,21 +46,21 @@
     <?php echo $__env->yieldContent('style'); ?>
 
 
-    <?php if(request()->routeIs('homepage')): ?>
+      <?php if(request()->routeIs('homepage')): ?>
         <title><?php echo e(get_static_option('site_'.$user_select_lang_slug.'_title')); ?> - <?php echo e(get_static_option('site_'.$user_select_lang_slug.'_tag_line')); ?></title>
-
            <?php echo render_site_meta(); ?>
 
 
-     <?php elseif( request()->routeIs('frontend.dynamic.page')): ?>
+       <?php elseif( request()->routeIs('frontend.dynamic.page')): ?>
            <?php echo render_site_title($page_post->title); ?>
 
            <?php echo render_site_meta(); ?>
 
 
-    <?php else: ?>
-        <?php echo $__env->yieldContent('page-meta-data'); ?>
-    <?php endif; ?>
+        <?php else: ?>
+            <?php echo $__env->yieldContent('page-meta-data'); ?>
+           <title> <?php echo $__env->yieldContent('site-title'); ?> - <?php echo e(get_static_option('site_'.$user_select_lang_slug.'_title')); ?> </title>
+        <?php endif; ?>
 
 
 </head>

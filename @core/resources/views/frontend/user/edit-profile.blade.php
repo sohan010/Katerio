@@ -1,4 +1,4 @@
-@extends('backend.admin-master')
+@extends('frontend.user.dashboard.user-master')
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/backend/css/dropzone.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/css/media-uploader.css')}}">
@@ -6,7 +6,9 @@
 @section('site-title')
     {{__('Edit Profile')}}
 @endsection
-@section('content')
+
+
+@section('frontend-content')
     <div class="main-content-inner margin-top-30">
         <div class="row">
             <div class="col-lg-12">

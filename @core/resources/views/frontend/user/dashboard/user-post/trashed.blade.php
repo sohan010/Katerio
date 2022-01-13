@@ -2,8 +2,15 @@
 @section('site-title')
     {{__('All Trashed Blogs')}}
 @endsection
+
+@section('page-title')
+    {{__('All Trashed Blogs')}}
+@endsection
+
 @section('style')
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/custom-dashboard.css')}}">
 <x-datatable.css/>
+    <x-media.css/>
 
     <style>
         .table-wrap .alert-primary {
@@ -100,7 +107,8 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+
+@push('scripts')
 <x-datatable.js />
 <script>
 (function ($){
@@ -129,4 +137,4 @@
     });
 })(jQuery)
 </script>
-@endsection
+@endpush

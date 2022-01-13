@@ -18,12 +18,24 @@
                 <div class="breadcrumb-inner">
                     <div class="content">
                           <h3 class="title"><?php echo e($page_post->title ?? ''); ?> <?php echo $__env->yieldContent('custom-page-title'); ?> </h3>
+
+
+
+
+
+
+
                         <ul class="page-list">
                             <li class="list-item"><a href="<?php echo e(url('/')); ?>"><?php echo e(__('Home')); ?></a></li>
-                            
+                            <?php if(Route::currentRouteName() === 'frontend.dynamic.page'): ?>
+                                <li class="list-item"><a href="#"><?php echo e($page_post->title); ?></a></li>
+                            <?php elseif(Route::currentRouteName() === 'frontend.blog.single'): ?>
+                                <?php echo e($page_post->title); ?>
 
-                                 <li class="list-item"><a href="<?php echo e(url(request()->url())); ?>"><?php echo $__env->yieldContent('page-title'); ?></a></li>
 
+                            <?php else: ?>
+                                <li class="list-item"><a href="#"><?php echo $__env->yieldContent('page-title'); ?></a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>

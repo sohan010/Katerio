@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
 class TopbarInfo extends Model
 {
     use HasFactory;
-    protected $fillable = ['icon','details','title'];
+    protected $fillable = ['icon','url','title'];
 }

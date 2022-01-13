@@ -2,12 +2,18 @@
 @section('style')
     <x-summernote.css/>
     <link rel="stylesheet" href="{{asset('assets/backend/css/bootstrap-tagsinput.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/custom-dashboard.css')}}">
     <x-media.css/>
     <x-blog-inline-css/>
 @endsection
 @section('site-title')
     {{__('Edit Blog Post')}}
 @endsection
+
+@section('page-title')
+    {{__('Edit Blog Post')}}
+@endsection
+
 @section('section')
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
@@ -72,6 +78,11 @@
                                         <div class="form-group">
                                             <label for="slug">{{__('Video Url')}}</label>
                                             <input type="text" class="form-control" name="video_url" value=" {!! $blog_post->video_url ?? '' !!}">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="slug">{{__('Video Duration')}}</label>
+                                            <input type="text" class="form-control" name="video_duration" value=" {!! $blog_post->video_duration ?? '' !!}">
                                         </div>
                                     </div>
                                 </div>
@@ -352,7 +363,8 @@
     </div>
     <x-media.markup :type="'web'"/>
 @endsection
-@section('scripts')
+
+@push('scripts')
     <script src="{{asset('assets/backend/js/bootstrap-tagsinput.js')}}"></script>
     <x-summernote.js/>
     <x-media.js :type="'web'"/>
@@ -532,4 +544,4 @@
             });
         });
     </script>
-@endsection
+@endpush

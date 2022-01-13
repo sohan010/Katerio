@@ -28,6 +28,7 @@
 <script src="<?php echo e(asset('assets/frontend/js/dynamic-script.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/slick.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/jquery.magnific-popup.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/common/js/sweetalert2.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/main.js')); ?>"></script>
 
 
@@ -45,7 +46,9 @@
                 });
             });
 
+
         })(jQuery);
+
     </script>
 
 <?php endif; ?>
@@ -59,8 +62,9 @@
     $('[data-toggle="tooltip"]').tooltip({'placement': 'top','color':'green'});
 </script>
 
-<?php echo $__env->yieldContent('scripts'); ?>
+<?php echo $__env->yieldPushContent('scripts'); ?>
     <?php echo $__env->make('frontend.partials.inline-scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 
 </body>
 </html>

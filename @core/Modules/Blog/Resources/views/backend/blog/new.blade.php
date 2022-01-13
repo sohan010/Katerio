@@ -241,6 +241,11 @@
                                                 <label for="slug">{{__('Video Url')}}</label>
                                                 <input type="text" class="form-control" name="video_url">
                                             </div>
+
+                                            <div class="form-group">
+                                                <label for="slug">{{__('Video Duration')}}</label>
+                                                <input type="text" class="form-control" name="video_duration">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

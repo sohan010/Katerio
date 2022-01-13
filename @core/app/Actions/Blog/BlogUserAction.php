@@ -52,6 +52,7 @@ class BlogUserAction
         $blog->schedule_date = $request->schedule_date;
         $blog->views = 0;
         $blog->video_url = purify_html($request->video_url);
+        $blog->video_duration = purify_html($request->video_duration);
         $blog->created_by = 'user';
 
         $Metas = [
@@ -112,6 +113,7 @@ class BlogUserAction
         $blog_update->schedule_date = $request->schedule_date;
         $blog_update->views = 0;
         $blog_update->video_url = purify_html($request->video_url);
+        $blog_update->video_duration = purify_html($request->video_duration);
         $blog_update->created_by = 'user';
 
         $Metas = [
@@ -161,6 +163,7 @@ class BlogUserAction
             'schedule_date' => $blog_details->schedule_date,
             'featured' => $blog_details->featured,
             'video_url' => $blog_details->video_url,
+            'video_duration' => $blog_details->video_duration,
             'created_by' => $blog_details->created_by,
         ]);
 

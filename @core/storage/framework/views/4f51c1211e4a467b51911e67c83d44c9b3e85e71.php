@@ -291,6 +291,7 @@
                             'admin-home/contact-page/*',
                             'admin-home/404-page-manage',
                             'admin-home/maintains-page/settings',
+                            'admin-home/misc/settings',
 
                         ])): ?> active <?php endif; ?> ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-panel"></i>
@@ -308,6 +309,10 @@
                                 <a href="<?php echo e(route('admin.maintains.page.settings')); ?>"><?php echo e(__('Maintain Page Manage')); ?></a>
                             </li>
                             <?php endif; ?>
+
+                           <li class="<?php echo e(active_menu('admin-home/misc/settings')); ?>">
+                               <a href="<?php echo e(route('admin.misc.settings')); ?>"><?php echo e(__('Miscellaneous Settings')); ?></a>
+                           </li>
 
                         </ul>
                     </li>

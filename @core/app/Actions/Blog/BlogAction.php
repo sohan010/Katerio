@@ -47,6 +47,7 @@ class BlogAction
         $blog->schedule_date = $request->schedule_date;
         $blog->views = 0;
         $blog->video_url = purify_html($request->video_url);
+        $blog->video_duration = purify_html($request->video_duration);
         $blog->created_by = 'admin';
 
         $Metas = [
@@ -102,7 +103,7 @@ class BlogAction
         $blog_update->schedule_date = $request->schedule_date;
         $blog_update->views = 0;
         $blog_update->video_url =$request->video_url;
-
+        $blog_update->video_duration =$request->video_duration;
 
         $Metas = [
             'meta_title'=> purify_html($request->meta_title),
@@ -152,6 +153,7 @@ class BlogAction
             'featured' => $blog_details->featured,
             'breaking_news' => $blog_details->breaking_news,
             'video_url' => $blog_details->video_url,
+            'video_duration' => $blog_details->video_duration,
             'created_by' => $blog_details->created_by,
         ]);
 

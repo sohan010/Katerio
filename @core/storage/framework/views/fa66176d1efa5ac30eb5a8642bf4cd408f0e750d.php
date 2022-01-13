@@ -1,4 +1,3 @@
-<!-- top bar area start -->
 <div class="topbar-area">
     <div class="container custom-container-01">
         <div class="row">
@@ -8,52 +7,14 @@
                         <div class="topbar-item">
                             <div class="extra-menu">
                                 <ul class="extra-menu-list">
+                                    <?php $__currentLoopData = $all_topbar_infos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li class="link-item">
-                                        <a href="#">
-                                            advertisement
+                                        <a href="<?php echo e($data->url); ?>">
+                                          <?php echo e($data->title); ?>
+
                                         </a>
                                     </li>
-                                    <li class="link-item">
-                                        <a href="#">
-                                            contact
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#">
-                                            author
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#">
-                                            forum
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="topbar-item d-none">
-                            <div class="social-icon">
-                                <ul class="social-link-list">
-                                    <li class="link-item">
-                                        <a href="#" class="facebook">
-                                            <i class="lab la-facebook-f icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="twitter">
-                                            <i class="lab la-twitter icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="linkedin">
-                                            <i class="lab la-linkedin-in icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="rss">
-                                            <i class="las la-rss icon icon"></i>
-                                        </a>
-                                    </li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                             </div>
                         </div>
@@ -62,46 +23,66 @@
                         <div class="topbar-item">
                             <div class="social-icon">
                                 <ul class="social-link-list">
-                                    <li class="link-item">
-                                        <a href="#" class="facebook">
-                                            <i class="lab la-facebook-f icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="twitter">
-                                            <i class="lab la-twitter icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="linkedin">
-                                            <i class="lab la-linkedin-in icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="rss">
-                                            <i class="las la-rss icon icon"></i>
-                                        </a>
-                                    </li>
+                                    <?php $__currentLoopData = $all_social_icons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li class="link-item">
+                                            <a href="<?php echo e($data->url); ?>" class="facebook">
+                                                <i class="<?php echo e($data->icon); ?> icon"></i>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                 </ul>
                             </div>
                         </div>
+
                         <div class="topbar-item">
-                            <a href="#" class="topbar-login-btn">login | register</a>
-                        </div>
-                        <div class="topbar-item">
-                            <div class="select-option">
-                                <div class="single-select">
-                                    <select class="lang">
-                                        <option value="volvo">English</option>
-                                        <option value="saab">Arabic</option>
+                             <?php if(auth()->check()): ?>
+                                  <?php
+                                    $route = auth()->guest() == 'admin' ? route('admin.home') : route('user.home');
+                                 ?>
+
+                                    <a class="topbar-login-btn" href="<?php echo e($route); ?>"><?php echo e(__('Dashboard')); ?></a>
+                                    <span><?php echo e(__('|')); ?></span>
+                                    <a class="topbar-login-btn" href="<?php echo e(route('frontend.user.logout')); ?>"><?php echo e(__('Logout')); ?></a>
+
+                                    <form id="userlogout-form" action="<?php echo e(route('user.logout')); ?>" method="POST" style="display: none;">
+                                        <?php echo csrf_field(); ?>
+                                        <input type="submit" value="aa" id="userlogout-form" class="d-none">
+                                    </form>
+
+                              <?php else: ?>
+                                    <a class="topbar-login-btn" href="<?php echo e(route('user.login')); ?>"><?php echo e(__('Login')); ?></a>
+                                    <span><?php echo e(__('|')); ?></span>
+                                    <a class="topbar-login-btn" href="<?php echo e(route('user.register')); ?>"><?php echo e(__('Register')); ?></a>
+                            <?php endif; ?>
+                            </div>
+
+                            <?php if(!empty(get_static_option('language_select_option'))): ?>
+                                <div class="topbar-item">
+                                    <select class="lang" id="langchange">
+                                        <?php $__currentLoopData = $all_language; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php
+                                                $lang_name = explode('(',$lang->name);
+                                                $data = array_shift($lang_name);
+                                            ?>
+                                            <option <?php if(get_user_lang() == $lang->slug): ?> selected <?php endif; ?> value="<?php echo e($lang->slug); ?>"><?php echo e($data); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
-                            </div>
+                            <?php endif; ?>
+                        <div class="topbar-item">
+                            <label class="switch yes">
+                                <input id="frontend_darkmode" type="checkbox" data-mode=<?php echo e(get_static_option('site_frontend_dark_mode')); ?> <?php if(get_static_option('site_frontend_dark_mode') == 'on'): ?> checked <?php else: ?> <?php endif; ?>>
+                                <span class="slider-color-mode onff"></span>
+                            </label>
                         </div>
+
+                         </div>
+
+                     </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
-<!-- top bar area end --><?php /**PATH D:\laragon\www\katerio\@core\resources\views/frontend/partials/support.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\laragon\www\katerio\@core\resources\views/frontend/partials/support.blade.php ENDPATH**/ ?>

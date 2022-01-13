@@ -28,6 +28,7 @@
 <script src="{{asset('assets/frontend/js/dynamic-script.js')}}"></script>
 <script src="{{asset('assets/frontend/js/slick.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('assets/common/js/sweetalert2.js')}}"></script>
 <script src="{{asset('assets/frontend/js/main.js')}}"></script>
 
 
@@ -45,7 +46,9 @@
                 });
             });
 
+
         })(jQuery);
+
     </script>
 
 @endif
@@ -58,8 +61,9 @@
     $('[data-toggle="tooltip"]').tooltip({'placement': 'top','color':'green'});
 </script>
 
-@yield('scripts')
+@stack('scripts')
     @include('frontend.partials.inline-scripts')
+
 
 </body>
 </html>

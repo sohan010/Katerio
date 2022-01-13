@@ -1,4 +1,3 @@
-<!-- top bar area start -->
 <div class="topbar-area">
     <div class="container custom-container-01">
         <div class="row">
@@ -8,52 +7,13 @@
                         <div class="topbar-item">
                             <div class="extra-menu">
                                 <ul class="extra-menu-list">
+                                    @foreach($all_topbar_infos as  $data)
                                     <li class="link-item">
-                                        <a href="#">
-                                            advertisement
+                                        <a href="{{$data->url}}">
+                                          {{$data->title}}
                                         </a>
                                     </li>
-                                    <li class="link-item">
-                                        <a href="#">
-                                            contact
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#">
-                                            author
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#">
-                                            forum
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="topbar-item d-none">
-                            <div class="social-icon">
-                                <ul class="social-link-list">
-                                    <li class="link-item">
-                                        <a href="#" class="facebook">
-                                            <i class="lab la-facebook-f icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="twitter">
-                                            <i class="lab la-twitter icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="linkedin">
-                                            <i class="lab la-linkedin-in icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="rss">
-                                            <i class="las la-rss icon icon"></i>
-                                        </a>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -62,46 +22,65 @@
                         <div class="topbar-item">
                             <div class="social-icon">
                                 <ul class="social-link-list">
-                                    <li class="link-item">
-                                        <a href="#" class="facebook">
-                                            <i class="lab la-facebook-f icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="twitter">
-                                            <i class="lab la-twitter icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="linkedin">
-                                            <i class="lab la-linkedin-in icon"></i>
-                                        </a>
-                                    </li>
-                                    <li class="link-item">
-                                        <a href="#" class="rss">
-                                            <i class="las la-rss icon icon"></i>
-                                        </a>
-                                    </li>
+                                    @foreach($all_social_icons as $data)
+                                        <li class="link-item">
+                                            <a href="{{$data->url}}" class="facebook">
+                                                <i class="{{$data->icon}} icon"></i>
+                                            </a>
+                                        </li>
+                                    @endforeach
+
                                 </ul>
                             </div>
                         </div>
+
                         <div class="topbar-item">
-                            <a href="#" class="topbar-login-btn">login | register</a>
-                        </div>
-                        <div class="topbar-item">
-                            <div class="select-option">
-                                <div class="single-select">
-                                    <select class="lang">
-                                        <option value="volvo">English</option>
-                                        <option value="saab">Arabic</option>
+                             @if(auth()->check())
+                                  @php
+                                    $route = auth()->guest() == 'admin' ? route('admin.home') : route('user.home');
+                                 @endphp
+
+                                    <a class="topbar-login-btn" href="{{$route}}">{{__('Dashboard')}}</a>
+                                    <span>{{__('|')}}</span>
+                                    <a class="topbar-login-btn" href="{{ route('frontend.user.logout') }}">{{ __('Logout') }}</a>
+
+                                    <form id="userlogout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                        <input type="submit" value="aa" id="userlogout-form" class="d-none">
+                                    </form>
+
+                              @else
+                                    <a class="topbar-login-btn" href="{{route('user.login')}}">{{__('Login')}}</a>
+                                    <span>{{__('|')}}</span>
+                                    <a class="topbar-login-btn" href="{{route('user.register')}}">{{__('Register')}}</a>
+                            @endif
+                            </div>
+
+                            @if(!empty(get_static_option('language_select_option')))
+                                <div class="topbar-item">
+                                    <select class="lang" id="langchange">
+                                        @foreach($all_language as $lang)
+                                            @php
+                                                $lang_name = explode('(',$lang->name);
+                                                $data = array_shift($lang_name);
+                                            @endphp
+                                            <option @if(get_user_lang() == $lang->slug) selected @endif value="{{$lang->slug}}">{{$data}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            @endif
+                        <div class="topbar-item">
+                            <label class="switch yes">
+                                <input id="frontend_darkmode" type="checkbox" data-mode={{ get_static_option('site_frontend_dark_mode') }} @if(get_static_option('site_frontend_dark_mode') == 'on') checked @else @endif>
+                                <span class="slider-color-mode onff"></span>
+                            </label>
                         </div>
+
+                         </div>
+
+                     </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 </div>
-<!-- top bar area end -->

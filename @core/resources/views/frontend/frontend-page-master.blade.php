@@ -18,12 +18,23 @@
                 <div class="breadcrumb-inner">
                     <div class="content">
                           <h3 class="title">{{$page_post->title ?? ''}} @yield('custom-page-title') </h3>
+{{--                        <ul class="page-list">--}}
+{{--                            <li class="list-item"><a href="{{url('/')}}">{{__('Home')}}</a></li>--}}
+{{--                            --}}{{--<span>  route(\Illuminate\Support\Facades\Route::currentRouteName(),['slug' => get_page_slug($page_post->id)])</span>--}}
+
+{{--                                 <li class="list-item"><a href="{{url(request()->url())}}">@yield('page-title')</a></li>--}}
+
+{{--                        </ul>--}}
                         <ul class="page-list">
-                            <li class="list-item"><a href="{{url('/')}}">{{__('Home')}}</a></li>
-                            {{--<span>  route(\Illuminate\Support\Facades\Route::currentRouteName(),['slug' => get_page_slug($page_post->id)])</span>--}}
+                            <li class="list-item"><a href="{{url('/')}}">{{ __('Home') }}</a></li>
+                            @if(Route::currentRouteName() === 'frontend.dynamic.page')
+                                <li class="list-item"><a href="#">{{$page_post->title}}</a></li>
+                            @elseif(Route::currentRouteName() === 'frontend.blog.single')
+                                {{$page_post->title}}
 
-                                 <li class="list-item"><a href="{{url(request()->url())}}">@yield('page-title')</a></li>
-
+                            @else
+                                <li class="list-item"><a href="#">@yield('page-title')</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

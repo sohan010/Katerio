@@ -7989,3 +7989,53 @@ border: 1px solid #ddd;
 .google-map iframe {
     width: 100%;
 }
+
+.switch {
+  position: relative;
+  display: block;
+  width: 33px;
+  height: 33px;
+  margin: 0;
+}
+
+.slider-color-mode {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider-color-mode:before {
+  position: absolute;
+  content: "\f185";
+  height: 24px;
+  width: 25px;
+  left: 4px;
+  bottom: 5px;
+  background-color: #fff;
+  color: #000;
+  transition: .4s;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 26px;
+  font-family: 'Line Awesome Free';
+}
+
+.topbar-inner select#langchange {
+  height: 33px;
+  width: 90px;
+}
+
+.register .form-wrapper form select {
+  height: 50px;
+  color: var(--heading-color);
+  background-color: #F2F3F5;
+  border-color: transparent;
+}
+

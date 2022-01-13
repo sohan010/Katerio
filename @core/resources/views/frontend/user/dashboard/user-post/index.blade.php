@@ -1,8 +1,16 @@
 @extends('frontend.user.dashboard.user-master')
+
 @section('site-title')
-    {{__('All Blogs')}}
+    {{__('All Posts')}}
 @endsection
+
+@section('page-title')
+    {{__('All Posts')}}
+@endsection
+
+
 @section('style')
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/custom-dashboard.css')}}">
  <x-datatable.css/>
 <x-media.css/>
 
@@ -130,7 +138,7 @@
 @endsection
 
 
-@section('scripts')
+@push('scripts')
     <x-datatable.js/>
     <x-media.js/>
     <script>
@@ -170,4 +178,4 @@
         });
 
     </script>
-@endsection
+@endpush

@@ -6,7 +6,7 @@
     {{__('Verify Your Account')}}
 @endsection
 @section('content')
-    <section class="login-page-wrapper">
+    <section class="login-page-wrapper my-5">
         <div class="container">
             <div class="row justify-content-center margin-bottom-90 margin-top-90">
                 <div class="col-lg-6">

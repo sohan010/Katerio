@@ -1,31 +1,47 @@
 @extends('frontend.user.dashboard.user-master')
+@section('page-title')
+    {{__('User Dashboard')}}
+@endsection
+
+@section('site-title')
+    {{__('User Dashboard')}}
+@endsection
+
+@section('style')
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/custom-dashboard.css')}}">
+@endsection
+
 @section('section')
+
     <div class="row">
-        <div class="col-lg-6">
-            <div class="user-dashboard-card style-01">
-                <div class="icon"><i class="fas fa-money-bill"></i></div>
-                <div class="content">
-                    <h4 class="title">{{__('Total Post')}}</h4>
-                    <span class="number">{{$total_post}}</span>
+        <div class="col-xl-6 col-md-6 orders-child">
+            <div class="single-orders">
+
+                <div class="orders-flex-content">
+                    <div class="icon">
+                        <i class="las la-tasks"></i>
+                    </div>
+                    <div class="contents">
+                        <h2 class="order-titles">#{{ auth()->guard('web')->user()->id }} </h2>
+                        <span class="order-para"> {{__('User ID')}} </span>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-xl-6 col-md-6 orders-child">
+            <div class="single-orders">
 
+                <div class="orders-flex-content">
+
+                    <div class="contents">
+                        <h2 class="order-titles"> {{$total_post}} </h2>
+                        <span class="order-para">{{__('Total Created Post')}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
-@section('scripts')
-
-    <script>
-        $(document).ready(function(){
-            $(document).on('click','.mobile-nav-click', function (e){
-                e.preventDefault()
-
-                // $('.nav-pills-close').toggleClass('active');
-                $('.nav-pills-open').toggleClass('active');
-            });
-        });
-    </script>
-@endsection
 
 

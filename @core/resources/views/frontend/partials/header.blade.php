@@ -43,18 +43,18 @@
     @yield('style')
 
 
-    @if(request()->routeIs('homepage'))
+      @if(request()->routeIs('homepage'))
         <title>{{get_static_option('site_'.$user_select_lang_slug.'_title')}} - {{get_static_option('site_'.$user_select_lang_slug.'_tag_line')}}</title>
-
            {!! render_site_meta() !!}
 
-     @elseif( request()->routeIs('frontend.dynamic.page'))
+       @elseif( request()->routeIs('frontend.dynamic.page'))
            {!! render_site_title($page_post->title) !!}
            {!! render_site_meta() !!}
 
-    @else
-        @yield('page-meta-data')
-    @endif
+        @else
+            @yield('page-meta-data')
+           <title> @yield('site-title') - {{get_static_option('site_'.$user_select_lang_slug.'_title')}} </title>
+        @endif
 
 
 </head>

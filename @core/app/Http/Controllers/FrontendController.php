@@ -273,7 +273,7 @@ class FrontendController extends Controller
     public function user_logout(Request $request)
     {
         Auth::logout();
-        return redirect('/');
+        return redirect()->route('user.login');
     }
 
     public function home_advertisement_click_store(Request $request)

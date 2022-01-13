@@ -6,7 +6,7 @@
     {{__('Forget Password')}}
 @endsection
 @section('content')
-    <section class="login-page-wrapper">
+    <section class="login-page-wrapper my-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">

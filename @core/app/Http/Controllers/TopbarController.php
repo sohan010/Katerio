@@ -28,13 +28,12 @@ class TopbarController extends Controller
     }
     public function new_support_info(Request $request){
         $this->validate($request,[
-           'icon' => 'required|string',
-           'details' => 'required|string',
+           'title' => 'required|string',
+           'url' => 'required|string',
         ]);
         $topbar = new TopbarInfo();
         $topbar->title = $request->title;
-        $topbar->icon = $request->icon;
-        $topbar->details = $request->details;
+        $topbar->url = $request->url;
         $topbar->save();
 
         return redirect()->back()->with(FlashMsg::item_new());
@@ -42,17 +41,13 @@ class TopbarController extends Controller
 
     public function update_support_info(Request $request){
         $this->validate($request,[
-            'id' => 'required',
-            'details' => 'required|string',
             'title' => 'required|string|max:191',
-            'icon' => 'required|string|max:191'
+            'url' => 'required|string|max:191'
         ]);
 
         TopbarInfo::find($request->id)->update([
-            'details' => $request->details,
-
             'title' => $request->title,
-            'icon' => $request->icon,
+            'url' => $request->url,
         ]);
         return redirect()->back()->with([
             'msg' => __('Support Info Item Updated..'),
