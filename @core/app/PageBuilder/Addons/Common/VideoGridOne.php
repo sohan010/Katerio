@@ -3,32 +3,24 @@
 
 namespace App\PageBuilder\Addons\Common;
 use App\Blog;
-use App\Helpers\LanguageHelper;
 use App\Helpers\SanitizeInput;
-use App\PageBuilder\Fields\ColorPicker;
-use App\PageBuilder\Fields\IconPicker;
-use App\PageBuilder\Fields\Image;
 use App\PageBuilder\Fields\Notice;
 use App\PageBuilder\Fields\Number;
 use App\PageBuilder\Fields\Select;
 use App\PageBuilder\Fields\Slider;
 use App\PageBuilder\Fields\Switcher;
-use App\PageBuilder\Fields\Text;
-use App\PageBuilder\Fields\Textarea;
 use App\PageBuilder\PageBuilderBase;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
-use App\Testimonial;
-use App\User;
 
 class VideoGridOne extends PageBuilderBase
 {
 
   use LanguageFallbackForPageBuilder;
+
     public function preview_image()
     {
        return 'common/video-grid-01.png';
     }
-
 
     public function admin_render()
     {
@@ -90,7 +82,7 @@ class VideoGridOne extends PageBuilderBase
             'label' => __('Pagination Alignment'),
             'options' => [
                 'text-left' => __('Left'),
-                'center-text' => __('Center'),
+                'text-center' => __('Center'),
                 'end-text' => __('Right'),
             ],
             'value' => $widget_saved_values['pagination_alignment'] ?? null,
@@ -109,9 +101,7 @@ class VideoGridOne extends PageBuilderBase
             'value' => $widget_saved_values['padding_bottom'] ?? 110,
             'max' => 200,
         ]);
-
         // add padding option
-
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
         $output .= $this->admin_form_after();
@@ -129,8 +119,6 @@ class VideoGridOne extends PageBuilderBase
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
         $pagination_alignment = $this->setting_item('pagination_alignment');
         $pagination_status = $this->setting_item('pagination_status') ?? '';
-        $columns = SanitizeInput::esc_html($this->setting_item('columns'));
-
 
         $videos = Blog::query()->orderBy($order_by,$order)->where('video_url', '!=', NULL);
 
@@ -151,7 +139,7 @@ class VideoGridOne extends PageBuilderBase
 
         $video_markup = '';
         foreach ($videos as $item){
-            $image = render_image_markup_by_attachment_id($item->image, '', 'full');
+            $image = render_image_markup_by_attachment_id($item->image, '','full');
             $title = $item->title ?? __('No Title');
             $blog_url = route('frontend.blog.single',$item->slug);
             $video_url = $item->video_url ?? '';
@@ -184,14 +172,14 @@ HTML;
 
 
  return <<<HTML
-    <div class="container" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
-         <div class="video-grid two-column">
+
+         <div class="video-grid two-column" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
             <div class="row">
                  {$video_markup}
                  {$pagination_markup}
             </div>
          </div>
-    </div>
+   
 HTML;
 }
 

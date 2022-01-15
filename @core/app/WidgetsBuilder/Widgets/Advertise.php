@@ -49,6 +49,9 @@ class Advertise extends WidgetBase
         $settings = $this->get_settings();
         $add = Advertisement::where('id',$settings['advertisement'])->first();
 
+        if(is_null($add)){
+            return '';
+        }
             $image_markup = render_image_markup_by_attachment_id($add->image,null,'full');
             $redirect_url = SanitizeInput::esc_url($add->redirect_url);
             $slot = $add->slot;

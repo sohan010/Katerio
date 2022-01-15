@@ -64,6 +64,9 @@ class BlogInstagramWidget extends WidgetBase
 
         $instagram_data = InstagramFeed::fetch($post_items);
 
+        if(!$instagram_data){
+            return '';
+        }
 
         $output = '';
         foreach($instagram_data->data ?? [] as $item){

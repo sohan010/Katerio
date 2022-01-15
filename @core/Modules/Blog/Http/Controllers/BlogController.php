@@ -280,7 +280,7 @@ class BlogController extends Controller
     {
         $all_language = Language::all();
         foreach ($all_language as $lang) {
-            $this->validate($request, [
+            $request->validate([
                 'blog_single_page_'.$lang->slug.'_related_post_title' => 'nullable|string',
                 'blog_single_page_comments_'.$lang->slug.'_text' => 'nullable|string',
                 'blog_single_page_comments_'.$lang->slug.'_title_text' => 'nullable|string',
@@ -318,7 +318,7 @@ class BlogController extends Controller
 
     public function update_blog_others_page_settings(Request $request)
     {
-        $this->validate($request, [
+        $request->validate( [
             'blog_tags_video_icon_color' => 'nullable|string',
             'blog_search_video_icon_color' => 'nullable|string',
             'blog_category_video_icon_color' => 'nullable|string',

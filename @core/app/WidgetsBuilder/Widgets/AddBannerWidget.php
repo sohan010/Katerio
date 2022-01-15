@@ -60,11 +60,12 @@ class AddBannerWidget extends WidgetBase
 
         $markup = $this->widget_before();
     $markup .=  <<<HTML
-        <div class="widget-add wow bounceInUp" data-wow-duration=".3s">
-            <div class="add-banner-y">
-                 <a href="{$image_url}">
+
+        <div class="widget">
+            <div class="adds style-01">
+               <a href="{$image_url}">
                     {$image_markup}
-                </a>
+                    </a>
             </div>
         </div>
 HTML;

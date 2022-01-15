@@ -8039,3 +8039,38 @@ border: 1px solid #ddd;
   border-color: transparent;
 }
 
+
+/*Pagination Alignment*/
+
+.center-text .pagination {
+  justify-content: center;
+}
+.end-text .pagination {
+  justify-content: end;
+}
+
+pagination-list .pagination .page-item.active .page-link, .pagination-wrapper .pagination .page-item.active .page-link {
+  background-color: var(--main-color-one);
+  color: #fff;
+  border-color: var(--main-color-one);
+}
+.pagination-list .pagination .page-item .page-link, .pagination-wrapper .pagination .page-item .page-link {
+  color: var(--paragraph-color);
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  margin: 0 6px;
+  -webkit-transition: all linear 0.3s;
+  transition: all linear 0.3s;
+  border: 1px solid transparent;
+  font-weight: 400;
+  border-radius: 50%;
+}
+.pagination-wrapper .pagination {
+  flex-wrap: wrap;
+}
+

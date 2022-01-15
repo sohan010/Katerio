@@ -68,6 +68,18 @@ class SocialMediaWidget extends WidgetBase
         ]);
 
         $output .= IconPicker::get([
+            'name' => 'youtube_icon',
+            'label' => __('Youtube Icon'),
+            'value' => $widget_saved_values['youtube_icon'] ?? null,
+        ]);
+
+        $output .= Text::get([
+            'name' => 'youtube_url',
+            'label' => __('Youtube URL'),
+            'value' => $widget_saved_values['youtube_url'] ?? null,
+        ]);
+
+        $output .= IconPicker::get([
             'name' => 'instagram_icon',
             'label' => __('Instagram Icon'),
             'value' => $widget_saved_values['instagram_icon'] ?? null,
@@ -79,29 +91,9 @@ class SocialMediaWidget extends WidgetBase
             'value' => $widget_saved_values['instagram_url'] ?? null,
         ]);
 
-        $output .= IconPicker::get([
-            'name' => 'email_icon',
-            'label' => __('Email Icon'),
-            'value' => $widget_saved_values['email_icon'] ?? null,
-        ]);
 
-        $output .= Text::get([
-            'name' => 'email_url',
-            'label' => __('Email URL'),
-            'value' => $widget_saved_values['email_url'] ?? null,
-          ]);
 
-        $output .= IconPicker::get([
-            'name' => 'youtube_icon',
-            'label' => __('Youtube Icon'),
-            'value' => $widget_saved_values['youtube_icon'] ?? null,
-        ]);
 
-        $output .= Text::get([
-            'name' => 'youtube_url',
-            'label' => __('Youtube URL'),
-            'value' => $widget_saved_values['youtube_url'] ?? null,
-        ]);
 
 
         $output .= $this->admin_form_submit_button();
@@ -123,41 +115,44 @@ class SocialMediaWidget extends WidgetBase
         $twitter_url =  $settings['twitter_url'];
         $instagram_icon = $settings['instagram_icon'];
         $instagram_url =  $settings['instagram_url'];
-        $email_icon = $settings['email_icon'];
-        $email_url =  $settings['email_url'];
         $youtube_icon = $settings['youtube_icon'];
         $youtube_url =  $settings['youtube_url'];
 
+        $social_data = [
+            $facebook_icon => $facebook_url,
+            $twitter_icon => $twitter_url,
+            $instagram_icon => $instagram_url,
+            $youtube_icon => $youtube_url,
+        ];
+
+        $classes = ['icon facebook','icon twitter','icon instagram','icon youtube'];
+        $number = 0;
+       $social_markup = '';
+        foreach($social_data as $key => $value){
+            $social_markup.= '
+             <li class="single-item">
+                        <a href="'.$value.'" class="left-content">
+                            <span class="'.$classes[$number].'">
+                                <i class="'.$key.'"></i>
+                            </span>
+                        </a>
+                    </li>';
+
+             $number == 4 ? $number = 0 : $number++;
+        }
 
 
-    return <<<HTML
 
-        <div class="col-lg-4 col-md-12 col-sm-12">
-            <div class="footer-widget widget">
-                <div class="footer-inner style-02">
-                    <div class="footer-socials">
-                        <h4 class="footer-follow"> {$widget_title} </h4>
-                        <ul class="footer-social-list-two">
-                            <li class="lists">
-                                <a class="facebook" href="{$facebook_url}"> <i class="{$facebook_icon}"></i> </a>
-                            </li>
-                            <li class="lists">
-                                <a class="twitter" href="{$twitter_url}"> <i class="{$twitter_icon}"></i> </a>
-                            </li>
-                            <li class="lists">
-                                <a class="twitter" href="{$email_url}"> <i class="{$email_icon}"></i> </a>
-                            </li>
-                            <li class="lists">
-                                <a class="instagram" href="{$instagram_url}"> <i class="{$instagram_icon}"></i> </a>
-                            </li>
-                            <li class="lists">
-                                <a class="youtube" href="{$youtube_url}"> <i class="{$youtube_icon}"></i> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+
+return <<<HTML
+    <div class="widget">
+        <div class="social-link style-04 border-round">
+            <h4 class="widget-title style-03"> {$widget_title}</h4>
+            <ul class="widget-social-link-list">
+                  {$social_markup}
+            </ul>
         </div>
+    </div>
 
 HTML;
 }

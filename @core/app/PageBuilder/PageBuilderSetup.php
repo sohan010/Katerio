@@ -29,7 +29,9 @@ class PageBuilderSetup
             PageBuilder\Addons\Common\InstagramImage::class,
             PageBuilder\Addons\Common\AuthorsFeedback::class,
             PageBuilder\Addons\Common\BrandsPartners::class,
-            PageBuilder\Addons\Common\VideoGridOne::class
+            PageBuilder\Addons\Common\VideoGridOne::class,
+            PageBuilder\Addons\StaticHeader\HeaderOne::class,
+            PageBuilder\Addons\Blog\BlogListStyleOne::class
 
 
         ];

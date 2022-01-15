@@ -44,6 +44,7 @@
                                       </div>
                                   </th>
                                    <th>{{__('ID')}}</th>
+                                   <th>{{__('Image')}}</th>
                                    <th>{{__('Name')}}</th>
                                    <th>{{__('Status')}}</th>
                                    <th>{{__('Action')}}</th>
@@ -57,6 +58,22 @@
                                              </div>
                                          </td>
                                            <td>{{$data->id}}</td>
+                                           <td>
+                                               @php
+                                                   $testimonial_img = get_attachment_image_by_id($data->image,null,true);
+                                               @endphp
+                                               @if (!empty($testimonial_img))
+                                                   <div class="attachment-preview">
+                                                       <div class="thumbnail">
+                                                           <div class="centered">
+                                                               <img class="avatar user-thumb"
+                                                                    src="{{$testimonial_img['img_url']}}" alt="">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   @php  $img_url = $testimonial_img['img_url']; @endphp
+                                               @endif
+                                           </td>
                                            <td>{{$data->getTranslation('title',$default_lang,true)}}</td>
 
                                            <td>
@@ -83,7 +100,8 @@
                                                   data-id="{{$data->id}}"
                                                   data-title="{{$data->getTranslation('title',$default_lang )}}"
                                                   data-status="{{$data->status}}"
-                                                  data-slug="{{$data->slug}}"
+                                                  data-imageid="{{$data->image}}"
+                                                  data-image="{{$img_url}}"
                                                >
                                                    <i class="ti-pencil"></i>
                                                </a>
@@ -114,6 +132,20 @@
                                    <div class="form-group">
                                        <label for="edit_name">{{__('Title')}}</label>
                                        <input type="text" class="form-control"  name="title" placeholder="{{__('Title')}}">
+                                   </div>
+
+                                   <div class="form-group ">
+                                       <label for="image">{{__('Blog Image')}}</label>
+                                       <div class="media-upload-btn-wrapper">
+                                           <div class="img-wrap"></div>
+                                           <input type="hidden" name="image">
+                                           <button type="button" class="btn btn-info media_upload_form_btn"
+                                                   data-btntitle="{{__('Select Image')}}"
+                                                   data-modaltitle="{{__('Upload Image')}}" data-toggle="modal"
+                                                   data-target="#media_upload_modal">
+                                               {{__('Upload Image')}}
+                                           </button>
+                                       </div>
                                    </div>
 
 
@@ -159,6 +191,21 @@
                        </div>
 
                        <div class="form-group">
+                           <label for="image">{{__('Image')}}</label>
+                           <div class="media-upload-btn-wrapper">
+                               <div class="img-wrap"></div>
+                               <input type="hidden" id="edit_image" name="image" value="">
+                               <button type="button" class="btn btn-info media_upload_form_btn"
+                                       data-btntitle="{{__('Select Image')}}"
+                                       data-modaltitle="{{__('Upload Image')}}" data-toggle="modal"
+                                       data-target="#media_upload_modal">
+                                   {{__('Upload Image')}}
+                               </button>
+                           </div>
+                           <small>{{__('360x360 px image recommended')}}</small>
+                       </div>
+
+                       <div class="form-group">
                            <label for="edit_status">{{__('Status')}}</label>
                            <select name="status" class="form-control" id="edit_status">
                                <option value="draft">{{__("Draft")}}</option>
@@ -201,10 +248,19 @@
                    var status = el.data('status');
                    var order_by = el.data('order');
                    var modal = $('#category_edit_modal');
+                    var image = el.data('image');
+                    var imageid = el.data('imageid');
+
                    modal.find('#category_id').val(id);
                    modal.find('#edit_status option[value="'+status+'"]').attr('selected',true);
                    modal.find('#edit_title').val(title);
                    $('#edit_order_by').val(order_by);
+
+                    if (imageid != '') {
+                        modal.find('.media-upload-btn-wrapper .img-wrap').html('<div class="attachment-preview"><div class="thumbnail"><div class="centered"><img class="avatar user-thumb" src="' + image + '" > </div></div></div>');
+                        modal.find('.media-upload-btn-wrapper input').val(imageid);
+                        modal.find('.media-upload-btn-wrapper .media_upload_form_btn').text('Change Image');
+                    }
 
                });
             });

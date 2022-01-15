@@ -41,6 +41,7 @@ class BlogCategoryController extends Controller
         $this->validate($request,[
             'title' => 'required|string|max:191|unique:blog_categories',
             'status' => 'required|string|max:191',
+            'image' => 'required|string|max:191',
         ]);
 
         $category = new BlogCategory();

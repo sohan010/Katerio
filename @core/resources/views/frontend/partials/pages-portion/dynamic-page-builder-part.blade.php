@@ -11,11 +11,11 @@
     <div class="parent-area padding-top-70">
         <div class="container {{$page_post->page_class}}">
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-lg-8">
                     {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar',$page_post->id) !!}
                 </div>
 
-                <div class="col-xl-4">
+                <div class="col-sm-7 col-md-6 col-lg-4">
                     <div class="single-sidebar-item responsive-margin @if(get_static_option('site_frontend_dark_mode') === 'on')   dark-version  @endif">
                         {!! render_frontend_sidebar($page_post->sidebar_layout,['column' => false]) !!}
                     </div>
@@ -78,14 +78,14 @@
 
 
 @if($page_post->layout === 'sidebar_layout')
-    <div class="blog-list-area-wrapper index-01 padding-top-70 padding-bottom-100">
-        <div class="container {{$page_post->page_class}}">
+ <div class="blog-grid-wrapper video"data-padding-top="100" data-padding-bottom="100">
+    <div class="container">
             <div class="row">
-                <div class="col-xl-8">
+                <div class="col-lg-8">
                     {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar',$page_post->id) !!}
                 </div>
-                <div class="col-xl-4 col-lg-8 margin-top-30">
-                    <div class="widget-area-wrapper style-02">
+                <div class="col-sm-7 col-md-6 col-lg-4">
+                    <div class="widget-area-wrapper">
                         {!! render_frontend_sidebar($page_post->sidebar_layout,['column' => false]) !!}
                     </div>
                 </div>

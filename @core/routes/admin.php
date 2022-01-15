@@ -167,7 +167,6 @@ Route::prefix('misc')->group(function (){
 |----------------------------------------------------------------------------------------------------------------------------*/
     Route::prefix('general-settings')->group(function (){
         Route::get('/regenerate','MediaUploadController@regenerate_media_images');
-
         //Reading
         Route::get('/reading','GeneralSettingsController@reading')->name('admin.general.reading');
         Route::post('/reading','GeneralSettingsController@update_reading');
