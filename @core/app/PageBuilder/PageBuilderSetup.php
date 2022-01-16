@@ -31,7 +31,12 @@ class PageBuilderSetup
             PageBuilder\Addons\Common\BrandsPartners::class,
             PageBuilder\Addons\Common\VideoGridOne::class,
             PageBuilder\Addons\StaticHeader\HeaderOne::class,
-            PageBuilder\Addons\Blog\BlogListStyleOne::class
+            PageBuilder\Addons\Blog\BlogListStyleOne::class,
+            PageBuilder\Addons\Common\BannerTwo::class,
+            PageBuilder\Addons\Blog\BlogSliderOne::class,
+            PageBuilder\Addons\Blog\BlogVideoListOne::class,
+            PageBuilder\Addons\Blog\BlogGridOne::class,
+            PageBuilder\Addons\Blog\BlogGridWithListOne::class
 
 
         ];

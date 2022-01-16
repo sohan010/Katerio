@@ -45,54 +45,38 @@ class SocialMediaTwoWidget extends WidgetBase
         $output .= $this->admin_language_tab_end(); //have to end language tab
 
 
+        //repeater
+        $output .= Repeater::get([
+            'multi_lang' => true,
+            'settings' => $widget_saved_values,
+            'id' => 'social_02',
+            'fields' => [
+                [
+                    'type' => RepeaterField::ICON_PICKER,
+                    'name' => 'icon',
+                    'label' => __('Icon')
+                ],
+                [
+                    'type' => RepeaterField::TEXT,
+                    'name' => 'url',
+                    'label' => __('Url')
+                ],
 
-        $output .= IconPicker::get([
-            'name' => 'facebook_icon',
-            'label' => __('Facebook Icon'),
-            'value' => $widget_saved_values['facebook_icon'] ?? null,
+                [
+                    'type' => RepeaterField::TEXT,
+                    'name' => 'follower_text',
+                    'label' => __('Follower Text')
+                ],
+
+                [
+                    'type' => RepeaterField::TEXT,
+                    'name' => 'follower_number',
+                    'label' => __('Follower Number')
+                ],
+            ]
         ]);
 
-        $output .= Text::get([
-            'name' => 'facebook_url',
-            'label' => __('Facebook URL'),
-            'value' => $widget_saved_values['facebook_url'] ?? null,
-        ]);
 
-        $output .= IconPicker::get([
-            'name' => 'pinterest_icon',
-            'label' => __('Pinterest Icon'),
-            'value' => $widget_saved_values['pinterest_icon'] ?? null,
-        ]);
-
-        $output .= Text::get([
-            'name' => 'pinterest_url',
-            'label' => __('Pinterest URL'),
-            'value' => $widget_saved_values['pinterest_url'] ?? null,
-        ]);
-
-        $output .= IconPicker::get([
-            'name' => 'instagram_icon',
-            'label' => __('Instagram Icon'),
-            'value' => $widget_saved_values['instagram_icon'] ?? null,
-        ]);
-
-        $output .= Text::get([
-            'name' => 'instagram_url',
-            'label' => __('Instagram URL'),
-            'value' => $widget_saved_values['instagram_url'] ?? null,
-        ]);
-
-        $output .= IconPicker::get([
-            'name' => 'linkedin_icon',
-            'label' => __('Linkedin Icon'),
-            'value' => $widget_saved_values['linkedin_icon'] ?? null,
-        ]);
-
-        $output .= Text::get([
-            'name' => 'linkedin_url',
-            'label' => __('Linkedin URL'),
-            'value' => $widget_saved_values['linkedin_url'] ?? null,
-          ]);
 
 
         $output .= $this->admin_form_submit_button();
@@ -108,49 +92,46 @@ class SocialMediaTwoWidget extends WidgetBase
         $current_lang = LanguageHelper::user_lang_slug();
         $title =  purify_html($settings['title_'.$current_lang]);
 
-        $facebook_icon = $settings['facebook_icon'];
-        $facebook_url =  $settings['facebook_url'];
-        $linkedin_icon = $settings['linkedin_icon'];
-        $linkedin_url =  $settings['linkedin_url'];
-        $instagram_icon = $settings['instagram_icon'];
-        $instagram_url =  $settings['instagram_url'];
-        $pinterest_icon = $settings['pinterest_icon'];
-        $pinterest_url =  $settings['pinterest_url'];
+        $repeater_data = $settings['social_02'];
+        $social_icon_markup = '';
+        $colors = ['facebook','twitter', 'youtube','instagram','linkedin','pinterest'];
+        foreach ($repeater_data['icon_'.$current_lang] as $key => $icon) {
+            $icon = $icon;
+            $url = $repeater_data['url_'.$current_lang][$key] ?? [];
+            $follower_text = $repeater_data['follower_text_'.$current_lang][$key] ?? [];
+            $follower_number = $repeater_data['follower_number_'.$current_lang][$key] ?? [];
+
+            $condition_color_and_bg = $colors[$key % count($colors)];
+
+
+    $social_icon_markup.= <<<SOCIALICON
+
+         <li class="single-item bg-{$condition_color_and_bg}">
+            <a href="{$url}" class="left-content">
+                <span class="icon {$condition_color_and_bg}">
+                    <i class="{$icon}"></i>
+                </span>
+                <span class="followers-numb">
+                    <span class="count">{$follower_number}</span>
+                    <span class="text">{$follower_text}</span>
+                </span>
+            </a>
+        </li>
+
+SOCIALICON;
+ }
 
 
     return <<<HTML
-
-    <div class="col-sm-12 col-md-12 col-lg-4">
-        <div class="footer-widget widget">
-            <div class="content">
-                <h4 class="title">{$title}</h4>
-                <ul class="social-link-list">
-                    <li class="list-item">
-                        <a href="{$facebook_url}">
-                            <i class="{$facebook_icon} icon-s"></i>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a href="{$instagram_url}">
-                            <i class="{$instagram_icon} icon-s"></i>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a href="{$linkedin_url}">
-                            <i class="{$linkedin_icon} icon-s"></i>
-                        </a>
-                    </li>
-                    <li class="list-item">
-                        <a href="{$pinterest_url}">
-                            <i class="{$pinterest_icon} icon-s"></i>
-                        </a>
-                    </li>
+        <div class="widget">
+            <div class="social-link style-03">
+                <h4 class="widget-title style-02">{$title}</h4>
+                <ul class="widget-social-link-list">
+                            {$social_icon_markup}
                 </ul>
             </div>
         </div>
-    </div>
 
-    
 HTML;
 }
 

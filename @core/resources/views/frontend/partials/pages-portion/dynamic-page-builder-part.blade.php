@@ -28,8 +28,8 @@
 
 
 @if($page_post->layout === 'home_page_layout_two')
-    <div class="parent-area parent-container-fluid padding-top-70">
-            <div class="container {{$page_post->page_class}}">
+    <div class="recent-stories-area-wrapper index-01" data-padding-top="100" data-padding-bottom="0">
+            <div class="container custom-container-01">
                 <div class="row">
                     <div class="col-xl-8">
                         {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar',$page_post->id) !!}
@@ -53,7 +53,7 @@
 
 @if($page_post->layout === 'home_page_layout_two')
     <div class="parent-area ">
-        <div class="container {{$page_post->page_class}}">
+        <div class="container custom-container-01">
             <div class="row">
                 <div class="col-xl-8">
                     {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar_three',$page_post->id) !!}

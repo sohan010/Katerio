@@ -4,15 +4,13 @@
 namespace App\PageBuilder\Addons\Blog;
 use App\Blog;
 use App\BlogCategory;
+use App\BlogComment;
 use App\Helpers\LanguageHelper;
 use App\Helpers\SanitizeInput;
-use App\PageBuilder\Fields\ColorPicker;
 use App\PageBuilder\Fields\NiceSelect;
-use App\PageBuilder\Fields\Notice;
 use App\PageBuilder\Fields\Number;
 use App\PageBuilder\Fields\Select;
 use App\PageBuilder\Fields\Slider;
-use App\PageBuilder\Fields\Switcher;
 use App\PageBuilder\Fields\Text;
 use App\PageBuilder\PageBuilderBase;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
@@ -71,7 +69,6 @@ class BlogListStyleOne extends PageBuilderBase
                 'value' => $widget_saved_values['categories'] ?? null,
                 'info' => __('you can select category for blog, if you want to show all event leave it empty')
             ]);
-
 
         $output .= Select::get([
             'name' => 'order_by',
@@ -136,7 +133,6 @@ class BlogListStyleOne extends PageBuilderBase
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
 
 
-
         $blogs = Blog::usingLocale($current_lang)->query();
 
         if (!empty($category)){
@@ -151,22 +147,24 @@ class BlogListStyleOne extends PageBuilderBase
         }
 
 
-
         $blog_markup = '';
-        foreach ($blogs as $item){
+        $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
+        foreach ($blogs as $key=> $item){
 
-            $image = render_image_markup_by_attachment_id($item->image,'','full');
+            $image = render_image_markup_by_attachment_id($item->image,'','semi-large');
             $route = route('frontend.blog.single',$item->slug);
-            $title = SanitizeInput::esc_html($item->getTranslation('title',$current_lang)) ?? '';
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),15);
+            $description = Str::words($item->getTranslation('blog_content',$current_lang),40) ;
             $date = date('M d, Y',strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
+            $created_by_image = render_image_markup_by_attachment_id(optional($item->user)->image) ?? render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'));
 
 
             $category_markup = '';
             foreach ($item->category_id as $cat){
-               $category = $cat->getTranslation('title',$current_lang);
+                $category = $cat->getTranslation('title',$current_lang);
                 $category_route = route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)]);
-                $category_markup.='<a class="item" href="'.$category_route.'">'.$category.'</a>';
+                $category_markup.='<a class="category-style-01 '.$colors[$key % count($colors)].'" href="'.$category_route.'">'.$category.'</a>';
             }
 
 
@@ -176,44 +174,43 @@ class BlogListStyleOne extends PageBuilderBase
                 $user_id = $item->admin_id;
             }
 
-            $created_by_url = !is_null($user_id) ?  route('frontend.user.created.blog', ['user' => $item->created_by, 'id' => $user_id]) : route('frontend.blog.single',$item->slug) ;
+            $created_by_url = !is_null($user_id) ?  route('frontend.user.created.blog', ['user' => $item->created_by, 'id' => $user_id]) : route('frontend.blog.single',$item->slug);
+            $comment_count = BlogComment::where('blog_id',$item->id)->count();
+            $comment_condition_check = $comment_count == 0 ? 0 : $comment_count;
 
  $blog_markup .= <<<HTML
-      <div class="single-recent-stories-wrap">
+      <div class="single-recent-stories-wrap" >
                 <div class="blog-list-style-01">
                     <div class="img-box">
                         <div class="tag-box left">
-                            <a href="#" class="category-style-01 bg-color-e">fashion</a>
+                          {$category_markup}
                         </div>
-                        <img src="assets/img/recent-stories/01.jpg" alt="image">
+                        {$image}
                     </div>
                     <div class="content">
                         <div class="content-inner">
                             <h4 class="title">
-                                <a href="#">
-                                     My money right where I can see it…hanging in my closet.
+                                <a href="{$route}">
+                                   {$title}
                                 </a>
                             </h4>
-                            <p class="info">One advanced diverted domestic set repeated bringing you
-                                old. Possible procured her trifling laughter thoughts property she met
-                                way. Which could saw guest man now heard but. </p>
+                            <p class="info">{$description} </p>
                             <div class="post-meta">
                                 <ul class="post-meta-list">
                                     <li class="post-meta-item">
-                                        <a href="#">
-                                            <img src="assets/img/post-meta/user/user-01.png" alt="image"
-                                                class="image">
-                                            <span class="text">Xgenious</span>
+                                        <a href="{$created_by_url}">
+                                           {$created_by_image}
+                                            <span class="text">{$created_by}</span>
                                         </a>
                                     </li>
                                     <li class="post-meta-item date">
                                         <i class="lar la-clock icon"></i>
-                                        <span class="text">June 19, 2021</span>
+                                        <span class="text">{$date}</span>
                                     </li>
                                     <li class="post-meta-item">
                                         <a href="#">
                                             <i class="lar la-comments icon"></i>
-                                            <span class="text">120</span>
+                                            <span class="text">{$comment_condition_check}</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -224,21 +221,25 @@ class BlogListStyleOne extends PageBuilderBase
         </div>
 HTML;
 
-
 }
 
 
  return <<<HTML
-        <div class="section-title-style-01">
-            <h3 class="title">recent stories</h3>
-            <a href="#" class="view-more">view more <i class="las la-arrow-right icon"></i></a>
+
+    <div class="data" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+    
+     <div class="section-title-style-01" >
+            <h3 class="title">{$heading_text}</h3>
+            <a href="#" class="view-more">{$readmore_text} <i class="las la-arrow-right icon"></i></a>
         </div>
         <div class="recent-stories-slider-inst">
-            <div class="recent-stories-inner">
-              
+            <div class="recent-stories-inner">       
                     {$blog_markup}
             </div>
         </div>
+    
+</div>
+       
 HTML;
 
     }

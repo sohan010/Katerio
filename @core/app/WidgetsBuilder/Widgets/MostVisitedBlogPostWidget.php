@@ -4,9 +4,15 @@
 namespace App\WidgetsBuilder\Widgets;
 
 use App\Blog;
+use App\Helpers\LanguageHelper;
 use App\Language;
 use App\Menu;
+use App\PageBuilder\Fields\Image;
+use App\PageBuilder\Fields\Number;
+use App\PageBuilder\Fields\Summernote;
+use App\PageBuilder\Fields\Text;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
+use App\Tag;
 use App\WidgetsBuilder\WidgetBase;
 use Illuminate\Support\Str;
 use Mews\Purifier\Facades\Purifier;
@@ -15,35 +21,40 @@ class MostVisitedBlogPostWidget extends WidgetBase
 {
     use LanguageFallbackForPageBuilder;
 
-    /**
-     * @inheritDoc
-     */
     public function admin_render()
     {
-        // TODO: Implement admin_render() method.
         $output = $this->admin_form_before();
         $output .= $this->admin_form_start();
         $output .= $this->default_fields();
         $widget_saved_values = $this->get_settings();
 
-        //render language tab
-        $output .= $this->admin_language_tab();
+        $output .= $this->admin_language_tab(); //have to start language tab from here on
         $output .= $this->admin_language_tab_start();
-        $all_languages = Language::all();
+
+        $all_languages = LanguageHelper::all_languages();
         foreach ($all_languages as $key => $lang) {
             $output .= $this->admin_language_tab_content_start([
                 'class' => $key == 0 ? 'tab-pane fade show active' : 'tab-pane fade',
                 'id' => "nav-home-" . $lang->slug
             ]);
-            $widget_title = $widget_saved_values['widget_title_' . $lang->slug] ?? '';
-            $output .= '<div class="form-group"><input type="text" name="widget_title_' . $lang->slug . '" class="form-control" placeholder="' . __('Widget Title') . '" value="' .purify_html($widget_title) . '"></div>';
+
+            $output .= Text::get([
+                'name' => 'heading_text_'.$lang->slug,
+                'label' => __('Heading Text'),
+                'value' => $widget_saved_values['heading_text_' . $lang->slug] ?? null,
+            ]);
 
             $output .= $this->admin_language_tab_content_end();
+
         }
-        $output .= $this->admin_language_tab_end();
-        //end multi langual tab option
-        $post_items = $widget_saved_values['post_items'] ?? '';
-        $output .= '<div class="form-group"><input type="number" name="post_items" class="form-control" placeholder="' . __('Post Items') . '" value="' . $post_items . '"></div>';
+
+        $output .= $this->admin_language_tab_end(); //have to end language tab
+
+        $output .= Number::get([
+            'name' => 'blog_items',
+            'label' => __('Blog Items'),
+            'value' => $widget_saved_values['blog_items'] ?? null,
+        ]);
 
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
@@ -52,61 +63,74 @@ class MostVisitedBlogPostWidget extends WidgetBase
         return $output;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function frontend_render()
     {
-        //Implement frontend_render() method.
-        $icon_class = (get_user_lang_direction() == 'rtl')? 'ml-2' : '';
+        $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_saved_values = $this->get_settings();
+        $widget_title = $settings['heading_text_' . $user_selected_language] ?? '';
+        $blog_items = $settings['blog_items'] ?? '';
 
-        $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
-        $post_items = $this->setting_item('post_items') ?? '';
+        $blog_posts = Blog::where(['status' => 'publish'])->take($blog_items)->orderBy('views','desc')->get();
 
-        $blog_posts = Blog::where(['status' => 'publish'])->take($post_items)->orderBy('views','desc')->get();
+        $blogs_markup = '';
+        foreach ($blog_posts as $post){
 
-        $output = $this->widget_before(); //render widget before content
-
-        $output .= ' <div class="visited-area padding-top-30">';
-        if (!empty($widget_title)) {
-            $output .= '<div class="section-title"><h4 class="title">' .purify_html($widget_title) . '</h4></div>';
-        }
-        $output .= '<div class="visited-wrapper"><div class="sidebar-contents">';
-
-        foreach ($blog_posts as $post) {
-            $image = render_image_markup_by_attachment_id($post->image);
+            $image = render_image_markup_by_attachment_id($post->image,'','thumb');
             $route = route('frontend.blog.single',$post->slug);
+            $title = $post->getTranslation('title',$user_selected_language);
+            $date = date('M d, Y',strtotime($post->created_at));
+
+            $category_markup = '';
             foreach ($post->category_id as $cat){
                 $category = $cat->getTranslation('title',$user_selected_language);
                 $category_route = route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)]);
+                $category_markup.=  ' <a href="'.$category_route.'"><i class="las la-tag icon"></i><span class="text">'.$category.'</span></a>';
             }
 
-            $output.= '<div class="recent-contents style-03 wow animated fadeInUp" data-wow-delay=".1s"">
-                        <div class="recent-flex-contents">
-                         <div class="flex-thumbs">
-                            <a href="'. $route .'">'.$image.'</a>
-                        </div>
-                        <div class="flex-contents">
-                             <span class="span-title"><a href="'.$category_route.'">'.$category.'</a></span>
-                             <h4 class="common-title"><a href="' .  $route  . '">'.purify_html($post->getTranslation('title',$user_selected_language)).'</a></h4>
-                    </div></div></div>';
-        }
-        $output .= '</div>';
-        $output .= '</div>';
-        $output .= '</div>';
+     $blogs_markup.=  <<<LIST
+             <li class="single-blog-post-item">
+                <div class="thumb">
+                   {$image}
+                </div>
+                <div class="content">
+                    <h4 class="title font-size-20">
+                        <a href="{$route}">{$title}</a>
+                    </h4>
+                    <div class="post-meta">
+                        <ul class="post-meta-list">
+                            <li class="post-meta-item date">
+                                {$category_markup}
+                            </li>
+                            <li class="post-meta-item date">
+                                <i class="lar la-clock icon"></i>
+                                <span class="text">{$date}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
 
-        $output .= $this->widget_after(); // render widget after content
-        return $output;
+LIST;
+
+        }
+
+
+ return <<<HTML
+
+            <div class="widget">
+                <h4 class="widget-title style-02">{$widget_title}</h4>
+                <ul class="recent-blog-post-style-01 index-02 one">
+                    {$blogs_markup}
+                </ul>
+            </div>
+
+      
+
+HTML;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function widget_title()
     {
-        // TODO: Implement widget_title() method.
-        return __('Most Visited News');
+        return __('Most Read Blogs');
     }
 }

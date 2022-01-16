@@ -83,6 +83,7 @@ class BannerOne extends PageBuilderBase
         </div>
     </div>
 </div>
+
 HTML;
 
     }
