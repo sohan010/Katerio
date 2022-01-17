@@ -17,6 +17,7 @@
 
        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/bootstrap.min-v4.6.0.css')); ?>">
        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/line-awesome.min-v1.0.3.css')); ?>">
+       <link rel="stylesheet" href="<?php echo e(asset('assets/common/css/font-awesome.min.css')); ?>">
        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/slick.min.css')); ?>">
        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/magnific-popup.css')); ?>">
        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/main-style.css')); ?>">

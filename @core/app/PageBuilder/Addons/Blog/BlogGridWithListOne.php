@@ -157,8 +157,11 @@ class BlogGridWithListOne extends PageBuilderBase
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title', $current_lang)), 15);
             $date = date('M d, Y', strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
-            $created_by_image = render_image_markup_by_attachment_id(optional($item->user)->image) ?? render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'));
 
+            //author image
+            $user_image = render_image_markup_by_attachment_id(optional($item->user)->image, 'image');
+            $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
+            $created_by_image = $user_image ? $user_image : $avatar_image;
 
             $category_markup = '';
             foreach ($item->category_id as $cat) {
@@ -229,8 +232,11 @@ TOPLIST;
                 $Ttitle = Str::words(SanitizeInput::esc_html($Titem->getTranslation('title', $current_lang)), 15);
                 $Tdate = date('M d, Y', strtotime($Titem->created_at));
                 $Tcreated_by = $Titem->author ?? __('Anonymous');
-                $Tcreated_by_image = render_image_markup_by_attachment_id(optional($Titem->user)->image) ?? render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'));
 
+                //author image
+                $Tuser_image = render_image_markup_by_attachment_id(optional($Titem->user)->image, 'image');
+                $Tavatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
+                $Tcreated_by_image = $Tuser_image ? $Tuser_image : $Tavatar_image;
 
                 $Tcategory_markup = '';
                 foreach ($Titem->category_id as $cat) {

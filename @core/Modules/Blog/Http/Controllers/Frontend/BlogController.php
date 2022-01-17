@@ -50,9 +50,7 @@ class BlogController extends Controller
             $cat_id .= $item->id;
         }
 
-
         $all_related_blog = Blog::with(['user', 'admin'])->whereJsonContains('category_id', $cat_id)->where('status','publish')->orderBy('id', 'desc')->take(2)->get();
-
 
         if (is_null($blog_post->views)) {
             Blog::where('id', $blog_post->id)->update(['views' => 0]);
@@ -60,7 +58,7 @@ class BlogController extends Controller
             Blog::where('id', $blog_post->id)->increment('views');
         }
 
-        return view(self::BASE_PATH.'blog.blog-single')->with([
+        return view(self::BASE_PATH.'blog.blog-single-variant.blog-single-with-right-sidebar')->with([
             'blog_post' => $blog_post,
             'all_related_blog' => $all_related_blog,
             'blogCommentCount' => $blogCommentCount,
@@ -136,7 +134,7 @@ class BlogController extends Controller
 
     public function blog_comment_store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'comment_content' => 'required'
         ]);
 
@@ -203,7 +201,7 @@ REPLA;
                 $child_comment = $repData->comment_content ?? '';
 
 
-                $li_data .= <<<LIDATA
+   $li_data .= <<<LIDATA
 
  <div class="child-single-comments">
         <div class="comments-flex-contents">
@@ -223,12 +221,11 @@ REPLA;
         </div>
 
 LIDATA;
-            }
+ }
 
+    $markup .= <<<HTML
 
-            $markup .= <<<HTML
-
-        <div class="single-comments">
+      <div class="single-comments">
         <div class="comments-flex-contents">
             <div class="comment-author">
                 {$image}
@@ -248,7 +245,7 @@ LIDATA;
    </div>
 
 HTML;
-        }
+}
 
         return response()->json(['blogComments' => $all_comment, 'markup' => $markup]);
     }

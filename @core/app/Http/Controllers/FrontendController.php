@@ -289,10 +289,9 @@ class FrontendController extends Controller
     }
 
 
-
-
     public function subscribe_newsletter(Request $request)
     {
+
         $this->validate($request, [
             'email' => 'required|string|email|max:191|unique:newsletters'
         ]);

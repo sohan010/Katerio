@@ -16,8 +16,9 @@
     <?php echo render_page_meta_data($blog_post); ?>
 
 <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?>
 
+
+<?php $__env->startSection('content'); ?>
     <?php
         $session_user_given_password_get = \Illuminate\Support\Facades\Session::get('user_given_password');
     ?>

@@ -61,8 +61,8 @@
     $('[data-toggle="tooltip"]').tooltip({'placement': 'top','color':'green'});
 </script>
 
-@stack('scripts')
     @include('frontend.partials.inline-scripts')
+@stack('scripts')
 
 
 </body>

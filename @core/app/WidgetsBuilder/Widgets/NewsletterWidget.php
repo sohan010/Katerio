@@ -4,8 +4,11 @@
 namespace App\WidgetsBuilder\Widgets;
 
 
-use App\Events;
+use App\Helpers\LanguageHelper;
 use App\Language;
+use App\PageBuilder\Fields\IconPicker;
+use App\PageBuilder\Fields\Summernote;
+use App\PageBuilder\Fields\Text;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
 use App\Widgets;
 use App\WidgetsBuilder\WidgetBase;
@@ -16,34 +19,37 @@ class NewsletterWidget extends WidgetBase
 
     public function admin_render()
     {
-        // TODO: Implement admin_render() method.
         $output = $this->admin_form_before();
         $output .= $this->admin_form_start();
         $output .= $this->default_fields();
         $widget_saved_values = $this->get_settings();
 
-
-
-        //render language tab
-        $output .= $this->admin_language_tab();
+        $output .= $this->admin_language_tab(); //have to start language tab from here on
         $output .= $this->admin_language_tab_start();
 
-        $all_languages = Language::all();
+        $all_languages = LanguageHelper::all_languages();
         foreach ($all_languages as $key => $lang) {
             $output .= $this->admin_language_tab_content_start([
                 'class' => $key == 0 ? 'tab-pane fade show active' : 'tab-pane fade',
                 'id' => "nav-home-" . $lang->slug
             ]);
-            $widget_title = $widget_saved_values['widget_title_'.$lang->slug] ?? '';
-            $widget_description = $widget_saved_values['widget_description_'.$lang->slug] ?? '';
-            $output .= '<div class="form-group"><input type="text" name="widget_title_' . $lang->slug . '" class="form-control" placeholder="' . __('Newsletter Title') . '" value="' . $widget_title . '"></div>';
-            $output .= '<div class="form-group"><input type="text" name="widget_description_' . $lang->slug . '" class="form-control" placeholder="' . __('Newsletter Description') . '" value="' . $widget_description . '"></div>';
+
+            $output .= Text::get([
+                'name' => 'title_'.$lang->slug,
+                'label' => __('Title'),
+                'value' => $widget_saved_values['title_' . $lang->slug] ?? null,
+            ]);
+
+            $output .= Summernote::get([
+                'name' => 'description_'.$lang->slug,
+                'label' => __('Description'),
+                'value' => $widget_saved_values['description_' . $lang->slug] ?? null,
+            ]);
 
             $output .= $this->admin_language_tab_content_end();
         }
-        $output .= $this->admin_language_tab_end();
-        //end multi langual tab option
 
+        $output .= $this->admin_language_tab_end(); //have to end language tab
 
 
 
@@ -54,48 +60,47 @@ class NewsletterWidget extends WidgetBase
         return $output;
     }
 
-
     public function frontend_render()
     {
+        $settings = $this->get_settings();
+        $user_selected_language = get_user_lang();
+        $widget_title = $settings['title_' . $user_selected_language] ?? '';
+        $widget_description = $settings['description_' . $user_selected_language] ?? '';
+        $form_action = route('frontend.subscribe.newsletter');
+        $csrf = csrf_token();
 
-        // TODO: Implement frontend_render() method.
-        $widget_saved_values = $this->get_settings();
-        $selected_lang = get_user_lang();
-        $widget_title = $this->setting_item('widget_title_'.$selected_lang) ??  '';
-        $description = $this->setting_item('widget_description_'.$selected_lang) ??  '';
 
-        $output = '<div class="footer-widget">';
-        if (!empty($widget_title)){
-            $output .= '<h4 class="widget-title">'.purify_html($widget_title).'</h4>';
-        }
-        $output .= '<p class="info">'.purify_html($description).'</p>';
-        $output .= '<div class="form-message-show"></div>
-                    <div class="search-form style-01">';
-
-        $output .= '<form action="'.route('frontend.subscribe.newsletter').'" method="post" enctype="multipart/form-data">';
-
-        $output .= ' <div class="form-row">
-                    <input type="hidden" name="_token" value="'.csrf_token().'">
-   
-                    <div class="newsletter-footer">
-                        <input type="text" name="email" class="form-control"placeholder="'.__('your email').'">
-                        <div class="btn-wrapper">
-                            <button type="submit" class="btn-default btn-rounded submit-btn" >'.__('Subscribe').'</button>
-                        </div>
+     return <<<HTML
+           <div class="footer-widget">
+                <h4 class="widget-title">{$widget_title}</h4>
+                <div class="footer-content">
+                    <p class="info">{$widget_description}</p>
+                    <div class="search-form style-01">
+                        <form action="{$form_action}" method="post">
+                         <input type="hidden" name="_token" value="{$csrf}">
+                            <div class="form-row">
+                                <div class="newsletter-footer">
+                                  <div class="form-message-show"></div>
+                                    <div class="btn-wrapper">
+                                      <input type="text" class="form-control email" name="email"placeholder="enter email address">
+                                        <button class="btn-default btn-rounded newsletter-submit-btn-footer" type="submit">subscribe</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
                 </div>
-                </form>';
+            </div>
 
-        $output .= '</div></div></div>';
+HTML;
 
-        return $output;
 
     }
 
     public function widget_title()
     {
-        // TODO: Implement widget_title() method.
-        return __("Newsletter");
+        return __('Newsletter : 01');
     }
+
+
 }

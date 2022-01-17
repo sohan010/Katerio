@@ -29,8 +29,6 @@
                             <li class="list-item"><a href="{{url('/')}}">{{ __('Home') }}</a></li>
                             @if(Route::currentRouteName() === 'frontend.dynamic.page')
                                 <li class="list-item"><a href="#">{{$page_post->title}}</a></li>
-                            @elseif(Route::currentRouteName() === 'frontend.blog.single')
-                                {{$page_post->title}}
 
                             @else
                                 <li class="list-item"><a href="#">@yield('page-title')</a></li>

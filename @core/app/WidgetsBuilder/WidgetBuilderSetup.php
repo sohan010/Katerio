@@ -21,6 +21,7 @@ class WidgetBuilderSetup
             'PollVotingWidget',
             'Advertise',
             'NewsletterWidget',
+            'NewsletterWidgetTwo',
             'FooterStyleTwoWidget',
             'LogoWidget',
             'SocialMediaWidget',
@@ -32,6 +33,7 @@ class WidgetBuilderSetup
             'MostVisitedBlogPostWidget',
             'BlogTagsWidgetTwo',
             'BlogCategoryWidgetStyleTwo',
+            'BlogCategoryWidgetStyleThree',
             'BannerTwoWidget',
             'NewBlogPostWidget'
         ];
@@ -42,6 +44,7 @@ class WidgetBuilderSetup
             'footer_02',
             'sidebar_01',
             'sidebar_02',
+            'sidebar_03',
 
         ];
     }

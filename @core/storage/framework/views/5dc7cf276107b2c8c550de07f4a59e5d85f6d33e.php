@@ -29,9 +29,6 @@
                             <li class="list-item"><a href="<?php echo e(url('/')); ?>"><?php echo e(__('Home')); ?></a></li>
                             <?php if(Route::currentRouteName() === 'frontend.dynamic.page'): ?>
                                 <li class="list-item"><a href="#"><?php echo e($page_post->title); ?></a></li>
-                            <?php elseif(Route::currentRouteName() === 'frontend.blog.single'): ?>
-                                <?php echo e($page_post->title); ?>
-
 
                             <?php else: ?>
                                 <li class="list-item"><a href="#"><?php echo $__env->yieldContent('page-title'); ?></a></li>

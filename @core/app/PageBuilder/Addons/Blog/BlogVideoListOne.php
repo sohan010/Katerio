@@ -128,7 +128,11 @@ class BlogVideoListOne extends PageBuilderBase
 
             $bg_image = render_background_image_markup_by_attachment_id($item->image);
             $created_by = $item->author ?? __('Anonymous');
-            $created_by_image = render_image_markup_by_attachment_id(optional($item->user)->image) ?? render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'));
+
+            //author image
+            $user_image = render_image_markup_by_attachment_id(optional($item->user)->image, 'image');
+            $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
+            $created_by_image = $user_image ? $user_image : $avatar_image;
 
             if ($item->created_by === 'user') {
                 $user_id = $item->user_id;

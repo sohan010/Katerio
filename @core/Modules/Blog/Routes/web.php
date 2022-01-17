@@ -72,7 +72,7 @@ Route::group(['prefix'=>'admin-home'],function() {
 //Blogs
 $blog_page_slug = get_page_slug(get_static_option('blog_page'),'blog');
 
-Route::group(['prefix' => $blog_page_slug,'namespace' => 'Frontend'],function (){
+Route::group(['prefix' => $blog_page_slug,'namespace' => 'Frontend', 'middleware' => ['setlang','globalVariable','maintains_mode']],function (){
     Route::get('/search','BlogController@blog_search_page')->name('frontend.blog.search');
     Route::get('/get/search','BlogController@blog_get_search')->name('frontend.blog.get.search');
     Route::get('/{slug}','BlogController@blog_single')->name('frontend.blog.single');
@@ -82,16 +82,15 @@ Route::group(['prefix' => $blog_page_slug,'namespace' => 'Frontend'],function ()
     Route::get('blog/autocomplete/search/tag/page','BlogController@auto_complete_search_tag_blogs');
     Route::get('/get/tags','BlogController@get_tags_by_ajax')->name('frontend.get.tags.by.ajax');
     Route::get('/get/blog/by/ajax','BlogController@get_blog_by_ajax')->name('frontend.get.blogs.by.ajax');
-});
 
-//Image Gallery With Category
-Route::middleware('globalVariable')->group(function () {
-    Route::get('/gallery/category/{id}/{any}','Frontend\ImageGalleryController@category_wise_gallery_page')->name('frontend.gallery.category');
-    Route::get('author/profile/{id}','Frontend\BlogController@author_profile')->name('frontend.author.profile');
-    Route::get('blog-by-{user}/{id}','Frontend\BlogController@user_created_blogs')->name('frontend.user.created.blog');
-    Route::get('user/blg-password','Frontend\BlogController@user_blog_password')->name('frontend.user.blog.password');
+    Route::get('/gallery/category/{id}/{any}','ImageGalleryController@category_wise_gallery_page')->name('frontend.gallery.category');
+    Route::get('author/profile/{id}','BlogController@author_profile')->name('frontend.author.profile');
+    Route::get('blog-by-{user}/{id}','BlogController@user_created_blogs')->name('frontend.user.created.blog');
+    Route::get('user/blg-password','BlogController@user_blog_password')->name('frontend.user.blog.password');
 
     Route::get('/dark-mode-toggle', 'FrontendController@dark_mode_toggle')->name('frontend.dark.mode.toggle');
-    Route::post('/blog/comment/store','Frontend\BlogController@blog_comment_store')->name('blog.comment.store');
-    Route::post('blog/all/comment','Frontend\BlogController@load_more_comments')->name('frontend.load.blog.comment.data');
+    Route::post('/blog/comment/store','BlogController@blog_comment_store')->name('blog.comment.store');
+    Route::post('blog/all/comment','BlogController@load_more_comments')->name('frontend.load.blog.comment.data');
+
 });
+

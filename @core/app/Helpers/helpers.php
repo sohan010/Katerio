@@ -29,6 +29,7 @@ function check_image_extension($file)
     }
     return true;
 }
+
 function render_image_markup_by_attachment_id($id, $class = null, $size = 'full')
 {
     if (empty($id)) return '';
@@ -41,6 +42,11 @@ function render_image_markup_by_attachment_id($id, $class = null, $size = 'full'
     }
     return $output;
 }
+
+
+
+
+
 function formatBytes($size, $precision = 2)
 {
     $base = log($size, 1024);

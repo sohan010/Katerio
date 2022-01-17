@@ -4,6 +4,7 @@
 namespace App\WidgetsBuilder\Widgets;
 
 use App\Language;
+use App\PageBuilder\Fields\Number;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
 use App\Tag;
 use App\WidgetsBuilder\WidgetBase;
@@ -15,7 +16,6 @@ class BlogTagsWidgetTwo extends WidgetBase
 
     public function admin_render()
     {
-        // TODO: Implement admin_render() method.
         $output = $this->admin_form_before();
         $output .= $this->admin_form_start();
         $output .= $this->default_fields();
@@ -32,14 +32,20 @@ class BlogTagsWidgetTwo extends WidgetBase
                 'id' => "nav-home-" . $lang->slug
             ]);
             $widget_title = $widget_saved_values['widget_title_' . $lang->slug] ?? '';
-            $output .= '<div class="form-group"><input type="text" name="widget_title_' . $lang->slug . '" class="form-control" placeholder="' . __('Widget Title') . '" value="' . $widget_title . '"></div>';
+            $output .= '<div class="form-group"> <label>' .__('Widget Title').' </label><input type="text" name="widget_title_' . $lang->slug . '" class="form-control" placeholder="' . __('Widget Title') . '" value="' . $widget_title . '"></div>';
 
             $output .= $this->admin_language_tab_content_end();
         }
         $output .= $this->admin_language_tab_end();
         //end multi langual tab option
-        $post_items = $widget_saved_values['post_items'] ?? '';
-        $output .= '<div class="form-group"><input type="text" name="post_items" class="form-control" placeholder="' . __('Post Items') . '" value="' . $post_items . '"></div>';
+
+        $output .= Number::get([
+            'name' => 'tag_items',
+            'label' => __('TagItems'),
+            'value' => $widget_saved_values['tag_items'] ?? null,
+        ]);
+
+
 
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
@@ -50,37 +56,47 @@ class BlogTagsWidgetTwo extends WidgetBase
 
     public function frontend_render()
     {
-        // TODO: Implement frontend_render() method.
+        $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_saved_values = $this->get_settings();
+        $widget_title = $settings['widget_title_' . $user_selected_language] ?? '';
+        $tag_items = $settings['tag_items'] ?? '';
 
-        $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
-        $post_items = $this->setting_item('post_items') ?? '';
-        $blog_tags = Tag::orderBy('id', 'DESC')->take($post_items)->get();
-        $output = $this->widget_before('widget_archive');
-        $output.= '<div class="tags-area padding-top-30">';
-        if (!empty($widget_title)) {
+        $blog_tags = Tag::orderBy('id', 'DESC')->take($tag_items)->get();
 
-            $output .= '<div class="section-title-three desktop-center"><h4 class="title">' . purify_html($widget_title) . '</h4></div>';
-        }
+        $tags_markup = '';
+        $colors = ['color-a','color-b','color-c','color-d','color-e','color-f','color-g'];
+        foreach ($blog_tags as $key=> $item){
 
-        $output.= '<div class="tag-list padding-top-30">';
+            $title = $item->getTranslation('name',$user_selected_language);
+            $url = route('frontend.blog.tags.page', ['any' => $item->name]);
+            $calc = $colors[$key % count($colors)];
 
 
-        foreach ($blog_tags as $tag) {
-            $output .= '<a class="list" href="'.route('frontend.blog.tags.page', ['any' => $tag->name]).'">'.$tag->getTranslation('name',$user_selected_language).'</a>';
-        }
+ $tags_markup.=  <<<LIST
+      <li class="single-tag-item">
+        <a href="{$url}" class="{$calc}">{$title}</a>
+    </li>
 
-         $output.= '</div>';
-         $output.= '</div>';
-         $output .= $this->widget_after();
+LIST;
 
-        return $output;
+}
+
+return <<<HTML
+
+        <div class="widget">
+            <div class="tag style-03">
+                <h4 class="widget-title style-02">{$widget_title}</h4>
+                <ul class="tag-list">
+                        {$tags_markup}
+                </ul>
+            </div>
+        </div>
+
+HTML;
     }
 
     public function widget_title()
     {
-        // TODO: Implement widget_title() method.
-        return __('News Tags : 02');
+        return __('Blog Tags : 02');
     }
 }

@@ -62,8 +62,8 @@
     $('[data-toggle="tooltip"]').tooltip({'placement': 'top','color':'green'});
 </script>
 
-<?php echo $__env->yieldPushContent('scripts'); ?>
     <?php echo $__env->make('frontend.partials.inline-scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->yieldPushContent('scripts'); ?>
 
 
 </body>

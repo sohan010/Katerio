@@ -36,7 +36,8 @@ class PageBuilderSetup
             PageBuilder\Addons\Blog\BlogSliderOne::class,
             PageBuilder\Addons\Blog\BlogVideoListOne::class,
             PageBuilder\Addons\Blog\BlogGridOne::class,
-            PageBuilder\Addons\Blog\BlogGridWithListOne::class
+            PageBuilder\Addons\Blog\BlogGridWithListOne::class,
+            PageBuilder\Addons\Blog\BlogSliderBigOne::class
 
 
         ];
