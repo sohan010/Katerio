@@ -41,7 +41,6 @@
     <li class="has-children">
         <ul>
             <?php $__currentLoopData = $data->reply; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $repData): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                 <?php
                     $child_author_image = render_image_markup_by_attachment_id(optional($repData->user)->image);
                     $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'));

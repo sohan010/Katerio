@@ -58,7 +58,15 @@ class BlogController extends Controller
             Blog::where('id', $blog_post->id)->increment('views');
         }
 
-        return view(self::BASE_PATH.'blog.blog-single-variant.blog-single-with-right-sidebar')->with([
+        $blog_details_variant = get_static_option('blog_details_variant');
+
+        if(in_array($blog_details_variant,['01'])){
+            $details_page = 'details-01';
+        }else{
+            $details_page = 'details-02';
+        }
+
+        return view(self::BASE_PATH.'blog.blog-single-variant.'.$details_page.'')->with([
             'blog_post' => $blog_post,
             'all_related_blog' => $all_related_blog,
             'blogCommentCount' => $blogCommentCount,
@@ -176,19 +184,23 @@ class BlogController extends Controller
 
         $markup = '';
         foreach ($all_comment as $item) {
-            $image = render_image_markup_by_attachment_id(optional($item->user)->image ?? get_static_option('single_blog_page_comment_avatar_image'));
+            $parent_image = render_image_markup_by_attachment_id(optional($item->user)->image);
+            $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'));
+            $commented_user_image = $parent_image ? $parent_image : $avatar_image;
+
             $var_data_parent_name = optional($item->user)->name;
             $title = optional($item->user)->name ?? '';
             $created_at = date('d F Y', strtotime($item->created_at ?? ''));
             $comment_content = $item->comment_content;
             $data_id = $item->id;
             $replay_mark = '';
+            $replay_text = __('Reply');
 
 
-            $replay_mark .= <<<REPLA
- <div class="btn-wrapper">
-       <a href="#0" data-comment_id="{$data_id}"  class="btn-replay"> Reply</a>
- </div>
+$replay_mark .= <<<REPLA
+    <div class="reply">
+         <a href="#" data-comment_id="{$data_id}}" class="reply-btn btn-replay"><i class="las la-reply icon"></i><span class="text">{$replay_text}</span></a>
+    </div>
 REPLA;
 
             $repl = auth('web')->check() && auth('web')->id() != $item->user_id ? $replay_mark : '';
@@ -196,53 +208,73 @@ REPLA;
             $li_data = '';
             foreach ($item->reply as $repData) {
                 $child_image = render_image_markup_by_attachment_id(optional($repData->user)->image ?? get_static_option('single_blog_page_comment_avatar_image'));
-                $child_user_name = $repData->user->name ?? '';
+                $child_user_name = optional($repData->user)->name ?? '';
                 $child_commented_date = date('d F Y', strtotime($repData->created_at ?? ''));
                 $child_comment = $repData->comment_content ?? '';
 
 
-   $li_data .= <<<LIDATA
-
- <div class="child-single-comments">
-        <div class="comments-flex-contents">
-            <div class="comment-author">
-                {$child_image}
-            </div>
-            <div class="comments-content">
-                <div class="flex-replay">
-                    <span class="author-title">{$child_user_name}</span>
-                    <span class="comment-date">  {$child_commented_date} </span>
+$li_data .= <<<LIDATA
+    <li>
+    <div class="single-comment-wrap">
+        <div class="thumb">
+          {$child_image}
+        </div>
+        <div class="content">
+            <div class="content-top">
+                <div class="left">
+                    <h4 class="title">{$child_user_name}</h4>
+                    <ul class="post-meta">
+                        <li class="meta-item">
+                            <i class="lar la-calendar icon"></i>
+                            {$child_commented_date}
+                        </li>
+                    </ul>
                 </div>
-         
-                <p class="comment">{$child_comment}</p>
-
             </div>
+            <p class="comment common-para">{$child_comment}</p>
         </div>
-        </div>
-
+    </div>
+</li>
 LIDATA;
  }
 
     $markup .= <<<HTML
 
-      <div class="single-comments">
-        <div class="comments-flex-contents">
-            <div class="comment-author">
-                {$image}
+    <ul class="comment-list">
+    <li>
+        <div class="single-comment-wrap">
+            <div class="thumb">
+                {$commented_user_image}
             </div>
-            <div class="comments-content">
-                <div class="flex-replay">
-                    <span class="author-title" data-parent_name="{$var_data_parent_name}">{$title}</span>
-                   {$repl}
+            <div class="content">
+                <div class="content-top">
+                    <div class="left">
+                        <h4 class="title" data-parent_name="{$var_data_parent_name}">{$title}</h4>
+                        <ul class="post-meta">
+                            <li class="meta-item comment-date">
+                                <i class="lar la-calendar icon"></i>
+                               {$created_at}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <p class="comment common-para">{$comment_content}
+                </p>
 
-                <span class="comment-date"> {$created_at} </span>
-                <p class="common-para">{$comment_content}</p>
-
+                {$repl}
             </div>
         </div>
-        {$li_data}
-   </div>
+    </li>
+
+    <li class="has-children">
+        <ul>
+            {$li_data}
+        </ul>
+    </li>
+
+</ul>
+
+
 
 HTML;
 }

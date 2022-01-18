@@ -13,9 +13,8 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title mb-4">{{__("Footer Global Vartiant Settings")}}</h4>
-                        <form action="{{route('admin.general.global.variant.footer')}}" method="POST" enctype="multipart/form-data">@csrf
-
-
+                        <form action="{{route('admin.general.global.variant.footer')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="card mt-5">
                                 <div class="card-body">
                                     <div class="form-group">

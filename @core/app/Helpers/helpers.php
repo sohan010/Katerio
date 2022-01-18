@@ -170,6 +170,35 @@ function single_post_share($url, $title, $img_url)
 }
 
 
+
+
+
+function single_post_share_two($url, $title, $img_url)
+{
+
+    //get current page url
+    $encoded_url = urlencode($url);
+    //get current page title
+    $post_title = str_replace(' ', '%20', $title);
+
+    //all social share link generate
+    $facebook_share_link = 'https://www.facebook.com/sharer/sharer.php?u=' . $encoded_url;
+    $twitter_share_link = 'https://twitter.com/intent/tweet?text=' . $post_title . '&amp;url=' . $encoded_url . '&amp;';
+    $linkedin_share_link = 'https://www.linkedin.com/shareArticle?mini=true&url=' . $encoded_url . '&amp;title=' . $post_title;
+    $pinterest_share_link = 'https://pinterest.com/pin/create/button/?url=' . $encoded_url . '&amp;media=' . $img_url . '&amp;description=' . $post_title;
+
+   return <<<LIST
+    <li class="single-item"><a href="{$facebook_share_link }" class="left-content"><span class="icon facebook"><i class="lab la-facebook-f"></i> </span></a></li>
+    <li class="single-item"><a href="{$twitter_share_link }" class="left-content"><span class="icon twitter"><i class="lab la-twitter"></i> </span></a></li>
+     <li class="single-item"><a href="{$linkedin_share_link }" class="left-content"><span class="icon facebook"><i class="lab la-linkedin-in"></i> </span></a></li>
+    <li class="single-item"><a href="{$pinterest_share_link }" class="left-content"><span class="icon youtube"><i class="lab la-pinterest-p"></i> </span></a></li>
+
+LIST;
+
+
+}
+
+
 function load_google_fonts()
 {
     //google fonts link;

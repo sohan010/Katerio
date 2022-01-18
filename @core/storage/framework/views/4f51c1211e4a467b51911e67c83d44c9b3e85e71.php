@@ -103,6 +103,9 @@
 
                                     <li class="<?php echo e(active_menu('admin-home/blog/others-settings')); ?>"><a
                                          href="<?php echo e(route('admin.blog.others.settings')); ?>"><?php echo e(__('Blog Others Settings')); ?></a></li>
+
+                                    <li class="<?php echo e(active_menu('admin-home/blog/details-variant-settings')); ?>"><a
+                                                href="<?php echo e(route('admin.blog.details.variant.settings')); ?>"><?php echo e(__('Blog Details Variant')); ?></a></li>
                              <?php endif; ?>
                         </ul>
                     </li>

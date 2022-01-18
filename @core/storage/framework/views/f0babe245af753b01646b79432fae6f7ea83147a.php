@@ -29,7 +29,7 @@
             </div>
             <div class="row mb-4 rmber-area">
                 <div class="col-6">
-                    <div class="custom-control custom-checkbox mr-sm-2">
+                    <div class="custom-control custom-checkbox mr-sm-2 text-left">
                         <input type="checkbox" name="remember" class="custom-control-input" id="remember">
                         <label class="custom-control-label" for="remember"><?php echo e(__('Remember Me')); ?></label>
                     </div>
@@ -41,10 +41,10 @@
                 <div class="col-lg-12">
                     <div class="social-login-wrap">
                         <?php if(get_static_option('enable_facebook_login')): ?>
-                            <a href="<?php echo e(route('login.facebook.redirect')); ?>" class="facebook"><i class="fab fa-facebook-f"></i> <?php echo e(__('Login With Facebook')); ?></a>
+                            <a href="<?php echo e(route('login.facebook.redirect')); ?>" class="facebook"><i class="lab la-facebook-f"></i> <?php echo e(__('Login With Facebook')); ?></a>
                         <?php endif; ?>
                         <?php if(get_static_option('enable_google_login')): ?>
-                            <a href="<?php echo e(route('login.google.redirect')); ?>" class="google"><i class="fab fa-google"></i> <?php echo e(__('Login With Google')); ?></a>
+                            <a href="<?php echo e(route('login.google.redirect')); ?>" class="google"><i class="lab la-google"></i> <?php echo e(__('Login With Google')); ?></a>
                         <?php endif; ?>
                     </div>
                 </div>

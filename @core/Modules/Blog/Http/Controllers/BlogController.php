@@ -63,7 +63,9 @@ class BlogController extends Controller
 
                 ->addColumn('title',function ($row) use($default_lang){
                     $video_post = $row->video_url ? '<span class="badge badge-primary ml-2">'.__("Video Post").'</span>' : '';
-                    return $row->getTranslation('title',$default_lang,true) . $video_post;
+                    $gallery_post = strlen($row->image_gallery) ? '<span class="badge badge-warning ml-2">'.__("Gallery Post").'</span>' : '';
+
+                    return $row->getTranslation('title',$default_lang,true) . $video_post .$gallery_post;
                 })
 
                 ->addColumn('image',function ($row) use($default_lang) {
@@ -319,28 +321,28 @@ class BlogController extends Controller
     public function update_blog_others_page_settings(Request $request)
     {
         $request->validate( [
-            'blog_tags_video_icon_color' => 'nullable|string',
-            'blog_search_video_icon_color' => 'nullable|string',
-            'blog_category_video_icon_color' => 'nullable|string',
-            'user_created_blog_video_icon_color' => 'nullable|string',
-            'single_page_blog_video_icon_color' => 'nullable|string',
-            'blog_breaking_news_show_hide_all' => 'nullable|string',
 
+            'blog_breaking_news_show_hide_all' => 'nullable|string',
         ]);
-        $fields = [
-            'blog_category_video_icon_color',
-            'blog_search_video_icon_color',
-            'blog_tags_video_icon_color',
-            'user_created_blog_video_icon_color',
-            'single_page_blog_video_icon_color',
-        ];
-        foreach ($fields as $field) {
-            if ($request->has($field)) {
-                update_static_option($field, $request->$field);
-            }
-        }
 
         update_static_option('blog_breaking_news_show_hide_all',$request->blog_breaking_news_show_hide_all);
+
+        return redirect()->back()->with(FlashMsg::settings_update());
+    }
+
+    public function details_variant()
+    {
+        return view(self::BASE_PATH.'blog.blog-details-page-variant');
+    }
+
+    public function update_details_variant(Request $request)
+    {
+        $request->validate( [
+
+            'blog_details_variant' => 'nullable|string',
+        ]);
+
+        update_static_option('blog_details_variant',$request->blog_details_variant);
 
         return redirect()->back()->with(FlashMsg::settings_update());
     }

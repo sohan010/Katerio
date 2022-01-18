@@ -5603,6 +5603,16 @@ ul.wp-block-latest-posts.is-grid.alignwide {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 25px;
+}
+
+.has-children ul li {
+  padding-top: 25px;
+}
+
+.has-children ul li:first-child {
+  padding-top: 0px;
 }
 .blog-details-area-wrapper .blog-details-inner-area .comment-area-full-wrapper .user-comment-area .comment-list > li .single-comment-wrap .thumb {
   min-width: 80px;
@@ -5645,8 +5655,6 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 }
 .blog-details-area-wrapper .blog-details-inner-area .comment-area-full-wrapper .user-comment-area .comment-list > li .single-comment-wrap .content .reply {
   margin-top: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 25px;
 }
 .blog-details-area-wrapper .blog-details-inner-area .comment-area-full-wrapper .user-comment-area .comment-list > li .single-comment-wrap .content .reply .reply-btn {
   font-size: 14px;
@@ -8072,5 +8080,52 @@ pagination-list .pagination .page-item.active .page-link, .pagination-wrapper .p
 }
 .pagination-wrapper .pagination {
   flex-wrap: wrap;
+}
+
+.custom-login .login-form p {
+  font-size: 24px;
+  text-transform: initial;
+  color: #333;
+  font-weight: 500;
+}
+
+.custom-login .login-form input {
+  height: 50px;
+}
+
+.custom-login .login-form .form-group {
+  margin-bottom: 25px;
+}
+
+.custom-login .login-form {
+  text-align: center;
+}
+
+.custom-login .login-form button#login_btn {
+  margin-top: 20px;
+}
+
+.custom-login {
+  margin-top: 40px;
+}
+
+.social-login-wrap .facebook {
+  display: block;
+  padding: 15px 20px;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+  border: 1px solid #1877F2;
+  color: #1877F2;
+}
+
+.social-login-wrap .google {
+  display: block;
+  padding: 15px 20px;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 600;
+  border: 1px solid #DB4437;
+  color: #DB4437;
 }
 

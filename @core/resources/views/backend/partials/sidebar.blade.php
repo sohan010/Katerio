@@ -98,6 +98,9 @@
 
                                     <li class="{{active_menu('admin-home/blog/others-settings')}}"><a
                                          href="{{route('admin.blog.others.settings')}}">{{__('Blog Others Settings')}}</a></li>
+
+                                    <li class="{{active_menu('admin-home/blog/details-variant-settings')}}"><a
+                                                href="{{route('admin.blog.details.variant.settings')}}">{{__('Blog Details Variant')}}</a></li>
                              @endcan
                         </ul>
                     </li>

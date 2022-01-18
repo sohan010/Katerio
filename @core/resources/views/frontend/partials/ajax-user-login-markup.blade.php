@@ -18,7 +18,7 @@
             </div>
             <div class="row mb-4 rmber-area">
                 <div class="col-6">
-                    <div class="custom-control custom-checkbox mr-sm-2">
+                    <div class="custom-control custom-checkbox mr-sm-2 text-left">
                         <input type="checkbox" name="remember" class="custom-control-input" id="remember">
                         <label class="custom-control-label" for="remember">{{__('Remember Me')}}</label>
                     </div>
@@ -30,10 +30,10 @@
                 <div class="col-lg-12">
                     <div class="social-login-wrap">
                         @if(get_static_option('enable_facebook_login'))
-                            <a href="{{route('login.facebook.redirect')}}" class="facebook"><i class="fab fa-facebook-f"></i> {{__('Login With Facebook')}}</a>
+                            <a href="{{route('login.facebook.redirect')}}" class="facebook"><i class="lab la-facebook-f"></i> {{__('Login With Facebook')}}</a>
                         @endif
                         @if(get_static_option('enable_google_login'))
-                            <a href="{{route('login.google.redirect')}}" class="google"><i class="fab fa-google"></i> {{__('Login With Google')}}</a>
+                            <a href="{{route('login.google.redirect')}}" class="google"><i class="lab la-google"></i> {{__('Login With Google')}}</a>
                         @endif
                     </div>
                 </div>

@@ -39,6 +39,9 @@ Route::group(['prefix'=>'admin-home'],function() {
         Route::get('/others-settings', 'BlogController@blog_others_page_settings')->name('admin.blog.others.settings');
         Route::post('/others-settings', 'BlogController@update_blog_others_page_settings');
         Route::post('/blog-approve', 'BlogController@blog_approve')->name('admin.blog.approve');
+        //Details Page Variant
+        Route::get('/details-variant-settings', 'BlogController@details_variant')->name('admin.blog.details.variant.settings');
+        Route::post('/details-variant-settings', 'BlogController@update_details_variant');
     });
 
 
