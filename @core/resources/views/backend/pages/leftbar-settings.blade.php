@@ -29,22 +29,33 @@
                             <div class="tab-content margin-top-30" id="nav-tabContent">
                                 @foreach($all_languages as $key => $lang)
                                     <div class="tab-pane fade @if($key == 0) show active @endif" id="nav-home-{{$lang->slug}}" role="tabpanel" aria-labelledby="nav-home-tab">
+
                                         <div class="form-group">
-                                            <label for="site_{{$lang->slug}}_title">{{__('Leftbar Social Title')}}</label>
-                                            <input type="text" name="leftbar_social_{{$lang->slug}}_title"  class="form-control" value="{{get_static_option('leftbar_social_'.$lang->slug.'_title')}}">
+                                            <label for="site_{{$lang->slug}}_title">{{__('Left Bar Blog Title')}}</label>
+                                            <input type="text" name="leftbar_blog_{{$lang->slug}}_title"  class="form-control" value="{{get_static_option('leftbar_blog_'.$lang->slug.'_title')}}">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="site_{{$lang->slug}}_title">{{__('Leftbar Category Title')}}</label>
-                                            <input type="text" name="leftbar_category_{{$lang->slug}}_title"  class="form-control" value="{{get_static_option('leftbar_category_'.$lang->slug.'_title')}}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="site_{{$lang->slug}}_tag_line">{{__('Leftbar Tag Title')}}</label>
+                                            <label for="site_{{$lang->slug}}_tag_line">{{__('Left Bar Tag Title')}}</label>
                                             <input type="text" name="leftbar_tag_{{$lang->slug}}_title"  class="form-control" value="{{get_static_option('leftbar_tag_'.$lang->slug.'_title')}}" >
                                         </div>
 
+                                        <div class="form-group">
+                                            <label for="site_{{$lang->slug}}_title">{{__('Left Bar Social Title')}}</label>
+                                            <input type="text" name="leftbar_social_{{$lang->slug}}_title"  class="form-control" value="{{get_static_option('leftbar_social_'.$lang->slug.'_title')}}">
+                                        </div>
                                     </div>
                                 @endforeach
+                            </div>
+
+                            <div class="form-group">
+                                <label >{{__('Blog Item Show')}}</label>
+                                <input type="number" name="leftbar_blog_item_show"  class="form-control" value="{{get_static_option('leftbar_blog_item_show')}}">
+                            </div>
+
+                            <div class="form-group">
+                                <label >{{__('Tag Item Show')}}</label>
+                                <input type="number" name="leftbar_tag_item_show"  class="form-control" value="{{get_static_option('leftbar_tag_item_show')}}">
                             </div>
 
                             <div class="form-group">
@@ -53,15 +64,8 @@
                             </div>
 
 
-                            <div class="form-group">
-                                <label >{{__('Category Item Show')}}</label>
-                                <input type="number" name="leftbar_category_item_show"  class="form-control" value="{{get_static_option('leftbar_category_item_show')}}">
-                            </div>
 
-                            <div class="form-group">
-                                <label >{{__('Tag Item Show')}}</label>
-                                <input type="number" name="leftbar_tag_item_show"  class="form-control" value="{{get_static_option('leftbar_tag_item_show')}}">
-                            </div>
+
 
 
                             <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>

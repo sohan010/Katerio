@@ -335,7 +335,7 @@
             <x-image :title="'User Image'" :name="'image'" :value="'image'" :id="$user_details->image"/>
 
             <div class="btn-wrapper ">
-            <button id="save" type="submit" class="btn-default">{{__('Save changes')}}</button>
+            <button type="submit" class="btn-default">{{__('Save changes')}}</button>
             </div>
         </form>
     </div>
@@ -349,7 +349,6 @@
         (function($){
             "use strict"
         $(document).ready(function(){
-            <x-btn.save/>
             var selectdCountry = "{{$user_details->country}}";
             $('#country option[value="'+selectdCountry+'"]').attr('selected',true);
         });

@@ -4,22 +4,6 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('style'); ?>
-   <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.media.css','data' => []]); ?>
-<?php $component->withName('media.css'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes([]); ?>
-<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
-<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
-<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-   <link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/colorpicker.css')); ?>">
-<?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('content'); ?>
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
@@ -65,6 +49,21 @@
                                 </label>
                             </div>
 
+                            <div class="form-group">
+                                <label><?php echo e(__('Category Item Show On Category Wise Blog')); ?></label>
+                                <input type="text" class="form-control" value="<?php echo e(get_static_option('blog_category_item_show')); ?>" name="blog_category_item_show" >
+                            </div>
+
+                            <div class="form-group">
+                                <label><?php echo e(__('Tags Item Show On Tags Wise Blog')); ?></label>
+                                <input type="text" class="form-control" value="<?php echo e(get_static_option('blog_tags_item_show')); ?>" name="blog_tags_item_show" >
+                            </div>
+
+                            <div class="form-group">
+                                <label><?php echo e(__('Search Item Show On Search Wise Blog')); ?></label>
+                                <input type="text" class="form-control" value="<?php echo e(get_static_option('blog_search_item_show')); ?>" name="blog_search_item_show" >
+                            </div>
+
                             <button id="update" type="submit" class="btn btn-primary mt-4 pr-4 pl-4"><?php echo e(__('Update')); ?></button>
                         </form>
                     </div>
@@ -87,24 +86,10 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
-    <script src="<?php echo e(asset('assets/backend/js/colorpicker.js')); ?>"></script>
     <script>
         (function($){
             "use strict";
-
             $(document).ready(function(){
-                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.icon-picker','data' => []]); ?>
-<?php $component->withName('icon-picker'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes([]); ?>
-<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
-<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
-<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.btn.update','data' => []]); ?>
 <?php $component->withName('btn.update'); ?>
@@ -117,29 +102,6 @@
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-                initColorPicker('#blog_category_video_icon_color');
-                initColorPicker('#blog_search_video_icon_color');
-                initColorPicker('#blog_tags_video_icon_color');
-                initColorPicker('#user_created_blog_video_icon_color');
-                initColorPicker('#single_page_blog_video_icon_color');
-
-                function initColorPicker(selector){
-                    $(selector).ColorPicker({
-                        color: '#852aff',
-                        onShow: function (colpkr) {
-                            $(colpkr).fadeIn(500);
-                            return false;
-                        },
-                        onHide: function (colpkr) {
-                            $(colpkr).fadeOut(500);
-                            return false;
-                        },
-                        onChange: function (hsb, hex, rgb) {
-                            $(selector).css('background-color', '#' + hex);
-                            $(selector).val('#' + hex);
-                        }
-                    });
-                }
             });
         }(jQuery));
     </script>

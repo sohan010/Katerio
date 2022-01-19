@@ -1,3 +1,5 @@
+@include('frontend.partials.left-bar')
+
 <div class="topbar-area">
     <div class="container custom-container-01">
         <div class="row">

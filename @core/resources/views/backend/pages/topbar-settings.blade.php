@@ -17,7 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="header-wrapp">
-                            <h4 class="header-title">{{__('Support Info Leftbar Items')}}  </h4>
+                            <h4 class="header-title">{{__('Support Info Items for Topbar')}}  </h4>
 
                             <div class="header-title">
                                 <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4" data-toggle="modal"
@@ -66,7 +66,7 @@
             <div class="col-lg-4 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">{{__('Topbar Social Icons')}}</h4>
+                        <h4 class="header-title">{{__('Social Icons for Tob Bar Right / Left Bar Inner Bar')}}</h4>
                         <div class="right-cotnent margin-bottom-40">
                             <a class="btn btn-primary"
                                data-target="#add_social_icon"
@@ -94,7 +94,7 @@
                                            class="btn btn-primary btn-xs mb-3 mr-1 social_item_edit_btn"
                                            data-id="{{$data->id}}"
                                            data-url="{{$data->url}}"
-                                           data-iconSocial="{{$data->icon}}">
+                                           data-iconsocial="{{$data->icon}}">
                                             <i class="ti-pencil"></i>
                                         </a>
                                     </td>
@@ -238,7 +238,7 @@
                                 </button>
                                 <div class="dropdown-menu"></div>
                             </div>
-                            <input type="hidden" class="form-control" id="edit_icon" value="fas fa-exclamation-triangle"
+                            <input type="hidden" class="form-control" id="edit_social_icon" value="fas fa-exclamation-triangle"
                                    name="icon">
                         </div>
                         <div class="form-group">
@@ -281,9 +281,10 @@
                     var el = $(this);
                     var id = el.data('id');
                     var url = el.data('url');
+                    var social_icon = el.data('iconsocial');
                     var form = $('#social_item_edit_modal');
                     form.find('#social_item_id').val(id);
-                    form.find('#social_item_edit_icon').val(icon);
+                    form.find('#edit_social_icon').val(social_icon);
                     form.find('#social_item_edit_url').val(url);
                     form.find('#edit_icon').val(el.data('iconsocial'));
                     form.find('.edit_icon .icp-dd').attr('data-selected', el.data('iconsocial'));

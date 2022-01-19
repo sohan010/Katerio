@@ -13,70 +13,80 @@
     {{$tag_name}}
 @endsection
 
+@section('custom-page-title')
+    {{__('Tags')}}
+@endsection
+
 @section('content')
 
+{{-- ================================================================================================================================================================= --}}
 
-    <div class="blog-two-wrapper padding-top-70 padding-bottom-70">
+    <div class="blog-list-wrapper sports-blog-list-wrapper" data-padding-top="100" data-padding-bottom="100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="row">
-                        @if(count($all_blogs) <= 0)
-                            <div class="col-lg-12 mt-5">
-                                <div class="alert alert-warning alert-block col-md-12 ">
-                                    <strong><div class="error-message "><span>{{__('No Post Available In - ').$tag_name.__(' : Tags')}}</span></div></strong>
+                    <div class="one-column">
+                        <div class="row">
+                            @if(count($all_blogs) <= 0)
+                                <div class="col-lg-12 mt-5">
+                                    <div class="alert alert-warning alert-block col-md-12 ">
+                                        <strong><div class="error-message "><span>{{__('No Post Available In - ').$tag_name.__(' : Tags')}}</span></div></strong>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+
                             @foreach($all_blogs as $data)
-                                @php
-                                    $video_url =  $data->video_url;
-                                    $icon_color = get_static_option('blog_tag_video_icon_color');
-                                @endphp
-                                <div class="col-lg-6 col-md-12 wow animated zoomIn" data-wow-delay=".1s">
-                                    <div class="single-popular-stories margin-top-30">
-                                        <div class="popular-stories-thumb video-parent-global">
-                                            {!! render_image_markup_by_attachment_id($data->image, '', 'grid') !!}
-                                            @if(!empty($video_url))
-                                                <div class="popup-videos ">
-                                                    <a href="{{$video_url}}" class="play-icon videos-play-global videos-play-small" style="color: {{$icon_color}}">
-                                                        <i class="las la-play icon"></i>
-                                                    </a>
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div class="popular-stories-contents">
-                                            <h4 class="common-title common-title-two">  <a href="{{route('frontend.blog.single',$data->slug)}}">{{$data->getTranslation('title',$user_select_lang_slug) ?? ' '}}</a> </h4>
-                                            <div class="popular-stories-tag">
+                            <div class="col-lg-12">
+                                <div class="blog-list-style-02">
+                                    <div class="img-box">
+                                        {!! render_image_markup_by_attachment_id($data->image, '', 'grid') !!}
+                                    </div>
+                                    <div class="content">
+                                        <div class="post-meta">
+                                            <ul class="post-meta-list style-02">
                                                 @if($data->created_by == 'user')
                                                     @php $user = $data->user; @endphp
                                                 @else
                                                     @php $user = $data->admin; @endphp
                                                 @endif
-                                                <span class="tags"> <a @if(!empty($user->id)) href="{{route('frontend.user.created.blog', ['user'=> $data->created_by, 'id'=>$user->id])}}"  @endif><strong> {{$data->author ?? __('Anonymous')}} </strong></a> </span>
-                                                @foreach($data->category_id as $key => $cat)
-
-                                                        <span class="tags"><a href="{{route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)])}}">{{$cat->getTranslation('title',$user_select_lang_slug) ?? __('Uncategorized')}}</a></span>
-                                                @endforeach
-                                                <span class="tags"> {{date('d M Y',strtotime($data->created_at))}} </span>
-                                            </div>
+                                                <li class="post-meta-item">
+                                                    <a @if(!empty($user->id)) href="{{route('frontend.user.created.blog', ['user'=> $data->created_by, 'id'=>$user->id])}}"  @endif>
+                                                        <span class="text author">{{$data->author ?? __('Anonymous')}}</span>
+                                                    </a>
+                                                </li>
+                                                <li class="post-meta-item date">
+                                                    <span class="text">{{date('d M Y',strtotime($data->created_at))}}</span>
+                                                </li>
+                                            </ul>
                                         </div>
+                                        <h4 class="title">
+                                            <a href="{{route('frontend.blog.single',$data->slug)}}">{{$data->getTranslation('title',$user_select_lang_slug) ?? ' '}}</a>
+                                        </h4>
                                     </div>
                                 </div>
-                            @endforeach
-                    </div>
-                    <div class="col-lg-12">
-                        <nav class="pagination-wrapper" aria-label="Page navigation">
-                            {{$all_blogs->links()}}
-                        </nav>
+                            </div>
+                           @endforeach
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pagination" data-padding-top="50">
+                                    <ul class="pagination-list">
+                                        {{$all_blogs->links()}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="widget-area-wrapper style-02 padding-reverse">
-                        {!! render_frontend_sidebar('sidebar_05',['column' => false]) !!}
+
+                <div class="col-sm-7 col-md-6 col-lg-4">
+                    <div class="widget-area-wrapper">
+                        {!! render_frontend_sidebar('details_page_sidebar',['column' => false]) !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

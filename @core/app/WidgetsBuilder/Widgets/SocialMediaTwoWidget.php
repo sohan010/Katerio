@@ -97,11 +97,11 @@ class SocialMediaTwoWidget extends WidgetBase
         $colors = ['facebook','twitter', 'youtube','instagram','linkedin','pinterest'];
         foreach ($repeater_data['icon_'.$current_lang] as $key => $icon) {
             $icon = $icon;
-            $url = $repeater_data['url_'.$current_lang][$key] ?? [];
+            $url = $repeater_data['url_'.$current_lang][$key] ?? '#';
             $follower_text = $repeater_data['follower_text_'.$current_lang][$key] ?? [];
             $follower_number = $repeater_data['follower_number_'.$current_lang][$key] ?? [];
 
-            $condition_color_and_bg = $colors[$key % count($colors)];
+            $condition_color_and_bg = $colors[$key % count($colors)] ;
 
 
     $social_icon_markup.= <<<SOCIALICON

@@ -1,3 +1,5 @@
+<?php echo $__env->make('frontend.partials.left-bar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 <div class="topbar-area">
     <div class="container custom-container-01">
         <div class="row">

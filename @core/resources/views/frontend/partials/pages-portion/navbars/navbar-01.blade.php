@@ -1,6 +1,5 @@
 @include('frontend.partials.support')
 
-
 <!-- supportbar  area  start-->
 <div class="supportbar-area-wrapper style-02">
     <div class="container custom-container-01">
@@ -41,15 +40,28 @@
             </div>
             <div class="nav-right-content v-02">
                 <div class="support-bar-search-box style-02">
-                    <form action="">
+                    <form action="{{ route('frontend.blog.search') }}">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" name="search" id="search" class="form-control" placeholder="Search">
                             <button type="submit" class="search-btn">
                                 <i class="las la-search icon"></i>
                             </button>
                         </div>
+
+                        {{--Auto Complete Search--}}
+                        <div class="ajax-preloader-wrap"></div>
+                        <div class="autocomplete-search-data">
+                            <div class="account">
+                                <div id="show-autocomplete" style="display:none;">
+                                    <ul class="autocomplete-warp"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        {{--Auto Complete Search--}}
+
                     </form>
                 </div>
+
                 <!-- hamburger area start -->
                 <div class="hamburger-menu-wrapper right-side">
                     <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>

@@ -321,9 +321,23 @@ class BlogController extends Controller
     public function update_blog_others_page_settings(Request $request)
     {
         $request->validate( [
-
             'blog_breaking_news_show_hide_all' => 'nullable|string',
+            'blog_category_item_show' => 'nullable|string',
+            'blog_tags_item_show' => 'nullable|string',
+            'blog_search_item_show' => 'nullable|string',
         ]);
+
+        $data = [
+            'blog_category_item_show',
+            'blog_tags_item_show',
+            'blog_search_item_show',
+        ];
+
+        foreach($data as $item){
+            if($request->has($item)){
+                update_static_option($item,$request->$item);
+            }
+        }
 
         update_static_option('blog_breaking_news_show_hide_all',$request->blog_breaking_news_show_hide_all);
 

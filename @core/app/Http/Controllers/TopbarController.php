@@ -113,15 +113,15 @@ class TopbarController extends Controller
             $this->validate($request, [
                 'leftbar_social_item_show' => 'nullable|string',
                 'leftbar_show_hide' => 'nullable|string',
-                'leftbar_category_item_show' => 'nullable|string',
+                'leftbar_blog_item_show' => 'nullable|string',
                 'leftbar_tag_item_show' => 'nullable|string',
 
                 'leftbar_social_'.$lang->slug.'_title' => 'nullable|string',
-                'leftbar_category_'.$lang->slug.'_title' => 'nullable|string',
+                'leftbar_blog_'.$lang->slug.'_title' => 'nullable|string',
                 'leftbar_tag_'.$lang->slug.'_title' => 'nullable|string',
             ]);
             $leftbar_social_title = 'leftbar_social_' . $lang->slug . '_title';
-            $leftbar_category_title = 'leftbar_category_' . $lang->slug . '_title';
+            $leftbar_category_title = 'leftbar_blog_' . $lang->slug . '_title';
             $leftbar_tag_title = 'leftbar_tag_' . $lang->slug . '_title';
 
             update_static_option($leftbar_social_title, $request->$leftbar_social_title);
@@ -132,7 +132,7 @@ class TopbarController extends Controller
         $all_fields = [
             'leftbar_show_hide',
             'leftbar_social_item_show',
-            'leftbar_category_item_show',
+            'leftbar_blog_item_show',
             'leftbar_tag_item_show',
         ];
         foreach ($all_fields as $field) {

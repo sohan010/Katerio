@@ -8129,3 +8129,27 @@ pagination-list .pagination .page-item.active .page-link, .pagination-wrapper .p
   color: #DB4437;
 }
 
+.support-bar-search-box form {
+  position: relative;
+}
+
+.autocomplete-search-data {
+  position: absolute;
+  left: 0;
+}
+
+.autocomplete-warp {
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+  padding: 12px 20px !important;
+  border-radius: 15px;
+}
+
+.autocomplete-warp li{
+  margin-left: 0px !important;
+}
+
+.navbar-area .nav-container .nav-right-content ul li {
+  line-height: 40px;
+}

@@ -3,11 +3,6 @@
     {{__('Blog Others Settings')}}
 @endsection
 
-@section('style')
-   <x-media.css/>
-   <link rel="stylesheet" href="{{asset('assets/backend/css/colorpicker.css')}}">
-@endsection
-
 @section('content')
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
@@ -31,6 +26,21 @@
                                 </label>
                             </div>
 
+                            <div class="form-group">
+                                <label>{{__('Category Item Show On Category Wise Blog')}}</label>
+                                <input type="text" class="form-control" value="{{get_static_option('blog_category_item_show')}}" name="blog_category_item_show" >
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{__('Tags Item Show On Tags Wise Blog')}}</label>
+                                <input type="text" class="form-control" value="{{get_static_option('blog_tags_item_show')}}" name="blog_tags_item_show" >
+                            </div>
+
+                            <div class="form-group">
+                                <label>{{__('Search Item Show On Search Wise Blog')}}</label>
+                                <input type="text" class="form-control" value="{{get_static_option('blog_search_item_show')}}" name="blog_search_item_show" >
+                            </div>
+
                             <button id="update" type="submit" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update')}}</button>
                         </form>
                     </div>
@@ -42,37 +52,11 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('assets/backend/js/colorpicker.js')}}"></script>
     <script>
         (function($){
             "use strict";
-
             $(document).ready(function(){
-                <x-icon-picker/>
                 <x-btn.update/>
-                initColorPicker('#blog_category_video_icon_color');
-                initColorPicker('#blog_search_video_icon_color');
-                initColorPicker('#blog_tags_video_icon_color');
-                initColorPicker('#user_created_blog_video_icon_color');
-                initColorPicker('#single_page_blog_video_icon_color');
-
-                function initColorPicker(selector){
-                    $(selector).ColorPicker({
-                        color: '#852aff',
-                        onShow: function (colpkr) {
-                            $(colpkr).fadeIn(500);
-                            return false;
-                        },
-                        onHide: function (colpkr) {
-                            $(colpkr).fadeOut(500);
-                            return false;
-                        },
-                        onChange: function (hsb, hex, rgb) {
-                            $(selector).css('background-color', '#' + hex);
-                            $(selector).val('#' + hex);
-                        }
-                    });
-                }
             });
         }(jQuery));
     </script>

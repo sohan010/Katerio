@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Blog;
 use App\BlogCategory;
 use App\Helpers\HomePageStaticSettings;
 use App\Helpers\LanguageHelper;
@@ -78,9 +79,10 @@ class GlobalVariableMiddleware
 
         $navbar_number = Page::where('id',16)->first();
 
-        $social_icons_for_leftbar = TopbarInfo::take(get_static_option('leftbar_social_item_show'))->get();
-        $category_for_leftbar = BlogCategory::take(get_static_option('leftbar_category_item_show'))->get();
+        //For Leftbar
+        $blogs_for_leftbar = Blog::where('status','publish')->orderBy('id','DESC')->take(get_static_option('leftbar_blog_item_show'))->get();
         $tags_for_leftbar = Tag::take(get_static_option('leftbar_tag_item_show'))->get();
+        $social_icons_for_leftbar = SocialIcon::take(get_static_option('leftbar_social_item_show'))->get();
 
         view()->share([
             'global_static_field_data' => $static_field_data,
@@ -92,7 +94,7 @@ class GlobalVariableMiddleware
             'all_social_icons' => $all_social_icons,
             'navbar_number' => $navbar_number,
             'social_icons_for_leftbar' => $social_icons_for_leftbar,
-            'category_for_leftbar' => $category_for_leftbar,
+            'blogs_for_leftbar' => $blogs_for_leftbar,
             'tags_for_leftbar' => $tags_for_leftbar,
         ]);
 

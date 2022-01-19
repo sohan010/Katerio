@@ -109,31 +109,33 @@
                 <?php else: ?>
 
               <?php $__currentLoopData = $all_blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col-md-6 col-lg-4">
-                    <div class="blog-grid-style-03 small-02">
-                        <div class="img-box">
-                            <?php echo render_image_markup_by_attachment_id($data->image, '', 'grid'); ?>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="blog-grid-style-01">
+                            <div class="img-box">
+                                <?php echo render_image_markup_by_attachment_id($data->image, '', 'grid'); ?>
 
-                        </div>
-                        <div class="content">
-                            <div class="post-meta">
-                                <ul class="post-meta-list style-02">
-                                    <li class="post-meta-item">
-                                        <a href="#">
-                                            <span class="text author">Xgenious</span>
-                                        </a>
-                                    </li>
-                                    <li class="post-meta-item date">
-                                        <span class="text">June 19, 2021</span>
-                                    </li>
-                                </ul>
                             </div>
-                            <h4 class="title font-size-22 font-weight-600">
-                                <a href="<?php echo e(route('frontend.blog.single',$data->slug)); ?>"><?php echo e($data->getTranslation('title',$user_select_lang_slug) ?? ''); ?></a>
-                            </h4>
+                            <div class="content">
+                                <div class="post-meta">
+                                    <ul class="post-meta-list">
+                                        <li class="post-meta-item">
+                                            <?php $__currentLoopData = $data->category_id; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <a href="<?php echo e(route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)])); ?>">  <i class="las la-tag icon"></i><span class="text"><?php echo e($cat->getTranslation('title',$user_select_lang_slug) ?? __('Uncategorized')); ?></span></a>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </li>
+
+                                        <li class="post-meta-item date">
+                                            <i class="lar la-clock icon"></i>
+                                            <span class="text"><?php echo e(date('d M Y',strtotime($data->created_at))); ?> </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h4 class="title">
+                                    <a href="<?php echo e(route('frontend.blog.single',$data->slug)); ?>"><?php echo e($data->getTranslation('title',$user_select_lang_slug) ?? ''); ?></a>
+                                </h4>
+                            </div>
                         </div>
                     </div>
-                </div>
                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
             </div>
@@ -148,8 +150,6 @@
             <?php endif; ?>
         </div>
     </div>
-
-
 
 <?php $__env->stopSection(); ?>
 

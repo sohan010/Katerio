@@ -112,7 +112,7 @@
 
             <div class="col-sm-7 col-md-6 col-lg-4">
                 <div class="widget-area-wrapper">
-                    {!! render_frontend_sidebar('sidebar_01',['column' => false]) !!}
+                    {!! render_frontend_sidebar('details_page_sidebar',['column' => false]) !!}
                 </div>
             </div>
 

@@ -17,75 +17,86 @@
 
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('custom-page-title'); ?>
+    <?php echo e(__('Tags')); ?>
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 
 
-    <div class="blog-two-wrapper padding-top-70 padding-bottom-70">
+
+    <div class="blog-list-wrapper sports-blog-list-wrapper" data-padding-top="100" data-padding-bottom="100">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="row">
-                        <?php if(count($all_blogs) <= 0): ?>
-                            <div class="col-lg-12 mt-5">
-                                <div class="alert alert-warning alert-block col-md-12 ">
-                                    <strong><div class="error-message "><span><?php echo e(__('No Post Available In - ').$tag_name.__(' : Tags')); ?></span></div></strong>
+                    <div class="one-column">
+                        <div class="row">
+                            <?php if(count($all_blogs) <= 0): ?>
+                                <div class="col-lg-12 mt-5">
+                                    <div class="alert alert-warning alert-block col-md-12 ">
+                                        <strong><div class="error-message "><span><?php echo e(__('No Post Available In - ').$tag_name.__(' : Tags')); ?></span></div></strong>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endif; ?>
-                            <?php $__currentLoopData = $all_blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php
-                                    $video_url =  $data->video_url;
-                                    $icon_color = get_static_option('blog_tag_video_icon_color');
-                                ?>
-                                <div class="col-lg-6 col-md-12 wow animated zoomIn" data-wow-delay=".1s">
-                                    <div class="single-popular-stories margin-top-30">
-                                        <div class="popular-stories-thumb video-parent-global">
-                                            <?php echo render_image_markup_by_attachment_id($data->image, '', 'grid'); ?>
+                            <?php endif; ?>
 
-                                            <?php if(!empty($video_url)): ?>
-                                                <div class="popup-videos ">
-                                                    <a href="<?php echo e($video_url); ?>" class="play-icon videos-play-global videos-play-small" style="color: <?php echo e($icon_color); ?>">
-                                                        <i class="las la-play icon"></i>
-                                                    </a>
-                                                </div>
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="popular-stories-contents">
-                                            <h4 class="common-title common-title-two">  <a href="<?php echo e(route('frontend.blog.single',$data->slug)); ?>"><?php echo e($data->getTranslation('title',$user_select_lang_slug) ?? ' '); ?></a> </h4>
-                                            <div class="popular-stories-tag">
+                            <?php $__currentLoopData = $all_blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="col-lg-12">
+                                <div class="blog-list-style-02">
+                                    <div class="img-box">
+                                        <?php echo render_image_markup_by_attachment_id($data->image, '', 'grid'); ?>
+
+                                    </div>
+                                    <div class="content">
+                                        <div class="post-meta">
+                                            <ul class="post-meta-list style-02">
                                                 <?php if($data->created_by == 'user'): ?>
                                                     <?php $user = $data->user; ?>
                                                 <?php else: ?>
                                                     <?php $user = $data->admin; ?>
                                                 <?php endif; ?>
-                                                <span class="tags"> <a <?php if(!empty($user->id)): ?> href="<?php echo e(route('frontend.user.created.blog', ['user'=> $data->created_by, 'id'=>$user->id])); ?>"  <?php endif; ?>><strong> <?php echo e($data->author ?? __('Anonymous')); ?> </strong></a> </span>
-                                                <?php $__currentLoopData = $data->category_id; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-                                                        <span class="tags"><a href="<?php echo e(route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)])); ?>"><?php echo e($cat->getTranslation('title',$user_select_lang_slug) ?? __('Uncategorized')); ?></a></span>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                <span class="tags"> <?php echo e(date('d M Y',strtotime($data->created_at))); ?> </span>
-                                            </div>
+                                                <li class="post-meta-item">
+                                                    <a <?php if(!empty($user->id)): ?> href="<?php echo e(route('frontend.user.created.blog', ['user'=> $data->created_by, 'id'=>$user->id])); ?>"  <?php endif; ?>>
+                                                        <span class="text author"><?php echo e($data->author ?? __('Anonymous')); ?></span>
+                                                    </a>
+                                                </li>
+                                                <li class="post-meta-item date">
+                                                    <span class="text"><?php echo e(date('d M Y',strtotime($data->created_at))); ?></span>
+                                                </li>
+                                            </ul>
                                         </div>
+                                        <h4 class="title">
+                                            <a href="<?php echo e(route('frontend.blog.single',$data->slug)); ?>"><?php echo e($data->getTranslation('title',$user_select_lang_slug) ?? ' '); ?></a>
+                                        </h4>
                                     </div>
                                 </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
-                    <div class="col-lg-12">
-                        <nav class="pagination-wrapper" aria-label="Page navigation">
-                            <?php echo e($all_blogs->links()); ?>
+                            </div>
+                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </div>
 
-                        </nav>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pagination" data-padding-top="50">
+                                    <ul class="pagination-list">
+                                        <?php echo e($all_blogs->links()); ?>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="widget-area-wrapper style-02 padding-reverse">
-                        <?php echo render_frontend_sidebar('sidebar_05',['column' => false]); ?>
+
+                <div class="col-sm-7 col-md-6 col-lg-4">
+                    <div class="widget-area-wrapper">
+                        <?php echo render_frontend_sidebar('details_page_sidebar',['column' => false]); ?>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('frontend.frontend-page-master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\katerio\@core\Modules/Blog\Resources/views/frontend/blog/blog-tags.blade.php ENDPATH**/ ?>

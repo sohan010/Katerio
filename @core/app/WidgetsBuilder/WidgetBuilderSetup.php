@@ -18,6 +18,8 @@ class WidgetBuilderSetup
             'BlogInstagramWidget',
             'AddBannerWidget',
             'BlogTagsWidget',
+            'BlogTagsWidgetTwo',
+            'BlogTagsWidgetThree',
             'PollVotingWidget',
             'Advertise',
             'NewsletterWidget',
@@ -31,7 +33,7 @@ class WidgetBuilderSetup
             'SocialMediaWidgetFour',
             'LatestNewsWidget',
             'MostVisitedBlogPostWidget',
-            'BlogTagsWidgetTwo',
+            'MostVisitedBlogTwoWidget',
             'BlogCategoryWidgetStyleTwo',
             'BlogCategoryWidgetStyleThree',
             'BannerTwoWidget',
@@ -45,7 +47,7 @@ class WidgetBuilderSetup
             'sidebar_01',
             'sidebar_02',
             'sidebar_03',
-
+            'details_page_sidebar',
         ];
     }
 

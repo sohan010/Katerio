@@ -76,7 +76,7 @@ class BlogController extends Controller
 
     public function category_wise_blog_page($id)
     {
-        $all_blogs = Blog::whereJsonContains('category_id', $id)->orderBy('id', 'desc')->paginate(4);
+        $all_blogs = Blog::whereJsonContains('category_id', $id)->orderBy('id', 'desc')->paginate(get_static_option('blog_category_item_show'));
         $category_name = BlogCategory::where(['id' => $id])->first()->title;
 
         return view(self::BASE_PATH.'blog.blog-category')->with([
@@ -95,14 +95,14 @@ class BlogController extends Controller
         $html_markup = '';
         foreach ($all_data as $data) {
             $route = route('frontend.blog.single', ['slug' => $data->slug]);
-            $html_markup .= '<li class="article-wrap"><a href="' . $route . '"> <i class="fas fa-newspaper"></i> ' . Str::words($data->title, 5) . '</a></li>';
+            $html_markup .= '<li class="article-wrap"><a href="' . $route . '"> <i class="fas fa-newspaper"></i> ' . Str::words($data->title, 6) . '</a></li>';
         }
         return response()->json($html_markup);
     }
 
     public function tags_wise_blog_page($tag)
     {
-        $all_blogs = Blog::whereJsonContains('tag_id', $tag)->paginate(4);
+        $all_blogs = Blog::whereJsonContains('tag_id', $tag)->paginate(get_static_option('blog_tags_item_show'));
 
         return view(self::BASE_PATH.'blog.blog-tags')->with([
             'all_blogs' => $all_blogs,
@@ -119,7 +119,7 @@ class BlogController extends Controller
             ['search.required' => 'Enter anything to search']);
 
         $all_blogs = Blog::Where('title', 'LIKE', '%' . $request->search . '%')
-            ->orderBy('id', 'desc')->paginate(6);
+            ->orderBy('id', 'desc')->paginate(get_static_option('blog_search_item_show'));
 
         return view(self::BASE_PATH.'blog.blog-search')->with([
             'all_blogs' => $all_blogs,
@@ -290,13 +290,13 @@ HTML;
         if (empty($user_info)) {
             abort(404);
         }
-        return view('frontend.pages.blog.user-blog', compact('all_blogs', 'user_info'));
+        return view(self::BASE_PATH.'blog.user-blog', compact('all_blogs', 'user_info'));
     }
 
     public function author_profile($id)
     {
         $author_info = User::find($id);
-        $all_blogs = Blog::where('user_id', $id)->paginate(6);
+        $all_blogs = Blog::where('user_id', $id)->where('status','publish')->paginate(6);
         if (empty($author_info)) {
             abort(404);
         }
@@ -384,7 +384,10 @@ HTML;
         }
 
 
+
     }
+
+
 
 
 }

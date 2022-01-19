@@ -103,30 +103,32 @@
                 @else
 
               @foreach($all_blogs as $data)
-                <div class="col-md-6 col-lg-4">
-                    <div class="blog-grid-style-03 small-02">
-                        <div class="img-box">
-                            {!! render_image_markup_by_attachment_id($data->image, '', 'grid') !!}
-                        </div>
-                        <div class="content">
-                            <div class="post-meta">
-                                <ul class="post-meta-list style-02">
-                                    <li class="post-meta-item">
-                                        <a href="#">
-                                            <span class="text author">Xgenious</span>
-                                        </a>
-                                    </li>
-                                    <li class="post-meta-item date">
-                                        <span class="text">June 19, 2021</span>
-                                    </li>
-                                </ul>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="blog-grid-style-01">
+                            <div class="img-box">
+                                {!! render_image_markup_by_attachment_id($data->image, '', 'grid') !!}
                             </div>
-                            <h4 class="title font-size-22 font-weight-600">
-                                <a href="{{route('frontend.blog.single',$data->slug)}}">{{$data->getTranslation('title',$user_select_lang_slug) ?? ''}}</a>
-                            </h4>
+                            <div class="content">
+                                <div class="post-meta">
+                                    <ul class="post-meta-list">
+                                        <li class="post-meta-item">
+                                            @foreach($data->category_id as $key => $cat)
+                                                <a href="{{route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)])}}">  <i class="las la-tag icon"></i><span class="text">{{$cat->getTranslation('title',$user_select_lang_slug) ?? __('Uncategorized')}}</span></a>
+                                            @endforeach
+                                        </li>
+
+                                        <li class="post-meta-item date">
+                                            <i class="lar la-clock icon"></i>
+                                            <span class="text">{{date('d M Y',strtotime($data->created_at))}} </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h4 class="title">
+                                    <a href="{{route('frontend.blog.single',$data->slug)}}">{{$data->getTranslation('title',$user_select_lang_slug) ?? ''}}</a>
+                                </h4>
+                            </div>
                         </div>
                     </div>
-                </div>
                @endforeach
 
             </div>
@@ -140,7 +142,5 @@
             @endif
         </div>
     </div>
-
-
 
 @endsection

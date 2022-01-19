@@ -8,6 +8,7 @@ use App\Blog;
 use App\BlogCategory;
 use App\EventCategory;
 use App\Language;
+use App\PageBuilder\Fields\Number;
 use App\WidgetsBuilder\WidgetBase;
 use Illuminate\Support\Str;
 
@@ -16,7 +17,6 @@ class BlogCategoryWidgetStyleTwo extends WidgetBase
 
     public function admin_render()
     {
-        // TODO: Implement admin_render() method.
         $output = $this->admin_form_before();
         $output .= $this->admin_form_start();
         $output .= $this->default_fields();
@@ -33,14 +33,18 @@ class BlogCategoryWidgetStyleTwo extends WidgetBase
                 'id' => "nav-home-" . $lang->slug
             ]);
             $widget_title = $widget_saved_values['widget_title_' . $lang->slug] ?? '';
-            $output .= '<div class="form-group"><input type="text" name="widget_title_' . $lang->slug . '" class="form-control" placeholder="' . __('Widget Title') . '" value="' . $widget_title . '"></div>';
+            $output .= '<div class="form-group"> <label>' .__('Widget Title').' </label><input type="text" name="widget_title_' . $lang->slug . '" class="form-control" placeholder="' . __('Widget Title') . '" value="' . $widget_title . '"></div>';
 
             $output .= $this->admin_language_tab_content_end();
         }
         $output .= $this->admin_language_tab_end();
         //end multi langual tab option
-        $post_items = $widget_saved_values['post_items'] ?? '';
-        $output .= '<div class="form-group"><input type="text" name="post_items" class="form-control" placeholder="' . __('Post Items') . '" value="' . $post_items . '"></div>';
+
+        $output .= Number::get([
+            'name' => 'category_items',
+            'label' => __('Category Items'),
+            'value' => $widget_saved_values['category_items'] ?? null,
+        ]);
 
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
@@ -51,45 +55,47 @@ class BlogCategoryWidgetStyleTwo extends WidgetBase
 
     public function frontend_render()
     {
-        // TODO: Implement frontend_render() method.
+        $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_saved_values = $this->get_settings();
+        $widget_title = $settings['widget_title_' . $user_selected_language] ?? '';
+        $category_items = $settings['category_items'] ?? '';
 
-        $widget_title = $widget_saved_values['widget_title_' . $user_selected_language] ?? '';
-        $post_items = $widget_saved_values['post_items'] ?? '';
+        $blog_categories = BlogCategory::where('status','publish')->orderBy('id', 'DESC')->take($category_items)->get();
 
-        $blog_categories = BlogCategory::where('status','publish')->orderBy('id', 'DESC')->take($post_items)->get();
+        $category_markup = '';
+        foreach ($blog_categories as $item){
 
-
-        $output = $this->widget_before('widget_archive');
-
-        $output.= '<div class="rights-content-wrapper padding-top-30">';
-        if (!empty($widget_title)) {
-            $output .= '<div class="section-title-three desktop-center"><h4 class="title">' . purify_html($widget_title) . '</h4></div>';
-        }
-        $output .= '<div class="categories-contents-inner"><div class="categories-lists">';
-        foreach ($blog_categories as $cat) {
-         $bol = Blog::whereJsonContains('category_id',(string) $cat->id)->count();
-
-            $output .= '<div class="single-list">
-                                <span class="follow-para">  <a href="'.route('frontend.blog.category', ['id' => $cat->id,'any' => Str::slug($cat->title)]).'">'. purify_html($cat->getTranslation('title',$user_selected_language)).'</a></span>
-                                <span class="followers">'.$bol.'</span>
-                          
-                        </div>';
+            $title = $item->getTranslation('title',$user_selected_language);
+            $url = route('frontend.blog.category', ['id' => $item->id,'any' => Str::slug($item->title)]);
+            $bol = Blog::whereJsonContains('category_id',(string) $item->id)->count();
 
 
-        }
-        $output .= '</div></div>';
-        
-         $output.= '</div>';
-         $output .= $this->widget_after();
+ $category_markup.= <<<LIST
+   <li class="single-item">
+            <a href="{$url}" class="wrap">
+                <span class="left">{$title}</span>
+                <span class="right">{$bol}</span>
+            </a>
+        </li>
+LIST;
 
-        return $output;
+}
+
+return <<<HTML
+    <div class="widget">
+        <div class="category style-01">
+            <h4 class="widget-title style-01">{$widget_title}</h4>
+            <ul class="widget-category-list">
+                {$category_markup}             
+            </ul>
+        </div>
+    </div>
+
+HTML;
     }
 
     public function widget_title()
     {
-        // TODO: Implement widget_title() method.
         return __('Blog Category : 02');
     }
 }
