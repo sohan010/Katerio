@@ -11,7 +11,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('custom-page-title'); ?>
-    <?php echo e(__('Category')); ?>
+    <?php echo e(__('Category : ').$category_name); ?>
 
 <?php $__env->stopSection(); ?>
 

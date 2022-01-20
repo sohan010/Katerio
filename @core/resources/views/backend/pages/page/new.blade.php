@@ -205,9 +205,8 @@
                                         <option value="sidebar_01">{{__('Page Sidebar 01 Area')}}</option>
                                         <option value="sidebar_02">{{__('Page Sidebar 02 Area')}}</option>
                                         <option value="sidebar_03">{{__('Page Sidebar 03 Area')}}</option>
-                                        <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
-                                        <option value="sidebar_05">{{__('Page Sidebar 05 Area')}}</option>
-                                        <option value="sidebar_06">{{__('Page Sidebar 06 Area')}}</option>
+                                        <option value="details_page_sidebar">{{__('Details Page Sidebar')}}</option>
+
                                     </select>
                                 </div>
 
@@ -227,30 +226,9 @@
                                         <option value="sidebar_01">{{__('Page Sidebar 01 Area')}}</option>
                                         <option value="sidebar_02">{{__('Page Sidebar 02 Area')}}</option>
                                         <option value="sidebar_03">{{__('Page Sidebar 03 Area')}}</option>
-                                        <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
-                                        <option value="sidebar_05">{{__('Page Sidebar 05 Area')}}</option>
-                                        <option value="sidebar_06">{{__('Page Sidebar 06 Area')}}</option>
                                     </select>
                                 </div>
 
-
-                                <div class="form-group col-md-12">
-                                    <label>{{__('Left Column')}}</label>
-                                    <select name="widget_style" class="form-control">
-                                        <option value="col-xl-8">{{__('Column 08')}}</option>
-                                        <option value="col-xl-9">{{__('Column 09')}}</option>
-                                    </select>
-                                    <small class="text-danger">{{__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')}}</small>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label>{{__('Right Column')}}</label>
-                                    <select name="widget_style" class="form-control">
-                                        <option value="col-xl-4">{{__('Column 04')}}</option>
-                                        <option value="col-xl-3">{{__('Column 03')}}</option>
-                                    </select>
-                                    <small class="text-danger">{{__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')}}</small>
-                                </div>
 
                                 <div class="form-group col-md-12">
                                     <label>{{__('Visibility')}}</label>

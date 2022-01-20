@@ -14,7 +14,7 @@
 @endsection
 
 @section('custom-page-title')
-    {{__('Tags')}}
+    {{__('Tags : ').$tag_name}}
 @endsection
 
 @section('content')

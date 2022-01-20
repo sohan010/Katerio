@@ -15,6 +15,7 @@ use App\PageBuilder\Fields\Text;
 use App\PageBuilder\PageBuilderBase;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
 use Illuminate\Support\Str;
+use function PHPUnit\Framework\isNull;
 
 class BlogListStyleOne extends PageBuilderBase
 {
@@ -143,7 +144,6 @@ class BlogListStyleOne extends PageBuilderBase
             $blogs = $blogs->paginate($items);
         }else{
             $blogs = $blogs->get();
-
         }
 
 
@@ -159,7 +159,16 @@ class BlogListStyleOne extends PageBuilderBase
             $created_by = $item->author ?? __('Anonymous');
 
             //author image
-            $user_image = render_image_markup_by_attachment_id(optional($item->user)->image, 'image');
+            $author = NULL;
+            if(!isNull($item->user_id)){
+                $author = optional($item->user);
+            }else if(!isNull($item->admin_id)){
+                $author = optional($item->admin);
+            }else{
+                $author = optional($item->admin);
+            }
+            $user_image = render_image_markup_by_attachment_id($author->image, 'image');
+
             $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
             $created_by_image = $user_image ? $user_image : $avatar_image;
 

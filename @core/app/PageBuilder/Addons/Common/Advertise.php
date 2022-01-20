@@ -71,10 +71,10 @@ use LanguageFallbackForPageBuilder;
 
         $output .= Select::get([
             'name' => 'container_class',
-            'label' => __('Advertisement Container'),
+            'label' => __('Advertisement Alignment'),
             'options' => [
-                '' => __('Default'),
-                'container-two' => __('Container Two'),
+                '' => __('left'),
+                'leaderboard' => __('Center'),
             ],
             'value' => $widget_saved_values['container_class'] ?? null,
             'info' => __('set Advertisement Container')
@@ -141,13 +141,13 @@ use LanguageFallbackForPageBuilder;
         }
 
    return <<<HTML
-    <div class="banner-ads-area">
-       <div class="container {$custom_container}" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+    <div class="banner-ads-area ">
+       <div class="container " data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
        <div class="row">
        <div class="col-lg-12">
         <div class="widget widget-add add-banner-x add-1 home_advertisement mt-5 wow animated zoomIn" data-wow-delay=".3s">
         <input type="hidden" id="add_id" value="$add->id"> 
-           <div class="single-banner-ads">
+           <div class="single-banner-ads {$custom_container}">
            {$add_markup}
         </div>
         </div>

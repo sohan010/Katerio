@@ -81,7 +81,7 @@ class LatestNewsWidget extends WidgetBase
                         </div>
                         <div class="content">
                             <h4 class="title">
-                                <a href="' . route('frontend.blog.single',$post->slug) . '">'.$post->getTranslation('title',$user_selected_language).'</a>
+                                <a href="' . route('frontend.blog.single',$post->slug) . '">'.Str::words($post->getTranslation('title',$user_selected_language),8).'</a>
                             </h4>
                             <div class="post-meta">
                                 <ul class="post-meta-list style-02">

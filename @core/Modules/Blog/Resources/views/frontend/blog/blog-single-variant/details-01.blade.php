@@ -6,8 +6,17 @@
     $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
     $session_user_given_password_get = \Illuminate\Support\Facades\Session::get('user_given_password');
 
+      $author = NULL;
+       if(!is_null($blog_post->user_id)){
+               $author = optional($blog_post->user);
+           }else if(!is_null($blog_post->admin_id)){
+               $author = optional($blog_post->admin);
+           }else{
+               $author = optional($blog_post->admin);
+           }
+
     //Author image
-    $user_image = render_image_markup_by_attachment_id(optional($blog_post->user)->image, 'image');
+    $user_image = render_image_markup_by_attachment_id(optional($author)->image, 'image');
     $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
     $created_by_image = $user_image ? $user_image : $avatar_image;
 

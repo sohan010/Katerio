@@ -10,6 +10,7 @@
             <?php
                 $images = explode("|",$blog_post->image_gallery);
                 $video_url = $blog_post->video_url;
+
             ?>
 
             <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -23,6 +24,7 @@
         </div>
 
     <?php else: ?>
+
         <div class="img-bg" <?php echo render_background_image_markup_by_attachment_id($blog_post->image); ?>></div>
     <?php endif; ?>
 

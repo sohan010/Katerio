@@ -66,8 +66,6 @@ class PagesController extends Controller
         $page->footer_variant = $request->footer_variant;
         $page->breadcrumb_status = $request->breadcrumb_status;
         $page->widget_style = $request->widget_style;
-        $page->left_column = $request->left_column;
-        $page->right_column = $request->right_column;
 
         $Metas = [
             'meta_title'=> purify_html($request->meta_title),
@@ -133,8 +131,6 @@ class PagesController extends Controller
         $page->footer_variant = $request->footer_variant;
         $page->breadcrumb_status = $request->breadcrumb_status;
         $page->widget_style = $request->widget_style;
-        $page->left_column = $request->left_column;
-        $page->right_column = $request->right_column;
 
         $Metas = [
             'meta_title'=> purify_html($request->meta_title),

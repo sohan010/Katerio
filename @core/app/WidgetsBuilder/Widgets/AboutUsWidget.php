@@ -74,7 +74,7 @@ class AboutUsWidget extends WidgetBase
 
         $output .='<div class="about_us_widget style-01">';
         $output .= $condition_for_logo;
-        $output .= '<p>' .  purify_html($description) . '</p>';
+        $output .= '<div class="content"><p class="info">' .  purify_html($description) . '</p></div>';
         $output .= '</div>';
         $output .= '</div>';
 

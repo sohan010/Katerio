@@ -8153,3 +8153,41 @@ pagination-list .pagination .page-item.active .page-link, .pagination-wrapper .p
 .navbar-area .nav-container .nav-right-content ul li {
   line-height: 40px;
 }
+
+h6#total_vote {
+  margin-top: 20px;
+  text-align: left !important;
+}
+
+a.view_options_btn {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+h5#qs {
+  margin-bottom: 15px;
+}
+
+strong {
+  display: flex;
+  padding: 12px 10px;
+  font-size: 12px;
+  justify-content: space-between;
+}
+
+.vote_progress_content .progress {
+  height: auto;
+}
+
+.footer_01-widget.widget .contact_info_list .single-info-item {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.footer_01-widget.widget .contact_info_list .single-info-item .icon {
+  margin-right: 10px;
+}
+
+.footer_01-widget.widget .contact_info_list .single-info-item .icon i {
+  color: var(--main-color-one);
+}

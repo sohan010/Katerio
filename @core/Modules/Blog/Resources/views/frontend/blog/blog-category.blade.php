@@ -9,7 +9,7 @@
 @endsection
 
 @section('custom-page-title')
-    {{__('Category')}}
+    {{__('Category : ').$category_name}}
 @endsection
 
 @section('page-meta-data')

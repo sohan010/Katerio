@@ -10,6 +10,7 @@
             @php
                 $images = explode("|",$blog_post->image_gallery);
                 $video_url = $blog_post->video_url;
+
             @endphp
 
             @foreach($images as $img)
@@ -22,6 +23,7 @@
         </div>
 
     @else
+
         <div class="img-bg" {!! render_background_image_markup_by_attachment_id($blog_post->image) !!}></div>
     @endif
 

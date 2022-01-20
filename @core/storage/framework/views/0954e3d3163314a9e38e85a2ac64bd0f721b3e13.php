@@ -259,9 +259,8 @@
                                         <option value="sidebar_01"><?php echo e(__('Page Sidebar 01 Area')); ?></option>
                                         <option value="sidebar_02"><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                         <option value="sidebar_03"><?php echo e(__('Page Sidebar 03 Area')); ?></option>
-                                        <option value="sidebar_04"><?php echo e(__('Page Sidebar 04 Area')); ?></option>
-                                        <option value="sidebar_05"><?php echo e(__('Page Sidebar 05 Area')); ?></option>
-                                        <option value="sidebar_06"><?php echo e(__('Page Sidebar 06 Area')); ?></option>
+                                        <option value="details_page_sidebar"><?php echo e(__('Details Page Sidebar')); ?></option>
+
                                     </select>
                                 </div>
 
@@ -281,30 +280,9 @@
                                         <option value="sidebar_01"><?php echo e(__('Page Sidebar 01 Area')); ?></option>
                                         <option value="sidebar_02"><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                         <option value="sidebar_03"><?php echo e(__('Page Sidebar 03 Area')); ?></option>
-                                        <option value="sidebar_04"><?php echo e(__('Page Sidebar 04 Area')); ?></option>
-                                        <option value="sidebar_05"><?php echo e(__('Page Sidebar 05 Area')); ?></option>
-                                        <option value="sidebar_06"><?php echo e(__('Page Sidebar 06 Area')); ?></option>
                                     </select>
                                 </div>
 
-
-                                <div class="form-group col-md-12">
-                                    <label><?php echo e(__('Left Column')); ?></label>
-                                    <select name="widget_style" class="form-control">
-                                        <option value="col-xl-8"><?php echo e(__('Column 08')); ?></option>
-                                        <option value="col-xl-9"><?php echo e(__('Column 09')); ?></option>
-                                    </select>
-                                    <small class="text-danger"><?php echo e(__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')); ?></small>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label><?php echo e(__('Right Column')); ?></label>
-                                    <select name="widget_style" class="form-control">
-                                        <option value="col-xl-4"><?php echo e(__('Column 04')); ?></option>
-                                        <option value="col-xl-3"><?php echo e(__('Column 03')); ?></option>
-                                    </select>
-                                    <small class="text-danger"><?php echo e(__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')); ?></small>
-                                </div>
 
                                 <div class="form-group col-md-12">
                                     <label><?php echo e(__('Visibility')); ?></label>

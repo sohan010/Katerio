@@ -31,7 +31,7 @@
 
 
 <?php if($page_post->layout === 'home_page_layout_two'): ?>
-    <div class="recent-stories-area-wrapper index-01" data-padding-top="100" data-padding-bottom="0">
+    <div class="recent-stories-area-wrapper index-01" data-padding-top="100" >
             <div class="container custom-container-01">
                 <div class="row">
                     <div class="col-xl-8">
@@ -66,7 +66,7 @@
 
                 </div>
 
-                <div class="col-xl-4">
+                <div class="col-xl-4" data-padding-bottom="100">
                     <div class="widget-area-wrapper style-<?php echo e($page_post->widget_style); ?>">
                         <?php echo render_frontend_sidebar($page_post->sidebar_layout_two,['column' => false]); ?>
 
@@ -87,8 +87,8 @@
 
 
 <?php if($page_post->layout === 'sidebar_layout'): ?>
- <div class="blog-grid-wrapper video"data-padding-top="100" data-padding-bottom="100">
-    <div class="container">
+    <div class="blog-list-wrapper blog-standard-wrapper" data-padding-top="100" data-padding-bottom="100">
+        <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <?php echo \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar',$page_post->id); ?>

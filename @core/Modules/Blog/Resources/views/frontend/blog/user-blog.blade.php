@@ -9,7 +9,7 @@
 @endsection
 
 @section('custom-page-title')
-    {{__('User Blogs')}}
+    {{__('Author Posts')}}
 @endsection
 
 @section('page-meta-data')

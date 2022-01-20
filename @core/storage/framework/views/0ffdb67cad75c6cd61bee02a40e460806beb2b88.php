@@ -239,9 +239,8 @@
                                     <option value="sidebar_01"<?php if($page_post->sidebar_layout == 'sidebar_01'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 01 Area')); ?></option>
                                     <option value="sidebar_02"<?php if($page_post->sidebar_layout == 'sidebar_02'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                     <option value="sidebar_03"<?php if($page_post->sidebar_layout == 'sidebar_03'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 03 Area')); ?></option>
-                                    <option value="sidebar_04"<?php if($page_post->sidebar_layout == 'sidebar_04'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 04 Area')); ?></option>
-                                    <option value="sidebar_05"<?php if($page_post->sidebar_layout == 'sidebar_05'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 05 Area')); ?></option>
-                                    <option value="sidebar_06"<?php if($page_post->sidebar_layout == 'sidebar_06'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 06 Area')); ?></option>
+                                    <option value="details_page_sidebar"<?php if($page_post->sidebar_layout == 'details_page_sidebar'): ?> selected <?php endif; ?>><?php echo e(__('Details Page Sidebar')); ?></option>
+
                                 </select>
                             </div>
 
@@ -261,29 +260,9 @@
                                     <option value="sidebar_01"<?php if($page_post->sidebar_layout_two == 'sidebar_01'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 01 Area')); ?></option>
                                     <option value="sidebar_02"<?php if($page_post->sidebar_layout_two == 'sidebar_02'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                     <option value="sidebar_03"<?php if($page_post->sidebar_layout_two == 'sidebar_03'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 03 Area')); ?></option>
-                                    <option value="sidebar_04"<?php if($page_post->sidebar_layout_two == 'sidebar_04'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 04 Area')); ?></option>
-                                    <option value="sidebar_05"<?php if($page_post->sidebar_layout_two == 'sidebar_05'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 05 Area')); ?></option>
-                                    <option value="sidebar_06"<?php if($page_post->sidebar_layout_two == 'sidebar_06'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 06 Area')); ?></option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-12">
-                                <label><?php echo e(__('Left Column (Extra Large)')); ?></label>
-                                <select name="left_column" class="form-control">
-                                    <option value="col-xl-8" <?php if($page_post->left_column == 'col-xl-8'): ?> selected <?php endif; ?> ><?php echo e(__('Column 08')); ?></option>
-                                    <option value="col-xl-9" <?php if($page_post->left_column == 'col-xl-9'): ?> selected <?php endif; ?>><?php echo e(__('Column 09')); ?></option>
-                                </select>
-                                <small class="text-danger"><?php echo e(__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')); ?></small>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label><?php echo e(__('Right Column (Extra Large)')); ?></label>
-                                <select name="right_column" class="form-control">
-                                    <option value="col-xl-4" <?php if($page_post->right_column == 'col-xl-4'): ?> selected <?php endif; ?>><?php echo e(__('Column 04')); ?></option>
-                                    <option value="col-xl-3" <?php if($page_post->right_column == 'col-xl-3'): ?> selected <?php endif; ?>><?php echo e(__('Column 03')); ?></option>
-                                </select>
-                                <small class="text-danger"><?php echo e(__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')); ?></small>
-                            </div>
 
                             <div class="form-group col-md-12">
                                 <label><?php echo e(__('Visibility')); ?></label>

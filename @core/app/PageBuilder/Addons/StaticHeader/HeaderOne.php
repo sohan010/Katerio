@@ -18,6 +18,7 @@ use App\PageBuilder\Fields\Text;
 use App\PageBuilder\Fields\Textarea;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
 use Illuminate\Support\Str;
+use function PHPUnit\Framework\isNull;
 
 class HeaderOne extends \App\PageBuilder\PageBuilderBase
 {
@@ -126,11 +127,20 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
             $route = route('frontend.blog.single', $item->slug);
             $title = Str::words($item->getTranslation('title', $current_lang),13);
             $created_by = SanitizeInput::esc_html($item->author ?? __('Anonymous'));
-
             $date = date('M d, Y', strtotime($item->created_at));
 
+
             //author image
-            $user_image = render_image_markup_by_attachment_id(optional($item->user)->image, 'image');
+            $author = NULL;
+            if(!isNull($item->user_id)){
+                $author = optional($item->user);
+            }else if(!isNull($item->admin_id)){
+                $author = optional($item->admin);
+            }else{
+                $author = optional($item->admin);
+            }
+            $user_image = render_image_markup_by_attachment_id($author->image, 'image');
+
             $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
             $created_by_image = $user_image ? $user_image : $avatar_image;
 

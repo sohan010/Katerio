@@ -82,9 +82,9 @@ class PollVotingWidget extends WidgetBase
         }
         $output = $this->widget_before('widget_archive'); //render widget before content
 
-        $output.= '<div class="widget-poll padding-top-30 margin-reverse-30 voting-custom wow bounceInUp" data-wow-duration="1.5s">';
+        $output.= '<div class=" widget widget-poll voting-custom wow bounceInUp" data-wow-duration="1.5s">';
         if (!empty($widget_title)) {
-            $output .= '<div class="section-title"><h4 class="title">' . $widget_title . '</h4></div>';
+            $output .= '<h4 class="widget-title style-02">' . $widget_title . '</h4>';
         }
         $output .= '<ul class="list">';
 
@@ -110,7 +110,7 @@ class PollVotingWidget extends WidgetBase
                  $output.= ' <div class="vote_progress_content" style="display: none">
                     
                       <div class="progress mt-4">
-                          <div class="progress-bar" role="progressbar" style="width: '. $avg .' % ; background-color: '.$colors2[$a % count($colors2)].' " aria-valuenow="'.$avg.'"
+                          <div class="progress-bar text-left" role="progressbar" style="width: '. $avg .'% ; background-color: '.$colors2[$a % count($colors2)].' " aria-valuenow="'.$avg.'"
                                   aria-valuemin="0" aria-valuemax="100"><strong>'.$name . '  '. ("($count)").' <span class="progress-percentage">'.ceil($avg ).'%</span> </strong></div>
                             </div>
                      </div>';

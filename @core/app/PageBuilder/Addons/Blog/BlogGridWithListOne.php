@@ -15,6 +15,7 @@ use App\PageBuilder\Fields\Text;
 use App\PageBuilder\PageBuilderBase;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
 use Illuminate\Support\Str;
+use function PHPUnit\Framework\isNull;
 
 class BlogGridWithListOne extends PageBuilderBase
 {
@@ -159,7 +160,16 @@ class BlogGridWithListOne extends PageBuilderBase
             $created_by = $item->author ?? __('Anonymous');
 
             //author image
-            $user_image = render_image_markup_by_attachment_id(optional($item->user)->image, 'image');
+            $author = NULL;
+            if(!isNull($item->user_id)){
+                $author = optional($item->user);
+            }else if(!isNull($item->admin_id)){
+                $author = optional($item->admin);
+            }else{
+                $author = optional($item->admin);
+            }
+            $user_image = render_image_markup_by_attachment_id($author->image, 'image');
+
             $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
             $created_by_image = $user_image ? $user_image : $avatar_image;
 
@@ -234,9 +244,18 @@ TOPLIST;
                 $Tcreated_by = $Titem->author ?? __('Anonymous');
 
                 //author image
-                $Tuser_image = render_image_markup_by_attachment_id(optional($Titem->user)->image, 'image');
-                $Tavatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
-                $Tcreated_by_image = $Tuser_image ? $Tuser_image : $Tavatar_image;
+                $Tauthor = NULL;
+                if(!isNull($Titem->user_id)){
+                    $Tauthor = optional($Titem->user);
+                }else if(!isNull($item->admin_id)){
+                    $Tauthor = optional($Titem->admin);
+                }else{
+                    $Tauthor = optional($Titem->admin);
+                }
+                $Tuser_image = render_image_markup_by_attachment_id($Tauthor->image, 'image');
+
+                $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'),'image');
+                $Tcreated_by_image = $Tuser_image ? $Tuser_image : $avatar_image;
 
                 $Tcategory_markup = '';
                 foreach ($Titem->category_id as $cat) {

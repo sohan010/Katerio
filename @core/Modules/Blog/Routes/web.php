@@ -63,9 +63,7 @@ Route::group(['prefix'=>'admin-home'],function() {
         Route::post('/bulk-action', 'BlogTagsController@bulk_action')->name('admin.blog.tags.bulk.action');
     });
 
-
 });
-
 
 
 /*----------------------------------------------------------------------------------------------------------------------------

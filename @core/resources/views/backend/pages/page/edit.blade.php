@@ -197,9 +197,8 @@
                                     <option value="sidebar_01"@if($page_post->sidebar_layout == 'sidebar_01') selected @endif>{{__('Page Sidebar 01 Area')}}</option>
                                     <option value="sidebar_02"@if($page_post->sidebar_layout == 'sidebar_02') selected @endif>{{__('Page Sidebar 02 Area')}}</option>
                                     <option value="sidebar_03"@if($page_post->sidebar_layout == 'sidebar_03') selected @endif>{{__('Page Sidebar 03 Area')}}</option>
-                                    <option value="sidebar_04"@if($page_post->sidebar_layout == 'sidebar_04') selected @endif>{{__('Page Sidebar 04 Area')}}</option>
-                                    <option value="sidebar_05"@if($page_post->sidebar_layout == 'sidebar_05') selected @endif>{{__('Page Sidebar 05 Area')}}</option>
-                                    <option value="sidebar_06"@if($page_post->sidebar_layout == 'sidebar_06') selected @endif>{{__('Page Sidebar 06 Area')}}</option>
+                                    <option value="details_page_sidebar"@if($page_post->sidebar_layout == 'details_page_sidebar') selected @endif>{{__('Details Page Sidebar')}}</option>
+
                                 </select>
                             </div>
 
@@ -219,29 +218,9 @@
                                     <option value="sidebar_01"@if($page_post->sidebar_layout_two == 'sidebar_01') selected @endif>{{__('Page Sidebar 01 Area')}}</option>
                                     <option value="sidebar_02"@if($page_post->sidebar_layout_two == 'sidebar_02') selected @endif>{{__('Page Sidebar 02 Area')}}</option>
                                     <option value="sidebar_03"@if($page_post->sidebar_layout_two == 'sidebar_03') selected @endif>{{__('Page Sidebar 03 Area')}}</option>
-                                    <option value="sidebar_04"@if($page_post->sidebar_layout_two == 'sidebar_04') selected @endif>{{__('Page Sidebar 04 Area')}}</option>
-                                    <option value="sidebar_05"@if($page_post->sidebar_layout_two == 'sidebar_05') selected @endif>{{__('Page Sidebar 05 Area')}}</option>
-                                    <option value="sidebar_06"@if($page_post->sidebar_layout_two == 'sidebar_06') selected @endif>{{__('Page Sidebar 06 Area')}}</option>
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-12">
-                                <label>{{__('Left Column (Extra Large)')}}</label>
-                                <select name="left_column" class="form-control">
-                                    <option value="col-xl-8" @if($page_post->left_column == 'col-xl-8') selected @endif >{{__('Column 08')}}</option>
-                                    <option value="col-xl-9" @if($page_post->left_column == 'col-xl-9') selected @endif>{{__('Column 09')}}</option>
-                                </select>
-                                <small class="text-danger">{{__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')}}</small>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label>{{__('Right Column (Extra Large)')}}</label>
-                                <select name="right_column" class="form-control">
-                                    <option value="col-xl-4" @if($page_post->right_column == 'col-xl-4') selected @endif>{{__('Column 04')}}</option>
-                                    <option value="col-xl-3" @if($page_post->right_column == 'col-xl-3') selected @endif>{{__('Column 03')}}</option>
-                                </select>
-                                <small class="text-danger">{{__('This column is for extra large device.. if you have medium/large device then you can leave this this field default')}}</small>
-                            </div>
 
                             <div class="form-group col-md-12">
                                 <label>{{__('Visibility')}}</label>

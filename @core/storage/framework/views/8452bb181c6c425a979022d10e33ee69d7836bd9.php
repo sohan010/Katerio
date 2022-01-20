@@ -11,7 +11,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('custom-page-title'); ?>
-    <?php echo e(__('User Blogs')); ?>
+    <?php echo e(__('Author Posts')); ?>
 
 <?php $__env->stopSection(); ?>
 
