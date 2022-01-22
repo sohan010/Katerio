@@ -239,6 +239,8 @@
                                     <option value="sidebar_01"<?php if($page_post->sidebar_layout == 'sidebar_01'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 01 Area')); ?></option>
                                     <option value="sidebar_02"<?php if($page_post->sidebar_layout == 'sidebar_02'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                     <option value="sidebar_03"<?php if($page_post->sidebar_layout == 'sidebar_03'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 03 Area')); ?></option>
+                                    <option value="sidebar_04"<?php if($page_post->sidebar_layout == 'sidebar_04'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 04 Area')); ?></option>
+                                    <option value="banner_newsletter_tags"<?php if($page_post->sidebar_layout == 'banner_newsletter_tags'): ?> selected <?php endif; ?>><?php echo e(__('Banner Newsletter Tags')); ?></option>
                                     <option value="details_page_sidebar"<?php if($page_post->sidebar_layout == 'details_page_sidebar'): ?> selected <?php endif; ?>><?php echo e(__('Details Page Sidebar')); ?></option>
 
                                 </select>
@@ -260,6 +262,8 @@
                                     <option value="sidebar_01"<?php if($page_post->sidebar_layout_two == 'sidebar_01'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 01 Area')); ?></option>
                                     <option value="sidebar_02"<?php if($page_post->sidebar_layout_two == 'sidebar_02'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                     <option value="sidebar_03"<?php if($page_post->sidebar_layout_two == 'sidebar_03'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 03 Area')); ?></option>
+                                    <option value="sidebar_04"<?php if($page_post->sidebar_layout_two == 'sidebar_04'): ?> selected <?php endif; ?>><?php echo e(__('Page Sidebar 04 Area')); ?></option>
+                                    <option value="banner_newsletter_tags"<?php if($page_post->sidebar_layout_two == 'banner_newsletter_tags'): ?> selected <?php endif; ?>><?php echo e(__('Banner Newsletter Tags')); ?></option>
                                 </select>
                             </div>
 

@@ -20,10 +20,12 @@ class WidgetBuilderSetup
             'BlogTagsWidget',
             'BlogTagsWidgetTwo',
             'BlogTagsWidgetThree',
+            'BlogTagsWidgetFour',
             'PollVotingWidget',
             'Advertise',
             'NewsletterWidget',
             'NewsletterWidgetTwo',
+            'NewsletterWidgetThree',
             'FooterStyleTwoWidget',
             'LogoWidget',
             'SocialMediaWidget',
@@ -36,6 +38,7 @@ class WidgetBuilderSetup
             'MostVisitedBlogTwoWidget',
             'BlogCategoryWidgetStyleTwo',
             'BlogCategoryWidgetStyleThree',
+            'BlogCategoryWidgetStyleFour',
             'BannerTwoWidget',
             'NewBlogPostWidget'
         ];
@@ -47,6 +50,8 @@ class WidgetBuilderSetup
             'sidebar_01',
             'sidebar_02',
             'sidebar_03',
+            'sidebar_04',
+            'banner_newsletter_tags',
             'details_page_sidebar',
         ];
     }

@@ -31,7 +31,7 @@
                                 <li class="list-item"><a href="#"><?php echo e($page_post->title); ?></a></li>
 
                             <?php else: ?>
-                                <li class="list-item"><a href="#"><?php echo $__env->yieldContent('page-title'); ?></a></li>
+                                <?php echo $__env->yieldContent('page-title'); ?>
                             <?php endif; ?>
                         </ul>
                     </div>

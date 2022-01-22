@@ -43,7 +43,10 @@ class PageBuilderSetup
             PageBuilder\Addons\Blog\BlogGridThree::class,
             PageBuilder\Addons\Blog\BlogListStyleTwo::class,
             PageBuilder\Addons\Blog\BlogStandardOne::class,
-            PageBuilder\Addons\Blog\BlogGridFour::class
+            PageBuilder\Addons\Blog\BlogGridFour::class,
+            PageBuilder\Addons\Blog\BlogFullWithRightSidebarOne::class,
+            PageBuilder\Addons\Blog\BlogSliderTwo::class,
+            PageBuilder\Addons\Blog\VideoSliderOne::class
 
 
         ];

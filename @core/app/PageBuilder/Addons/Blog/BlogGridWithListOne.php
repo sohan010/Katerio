@@ -151,11 +151,11 @@ class BlogGridWithListOne extends PageBuilderBase
         $topList = '';
         $top_single_item = '';
 
-        $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
-        foreach ($TopStories as $key=> $item) {
+
+        foreach ($TopStories as $item) {
             $image = render_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single', $item->slug);
-            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title', $current_lang)), 15);
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title', $current_lang)), 10);
             $date = date('M d, Y', strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
 
@@ -174,7 +174,8 @@ class BlogGridWithListOne extends PageBuilderBase
             $created_by_image = $user_image ? $user_image : $avatar_image;
 
             $category_markup = '';
-            foreach ($item->category_id as $cat) {
+            $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
+            foreach ($item->category_id as $key=> $cat) {
                 $category = $cat->getTranslation('title', $current_lang);
                 $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
                 $category_markup .= '<a class="category-style-01 ' . $colors[$key % count($colors)] . '" href="' . $category_route . '">' . $category . '</a>';
@@ -234,12 +235,12 @@ TOPLIST;
             $trendyList = '';
             $trendy_single_item = '';
 
-            $Tcolors = ['bg-color-a', 'bg-color-c', 'bg-color-b', 'bg-color-g', 'bg-color-e'];
-            foreach ($TrendyStories as $key => $Titem) {
+
+            foreach ($TrendyStories as $Titem) {
 
                 $Timage = render_image_markup_by_attachment_id($Titem->image);
                 $Troute = route('frontend.blog.single', $Titem->slug);
-                $Ttitle = Str::words(SanitizeInput::esc_html($Titem->getTranslation('title', $current_lang)), 15);
+                $Ttitle = Str::words(SanitizeInput::esc_html($Titem->getTranslation('title', $current_lang)), 10);
                 $Tdate = date('M d, Y', strtotime($Titem->created_at));
                 $Tcreated_by = $Titem->author ?? __('Anonymous');
 
@@ -258,7 +259,8 @@ TOPLIST;
                 $Tcreated_by_image = $Tuser_image ? $Tuser_image : $avatar_image;
 
                 $Tcategory_markup = '';
-                foreach ($Titem->category_id as $cat) {
+                $Tcolors = ['bg-color-a', 'bg-color-c', 'bg-color-b', 'bg-color-g', 'bg-color-e'];
+                foreach ($Titem->category_id as $key=> $cat) {
                     $Tcategory = $cat->getTranslation('title', $current_lang);
                     $Tcategory_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
                     $Tcategory_markup .= '<a class="category-style-01 ' . $Tcolors[$key % count($Tcolors)] . '" href="' . $Tcategory_route . '">' . $Tcategory . '</a>';

@@ -16,9 +16,6 @@ class LatestNewsWidget extends WidgetBase
 {
     use LanguageFallbackForPageBuilder;
 
-    /**
-     * @inheritDoc
-     */
     public function admin_render()
     {
         // TODO: Implement admin_render() method.

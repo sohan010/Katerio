@@ -33,8 +33,9 @@
 ?>
 
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e($blog_post->getTranslation('title',$user_select_lang_slug)); ?>
-
+    <?php $page_slug = get_blog_slug_by_page_id(get_static_option('blog_page')) ?>
+    <li class="list-item"><a href="<?php echo e(route('frontend.dynamic.page',$page_slug)); ?>"><?php echo e(__('Blog')); ?></a></li>
+    <li class="list-item"><a href="#"><?php echo e($blog_post->getTranslation('title',$user_select_lang_slug)); ?></a></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('custom-page-title'); ?>

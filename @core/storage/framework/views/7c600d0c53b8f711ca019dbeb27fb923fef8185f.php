@@ -18,7 +18,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('custom-page-title'); ?>
-    <?php echo e(__('Tags')); ?>
+    <?php echo e(__('Tags : ').$tag_name); ?>
 
 <?php $__env->stopSection(); ?>
 

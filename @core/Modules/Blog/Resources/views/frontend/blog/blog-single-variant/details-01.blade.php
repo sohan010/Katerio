@@ -33,7 +33,9 @@
 @endphp
 
 @section('page-title')
-    {{$blog_post->getTranslation('title',$user_select_lang_slug)}}
+    @php $page_slug = get_blog_slug_by_page_id(get_static_option('blog_page')) @endphp
+    <li class="list-item"><a href="{{route('frontend.dynamic.page',$page_slug)}}">{{__('Blog')}}</a></li>
+    <li class="list-item"><a href="#">{{$blog_post->getTranslation('title',$user_select_lang_slug)}}</a></li>
 @endsection
 
 @section('custom-page-title')

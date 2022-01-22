@@ -31,7 +31,7 @@
                                 <li class="list-item"><a href="#">{{$page_post->title}}</a></li>
 
                             @else
-                                <li class="list-item"><a href="#">@yield('page-title')</a></li>
+                                @yield('page-title')
                             @endif
                         </ul>
                     </div>

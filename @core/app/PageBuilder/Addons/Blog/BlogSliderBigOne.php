@@ -59,11 +59,11 @@ class BlogSliderBigOne extends PageBuilderBase
             $output .= NiceSelect::get([
                 'multiple'=>true,
                 'name' => 'blogs',
-                'label' => __('Category'),
-                'placeholder' => __('Select Category'),
+                'label' => __('Blogs'),
+                'placeholder' => __('Select Blogs'),
                 'options' => $categories,
                 'value' => $widget_saved_values['categories'] ?? null,
-                'info' => __('you can select category for blog, if you want to show all event leave it empty')
+                'info' => __('you can select categories for blog, if you want to show all event leave it empty')
             ]);
 
         $output .= Select::get([
@@ -91,6 +91,17 @@ class BlogSliderBigOne extends PageBuilderBase
             'label' => __('Items'),
             'value' => $widget_saved_values['items'] ?? null,
             'info' => __('enter how many item you want to show in frontend'),
+        ]);
+
+        $output .= Select::get([
+            'name' => 'custom_class',
+            'label' => __('Apply Title Background Color'),
+            'options' => [
+                'v-02' => __('None'),
+                '' => __('Apply Background Color'),
+            ],
+            'value' => $widget_saved_values['custom_class'] ?? null,
+            'info' => __('you can set title color or leave this blank')
         ]);
 
 
@@ -124,6 +135,7 @@ class BlogSliderBigOne extends PageBuilderBase
         $order = SanitizeInput::esc_html($this->setting_item('order'));
         $items = SanitizeInput::esc_html($this->setting_item('items'));
         $heading_text= SanitizeInput::esc_html($this->setting_item('heading_text_'.$current_lang));
+        $custom_class = SanitizeInput::esc_html($this->setting_item('custom_class'));
         $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
 
@@ -224,7 +236,7 @@ HTML;
     <div class="weekly-highlights-area-wrapper index-01" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
         <div class="row">
             <div class="col-xl-12">
-                <div class="section-title-style-01">
+                <div class="section-title-style-01 {$custom_class}">
                     <h3 class="title">{$heading_text}</h3>
                 </div>
 

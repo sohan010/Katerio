@@ -91,6 +91,17 @@ class BlogSliderOne extends PageBuilderBase
             'info' => __('enter how many item you want to show in frontend'),
         ]);
 
+        $output .= Select::get([
+            'name' => 'custom_class',
+            'label' => __('Apply Title Background Color'),
+            'options' => [
+                'v-02' => __('None'),
+                '' => __('Apply Background Color'),
+            ],
+            'value' => $widget_saved_values['custom_class'] ?? null,
+            'info' => __('you can set title color or leave this blank')
+        ]);
+
 
         $output .= Slider::get([
             'name' => 'padding_top',
@@ -122,6 +133,7 @@ class BlogSliderOne extends PageBuilderBase
         $order = SanitizeInput::esc_html($this->setting_item('order'));
         $items = SanitizeInput::esc_html($this->setting_item('items'));
         $heading_text= SanitizeInput::esc_html($this->setting_item('heading_text_'.$current_lang));
+        $custom_class = SanitizeInput::esc_html($this->setting_item('custom_class'));
         $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
 
@@ -141,9 +153,9 @@ class BlogSliderOne extends PageBuilderBase
         $blog_markup = '';
         foreach ($blogs as $item){
 
-            $image = render_image_markup_by_attachment_id($item->image);
+            $image = render_image_markup_by_attachment_id($item->image,'','large');
             $route = route('frontend.blog.single',$item->slug);
-            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),12);
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),11);
             $date = date('M d, Y',strtotime($item->created_at));
 
             $category_markup = '';
@@ -190,7 +202,7 @@ HTML;
         <div class="container custom-container-01">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title-style-01">
+                    <div class="section-title-style-01 {$custom_class}">
                         <h3 class="title">{$heading_text}</h3>
                     </div>
                 </div>

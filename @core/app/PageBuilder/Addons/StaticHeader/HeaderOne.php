@@ -119,9 +119,9 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
             $blogs = $blogs->get();
         }
 
-        $category_button_color = ['bg-color-a','bg-color-d','bg-color-f'];
+
         $blog_markup = '';
-        foreach ($blogs as $key=> $item) {
+        foreach ($blogs as $item) {
 
             $bg_image_markup = render_background_image_markup_by_attachment_id($item->image, '');
             $route = route('frontend.blog.single', $item->slug);
@@ -145,7 +145,8 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
             $created_by_image = $user_image ? $user_image : $avatar_image;
 
             $category_markup = '';
-            foreach ($item->category_id as $cat) {
+            $category_button_color = ['bg-color-a','bg-color-d','bg-color-f'];
+            foreach ($item->category_id as $key=> $cat) {
                 $category = $cat->getTranslation('title', $current_lang);
                 $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
                 $category_markup .= ' <a class="category-style-01 '.$category_button_color[$key % count($category_button_color)].'" href="' . $category_route . '">' . $category . '</a>';

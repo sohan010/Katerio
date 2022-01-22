@@ -163,8 +163,7 @@ class BlogStandardOne extends PageBuilderBase
 
 
         $blog_markup = '';
-        $colors = ['bg-color-g','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
-        foreach ($blogs as $key=> $item){
+        foreach ($blogs as $item){
             $image = render_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single',$item->slug);
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),15);
@@ -175,7 +174,8 @@ class BlogStandardOne extends PageBuilderBase
 
 
             $category_markup = '';
-            foreach ($item->category_id as $cat){
+            $colors = ['bg-color-g','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
+            foreach ($item->category_id as $key=> $cat){
                 $category = $cat->getTranslation('title',$current_lang);
                 $category_route = route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)]);
                 $category_markup.='<a class="category-style-01 '.$colors[$key % count($colors)].'" href="'.$category_route.'">'.$category.'</a>';

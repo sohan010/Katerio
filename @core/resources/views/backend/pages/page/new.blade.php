@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+              </div>
 
                 <div class="col-lg-4">
                     <div class="card">
@@ -205,6 +205,8 @@
                                         <option value="sidebar_01">{{__('Page Sidebar 01 Area')}}</option>
                                         <option value="sidebar_02">{{__('Page Sidebar 02 Area')}}</option>
                                         <option value="sidebar_03">{{__('Page Sidebar 03 Area')}}</option>
+                                        <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
+                                        <option value="banner_newsletter_tags">{{__('Banner Newsletter Tags')}}</option>
                                         <option value="details_page_sidebar">{{__('Details Page Sidebar')}}</option>
 
                                     </select>
@@ -226,6 +228,8 @@
                                         <option value="sidebar_01">{{__('Page Sidebar 01 Area')}}</option>
                                         <option value="sidebar_02">{{__('Page Sidebar 02 Area')}}</option>
                                         <option value="sidebar_03">{{__('Page Sidebar 03 Area')}}</option>
+                                        <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
+                                        <option value="banner_newsletter_tags">{{__('Banner Newsletter Tags')}}</option>
                                     </select>
                                 </div>
 
