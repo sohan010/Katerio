@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\Types\Null_;
+use function PHPUnit\Framework\isNull;
 
 class BlogController extends Controller
 {
@@ -324,44 +325,87 @@ HTML;
 
         $news_markup = '';
         foreach ($blogs as $item) {
-            $video_and_image = '';
+
             $image_markup = render_image_markup_by_attachment_id($item->image, '');
             $route = route('frontend.blog.single', $item->slug);
-            $title = SanitizeInput::esc_html($item->getTranslation('title', $current_lang) ?? '');
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title', $current_lang) ?? ''),9);
             $date = date('M d, Y', strtotime($item->created_at));
-            $category_markup = '';
-            foreach ($item->category_id as $cat) {
-                $category = $cat->getTranslation('title', $current_lang);
-                $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
-                $category_markup .= ' <li class="tag-list active"><a class="item" href="' . $category_route . '">' . $category . '</a></li>';
+            $category_markup2 = '';
+            $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
+            foreach ($item->category_id as $key2=> $catItem) {
+                $category2 = $catItem->getTranslation('title', $current_lang);
+                $category_route2 = route('frontend.blog.category', ['id' => $catItem->id, 'any' => Str::slug($catItem->title)]);
+                $category_markup2 .= '<a class="category-style-01 v-02 '.$colors[$key2 % count($colors)].'"  href="' . $category_route2 . '">' . $category2 . '</a>';
             }
 
-            $video_url = SanitizeInput::esc_html($item->video_url);
-            $video_and_image .= '
-                   <a href="' . $video_url . '" class="play-icon videos-play-global videos-play-small">
-                        <i class="las la-play icon"></i>
-                    </a>';
-            $video_url_condition = $video_url ? $video_and_image : '';
 
-            $news_markup .= <<<HTML
-         <div class="col-lg-6">
-            <div class="single-news margin-top-30">
-                <div class="news-thumb video-parent-global">
-                {$image_markup}
-                 <div class="popup-videos"> {$video_url_condition}</div>
-                    <ul class="news-date-tag">
-                        <li class="tag-list"> $date </li>
-                        {$category_markup}
-                    </ul>
-                </div>
-                <div class="news-contents">
-                    <a href="{$route}"><h3 class="common-title"> {$title} </h3></a>
-                </div>
+            if ($item->created_by === 'user') {
+                $user_id = $item->user_id;
+            } else {
+                $user_id = $item->admin_id;
+            }
+
+            $created_by_url = !is_null($user_id) ? route('frontend.user.created.blog', ['user' => $item->created_by, 'id' => $user_id]) : route('frontend.blog.single', $item->slug);
+
+            $comment_count = BlogComment::where('blog_id', $item->id)->count();
+            $comment_condition_check = $comment_count == 0 ? 0 : $comment_count;
+
+            $created_by = SanitizeInput::esc_html($item->author ?? __('Anonymous'));
+
+
+            //author image
+            $author = NULL;
+            if (!isNull($item->user_id)) {
+                $author = optional($item->user);
+            } else if (!isNull($item->admin_id)) {
+                $author = optional($item->admin);
+            } else {
+                $author = optional($item->admin);
+            }
+            $user_image = render_image_markup_by_attachment_id($author->image, 'image');
+
+            $avatar_image = render_image_markup_by_attachment_id(get_static_option('single_blog_page_comment_avatar_image'), 'image');
+            $created_by_image = $user_image ? $user_image : $avatar_image;
+
+
+  $news_markup .= <<<HTML
+
+ <div class="col-sm-6 col-md-6 col-lg-6">
+    <div class="blog-grid-style-01 v-02">
+        <div class="img-box">
+         {$image_markup}
+            <div class="tag-box left">
+               {$category_markup2}
             </div>
         </div>
+        <div class="content">
+            <div class="post-meta color-black">
+                <ul class="post-meta-list">
+                    <li class="post-meta-item">
+                        <a href="{$created_by_url}">
+                          {$created_by_image}
+                            <span class="text">{$created_by}</span>
+                        </a>
+                    </li>
+                    <li class="post-meta-item date">
+                        <span class="text">{$date}</span>
+                    </li>
+                    <li class="post-meta-item">
+                        <a href="#">
+                            <span class="text">{$comment_condition_check} Comments</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <h4 class="title">
+                <a href="{$route}">{$title}</a>
+            </h4>
+        </div>
+    </div>
+</div>
 
 HTML;
-        }
+}
         return response()->json(['markup' => $news_markup]);
 
     }

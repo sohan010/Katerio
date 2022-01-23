@@ -113,6 +113,7 @@ class MediaHelper
             $image_large = 'large-' . $image_db;
             $image_thumb = 'thumb-' . $image_db;
             $image_semi_large = 'semi-large-' . $image_db;
+            $image_box = 'box-' . $image_db;
 
             $folder_path = 'assets/uploads/media-uploader/';
             $resize_grid_image = Image::make($image)->resize(350, null, function ($constraint) {
@@ -122,10 +123,14 @@ class MediaHelper
                 $constraint->aspectRatio();
             });
 
-            $resize_semi_large_image = Image::make($image)->resize(540, 350, function ($constraint) {
+            $resize_semi_large_image = Image::make($image)->resize(530, 350, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $resize_thumb_image = Image::make($image)->resize(150, 150);
+
+            $image_box_image = Image::make($image)->resize(527, 427, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $resize_thumb_image = Image::make($image)->resize(200, 200);
 
             $request->file->move($folder_path, $image_db);
 
@@ -143,6 +148,7 @@ class MediaHelper
                 $resize_grid_image->save($folder_path . $image_grid);
                 $resize_large_image->save($folder_path . $image_large);
                 $resize_semi_large_image->save($folder_path . $image_semi_large);
+                $image_box_image->save($folder_path . $image_box);
             }
         }
 

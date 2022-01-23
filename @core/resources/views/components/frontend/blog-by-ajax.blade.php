@@ -1,11 +1,10 @@
     $('.load-ajax-data').hide();
-    $(document).on('click','.list-category',function(e){
+    $(document).on('click','.category-btn',function(e){
         e.preventDefault();
         let el = $(this);
         var id = $(this).data('id');
 
         $.ajax({
-
         url: "{{ route('frontend.get.blogs.by.ajax') }}",
         type: 'get',
         data:{id:id},

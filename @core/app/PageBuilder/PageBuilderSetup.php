@@ -17,14 +17,12 @@ class PageBuilderSetup
             PageBuilder\Addons\Common\CustomFormStyleOne::class,
             PageBuilder\Addons\Common\GoogleMap::class,
             PageBuilder\Addons\Common\Advertise::class,
-            PageBuilder\Addons\HeaderSlider\HeaderSliderOne::class,
             PageBuilder\Addons\Common\Search::class,
             PageBuilder\Addons\AboutArea\AboutSectionStyleOne::class,
             PageBuilder\Addons\Common\TeamMemberStyleOne::class,
             PageBuilder\Addons\Common\AuthorGrid::class,
             PageBuilder\Addons\Faq\FaqStyleOne::class,
             PageBuilder\Addons\Common\BreakingNews::class,
-            PageBuilder\Addons\HeaderSlider\HeaderSliderTwo::class,
             PageBuilder\Addons\Common\BodySliderOne::class,
             PageBuilder\Addons\Common\InstagramImage::class,
             PageBuilder\Addons\Common\AuthorsFeedback::class,
@@ -46,7 +44,13 @@ class PageBuilderSetup
             PageBuilder\Addons\Blog\BlogGridFour::class,
             PageBuilder\Addons\Blog\BlogFullWithRightSidebarOne::class,
             PageBuilder\Addons\Blog\BlogSliderTwo::class,
-            PageBuilder\Addons\Blog\VideoSliderOne::class
+            PageBuilder\Addons\Blog\VideoSliderOne::class,
+            PageBuilder\Addons\StaticHeader\HeaderTwo::class,
+            PageBuilder\Addons\Blog\BlogMasornyOne::class,
+            PageBuilder\Addons\Blog\BlogSliderThree::class,
+            PageBuilder\Addons\Blog\BlogVideoListTwo::class,
+            PageBuilder\Addons\Blog\BlogListStyleThree::class,
+            PageBuilder\Addons\Blog\BlogListStyleFour::class
 
 
         ];

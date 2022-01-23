@@ -336,6 +336,11 @@ function get_attachment_image_by_id($id, $size = null, $default = false)
                     $image_url = asset('assets/uploads/media-uploader/semi-large-' . $image_details->path);
                 }
                 break;
+            case "box":
+                if (file_exists('assets/uploads/media-uploader/box-' . $image_details->path)) {
+                    $image_url = asset('assets/uploads/media-uploader/box-' . $image_details->path);
+                }
+                break;
             case "thumb":
                 if (file_exists('assets/uploads/media-uploader/thumb-' . $image_details->path)) {
                     $image_url = asset('assets/uploads/media-uploader/thumb-' . $image_details->path);

@@ -152,7 +152,7 @@ class BlogGridWithListOne extends PageBuilderBase
         $top_single_item = '';
 
 
-        foreach ($TopStories as $item) {
+        foreach ($TopStories as $key=> $item) {
             $image = render_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single', $item->slug);
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title', $current_lang)), 10);
@@ -175,10 +175,10 @@ class BlogGridWithListOne extends PageBuilderBase
 
             $category_markup = '';
             $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
-            foreach ($item->category_id as $key=> $cat) {
+            foreach ($item->category_id as $key2=> $cat) {
                 $category = $cat->getTranslation('title', $current_lang);
                 $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
-                $category_markup .= '<a class="category-style-01 ' . $colors[$key % count($colors)] . '" href="' . $category_route . '">' . $category . '</a>';
+                $category_markup .= '<a class="category-style-01 ' . $colors[$key2 % count($colors)] . '" href="' . $category_route . '">' . $category . '</a>';
             }
 
             if ($item->created_by === 'user') {
@@ -192,7 +192,7 @@ class BlogGridWithListOne extends PageBuilderBase
             $comment_condition_check = $comment_count == 0 ? 0 : $comment_count;
 
 
-            if (!is_null($item) && $key > 2) {
+            if (!is_null($item) && $key == 2) {
                 $top_single_item .= self::top_single_item($category_markup, $image, $title, $route, $date, $created_by, $created_by_image, $created_by_url, $comment_condition_check);
             } else {
 
@@ -236,7 +236,7 @@ TOPLIST;
             $trendy_single_item = '';
 
 
-            foreach ($TrendyStories as $Titem) {
+            foreach ($TrendyStories as $Tkey=> $Titem) {
 
                 $Timage = render_image_markup_by_attachment_id($Titem->image);
                 $Troute = route('frontend.blog.single', $Titem->slug);
@@ -260,10 +260,10 @@ TOPLIST;
 
                 $Tcategory_markup = '';
                 $Tcolors = ['bg-color-a', 'bg-color-c', 'bg-color-b', 'bg-color-g', 'bg-color-e'];
-                foreach ($Titem->category_id as $key=> $cat) {
+                foreach ($Titem->category_id as $Ckey=> $cat) {
                     $Tcategory = $cat->getTranslation('title', $current_lang);
                     $Tcategory_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
-                    $Tcategory_markup .= '<a class="category-style-01 ' . $Tcolors[$key % count($Tcolors)] . '" href="' . $Tcategory_route . '">' . $Tcategory . '</a>';
+                    $Tcategory_markup .= '<a class="category-style-01 ' . $Tcolors[$Ckey % count($Tcolors)] . '" href="' . $Tcategory_route . '">' . $Tcategory . '</a>';
                 }
 
                 if ($Titem->created_by === 'user') {
@@ -277,7 +277,7 @@ TOPLIST;
                 $Tcomment_condition_check = $Tcomment_count == 0 ? 0 : $Tcomment_count;
 
 
-                if (!is_null($Titem) && $key > 2) {
+                if (!is_null($Titem) && $Tkey ==  0) {
                     $trendy_single_item .= self::trendy_single_item($Tcategory_markup, $Timage, $Ttitle, $Troute, $Tdate, $Tcreated_by, $Tcreated_by_image, $Tcreated_by_url, $Tcomment_condition_check);
                 } else {
 

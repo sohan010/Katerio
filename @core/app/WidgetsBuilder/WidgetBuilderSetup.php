@@ -33,12 +33,14 @@ class WidgetBuilderSetup
             'SocialMediaTwoWidget',
             'SocialMediaWidgetThree',
             'SocialMediaWidgetFour',
+            'SocialMediaWidgetFive',
             'LatestNewsWidget',
             'MostVisitedBlogPostWidget',
             'MostVisitedBlogTwoWidget',
             'BlogCategoryWidgetStyleTwo',
             'BlogCategoryWidgetStyleThree',
             'BlogCategoryWidgetStyleFour',
+            'BlogCategoryWidgetStyleFive',
             'BannerTwoWidget',
             'NewBlogPostWidget'
         ];
@@ -51,6 +53,8 @@ class WidgetBuilderSetup
             'sidebar_02',
             'sidebar_03',
             'sidebar_04',
+            'sidebar_05',
+            'newsletter_banner',
             'banner_newsletter_tags',
             'details_page_sidebar',
         ];

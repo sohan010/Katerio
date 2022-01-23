@@ -5,6 +5,8 @@
 
         var email = $(this).siblings('.email').val();
 
+    console.log(email);
+
         var errrContaner = $(this).parent().parent().find('.form-message-show');
         errrContaner.html('');
         var paperIcon = 'fa-paper-plane';

@@ -19,17 +19,10 @@
                     <div class="content">
                           <h3 class="title"><?php echo e($page_post->title ?? ''); ?> <?php echo $__env->yieldContent('custom-page-title'); ?> </h3>
 
-
-
-
-
-
-
                         <ul class="page-list">
                             <li class="list-item"><a href="<?php echo e(url('/')); ?>"><?php echo e(__('Home')); ?></a></li>
                             <?php if(Route::currentRouteName() === 'frontend.dynamic.page'): ?>
                                 <li class="list-item"><a href="#"><?php echo e($page_post->title); ?></a></li>
-
                             <?php else: ?>
                                 <?php echo $__env->yieldContent('page-title'); ?>
                             <?php endif; ?>

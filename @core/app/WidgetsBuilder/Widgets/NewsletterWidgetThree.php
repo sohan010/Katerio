@@ -10,6 +10,7 @@ use App\Language;
 use App\PageBuilder\Fields\IconPicker;
 use App\PageBuilder\Fields\Image;
 use App\PageBuilder\Fields\Number;
+use App\PageBuilder\Fields\Select;
 use App\PageBuilder\Fields\Summernote;
 use App\PageBuilder\Fields\Text;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
@@ -62,6 +63,17 @@ class NewsletterWidgetThree extends WidgetBase
 
         $output .= $this->admin_language_tab_end(); //have to end language tab
 
+        $output .= Select::get([
+            'name' => 'background',
+            'label' => __('Background Style'),
+            'options' => [
+                '' => __('None'),
+                'v-02' => __('Dark'),
+            ],
+            'value' => $widget_saved_values['background'] ?? null,
+            'info' => __('You can change background from here')
+        ]);
+
 
         $output .= Image::get([
             'name' => 'image',
@@ -81,6 +93,7 @@ class NewsletterWidgetThree extends WidgetBase
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
         $widget_title = $settings['title_' . $user_selected_language] ?? '';
+        $background = $settings['background'] ?? '';
         $widget_description = $settings['description_' . $user_selected_language] ?? '';
         $widget_image = render_image_markup_by_attachment_id( $settings['image']);
         $form_action = route('frontend.subscribe.newsletter');
@@ -90,7 +103,7 @@ class NewsletterWidgetThree extends WidgetBase
 
 return <<<HTML
     <div class="widget">
-        <div class="newsletter style-02 v-02">
+        <div class="newsletter style-02 {$background}">
             <div class="icon-box">
               {$widget_image}
             </div>

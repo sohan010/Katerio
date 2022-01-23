@@ -64,7 +64,7 @@ class MediaUploadController extends Controller
             $resize_large_image = Image::make($image)->resize(740, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $resize_semi_large_image = Image::make($image)->resize(540, 350, function ($constraint) {
+            $resize_semi_large_image = Image::make($image)->resize(530, 350, function ($constraint) {
                 $constraint->aspectRatio();
             });
 

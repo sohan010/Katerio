@@ -198,6 +198,8 @@
                                     <option value="sidebar_02"@if($page_post->sidebar_layout == 'sidebar_02') selected @endif>{{__('Page Sidebar 02 Area')}}</option>
                                     <option value="sidebar_03"@if($page_post->sidebar_layout == 'sidebar_03') selected @endif>{{__('Page Sidebar 03 Area')}}</option>
                                     <option value="sidebar_04"@if($page_post->sidebar_layout == 'sidebar_04') selected @endif>{{__('Page Sidebar 04 Area')}}</option>
+                                    <option value="sidebar_05"@if($page_post->sidebar_layout == 'sidebar_05') selected @endif>{{__('Page Sidebar 05 Area')}}</option>
+                                    <option value="newsletter_banner"@if($page_post->sidebar_layout == 'newsletter_banner') selected @endif>{{__(' Newsletter Banner Area')}}</option>
                                     <option value="banner_newsletter_tags"@if($page_post->sidebar_layout == 'banner_newsletter_tags') selected @endif>{{__('Banner Newsletter Tags')}}</option>
                                     <option value="details_page_sidebar"@if($page_post->sidebar_layout == 'details_page_sidebar') selected @endif>{{__('Details Page Sidebar')}}</option>
 
@@ -221,6 +223,8 @@
                                     <option value="sidebar_02"@if($page_post->sidebar_layout_two == 'sidebar_02') selected @endif>{{__('Page Sidebar 02 Area')}}</option>
                                     <option value="sidebar_03"@if($page_post->sidebar_layout_two == 'sidebar_03') selected @endif>{{__('Page Sidebar 03 Area')}}</option>
                                     <option value="sidebar_04"@if($page_post->sidebar_layout_two == 'sidebar_04') selected @endif>{{__('Page Sidebar 04 Area')}}</option>
+                                    <option value="sidebar_05"@if($page_post->sidebar_layout_two == 'sidebar_05') selected @endif>{{__('Page Sidebar 05 Area')}}</option>
+                                    <option value="newsletter_banner"@if($page_post->sidebar_layout_two == 'newsletter_banner') selected @endif>{{__(' Newsletter Banner Area')}}</option>
                                     <option value="banner_newsletter_tags"@if($page_post->sidebar_layout_two == 'banner_newsletter_tags') selected @endif>{{__('Banner Newsletter Tags')}}</option>
                                 </select>
                             </div>

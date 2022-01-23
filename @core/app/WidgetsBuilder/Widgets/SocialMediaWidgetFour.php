@@ -105,18 +105,6 @@ class SocialMediaWidgetFour extends WidgetBase
 
             $social_icon_markup.= <<<SOCIALICON
 
-<!--           <li class="single-item bg-facebook">-->
-<!--                <a href="#" class="left-content">-->
-<!--                    <span class="icon">-->
-<!--                        <i class="lab la-facebook-f"></i>-->
-<!--                    </span>-->
-<!--                    <span class="followers-numb">-->
-<!--                        <span class="count">0</span>-->
-<!--                        <span class="text">followers</span>-->
-<!--                    </span>-->
-<!--                </a>-->
-<!--            </li>-->
-
          <li class="single-item bg-{$condition_color_and_bg}">
             <a href="{$url}" class="left-content">
                 <span class="icon">

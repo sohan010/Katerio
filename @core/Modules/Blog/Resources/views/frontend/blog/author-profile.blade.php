@@ -124,7 +124,7 @@
                                     </ul>
                                 </div>
                                 <h4 class="title">
-                                    <a href="{{route('frontend.blog.single',$data->slug)}}">{{$data->getTranslation('title',$user_select_lang_slug) ?? ''}}</a>
+                                    <a href="{{route('frontend.blog.single',$data->slug)}}">{{Str::words($data->getTranslation('title',$user_select_lang_slug) ?? '',10)}}</a>
                                 </h4>
                             </div>
                         </div>

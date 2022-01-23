@@ -80,11 +80,13 @@ class NewsletterWidget extends WidgetBase
                          <input type="hidden" name="_token" value="{$csrf}">
                             <div class="form-row">
                                 <div class="newsletter-footer">
-                                  <div class="form-message-show"></div>
+                                    <div class="custom-input-wrapper">
+                                      <div class="form-message-show"></div>
                                     <div class="btn-wrapper">
-                                      <input type="text" class="form-control email" name="email"placeholder="enter email address">
+                                       <input type="text" class="form-control email" name="email"placeholder="enter email address">
                                         <button class="btn-default btn-rounded newsletter-submit-btn-footer" type="submit">subscribe</button>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </form>
