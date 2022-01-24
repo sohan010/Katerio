@@ -1779,22 +1779,41 @@ object {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 500%;
+  width: 100%;
+
+  -webkit-animation-name: news;
+  animation-name: news;
+  -webkit-animation-duration: 10s;
+  animation-duration: 30s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-direction: normal;
+  animation-direction: normal;
+
+  display: inline-flex;
+  animation-delay: 0.1s;
+  width: 100%;
 }
 .live-news-update-area-wrapper .news-box .news-box-list .single-news-item {
   position: relative;
   margin-right: 40px;
   padding-left: 30px;
-  -webkit-animation-name: news;
-          animation-name: news;
-  -webkit-animation-duration: 5s;
-          animation-duration: 5s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
-  -webkit-animation-direction: normal;
-          animation-direction: normal;
+  /*-webkit-animation-name: news;*/
+  /*        animation-name: news;*/
+  /*-webkit-animation-duration: 6s;*/
+  /*        animation-duration: 6s;*/
+  /*-webkit-animation-iteration-count: infinite;*/
+  /*        animation-iteration-count: infinite;*/
+  /*-webkit-animation-timing-function: linear;*/
+  /*        animation-timing-function: linear;*/
+  /*-webkit-animation-direction: normal;*/
+  /*        animation-direction: normal;*/
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .live-news-update-area-wrapper .news-box .news-box-list .single-news-item::after {
   position: absolute;
@@ -1808,6 +1827,8 @@ object {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
+
+
 @-webkit-keyframes news {
   to {
     -webkit-transform: translateX(-100%);
@@ -1815,6 +1836,9 @@ object {
   }
 }
 @keyframes news {
+  from{
+    transform: translateX(100%);
+  }
   to {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);

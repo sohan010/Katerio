@@ -50,7 +50,11 @@ class PageBuilderSetup
             PageBuilder\Addons\Blog\BlogSliderThree::class,
             PageBuilder\Addons\Blog\BlogVideoListTwo::class,
             PageBuilder\Addons\Blog\BlogListStyleThree::class,
-            PageBuilder\Addons\Blog\BlogListStyleFour::class
+            PageBuilder\Addons\Blog\BlogListStyleFour::class,
+            PageBuilder\Addons\StaticHeader\HeaderMixedOne::class,
+            PageBuilder\Addons\Blog\BlogSliderFour::class,
+            PageBuilder\Addons\Blog\BlogMiscOne::class,
+            PageBuilder\Addons\Blog\BlogGridFive::class
 
 
         ];

@@ -260,6 +260,9 @@
                                         <option value="sidebar_02"><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                         <option value="sidebar_03"><?php echo e(__('Page Sidebar 03 Area')); ?></option>
                                         <option value="sidebar_04"><?php echo e(__('Page Sidebar 04 Area')); ?></option>
+                                        <option value="sidebar_05"><?php echo e(__('Page Sidebar 05 Area')); ?></option>
+                                        <option value="blogs_tags"><?php echo e(__('Blogs Tags Area')); ?></option>
+                                        <option value="newsletter_banner"><?php echo e(__('Newsletter Banner Area')); ?></option>
                                         <option value="banner_newsletter_tags"><?php echo e(__('Banner Newsletter Tags')); ?></option>
                                         <option value="details_page_sidebar"><?php echo e(__('Details Page Sidebar')); ?></option>
 
@@ -283,6 +286,9 @@
                                         <option value="sidebar_02"><?php echo e(__('Page Sidebar 02 Area')); ?></option>
                                         <option value="sidebar_03"><?php echo e(__('Page Sidebar 03 Area')); ?></option>
                                         <option value="sidebar_04"><?php echo e(__('Page Sidebar 04 Area')); ?></option>
+                                        <option value="sidebar_05"><?php echo e(__('Page Sidebar 05 Area')); ?></option>
+                                        <option value="blogs_tags"><?php echo e(__('Blogs Tags Area')); ?></option>
+                                        <option value="newsletter_banner"><?php echo e(__('Newsletter Banner Area')); ?></option>
                                         <option value="banner_newsletter_tags"><?php echo e(__('Banner Newsletter Tags')); ?></option>
                                     </select>
                                 </div>

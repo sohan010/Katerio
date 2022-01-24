@@ -54,6 +54,7 @@ class WidgetBuilderSetup
             'sidebar_03',
             'sidebar_04',
             'sidebar_05',
+            'blogs_tags',
             'newsletter_banner',
             'banner_newsletter_tags',
             'details_page_sidebar',

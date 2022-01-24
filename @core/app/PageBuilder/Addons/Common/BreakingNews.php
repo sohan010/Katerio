@@ -27,7 +27,7 @@ class BreakingNews extends PageBuilderBase
 
     public function preview_image()
     {
-        return 'header/breaking_news.jpg';
+        return 'header/breaking-news.png';
     }
 
     public function admin_render()
@@ -96,21 +96,24 @@ class BreakingNews extends PageBuilderBase
         $news_markup = '';
         foreach ($news as $nw){
             $route = route('frontend.blog.single',$nw->slug);
-            $news_markup.= '<li class="list"> <a href="'.$route.'">'.$nw->getTranslation('title',$current_lang).'</a></li>';
+            $blog_title =  $nw->getTranslation('title',$current_lang);
+            $news_markup.= '<li class="single-news-item"> <a href="'.$route.'">'.$blog_title.'</a></li>';
         }
 
 
 if(!empty(get_static_option('blog_breaking_news_show_hide_all'))) {
     return <<<HTML
-    <div class="header-bottom padding-top-30" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
-        <div class="container container-two">
-            <div class="header-bottom-list">
-                <span class="update-news">{$news_title} </span>
-                <div class="news-list-all">
-                    <ul class="news-lists">            
-                          {$news_markup}
-                    </ul>
-                </div>
+
+    <div class="container custom-container-01" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
+        <div class="live-news-update-area-wrapper style-02 margin-top-30">
+            <div class="title-box">
+                <h4 class="title">{$news_title}</h4>
+                <span class="background-style-01"></span>
+            </div>
+            <div class="news-box">
+                <ul class="news-box-list">
+                  {$news_markup}
+                </ul>
             </div>
         </div>
     </div>
@@ -120,6 +123,6 @@ HTML;
 
     public function addon_title()
     {
-        return __('BreakingNews');
+        return __('Breaking News');
     }
 }
