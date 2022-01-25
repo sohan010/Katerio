@@ -92,6 +92,19 @@ class BlogSliderFour extends PageBuilderBase
             'info' => __('enter how many item you want to show in frontend'),
         ]);
 
+        $output .= Select::get([
+            'name' => 'header_style',
+            'label' => __('Header Style'),
+            'options' => [
+                '1' => __('Style One'),
+                '2' => __('Style Two'),
+                '3' => __('Style Three'),
+                '4' => __('Style Four'),
+            ],
+            'value' => $widget_saved_values['header_style'] ?? null,
+            'info' => __('you can set header style from here')
+        ]);
+
         $output .= Slider::get([
             'name' => 'padding_top',
             'label' => __('Padding Top'),
@@ -121,6 +134,7 @@ class BlogSliderFour extends PageBuilderBase
         $order_by = SanitizeInput::esc_html($this->setting_item('order_by'));
         $order = SanitizeInput::esc_html($this->setting_item('order'));
         $items = SanitizeInput::esc_html($this->setting_item('items'));
+        $header_style = SanitizeInput::esc_html($this->setting_item('header_style'));
         $heading_text= SanitizeInput::esc_html($this->setting_item('heading_text_'.$current_lang));
         $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
@@ -205,7 +219,7 @@ ITEM;
         <div class="container custom-container-01">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title-style-03">
+                    <div class="section-title-style-0{$header_style}">
                         <h3 class="title">{$heading_text}</h3>
                         <div class="appendarow"></div>
                     </div>

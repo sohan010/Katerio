@@ -168,6 +168,7 @@
                                     <option value="normal_layout" @if($page_post->layout == 'normal_layout') selected @endif>{{__('Normal Layout')}}</option>
                                     <option value="home_page_layout" @if($page_post->layout == 'home_page_layout')selected  @endif>{{__('Home Page')}}</option>
                                     <option value="home_page_layout_two" @if($page_post->layout == 'home_page_layout_two')selected  @endif>{{__('Home Page Layout Two')}}</option>
+                                    <option value="home_page_layout_three" @if($page_post->layout == 'home_page_layout_three')selected  @endif>{{__('Home Page Layout Three')}}</option>
                                     <option value="sidebar_layout" @if($page_post->layout == 'sidebar_layout')selected  @endif>{{__('Sidebar Layout')}}</option>
                                 </select>
                             </div>
@@ -200,6 +201,7 @@
                                     <option value="sidebar_04"@if($page_post->sidebar_layout == 'sidebar_04') selected @endif>{{__('Page Sidebar 04 Area')}}</option>
                                     <option value="sidebar_05"@if($page_post->sidebar_layout == 'sidebar_05') selected @endif>{{__('Page Sidebar 05 Area')}}</option>
                                     <option value="blogs_tags"@if($page_post->sidebar_layout == 'blogs_tags') selected @endif>{{__(' Blogs Tags Area')}}</option>
+                                    <option value="blogs_tags_two"@if($page_post->sidebar_layout == 'blogs_tags_two') selected @endif>{{__(' Blogs Tags Two Area')}}</option>
                                     <option value="newsletter_banner"@if($page_post->sidebar_layout == 'newsletter_banner') selected @endif>{{__(' Newsletter Banner Area')}}</option>
                                     <option value="banner_newsletter_tags"@if($page_post->sidebar_layout == 'banner_newsletter_tags') selected @endif>{{__('Banner Newsletter Tags')}}</option>
                                     <option value="details_page_sidebar"@if($page_post->sidebar_layout == 'details_page_sidebar') selected @endif>{{__('Details Page Sidebar')}}</option>
@@ -226,6 +228,7 @@
                                     <option value="sidebar_04"@if($page_post->sidebar_layout_two == 'sidebar_04') selected @endif>{{__('Page Sidebar 04 Area')}}</option>
                                     <option value="sidebar_05"@if($page_post->sidebar_layout_two == 'sidebar_05') selected @endif>{{__('Page Sidebar 05 Area')}}</option>
                                     <option value="blogs_tags"@if($page_post->sidebar_layout_two == 'blogs_tags') selected @endif>{{__(' Blogs Tags Area')}}</option>
+                                    <option value="blogs_tags_two"@if($page_post->sidebar_layout_two == 'blogs_tags_two') selected @endif>{{__(' Blogs Tags Two Area')}}</option>
                                     <option value="newsletter_banner"@if($page_post->sidebar_layout_two == 'newsletter_banner') selected @endif>{{__(' Newsletter Banner Area')}}</option>
                                     <option value="banner_newsletter_tags"@if($page_post->sidebar_layout_two == 'banner_newsletter_tags') selected @endif>{{__('Banner Newsletter Tags')}}</option>
                                 </select>

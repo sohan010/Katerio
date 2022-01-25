@@ -2841,3 +2841,20 @@ function get_blog_category($data){
             .'</span >';
     }
 }
+
+
+function get_blog_created_user($item){
+
+    if(empty($item)){
+        return [];
+    }
+
+    if ($item->created_by === 'user') {
+        $user_id = $item->user_id;
+    } else {
+        $user_id = $item->admin_id;
+    }
+
+    return !is_null($user_id) ?  route('frontend.user.created.blog', ['user' => $item->created_by, 'id' => $user_id]) : route('frontend.blog.single',$item->slug);
+
+}

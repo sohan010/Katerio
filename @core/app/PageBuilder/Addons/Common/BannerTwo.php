@@ -90,7 +90,7 @@ class BannerTwo extends PageBuilderBase
    return <<<HTML
 
     <div class="ads-banner-area-wrapper leaderboard" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}"
-        <div class="container{$custom_class}">
+        <div class="container">
             <div class="rwo">
                 <div class="col-lg-12">
                     <div class="ads-banner-box">

@@ -177,6 +177,7 @@
                                         <option value="normal_layout" >{{__('Normal Layout')}}</option>
                                         <option value="home_page_layout">{{__('Home Page')}}</option>
                                         <option value="home_page_layout_two">{{__('Home Page Layout Two')}}</option>
+                                        <option value="home_page_layout_three">{{__('Home Page Layout Three')}}</option>
                                         <option value="sidebar_layout">{{__('Sidebar Layout')}}</option>
                                     </select>
                                 </div>
@@ -208,6 +209,7 @@
                                         <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
                                         <option value="sidebar_05">{{__('Page Sidebar 05 Area')}}</option>
                                         <option value="blogs_tags">{{__('Blogs Tags Area')}}</option>
+                                        <option value="blogs_tags_two">{{__('Blogs Tags Two Area')}}</option>
                                         <option value="newsletter_banner">{{__('Newsletter Banner Area')}}</option>
                                         <option value="banner_newsletter_tags">{{__('Banner Newsletter Tags')}}</option>
                                         <option value="details_page_sidebar">{{__('Details Page Sidebar')}}</option>
@@ -234,6 +236,7 @@
                                         <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
                                         <option value="sidebar_05">{{__('Page Sidebar 05 Area')}}</option>
                                         <option value="blogs_tags">{{__('Blogs Tags Area')}}</option>
+                                        <option value="blogs_tags_two">{{__('Blogs Tags Two Area')}}</option>
                                         <option value="newsletter_banner">{{__('Newsletter Banner Area')}}</option>
                                         <option value="banner_newsletter_tags">{{__('Banner Newsletter Tags')}}</option>
                                     </select>

@@ -12,7 +12,6 @@ class PageBuilderSetup
     {
         //check module wise widget by set condition
         return [
-            PageBuilder\Addons\Common\BannerOne::class,
             PageBuilder\Addons\ContactArea\ContactArea::class,
             PageBuilder\Addons\Common\CustomFormStyleOne::class,
             PageBuilder\Addons\Common\GoogleMap::class,
@@ -54,7 +53,11 @@ class PageBuilderSetup
             PageBuilder\Addons\StaticHeader\HeaderMixedOne::class,
             PageBuilder\Addons\Blog\BlogSliderFour::class,
             PageBuilder\Addons\Blog\BlogMiscOne::class,
-            PageBuilder\Addons\Blog\BlogGridFive::class
+            PageBuilder\Addons\Blog\BlogGridFive::class,
+            PageBuilder\Addons\Blog\BlogSliderFive::class,
+            PageBuilder\Addons\Blog\BlogMiscTwo::class,
+            PageBuilder\Addons\Blog\BlogGridSix::class,
+            PageBuilder\Addons\Blog\BlogVideoListThree::class
 
 
         ];

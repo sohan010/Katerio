@@ -4,7 +4,7 @@
     }
 @endphp
 
-@if($page_post->layout === 'normal_layout' || $page_post->layout === 'home_page_layout' || $page_post->layout === 'home_page_layout_two')
+@if($page_post->layout === 'normal_layout' || $page_post->layout === 'home_page_layout' || $page_post->layout === 'home_page_layout_two' || $page_post->layout === 'home_page_layout_three')
 {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page',$page_post->id) !!}
 @endif
 @if($page_post->layout === 'home_page_layout')
@@ -46,6 +46,31 @@
         <div class="container-fluid p-0 {{$page_post->page_class}}">
             <div class="col-lg-12">
                 {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar_two',$page_post->id) !!}
+            </div>
+        </div>
+    </div>
+@endif
+
+
+@if($page_post->layout === 'home_page_layout_three')
+    <div class="recent-stories-area-wrapper index-01" data-padding-top="100" >
+        <div class="container custom-container-01">
+            <div class="row">
+                <div class="col-xl-9">
+                    {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar',$page_post->id) !!}
+                </div>
+
+                <div class="col-xl-3">
+                    <div class="widget-area-wrapper style-{{$page_post->widget_style}}">
+                        {!! render_frontend_sidebar($page_post->sidebar_layout,['column' => false]) !!}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid p-0 {{$page_post->page_class}}">
+            <div class="col-lg-12">
+                {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar_four',$page_post->id) !!}
             </div>
         </div>
     </div>
