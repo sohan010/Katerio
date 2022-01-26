@@ -22,8 +22,6 @@ class PageBuilderSetup
             PageBuilder\Addons\Common\AuthorGrid::class,
             PageBuilder\Addons\Faq\FaqStyleOne::class,
             PageBuilder\Addons\Common\BreakingNews::class,
-            PageBuilder\Addons\Common\BodySliderOne::class,
-            PageBuilder\Addons\Common\InstagramImage::class,
             PageBuilder\Addons\Common\AuthorsFeedback::class,
             PageBuilder\Addons\Common\BrandsPartners::class,
             PageBuilder\Addons\Common\VideoGridOne::class,
@@ -57,9 +55,9 @@ class PageBuilderSetup
             PageBuilder\Addons\Blog\BlogSliderFive::class,
             PageBuilder\Addons\Blog\BlogMiscTwo::class,
             PageBuilder\Addons\Blog\BlogGridSix::class,
-            PageBuilder\Addons\Blog\BlogVideoListThree::class
-
-
+            PageBuilder\Addons\Blog\BlogVideoListThree::class,
+            PageBuilder\Addons\Blog\BlogVideoListFour::class,
+            PageBuilder\Addons\Blog\BlogMiscThree::class
         ];
     }
 

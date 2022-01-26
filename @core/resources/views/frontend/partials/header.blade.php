@@ -48,7 +48,7 @@
         <title>{{get_static_option('site_'.$user_select_lang_slug.'_title')}} - {{get_static_option('site_'.$user_select_lang_slug.'_tag_line')}}</title>
            {!! render_site_meta() !!}
 
-       @elseif( request()->routeIs('frontend.dynamic.page'))
+       @elseif( request()->routeIs('frontend.dynamic.page') && isset($page_post))
            {!! render_site_title($page_post->title) !!}
            {!! render_site_meta() !!}
 

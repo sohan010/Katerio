@@ -231,6 +231,7 @@
                                         <option value="normal_layout" ><?php echo e(__('Normal Layout')); ?></option>
                                         <option value="home_page_layout"><?php echo e(__('Home Page')); ?></option>
                                         <option value="home_page_layout_two"><?php echo e(__('Home Page Layout Two')); ?></option>
+                                        <option value="home_page_layout_three"><?php echo e(__('Home Page Layout Three')); ?></option>
                                         <option value="sidebar_layout"><?php echo e(__('Sidebar Layout')); ?></option>
                                     </select>
                                 </div>
@@ -261,7 +262,9 @@
                                         <option value="sidebar_03"><?php echo e(__('Page Sidebar 03 Area')); ?></option>
                                         <option value="sidebar_04"><?php echo e(__('Page Sidebar 04 Area')); ?></option>
                                         <option value="sidebar_05"><?php echo e(__('Page Sidebar 05 Area')); ?></option>
+                                        <option value="sidebar_06"><?php echo e(__('Page Sidebar 06 Area')); ?></option>
                                         <option value="blogs_tags"><?php echo e(__('Blogs Tags Area')); ?></option>
+                                        <option value="blogs_tags_two"><?php echo e(__('Blogs Tags Two Area')); ?></option>
                                         <option value="newsletter_banner"><?php echo e(__('Newsletter Banner Area')); ?></option>
                                         <option value="banner_newsletter_tags"><?php echo e(__('Banner Newsletter Tags')); ?></option>
                                         <option value="details_page_sidebar"><?php echo e(__('Details Page Sidebar')); ?></option>
@@ -287,7 +290,9 @@
                                         <option value="sidebar_03"><?php echo e(__('Page Sidebar 03 Area')); ?></option>
                                         <option value="sidebar_04"><?php echo e(__('Page Sidebar 04 Area')); ?></option>
                                         <option value="sidebar_05"><?php echo e(__('Page Sidebar 05 Area')); ?></option>
+                                        <option value="sidebar_06"><?php echo e(__('Page Sidebar 06 Area')); ?></option>
                                         <option value="blogs_tags"><?php echo e(__('Blogs Tags Area')); ?></option>
+                                        <option value="blogs_tags_two"><?php echo e(__('Blogs Tags Two Area')); ?></option>
                                         <option value="newsletter_banner"><?php echo e(__('Newsletter Banner Area')); ?></option>
                                         <option value="banner_newsletter_tags"><?php echo e(__('Banner Newsletter Tags')); ?></option>
                                     </select>

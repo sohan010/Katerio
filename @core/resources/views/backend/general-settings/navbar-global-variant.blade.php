@@ -22,11 +22,11 @@
                                         <input type="hidden" class="form-control" id="global_navbar_variant" value="{{ get_static_option('global_navbar_variant') }}" name="global_navbar_variant">
                                     </div>
                                     <div class="row">
-                                        @for($i = 1; $i < 2; $i++)
+                                        @for($i = 1; $i < 6; $i++)
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="img-select selected">
                                                     <div class="img-wrap">
-                                                        <img src="{{asset('assets/frontend/navbar-variant/'.$i.'.jpg')}}" data-home_id="0{{$i}}" alt="">
+                                                        <img src="{{asset('assets/frontend/navbar-variant/'.$i.'.png')}}" data-home_id="0{{$i}}" alt="">
                                                     </div>
                                                 </div>
                                             </div>

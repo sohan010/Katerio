@@ -43,6 +43,7 @@ class WidgetBuilderSetup
             'BlogCategoryWidgetStyleThree',
             'BlogCategoryWidgetStyleFour',
             'BlogCategoryWidgetStyleFive',
+            'BlogCategoryWidgetStyleSix',
             'BannerTwoWidget',
             'NewBlogPostWidget'
         ];
@@ -56,6 +57,7 @@ class WidgetBuilderSetup
             'sidebar_03',
             'sidebar_04',
             'sidebar_05',
+            'sidebar_06',
             'blogs_tags',
             'blogs_tags_two',
             'newsletter_banner',

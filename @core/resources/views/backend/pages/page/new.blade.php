@@ -208,6 +208,7 @@
                                         <option value="sidebar_03">{{__('Page Sidebar 03 Area')}}</option>
                                         <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
                                         <option value="sidebar_05">{{__('Page Sidebar 05 Area')}}</option>
+                                        <option value="sidebar_06">{{__('Page Sidebar 06 Area')}}</option>
                                         <option value="blogs_tags">{{__('Blogs Tags Area')}}</option>
                                         <option value="blogs_tags_two">{{__('Blogs Tags Two Area')}}</option>
                                         <option value="newsletter_banner">{{__('Newsletter Banner Area')}}</option>
@@ -235,6 +236,7 @@
                                         <option value="sidebar_03">{{__('Page Sidebar 03 Area')}}</option>
                                         <option value="sidebar_04">{{__('Page Sidebar 04 Area')}}</option>
                                         <option value="sidebar_05">{{__('Page Sidebar 05 Area')}}</option>
+                                        <option value="sidebar_06">{{__('Page Sidebar 06 Area')}}</option>
                                         <option value="blogs_tags">{{__('Blogs Tags Area')}}</option>
                                         <option value="blogs_tags_two">{{__('Blogs Tags Two Area')}}</option>
                                         <option value="newsletter_banner">{{__('Newsletter Banner Area')}}</option>

@@ -55,34 +55,6 @@ class FrontendController extends Controller
         ]);
     }
 
-    public function home_page_change($id)
-    {
-        if (!in_array($id, ['01', '02', '03', '04','05'])) {
-            abort(404);
-        }
-        $home_variant_number = get_static_option('home_page_variant');
-        $all_header_slider = HeaderSlider::all();
-        $latest_blog = Blog::orderBy('id','DESC')->get();
-//        make a function to call all static option by home page
-        $static_field_data = StaticOption::whereIn('option_name',HomePageStaticSettings::get_home_field($id))->get()->mapWithKeys(function ($item) {
-            return [$item->option_name => $item->option_value];
-        })->toArray();
-
-
-        return view('frontend.frontend-home-demo')->with([
-            'all_header_slider'=>$all_header_slider,
-            'latest_blog'=>$latest_blog,
-            'static_field_data' => $static_field_data,
-            'home_page' => $id,
-        ]);
-    }
-
-
-
-    public function contact_page()
-    {
-        return view('frontend.pages.contact');
-    }
 
     public function dynamic_single_page($slug)
     {
@@ -90,6 +62,13 @@ class FrontendController extends Controller
         if(empty($page_post)){
             abort(404);
         }
+        //check for blog page
+        $blog_page_slug = get_page_slug(get_static_option('blog_page'),'blog');
+        if($slug === $blog_page_slug){
+            $all_blogs = Blog::where(['status'=>'publish'])->paginate(10);
+            return view('blog::frontend.blog.blog',compact('all_blogs'));
+        }
+
         return view('frontend.pages.dynamic-single')->with([
             'page_post' => $page_post
         ]);

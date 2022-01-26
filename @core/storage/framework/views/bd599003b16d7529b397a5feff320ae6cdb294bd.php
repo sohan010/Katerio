@@ -1,6 +1,5 @@
 <?php echo $__env->make('frontend.partials.support', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-<!-- supportbar  area  start-->
 <div class="supportbar-area-wrapper style-02">
     <div class="container custom-container-01">
         <div class="row">
@@ -22,7 +21,7 @@
         </div>
     </div>
 </div>
-<!-- supportbar  area  end-->
+
 
 <div class="nav-main-wrap-for-custom-style-01-v-02">
     <nav class="navbar navbar-area navbar-expand-lg has-topbar nav-style-01 custom-style-01 dark-bg-01 v-02">
@@ -49,26 +48,13 @@
                                 <i class="las la-search icon"></i>
                             </button>
                         </div>
-
-                        
-                        <div class="ajax-preloader-wrap"></div>
-                        <div class="autocomplete-search-data">
-                            <div class="account">
-                                <div id="show-autocomplete" style="display:none;">
-                                    <ul class="autocomplete-warp"></ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-
+                            <?php echo $__env->make('frontend.partials.pages-portion.navbars.autocomplete-markup', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </form>
                 </div>
 
-                <!-- hamburger area start -->
                 <div class="hamburger-menu-wrapper right-side">
                     <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
                 </div>
-                <!-- hamburger area end -->
             </div>
         </div>
     </nav>

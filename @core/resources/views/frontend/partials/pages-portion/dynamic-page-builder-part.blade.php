@@ -52,6 +52,32 @@
 @endif
 
 
+@if($page_post->layout === 'home_page_layout_two')
+    <div class="parent-area ">
+        <div class="container custom-container-01">
+            <div class="row">
+                <div class="col-xl-8">
+                    {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar_three',$page_post->id) !!}
+                </div>
+
+                <div class="col-xl-4" data-padding-bottom="100">
+                    <div class="widget-area-wrapper style-{{$page_post->widget_style}}">
+                        {!! render_frontend_sidebar($page_post->sidebar_layout_two,['column' => false]) !!}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container-fluid p-0 {{$page_post->page_class}}">
+            <div class="col-lg-12">
+                {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_without_sidebar_two',$page_post->id) !!}
+            </div>
+        </div>
+    </div>
+@endif
+
+
+
 @if($page_post->layout === 'home_page_layout_three')
     <div class="recent-stories-area-wrapper index-01" data-padding-top="100" >
         <div class="container custom-container-01">
@@ -76,15 +102,16 @@
     </div>
 @endif
 
-@if($page_post->layout === 'home_page_layout_two')
+
+@if($page_post->layout === 'home_page_layout_three')
     <div class="parent-area ">
         <div class="container custom-container-01">
             <div class="row">
-                <div class="col-xl-8">
-                    {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar_three',$page_post->id) !!}
+                <div class="col-lg-12 col-xl-9">
+                    {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_with_sidebar_five',$page_post->id) !!}
                 </div>
 
-                <div class="col-xl-4" data-padding-bottom="100">
+                <div class="col-sm-7 col-md-6 col-lg-6 col-xl-3" data-padding-bottom="100">
                     <div class="widget-area-wrapper style-{{$page_post->widget_style}}">
                         {!! render_frontend_sidebar($page_post->sidebar_layout_two,['column' => false]) !!}
                     </div>
@@ -94,11 +121,12 @@
         </div>
         <div class="container-fluid p-0 {{$page_post->page_class}}">
             <div class="col-lg-12">
-                {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_without_sidebar_two',$page_post->id) !!}
+                {!! \App\PageBuilder\PageBuilderSetup::render_frontend_pagebuilder_content_for_dynamic_page('dynamic_page_without_sidebar_six',$page_post->id) !!}
             </div>
         </div>
     </div>
 @endif
+
 
 
 

@@ -143,36 +143,37 @@
                                         <?php if($page->layout === 'home_page_layout_three'): ?>
                                             <div class="page-builder-area-wrapper extra-title">
                                                 <h4 class="main-title"><?php echo e(__('With Sidebar Layout Three')); ?></h4>
-                                                <ul id="dynamic_page_with_sidebar_four"
+                                                <ul id="dynamic_page_with_sidebar_five"
                                                     class="sortable available-form-field main-fields sortable_widget_location margin-bottom-15">
-                                                    <?php echo \App\PageBuilder\PageBuilderSetup::get_saved_addons_for_dynamic_page('dynamic_page_with_sidebar_four',$page->id); ?>
+                                                    <?php echo \App\PageBuilder\PageBuilderSetup::get_saved_addons_for_dynamic_page('dynamic_page_with_sidebar_five',$page->id); ?>
 
                                                 </ul>
                                             </div>
                                         <?php endif; ?>
+
+
+
+                                    <?php if($page->layout === 'home_page_layout_two'): ?>
+                                        <div class="page-builder-area-wrapper extra-title">
+                                            <h4 class="main-title"><?php echo e(__('Without Sidebar Layout Two')); ?></h4>
+                                            <ul id="dynamic_page_without_sidebar_two"
+                                                class="sortable available-form-field main-fields sortable_widget_location margin-bottom-15">
+                                                <?php echo \App\PageBuilder\PageBuilderSetup::get_saved_addons_for_dynamic_page('dynamic_page_without_sidebar_two',$page->id); ?>
+
+                                            </ul>
+                                        </div>
+                                    <?php endif; ?>
 
                                         <?php if($page->layout === 'home_page_layout_three'): ?>
                                             <div class="page-builder-area-wrapper extra-title">
-                                                <h4 class="main-title"><?php echo e(__('Without Sidebar Layout Three')); ?></h4>
-                                                <ul id="dynamic_page_without_sidebar_four"
-                                                    class="sortable available-form-field main-fields sortable_widget_location margin-bottom-15">
-                                                    <?php echo \App\PageBuilder\PageBuilderSetup::get_saved_addons_for_dynamic_page('dynamic_page_without_sidebar_four',$page->id); ?>
-
-                                                </ul>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if($page->layout === 'home_page_layout_two'): ?>
-                                            <div class="page-builder-area-wrapper extra-title">
                                                 <h4 class="main-title"><?php echo e(__('Without Sidebar Layout Two')); ?></h4>
-                                                <ul id="dynamic_page_without_sidebar_two"
+                                                <ul id="dynamic_page_without_sidebar_six"
                                                     class="sortable available-form-field main-fields sortable_widget_location margin-bottom-15">
-                                                    <?php echo \App\PageBuilder\PageBuilderSetup::get_saved_addons_for_dynamic_page('dynamic_page_without_sidebar_two',$page->id); ?>
+                                                    <?php echo \App\PageBuilder\PageBuilderSetup::get_saved_addons_for_dynamic_page('dynamic_page_without_sidebar_six',$page->id); ?>
 
                                                 </ul>
                                             </div>
                                         <?php endif; ?>
-
 
 
                                 </div>

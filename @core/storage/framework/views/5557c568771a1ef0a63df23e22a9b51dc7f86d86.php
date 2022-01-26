@@ -52,7 +52,7 @@
            <?php echo render_site_meta(); ?>
 
 
-       <?php elseif( request()->routeIs('frontend.dynamic.page')): ?>
+       <?php elseif( request()->routeIs('frontend.dynamic.page') && isset($page_post)): ?>
            <?php echo render_site_title($page_post->title); ?>
 
            <?php echo render_site_meta(); ?>
