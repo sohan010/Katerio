@@ -1800,17 +1800,6 @@ object {
   position: relative;
   margin-right: 40px;
   padding-left: 30px;
-  /*-webkit-animation-name: news;*/
-  /*        animation-name: news;*/
-  /*-webkit-animation-duration: 6s;*/
-  /*        animation-duration: 6s;*/
-  /*-webkit-animation-iteration-count: infinite;*/
-  /*        animation-iteration-count: infinite;*/
-  /*-webkit-animation-timing-function: linear;*/
-  /*        animation-timing-function: linear;*/
-  /*-webkit-animation-direction: normal;*/
-  /*        animation-direction: normal;*/
-
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -8301,3 +8290,16 @@ section.news-area {
   100% { transform: rotate(360deg); }
 }
 /*Custom Loader for blog ajax show*/
+
+.feed-img.background-img {
+  height: 120px;
+  width: 120px;
+  border-radius: 8px;
+  background-size: cover;
+}
+
+.newsfeed-img img {
+  height: 120px;
+  width: 120px;
+  border-radius: 8px;
+}

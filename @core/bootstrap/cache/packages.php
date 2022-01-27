@@ -121,6 +121,17 @@
       0 => 'Spatie\\Translatable\\TranslatableServiceProvider',
     ),
   ),
+  'vedmant/laravel-feed-reader' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Vedmant\\FeedReader\\FeedReaderServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'FeedReader' => 'Vedmant\\FeedReader\\Facades\\FeedReader',
+    ),
+  ),
   'yajra/laravel-datatables-oracle' => 
   array (
     'providers' => 

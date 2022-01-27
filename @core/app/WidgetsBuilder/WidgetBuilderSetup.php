@@ -45,7 +45,8 @@ class WidgetBuilderSetup
             'BlogCategoryWidgetStyleFive',
             'BlogCategoryWidgetStyleSix',
             'BannerTwoWidget',
-            'NewBlogPostWidget'
+            'NewBlogPostWidget',
+            'RssBlogFeed'
         ];
     }
     private static function registerd_sidebars(){

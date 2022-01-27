@@ -56,6 +56,18 @@ class PollVotingWidget extends WidgetBase
             'value' => $widget_saved_values['question'] ?? null,
         ]);
 
+        $output .= Select::get([
+            'name' => 'header_style',
+            'label' => __('Header Style'),
+            'options' => [
+                '1' => __('Style One'),
+                '2' => __('Style Two'),
+                '4' => __('Style Three'),
+            ],
+            'value' => $widget_saved_values['header_style'] ?? null,
+            'info' => __('You can change header style from here')
+        ]);
+
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
         $output .= $this->admin_form_after();
@@ -70,6 +82,7 @@ class PollVotingWidget extends WidgetBase
         $widget_saved_values = $this->get_settings();
 
         $widget_title = $widget_saved_values['widget_title_' . $user_selected_language] ?? '';
+        $header_style = $widget_saved_values['header_style'] ?? '';
         $polls = Poll::where(['status'=> 1, 'id'=> $widget_saved_values['question'] ])->orderBy('id', 'DESC')->first();
         if (is_null($polls)){
             return '<div class="alert alert-warning">'.__('This question is not available..!').'</div>';
@@ -84,7 +97,7 @@ class PollVotingWidget extends WidgetBase
 
         $output.= '<div class=" widget widget-poll voting-custom wow bounceInUp" data-wow-duration="1.5s">';
         if (!empty($widget_title)) {
-            $output .= '<h4 class="widget-title style-02">' . $widget_title . '</h4>';
+            $output .= '<h4 class="widget-title style-0'.$header_style.'">' . $widget_title . '</h4>';
         }
         $output .= '<ul class="list">';
 

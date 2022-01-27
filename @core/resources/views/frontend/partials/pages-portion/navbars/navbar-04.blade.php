@@ -4,9 +4,15 @@
         <div class="row">
             <div class="col-lg-3 col-xl-2">
                 <div class="logo-wrapper">
+                    @if(get_static_option('site_frontend_dark_mode') == 'on')
                     <a href="{{url('/')}}">
-                        {!! render_image_markup_by_attachment_id(get_static_option('site_logo_two')) !!}
+                        {!! render_image_markup_by_attachment_id(get_static_option('site_white_logo')) !!}
                     </a>
+                     @else
+                        <a href="{{url('/')}}">
+                            {!! render_image_markup_by_attachment_id(get_static_option('site_logo_two')) !!}
+                        </a>
+                     @endif
                 </div>
             </div>
             <div class="col-lg-9 col-xl-10">
@@ -25,7 +31,9 @@
                         </form>
                     </div>
                     <div class="add-box">
-                        <img src="{{asset('assets/frontend/img/ads-banner/supportbar/02.jpg')}}" alt="">
+                        <a href="{{get_static_option('home_page_four_banner_url')}}">
+                           {!! render_image_markup_by_attachment_id(get_static_option('home_page_four_banner')) !!}
+                        </a>
                     </div>
                 </div>
             </div>

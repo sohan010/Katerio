@@ -89,9 +89,10 @@ Route::group(['prefix' => $blog_page_slug,'namespace' => 'Frontend', 'middleware
     Route::get('blog-by-{user}/{id}','BlogController@user_created_blogs')->name('frontend.user.created.blog');
     Route::get('user/blg-password','BlogController@user_blog_password')->name('frontend.user.blog.password');
 
-    Route::get('/dark-mode-toggle', 'FrontendController@dark_mode_toggle')->name('frontend.dark.mode.toggle');
     Route::post('/blog/comment/store','BlogController@blog_comment_store')->name('blog.comment.store');
     Route::post('blog/all/comment','BlogController@load_more_comments')->name('frontend.load.blog.comment.data');
 
 });
+
+
 

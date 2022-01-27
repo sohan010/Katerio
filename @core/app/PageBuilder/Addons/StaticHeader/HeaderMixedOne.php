@@ -302,8 +302,8 @@ private function centerBlog($center_single_blog){
 
     $bg_image = render_background_image_markup_by_attachment_id($centerBlog->image);
     $route = route('frontend.blog.single', $centerBlog->slug);
-    $title = Str::words($centerBlog->getTranslation('title', $current_lang), 13);
-    $description = Str::words(SanitizeInput::esc_html($centerBlog->getTranslation('blog_content', $current_lang)),55);
+    $title = Str::words($centerBlog->getTranslation('title', $current_lang), 10);
+    $description = Str::words(SanitizeInput::esc_html($centerBlog->getTranslation('blog_content', $current_lang)),50);
     $created_by = SanitizeInput::esc_html($centerBlog->author ?? __('Anonymous'));
     $date = date('M d, Y', strtotime($centerBlog->created_at));
 
@@ -331,7 +331,7 @@ return <<<CENTERBLOG
             <div class="post-meta">
                 <ul class="post-meta-list style-02">
                     <li class="post-meta-item">
-                        <a href="#">
+                        <a href="{$created_by_url}">
                             <span class="text author">{$created_by}</span>
                         </a>
                     </li>
@@ -339,7 +339,7 @@ return <<<CENTERBLOG
                         <span class="text">{$date}</span>
                     </li>
                     <li class="post-meta-item">
-                       {$created_by_url}
+                       {$category_markup}
                     </li>
                 </ul>
             </div>

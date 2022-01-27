@@ -140,4 +140,33 @@ class TopbarController extends Controller
         }
         return redirect()->back()->with(FlashMsg::settings_update());
     }
+
+    public function header_banner_settings(){
+        return view('backend.pages.header-banner-settings');
+    }
+
+    public function update_header_banner_settings(Request $request){
+
+        $this->validate($request, [
+            'home_page_one_banner' => 'nullable|string',
+            'home_page_four_banner' => 'nullable|string',
+            'home_page_five_banner' => 'nullable|string',
+            'home_page_one_banner_url' => 'nullable|string',
+            'home_page_four_banner_url' => 'nullable|string',
+            'home_page_five_banner_url' => 'nullable|string',
+        ]);
+
+        $all_fields = [
+            'home_page_one_banner',
+            'home_page_four_banner',
+            'home_page_five_banner',
+            'home_page_one_banner_url',
+            'home_page_four_banner_url',
+            'home_page_five_banner_url'
+        ];
+        foreach ($all_fields as $field) {
+            update_static_option($field, $request->$field);
+        }
+        return redirect()->back()->with(FlashMsg::settings_update());
+    }
 }

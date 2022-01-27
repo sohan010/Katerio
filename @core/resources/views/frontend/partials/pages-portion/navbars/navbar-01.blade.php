@@ -5,15 +5,23 @@
         <div class="row">
             <div class="col-12 col-sm-5 col-md-4 col-lg-2">
                 <div class="logo-wrapper">
+                    @if(get_static_option('site_frontend_dark_mode') == 'on')
                     <a href="{{url('/')}}">
-                     {!! render_image_markup_by_attachment_id(get_static_option('site_logo')) !!}
+                     {!! render_image_markup_by_attachment_id(get_static_option('site_white_logo')) !!}
                     </a>
+                     @else
+                        <a href="{{url('/')}}">
+                            {!! render_image_markup_by_attachment_id(get_static_option('site_logo')) !!}
+                        </a>
+                    @endif
                 </div>
             </div>
             <div class="col-12 col-sm-7 col-md-8 col-lg-10">
                 <div class="content">
                     <div class="add-box">
-                        <img src="{{asset('assets/frontend/img/ads-banner/supportbar/01.jpg')}}" alt="">
+                        <a href="{{get_static_option('home_page_one_banner_url')}}">
+                               {!! render_image_markup_by_attachment_id(get_static_option('home_page_one_banner')) !!}
+                        </a>
                     </div>
                 </div>
             </div>

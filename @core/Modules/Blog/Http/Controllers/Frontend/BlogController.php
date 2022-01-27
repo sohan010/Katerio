@@ -426,12 +426,7 @@ HTML;
         }else{
             return redirect()->back()->with(FlashMsg::item_delete('Password Not Matching..!'));
         }
-
-
-
     }
-
-
 
 
 }

@@ -237,6 +237,7 @@
                             'admin-home/media-upload/page',
                             'admin-home/menu',
                             'admin-home/widgets',
+                            'admin-home/header-banner-settings',
                             'admin-home/menu-edit/*',
                         ])): ?> active
                         <?php endif; ?>">
@@ -251,6 +252,13 @@
                                 </a>
                             </li>
                            <?php endif; ?>
+
+                                <li class="<?php echo e(active_menu('admin-home/header-banner-settings')); ?>">
+                                    <a href="<?php echo e(route('admin.header.banner.settings')); ?>">
+                                        <?php echo e(__('Header Banner Settings')); ?>
+
+                                    </a>
+                                </li>
 
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-leftbar-settings')): ?>
                                 <li class="<?php echo e(active_menu('admin-home/leftbar-settings')); ?>">

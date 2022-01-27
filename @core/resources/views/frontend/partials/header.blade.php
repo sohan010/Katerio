@@ -22,13 +22,15 @@
        <link rel="stylesheet" href="{{asset('assets/frontend/css/responsive.css')}}">
        <link rel="stylesheet" href="{{asset('assets/frontend/css/dynamic-style.css')}}">
 
+
+
     {{-- Dark Mode--}}
     @if(get_static_option('site_frontend_dark_mode') === 'on')
-        <link rel="stylesheet" href="{{asset('assets/frontend/css/dark.css')}}">
+           <link rel="stylesheet" href="{{asset('assets/frontend/css/dark.css')}}">
     @endif
-       @if(!empty(get_static_option('site_rtl_enabled')) || get_user_lang_direction() === 'rtl')
-           <link rel="stylesheet" href="{{asset('assets/frontend/css/rtl.css')}}">
-       @endif
+   @if(!empty(get_static_option('site_rtl_enabled')) || get_user_lang_direction() === 'rtl')
+       <link rel="stylesheet" href="{{asset('assets/frontend/css/rtl.css')}}">
+   @endif
 
     <link rel="canonical" href="{{request()->url()}}" />
     <script src="{{asset('assets/common/js/jquery-3.6.0.min.js')}}"></script>
@@ -59,8 +61,32 @@
 
 
 </head>
+@php
+    $class = '';
+    if(request()->routeIs('homepage')){
+        $class = 'dark index-01-dark';
+    }elseif (request()->is('home-01')){
+        $class = 'dark index-01-dark';
 
-<body class="black-theme">
+    }elseif (request()->is('home-02-6')){
+        $class = 'dark index-02-dark';
+
+    }elseif (request()->is('home-03')){
+        $class = 'dark index-03-dark';
+
+    }elseif (request()->is('home-04')){
+        $class = 'dark index-04-dark';
+
+    }elseif (request()->is('home-05')){
+        $class = 'dark index-05-dark';
+    }else{
+        $class = 'dark';
+    }
+
+$dark_mode_on = get_static_option('site_frontend_dark_mode') === 'on';
+$condition = $dark_mode_on ? $class : '';
+@endphp
+<body class="black-theme {{$condition}}">
 
 @include('frontend.partials.navbar')
 

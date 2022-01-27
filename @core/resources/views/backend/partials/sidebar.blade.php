@@ -226,6 +226,7 @@
                             'admin-home/media-upload/page',
                             'admin-home/menu',
                             'admin-home/widgets',
+                            'admin-home/header-banner-settings',
                             'admin-home/menu-edit/*',
                         ])) active
                         @endif">
@@ -239,6 +240,12 @@
                                 </a>
                             </li>
                            @endcan
+
+                                <li class="{{active_menu('admin-home/header-banner-settings')}}">
+                                    <a href="{{route('admin.header.banner.settings')}}">
+                                        {{__('Header Banner Settings')}}
+                                    </a>
+                                </li>
 
                                 @can('appearance-leftbar-settings')
                                 <li class="{{active_menu('admin-home/leftbar-settings')}}">

@@ -312,6 +312,7 @@ class FrontendController extends Controller
         return view('frontend.thankyou',compact('title','description'));
     }
 
+
     public function dark_mode_toggle(Request $request){
         if($request->mode == 'off'){
             update_static_option('site_frontend_dark_mode','on');
@@ -322,6 +323,8 @@ class FrontendController extends Controller
 
         return response()->json(['status'=>'done']);
     }
+
+
 
 
 }

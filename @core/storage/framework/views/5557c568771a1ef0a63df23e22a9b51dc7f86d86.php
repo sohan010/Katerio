@@ -25,13 +25,15 @@
        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/responsive.css')); ?>">
        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/dynamic-style.css')); ?>">
 
+
+
     
     <?php if(get_static_option('site_frontend_dark_mode') === 'on'): ?>
-        <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/dark.css')); ?>">
+           <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/dark.css')); ?>">
     <?php endif; ?>
-       <?php if(!empty(get_static_option('site_rtl_enabled')) || get_user_lang_direction() === 'rtl'): ?>
-           <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/rtl.css')); ?>">
-       <?php endif; ?>
+   <?php if(!empty(get_static_option('site_rtl_enabled')) || get_user_lang_direction() === 'rtl'): ?>
+       <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/rtl.css')); ?>">
+   <?php endif; ?>
 
     <link rel="canonical" href="<?php echo e(request()->url()); ?>" />
     <script src="<?php echo e(asset('assets/common/js/jquery-3.6.0.min.js')); ?>"></script>
@@ -65,8 +67,32 @@
 
 
 </head>
+<?php
+    $class = '';
+    if(request()->routeIs('homepage')){
+        $class = 'dark index-01-dark';
+    }elseif (request()->is('home-01')){
+        $class = 'dark index-01-dark';
 
-<body class="black-theme">
+    }elseif (request()->is('home-02-6')){
+        $class = 'dark index-02-dark';
+
+    }elseif (request()->is('home-03')){
+        $class = 'dark index-03-dark';
+
+    }elseif (request()->is('home-04')){
+        $class = 'dark index-04-dark';
+
+    }elseif (request()->is('home-05')){
+        $class = 'dark index-05-dark';
+    }else{
+        $class = 'dark';
+    }
+
+$dark_mode_on = get_static_option('site_frontend_dark_mode') === 'on';
+$condition = $dark_mode_on ? $class : '';
+?>
+<body class="black-theme <?php echo e($condition); ?>">
 
 <?php echo $__env->make('frontend.partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

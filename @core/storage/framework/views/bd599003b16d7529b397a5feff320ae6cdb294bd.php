@@ -5,16 +5,26 @@
         <div class="row">
             <div class="col-12 col-sm-5 col-md-4 col-lg-2">
                 <div class="logo-wrapper">
+                    <?php if(get_static_option('site_frontend_dark_mode') == 'on'): ?>
                     <a href="<?php echo e(url('/')); ?>">
-                     <?php echo render_image_markup_by_attachment_id(get_static_option('site_logo')); ?>
+                     <?php echo render_image_markup_by_attachment_id(get_static_option('site_white_logo')); ?>
 
                     </a>
+                     <?php else: ?>
+                        <a href="<?php echo e(url('/')); ?>">
+                            <?php echo render_image_markup_by_attachment_id(get_static_option('site_logo')); ?>
+
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-12 col-sm-7 col-md-8 col-lg-10">
                 <div class="content">
                     <div class="add-box">
-                        <img src="<?php echo e(asset('assets/frontend/img/ads-banner/supportbar/01.jpg')); ?>" alt="">
+                        <a href="<?php echo e(get_static_option('home_page_one_banner_url')); ?>">
+                               <?php echo render_image_markup_by_attachment_id(get_static_option('home_page_one_banner')); ?>
+
+                        </a>
                     </div>
                 </div>
             </div>

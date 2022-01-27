@@ -2,7 +2,6 @@
 
 @php
     $custom_class = request()->routeIs('frontend.blog.single') ? 'container-two' : '';
-
 @endphp
 
 <div class="breadcrumb-area

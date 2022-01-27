@@ -249,6 +249,11 @@ Route::prefix('misc')->group(function (){
     Route::post('/delete-topbar-settings/{id}','TopbarController@delete')->name('admin.topbar.delete');
     Route::post('/topbar-settings/bulk-action','TopbarController@bulk_action')->name('admin.topbar.bulk.action');
 
+    //Header Banner Settings
+    Route::get('/header-banner-settings','TopbarController@header_banner_settings')->name('admin.header.banner.settings');
+    Route::post('/header-banner-settings','TopbarController@update_header_banner_settings');
+
+
     //Leftbar Settings
     Route::get('/leftbar-settings','TopbarController@leftbar_settings')->name('admin.leftbar.settings');
     Route::post('/leftbar-settings','TopbarController@update_leftbar_settings');

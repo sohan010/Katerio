@@ -4,10 +4,17 @@
         <div class="row">
             <div class="col-lg-3 col-xl-2">
                 <div class="logo-wrapper">
+                    <?php if(get_static_option('site_frontend_dark_mode') == 'on'): ?>
                     <a href="<?php echo e(url('/')); ?>">
-                        <?php echo render_image_markup_by_attachment_id(get_static_option('site_logo_two')); ?>
+                        <?php echo render_image_markup_by_attachment_id(get_static_option('site_white_logo')); ?>
 
                     </a>
+                     <?php else: ?>
+                        <a href="<?php echo e(url('/')); ?>">
+                            <?php echo render_image_markup_by_attachment_id(get_static_option('site_logo_two')); ?>
+
+                        </a>
+                     <?php endif; ?>
                 </div>
             </div>
             <div class="col-lg-9 col-xl-10">
@@ -26,7 +33,10 @@
                         </form>
                     </div>
                     <div class="add-box">
-                        <img src="<?php echo e(asset('assets/frontend/img/ads-banner/supportbar/02.jpg')); ?>" alt="">
+                        <a href="<?php echo e(get_static_option('home_page_four_banner_url')); ?>">
+                           <?php echo render_image_markup_by_attachment_id(get_static_option('home_page_four_banner')); ?>
+
+                        </a>
                     </div>
                 </div>
             </div>

@@ -154,7 +154,7 @@ class BlogListStyleOne extends PageBuilderBase
             $image = render_image_markup_by_attachment_id($item->image,'','semi-large');
             $route = route('frontend.blog.single',$item->slug);
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),15);
-            $description = Str::words($item->getTranslation('blog_content',$current_lang),40) ;
+            $description = Str::words(strip_tags($item->getTranslation('blog_content',$current_lang)),40) ;
             $date = date('M d, Y',strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
 

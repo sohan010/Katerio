@@ -10,6 +10,7 @@ Route::group(['middleware' =>['setlang','globalVariable','maintains_mode']],func
 | FRONTEND ROUTES
 |----------------------------------------------------------------------------------------------------------------------------*/
 Route::get('/','FrontendController@index')->name('homepage');
+Route::get('/dark-mode-toggle', 'FrontendController@dark_mode_toggle')->name('frontend.dark.mode.toggle');
 Route::post('poll/vote/store','FrontendController@poll_vote_store')->name('frontend.poll.vote.store');
 Route::get('home/advertisement/click/store','FrontendController@home_advertisement_click_store')->name('frontend.home.advertisement.click.store');
 Route::get('home/advertisement/impression/store','FrontendController@home_advertisement_impression_store')->name('frontend.home.advertisement.impression.store');
