@@ -230,7 +230,7 @@
                         </li>
                     <?php endif; ?>
 
-                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['appearance-topbar-settings','appearance-media-image-manage','appearance-widget-builder','appearance-menu-list'])): ?>
+                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['appearance-topbar-settings','appearance-media-image-manage','appearance-widget-builder','appearance-menu-list','appearance-header-banner-settings'])): ?>
                     <li class="main_dropdown <?php if(request()->is([
                             'admin-home/topbar-settings',
                             'admin-home/leftbar-settings',
@@ -253,21 +253,23 @@
                             </li>
                            <?php endif; ?>
 
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-header-banner-settings')): ?>
                                 <li class="<?php echo e(active_menu('admin-home/header-banner-settings')); ?>">
                                     <a href="<?php echo e(route('admin.header.banner.settings')); ?>">
                                         <?php echo e(__('Header Banner Settings')); ?>
 
                                     </a>
                                 </li>
-
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-leftbar-settings')): ?>
-                                <li class="<?php echo e(active_menu('admin-home/leftbar-settings')); ?>">
-                                    <a href="<?php echo e(route('admin.leftbar.settings')); ?>">
-                                        <?php echo e(__('Leftbar Settings')); ?>
-
-                                    </a>
-                                </li>
                                 <?php endif; ?>
+
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-leftbar-settings')): ?>
+                            <li class="<?php echo e(active_menu('admin-home/leftbar-settings')); ?>">
+                                <a href="<?php echo e(route('admin.leftbar.settings')); ?>">
+                                    <?php echo e(__('Leftbar Settings')); ?>
+
+                                </a>
+                            </li>
+                            <?php endif; ?>
 
 
                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-media-image-manage')): ?>
@@ -296,7 +298,7 @@
                     </li>
                     <?php endif; ?>
 
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['page-settings-404-page-manage','page-settings-maintain-page-manage'])): ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['page-settings-404-page-manage','page-settings-maintain-page-manage','misc-settings'])): ?>
                     <li class="main_dropdown
                         <?php if(request()->is([
                             'admin-home/contact-page/*',
@@ -321,10 +323,11 @@
                             </li>
                             <?php endif; ?>
 
+                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('misc-settings')): ?>
                            <li class="<?php echo e(active_menu('admin-home/misc/settings')); ?>">
                                <a href="<?php echo e(route('admin.misc.settings')); ?>"><?php echo e(__('Miscellaneous Settings')); ?></a>
                            </li>
-
+                         <?php endif; ?>
                         </ul>
                     </li>
                     <?php endif; ?>
@@ -345,6 +348,7 @@
                         'general-settings-custom-js',
                         'general-settings-licence-settings',
                         'general-settings-cache-settings',
+                        'database-upgrade'
                     ])): ?>
                         <li class="<?php if(request()->is('admin-home/general-settings/*')): ?> active <?php endif; ?>">
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-settings"></i>
@@ -437,10 +441,12 @@
                                             href="<?php echo e(route('admin.general.license.settings')); ?>"><?php echo e(__('Licence Settings')); ?></a>
                                 <?php endif; ?>
                                 </li>
-                                
+
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('database-upgrade')): ?>
                                  <li class="<?php echo e(active_menu('admin-home/general-settings/database-upgrade')); ?>"><a
                                         href="<?php echo e(route('admin.general.database.upgrade')); ?>"><?php echo e(__('Database Upgrade')); ?></a>
                                   </li>
+                                <?php endif; ?>
 
                                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('general-settings-cache-settings')): ?>
                                 <li class="<?php echo e(active_menu('admin-home/general-settings/cache-settings')); ?>"><a

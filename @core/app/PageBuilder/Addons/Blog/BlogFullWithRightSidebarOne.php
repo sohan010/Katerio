@@ -146,7 +146,7 @@ class BlogFullWithRightSidebarOne extends PageBuilderBase
         $blog_List_markup = '';
         $big_portion_single_blog_video = '';
         foreach ($blogs as $key=> $item){
-            $image = render_image_markup_by_attachment_id($item->image);
+            $image = render_image_markup_by_attachment_id($item->image,'','thumb');
             $title = $item->title ?? __('No Title');
             $route = route('frontend.blog.single',$item->slug) ?? '';
             $date = date('M d, Y',strtotime($item->created_at));

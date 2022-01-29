@@ -172,6 +172,9 @@ class GeneralSettingsController extends Controller
             'admin_panel_rtl_status',
             'site_force_ssl_redirection',
             'site_google_captcha_enable',
+            'login_show_hide',
+            'register_show_hide',
+            'dark_mode_show_hide',
         ];
         foreach ($all_fields as $field) {
             update_static_option($field, $request->$field);

@@ -191,7 +191,7 @@ class BlogGridFive extends PageBuilderBase
 
             $image = render_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single',$item->slug);
-            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),9);
+            $title = SanitizeInput::esc_html($item->getTranslation('title',$current_lang));
             $date = date('M d, Y',strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
 

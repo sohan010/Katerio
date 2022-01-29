@@ -148,7 +148,7 @@ class BlogListStyleFour extends PageBuilderBase
             $image = render_image_markup_by_attachment_id($item->image,'','thumb');
             $bg_image = render_background_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single', $item->slug);
-            $title = Str::words($item->getTranslation('title', $current_lang), 9);
+            $title = Str::words($item->getTranslation('title', $current_lang), 12);
 
             $category_markup = '';
             $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];

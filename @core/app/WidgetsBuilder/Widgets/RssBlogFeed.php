@@ -102,7 +102,7 @@ class RssBlogFeed extends WidgetBase
 
         $feed_markup = '';
         foreach ($output_arr ?? [] as $item){
-            $title = $item['title'] ?? '';
+            $title = Str::words($item['title'],12) ?? '' ;
             $link = $item['link'] ?? '';
             $published_date = $item['pubDate'] ?? '';
             $desc = $item['description'] ?? '';

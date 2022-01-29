@@ -195,6 +195,8 @@
                                 data: chartdata,
                             }]
                         }
+
+
                     }
                 );
                 
@@ -203,7 +205,6 @@
         });
 
         //By OS
-
         $.ajax({
             url: '<?php echo e(route('admin.home.chart.data.by.os')); ?>',
             type: 'POST',

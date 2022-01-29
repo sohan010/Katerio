@@ -8303,3 +8303,11 @@ section.news-area {
   width: 120px;
   border-radius: 8px;
 }
+
+.widget.widget-poll.voting-custom.wow.bounceInUp #qs {
+  margin-top: 20px;
+}
+
+.footer-area.style-01 .footer-bottom .copyright-area .copyright-area-inner{
+  justify-content: center;
+}

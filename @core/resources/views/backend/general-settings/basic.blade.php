@@ -47,6 +47,31 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="language_select_option"><strong>{{__('Login Show or Hide')}}</strong></label>
+                                <label class="switch yes">
+                                    <input type="checkbox" name="login_show_hide"  @if(!empty(get_static_option('login_show_hide'))) checked @endif id="login_show_hide">
+                                    <span class="slider onoff"></span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="language_select_option"><strong>{{__('Register Show or Hide')}}</strong></label>
+                                <label class="switch yes">
+                                    <input type="checkbox" name="register_show_hide"  @if(!empty(get_static_option('register_show_hide'))) checked @endif id="register_show_hide">
+                                    <span class="slider onoff"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="language_select_option"><strong>{{__('Dark Mode Show or Hide')}}</strong></label>
+                                <label class="switch yes">
+                                    <input type="checkbox" name="dark_mode_show_hide"  @if(!empty(get_static_option('dark_mode_show_hide'))) checked @endif id="dark_mode_show_hide">
+                                    <span class="slider onoff"></span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="disable_user_email_verify"><strong>{{__('User Email Verify')}}</strong></label>
                                 <label class="switch">
                                     <input type="checkbox" name="disable_user_email_verify"  @if(!empty(get_static_option('disable_user_email_verify'))) checked @endif id="disable_user_email_verify">

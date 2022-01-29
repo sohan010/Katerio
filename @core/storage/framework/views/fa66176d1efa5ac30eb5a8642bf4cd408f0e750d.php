@@ -1,5 +1,4 @@
 <?php echo $__env->make('frontend.partials.left-bar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
 <div class="topbar-area">
     <div class="container custom-container-01">
         <div class="row">
@@ -53,9 +52,17 @@
                                     </form>
 
                               <?php else: ?>
+
+
+                                  <?php if(!empty(get_static_option('login_show_hide'))): ?>
                                     <a class="topbar-login-btn" href="<?php echo e(route('user.login')); ?>"><?php echo e(__('Login')); ?></a>
                                     <span><?php echo e(__('|')); ?></span>
+                                   <?php endif; ?>
+
+                                    <?php if(!empty(get_static_option('register_show_hide'))): ?>
                                     <a class="topbar-login-btn" href="<?php echo e(route('user.register')); ?>"><?php echo e(__('Register')); ?></a>
+                                    <?php endif; ?>
+
                             <?php endif; ?>
                             </div>
 
@@ -72,13 +79,15 @@
                                     </select>
                                 </div>
                             <?php endif; ?>
+
+                        <?php if(!empty(get_static_option('dark_mode_show_hide'))): ?>
                         <div class="topbar-item">
                             <label class="switch yes">
                                 <input id="frontend_darkmode" type="checkbox" data-mode=<?php echo e(get_static_option('site_frontend_dark_mode')); ?> <?php if(get_static_option('site_frontend_dark_mode') == 'on'): ?> checked <?php else: ?> <?php endif; ?>>
                                 <span class="slider-color-mode onff"></span>
                             </label>
                         </div>
-
+                        <?php endif; ?>
                          </div>
 
                      </div>

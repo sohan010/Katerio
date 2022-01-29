@@ -3,6 +3,11 @@
 
     jQuery(document).ready(function ($) {
 
+        // JS for rtl
+        var rtlEnable = $('html').attr('dir');
+        var sliderRtlValue = !(typeof rtlEnable === 'undefined' || rtlEnable === 'ltr');
+        var OwlRtlValue = !(typeof rtlEnable === 'undefined' || rtlEnable === 'ltr');
+
         /*-----------------------------------------
             global slick slicer control
         ------------------------------------------*/
@@ -102,6 +107,7 @@
         -------------------------------*/
         $('.popular-stories-index-01-slider-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 4,
             slidesToScroll: 1,
             speed: 500,
@@ -139,6 +145,7 @@
         -------------------------------*/
         $('.popular-stories-index-02-slider-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 3,
             slidesToScroll: 1,
             speed: 500,
@@ -177,6 +184,7 @@
         -------------------------------*/
         $('.weekly-highlights-index-01-slider-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 1,
             slidesToScroll: 1,
             speed: 500,
@@ -211,6 +219,7 @@
          -------------------------------------------------------------------*/
         $('.latest-video-index-02-slider-inst, .popular-video-index-04-slider-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 1,
             slidesToScroll: 1,
             speed: 500,
@@ -236,6 +245,7 @@
         -------------------------------------------------------------------*/
         $('.popular-stories-index-03-slider-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 4,
             slidesToScroll: 1,
             speed: 500,
@@ -280,6 +290,7 @@
          -------------------------------------------------------------------*/
         $('.popular-news-index-04-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 4,
             slidesToScroll: 1,
             speed: 500,
@@ -318,6 +329,7 @@
          -------------------------------------------------------------------*/
         $('.sports-update-news-index-05-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 4,
             slidesToScroll: 1,
             speed: 500,
@@ -356,6 +368,7 @@
          -------------------------------------------------------------------*/
         $('.feature-news-index-04-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 3,
             slidesToScroll: 1,
             speed: 500,
@@ -393,6 +406,7 @@
          -------------------------------------------------------------------*/
         $('.header-recent-post-index-05-slider-inst').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 3,
             slidesToScroll: 1,
             speed: 500,
@@ -424,6 +438,7 @@
          -------------------------------------------------------------------*/
         $('.authors-feedback-slider').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 1,
             slidesToScroll: 1,
             speed: 500,
@@ -438,6 +453,7 @@
          -------------------------------------------------------------------*/
         $('.partner-with-slider').slick({
             infinite: true,
+            rtl: OwlRtlValue,
             slidesToShow: 4,
             slidesToScroll: 1,
             speed: 400,

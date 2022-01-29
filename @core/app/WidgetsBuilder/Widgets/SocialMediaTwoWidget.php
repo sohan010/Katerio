@@ -78,7 +78,6 @@ class SocialMediaTwoWidget extends WidgetBase
 
 
 
-
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
         $output .= $this->admin_form_after();
@@ -88,14 +87,17 @@ class SocialMediaTwoWidget extends WidgetBase
 
     public function frontend_render()
     {
-        $settings = $this->get_settings();
-        $current_lang = LanguageHelper::user_lang_slug();
-        $title =  purify_html($settings['title_'.$current_lang]);
+        $current_lang = LanguageHelper::user_lang_slug() ?? null;
+        $title =  purify_html($this->setting_item('title_'.$current_lang) );
+        $repeater_data = $this->setting_item('social_02') ?? [];
 
-        $repeater_data = $settings['social_02'];
         $social_icon_markup = '';
         $colors = ['facebook','twitter', 'youtube','instagram','linkedin','pinterest'];
-        foreach ($repeater_data['icon_'.$current_lang] as $key => $icon) {
+
+        if (!isset($repeater_data['icon_'.$current_lang])){
+            return '';
+        }
+        foreach ($repeater_data['icon_'.$current_lang]  as $key => $icon) {
             $icon = $icon;
             $url = $repeater_data['url_'.$current_lang][$key] ?? '#';
             $follower_text = $repeater_data['follower_text_'.$current_lang][$key] ?? [];

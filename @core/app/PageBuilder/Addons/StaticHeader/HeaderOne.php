@@ -125,7 +125,7 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
 
             $bg_image_markup = render_background_image_markup_by_attachment_id($item->image, '');
             $route = route('frontend.blog.single', $item->slug);
-            $title = Str::words($item->getTranslation('title', $current_lang),13);
+            $title = Str::words($item->getTranslation('title', $current_lang),8);
             $created_by = SanitizeInput::esc_html($item->author ?? __('Anonymous'));
             $date = date('M d, Y', strtotime($item->created_at));
 

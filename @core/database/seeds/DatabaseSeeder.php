@@ -10,14 +10,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
 
           $permissions = [
-            'testimonial-list',
-            'testimonial-create',
-            'testimonial-edit',
-            'testimonial-delete',
-              'partner-list',
-              'partner-create',
-              'partner-edit',
-              'partner-delete',
+//            'appearance-header-banner-settings',
+//            'misc-settings',
+//            'database-upgrade',
 
           ];
         foreach ($permissions as $permission){

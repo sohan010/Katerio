@@ -1,5 +1,4 @@
 @include('frontend.partials.support')
-
 <div class="supportbar-area-wrapper style-02">
     <div class="container custom-container-01">
         <div class="row">

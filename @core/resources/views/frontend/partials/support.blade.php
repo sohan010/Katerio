@@ -1,5 +1,4 @@
 @include('frontend.partials.left-bar')
-
 <div class="topbar-area">
     <div class="container custom-container-01">
         <div class="row">
@@ -52,9 +51,17 @@
                                     </form>
 
                               @else
+
+
+                                  @if(!empty(get_static_option('login_show_hide')))
                                     <a class="topbar-login-btn" href="{{route('user.login')}}">{{__('Login')}}</a>
                                     <span>{{__('|')}}</span>
+                                   @endif
+
+                                    @if(!empty(get_static_option('register_show_hide')))
                                     <a class="topbar-login-btn" href="{{route('user.register')}}">{{__('Register')}}</a>
+                                    @endif
+
                             @endif
                             </div>
 
@@ -71,13 +78,15 @@
                                     </select>
                                 </div>
                             @endif
+
+                        @if(!empty(get_static_option('dark_mode_show_hide')))
                         <div class="topbar-item">
                             <label class="switch yes">
                                 <input id="frontend_darkmode" type="checkbox" data-mode={{ get_static_option('site_frontend_dark_mode') }} @if(get_static_option('site_frontend_dark_mode') == 'on') checked @else @endif>
                                 <span class="slider-color-mode onff"></span>
                             </label>
                         </div>
-
+                        @endif
                          </div>
 
                      </div>

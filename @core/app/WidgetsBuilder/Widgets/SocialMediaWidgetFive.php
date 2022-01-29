@@ -94,6 +94,10 @@ class SocialMediaWidgetFive extends WidgetBase
         $social_icon_markup = '';
         $colors = ['facebook','twitter', 'youtube','instagram','linkedin','pinterest'];
 
+        if (!isset($repeater_data['icon_'.$current_lang])){
+            return '';
+        }
+
         foreach ($repeater_data['icon_'.$current_lang] as $key => $icon) {
             $icon = $icon;
             $url = $repeater_data['url_'.$current_lang][$key] ?? '#';

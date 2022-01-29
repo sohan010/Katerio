@@ -22,8 +22,6 @@ class SocialMediaWidget extends WidgetBase
         $output .= $this->default_fields();
         $widget_saved_values = $this->get_settings();
 
-
-
         //render language tab
         $output .= $this->admin_language_tab();
         $output .= $this->admin_language_tab_start();
@@ -93,9 +91,6 @@ class SocialMediaWidget extends WidgetBase
 
 
 
-
-
-
         $output .= $this->admin_form_submit_button();
         $output .= $this->admin_form_end();
         $output .= $this->admin_form_after();
@@ -140,7 +135,6 @@ class SocialMediaWidget extends WidgetBase
 
              $number == 4 ? $number = 0 : $number++;
         }
-
 
 
 

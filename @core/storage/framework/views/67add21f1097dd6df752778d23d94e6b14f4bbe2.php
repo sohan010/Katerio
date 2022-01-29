@@ -1,5 +1,5 @@
 <h3 class="main-title">
-    <a><?php echo e(Str::words($blog_post->title,10)); ?></a>
+    <a><?php echo e(Str::words($blog_post->title,8)); ?></a>
 </h3>
 
 <div class="post-meta-main">

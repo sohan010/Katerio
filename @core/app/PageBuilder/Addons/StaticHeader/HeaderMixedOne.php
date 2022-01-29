@@ -3,6 +3,7 @@
 
 namespace App\PageBuilder\Addons\StaticHeader;
 use App\Blog;
+use App\BlogCategory;
 use App\BlogComment;
 use App\Helpers\LanguageHelper;
 use App\Helpers\SanitizeInput;
@@ -37,6 +38,7 @@ class HeaderMixedOne extends \App\PageBuilder\PageBuilderBase
         $widget_saved_values = $this->get_settings();
 
         $blogs = Blog::usingLocale(LanguageHelper::default_slug())->where(['status' => 'publish'])->get()->pluck('title', 'id')->toArray();
+        $right_blogCategories = BlogCategory::usingLocale(LanguageHelper::default_slug())->where(['status' => 'publish'])->get()->pluck('title', 'id')->toArray();
         $blogLeftVideo = Blog::usingLocale(LanguageHelper::default_slug())->where('video_url', '!=', NULL)->where(['status' => 'publish'])->get()->pluck('title', 'id')->toArray();
 
         $output .= NiceSelect::get([
@@ -77,13 +79,13 @@ class HeaderMixedOne extends \App\PageBuilder\PageBuilderBase
 
 
         $output .= NiceSelect::get([
-            'name' => 'right_blogs',
+            'name' => 'right_blog_categories',
             'multiple' => true,
-            'label' => __('Right Bar Blogs'),
-            'placeholder' => __('Select Right Bar Blogs'),
-            'options' => $blogs,
-            'value' => $widget_saved_values['right_blogs'] ?? null,
-            'info' => __('you can select right bar blog or leave it empty')
+            'label' => __('Right Bar Blog Category'),
+            'placeholder' => __('Right Bar Blog Category'),
+            'options' => $right_blogCategories,
+            'value' => $widget_saved_values['right_blog_categories'] ?? null,
+            'info' => __('you can select right bar blog category or leave it empty')
         ]);
 
         $output .= Number::get([
@@ -166,14 +168,14 @@ class HeaderMixedOne extends \App\PageBuilder\PageBuilderBase
         $left_blogs = $this->setting_item('left_blogs') ?? [];
         $left_blog_video = $this->setting_item('left_blog_video') ?? [];
         $center_single_blog = $this->setting_item('center_single_blog') ?? [];
-        $right_blogs = $this->setting_item('right_blogs') ?? [];
+        $right_blog_categories = $this->setting_item('right_blog_categories') ?? [];
         $rightbar_banner = $this->setting_item('rightbar_banner') ?? [];
         $rightbar_banner_url = $this->setting_item('rightbar_banner_url') ?? [];
 
         $leftContent = self::leftBarBlogs($left_blogs,$order_by,$order,$left_items);
         $leftVideoContent = self::leftBarBlogVideo($left_blog_video);
         $centerBlogContent = self::centerBlog($center_single_blog);
-        $rightContent = self::rightBarBlogs($right_blogs,$order_by,$order,$right_items);
+        $rightContent = self::rightBarBlogs($right_blog_categories,$order_by,$order,$right_items);
         $rightBannerContent = self::rightBarBanner($rightbar_banner,$rightbar_banner_url);
 
 
@@ -302,7 +304,7 @@ private function centerBlog($center_single_blog){
 
     $bg_image = render_background_image_markup_by_attachment_id($centerBlog->image);
     $route = route('frontend.blog.single', $centerBlog->slug);
-    $title = Str::words($centerBlog->getTranslation('title', $current_lang), 10);
+    $title = Str::words($centerBlog->getTranslation('title', $current_lang), 15);
     $description = Str::words(SanitizeInput::esc_html($centerBlog->getTranslation('blog_content', $current_lang)),50);
     $created_by = SanitizeInput::esc_html($centerBlog->author ?? __('Anonymous'));
     $date = date('M d, Y', strtotime($centerBlog->created_at));
@@ -354,11 +356,16 @@ CENTERBLOG;
 
 
 }
-private function rightBarBlogs($right_blogs,$order_by,$order,$right_items){
+private function rightBarBlogs($right_blog_categories,$order_by,$order,$right_items){
 
     $current_lang = LanguageHelper::user_lang_slug();
-    $blogs = Blog::whereIn('id',$right_blogs)->where('status','publish')->orderBy($order_by,$order);
 
+    $blogs = Blog::usingLocale($current_lang)->query();
+
+    if (!empty($right_blog_categories)){
+        $blogs->whereJsonContains('category_id', $right_blog_categories);
+    }
+    $blogs =$blogs->orderBy($order_by,$order);
     if(!empty($right_items)){
         $blogs = $blogs->take($right_items)->get();
     }else{

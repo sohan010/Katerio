@@ -14,6 +14,7 @@ use App\PageBuilder\Fields\Switcher;
 use App\PageBuilder\Fields\Text;
 use App\PageBuilder\PageBuilderBase;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
+use Illuminate\Support\Str;
 use function PHPUnit\Framework\isNull;
 
 class BlogVideoListOne extends PageBuilderBase
@@ -121,7 +122,8 @@ class BlogVideoListOne extends PageBuilderBase
         $big_portion_single_blog_video = '';
         foreach ($videos as $key=> $item){
             $image = render_image_markup_by_attachment_id($item->image);
-            $title = $item->title ?? __('No Title');
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),7);
+            $titleForBigItem = SanitizeInput::esc_html($item->getTranslation('title',$current_lang));
             $blog_url = route('frontend.blog.single',$item->slug);
             $video_url = $item->video_url ?? '';
             $date = date('M d, Y',strtotime($item->created_at));
@@ -157,7 +159,7 @@ class BlogVideoListOne extends PageBuilderBase
             $right_static_icon = asset('assets/frontend/img/videos/play-icon/01.svg');
 
             if( !is_null($item->video_url) && $key > 3) {
-                $big_portion_single_blog_video.= self::bigSingleBlog($bg_image, $video_url, $title, $blog_url, $date, $created_by, $created_by_image, $created_by_url, $comment_condition_check,$right_static_icon);
+                $big_portion_single_blog_video.= self::bigSingleBlog($bg_image, $video_url, $titleForBigItem, $blog_url, $date, $created_by, $created_by_image, $created_by_url, $comment_condition_check,$right_static_icon);
             }else {
 
 
@@ -219,7 +221,7 @@ HTML;
 HTML;
 }
 
-private function bigSingleBlog ($bg_image,$video_url,$title,$blog_url,$date,$created_by,$created_by_image,$created_by_url,$comment_condition_check,$right_static_icon)
+private function bigSingleBlog ($bg_image,$video_url,$titleForBigItem,$blog_url,$date,$created_by,$created_by_image,$created_by_url,$comment_condition_check,$right_static_icon)
 {
   return <<<BIGSINGLE
 
@@ -237,7 +239,7 @@ private function bigSingleBlog ($bg_image,$video_url,$title,$blog_url,$date,$cre
         </div>
         <div class="content">
             <h3 class="title">
-                <a href="{$blog_url}">{$title}</a>
+                <a href="{$blog_url}">{$titleForBigItem}</a>
             </h3>
             <div class="post-meta color-white">
                 <ul class="post-meta-list">

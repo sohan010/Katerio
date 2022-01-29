@@ -219,7 +219,7 @@
                         </li>
                     @endcan
 
-                 @canany(['appearance-topbar-settings','appearance-media-image-manage','appearance-widget-builder','appearance-menu-list'])
+                 @canany(['appearance-topbar-settings','appearance-media-image-manage','appearance-widget-builder','appearance-menu-list','appearance-header-banner-settings'])
                     <li class="main_dropdown @if(request()->is([
                             'admin-home/topbar-settings',
                             'admin-home/leftbar-settings',
@@ -241,19 +241,21 @@
                             </li>
                            @endcan
 
+                                @can('appearance-header-banner-settings')
                                 <li class="{{active_menu('admin-home/header-banner-settings')}}">
                                     <a href="{{route('admin.header.banner.settings')}}">
                                         {{__('Header Banner Settings')}}
                                     </a>
                                 </li>
-
-                                @can('appearance-leftbar-settings')
-                                <li class="{{active_menu('admin-home/leftbar-settings')}}">
-                                    <a href="{{route('admin.leftbar.settings')}}">
-                                        {{__('Leftbar Settings')}}
-                                    </a>
-                                </li>
                                 @endcan
+
+                            @can('appearance-leftbar-settings')
+                            <li class="{{active_menu('admin-home/leftbar-settings')}}">
+                                <a href="{{route('admin.leftbar.settings')}}">
+                                    {{__('Leftbar Settings')}}
+                                </a>
+                            </li>
+                            @endcan
 
 
                            @can('appearance-media-image-manage')
@@ -280,7 +282,7 @@
                     </li>
                     @endcanany
 
-                    @canany(['page-settings-404-page-manage','page-settings-maintain-page-manage'])
+                    @canany(['page-settings-404-page-manage','page-settings-maintain-page-manage','misc-settings'])
                     <li class="main_dropdown
                         @if(request()->is([
                             'admin-home/contact-page/*',
@@ -305,10 +307,11 @@
                             </li>
                             @endcan
 
+                         @can('misc-settings')
                            <li class="{{active_menu('admin-home/misc/settings')}}">
                                <a href="{{route('admin.misc.settings')}}">{{__('Miscellaneous Settings')}}</a>
                            </li>
-
+                         @endcan
                         </ul>
                     </li>
                     @endcanany
@@ -329,6 +332,7 @@
                         'general-settings-custom-js',
                         'general-settings-licence-settings',
                         'general-settings-cache-settings',
+                        'database-upgrade'
                     ])
                         <li class="@if(request()->is('admin-home/general-settings/*')) active @endif">
                             <a href="javascript:void(0)" aria-expanded="true"><i class="ti-settings"></i>
@@ -421,10 +425,12 @@
                                             href="{{route('admin.general.license.settings')}}">{{__('Licence Settings')}}</a>
                                 @endcan
                                 </li>
-                                
+
+                                @can('database-upgrade')
                                  <li class="{{active_menu('admin-home/general-settings/database-upgrade')}}"><a
                                         href="{{route('admin.general.database.upgrade')}}">{{__('Database Upgrade')}}</a>
                                   </li>
+                                @endcan
 
                                 @can('general-settings-cache-settings')
                                 <li class="{{active_menu('admin-home/general-settings/cache-settings')}}"><a

@@ -35,23 +35,23 @@
 
 @if(!empty(get_static_option('site_google_captcha_v3_site_key')) && (request()->routeIs('homepage.demo')) || request()->routeIs('homepage') )
     <script src="https://www.google.com/recaptcha/api.js?render={{get_static_option('site_google_captcha_v3_site_key')}}"></script>
-{{--    <script>--}}
-{{--        (function() {--}}
-{{--            "use strict";--}}
-{{--            grecaptcha.ready(function () {--}}
-{{--                grecaptcha.execute("{{get_static_option('site_google_captcha_v3_site_key')}}", {action: 'homepage'}).then(function (token) {--}}
-{{--                    if(document.getElementById('gcaptcha_token') != null){--}}
-{{--                        document.getElementById('gcaptcha_token').value = token;--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            });--}}
+    <script>
+        (function() {
+            "use strict";
+            grecaptcha.ready(function () {
+                grecaptcha.execute("{{get_static_option('site_google_captcha_v3_site_key')}}", {action: 'homepage'}).then(function (token) {
+                    if(document.getElementById('gcaptcha_token') != null){
+                        document.getElementById('gcaptcha_token').value = token;
+                    }
+                });
+            });
 
 
-{{--        })(jQuery);--}}
+        })(jQuery);
 
-{{--    </script>--}}
-
+    </script>
 @endif
+
     @php $twak__api = get_static_option('site_third_party_tracking_code'); @endphp
     @if(!empty($twak__api))
         {!! $twak__api !!}

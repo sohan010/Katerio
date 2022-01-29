@@ -14,7 +14,7 @@
         --bg-dark-four: <?php echo e(get_static_option('site_bg_dark_four')); ?>;
         --bg-dark-five: <?php echo e(get_static_option('site_bg_dark_five')); ?>;
 
-        --heading-font-one: <?php echo e(get_static_option('heading_font_family_one')); ?>, serif;
+        --heading-font-one: <?php echo e(get_static_option('heading_font_family')); ?>, serif;
         --heading-font-two: <?php echo e(get_static_option('heading_font_family_two')); ?>, sans-serif;
         --body-font: <?php echo e(get_static_option('body_font_family')); ?>, sans-serif;
 }

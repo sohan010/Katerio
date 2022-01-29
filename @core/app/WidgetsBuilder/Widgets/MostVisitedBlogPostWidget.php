@@ -77,7 +77,7 @@ class MostVisitedBlogPostWidget extends WidgetBase
 
             $image = render_image_markup_by_attachment_id($post->image,'','thumb');
             $route = route('frontend.blog.single',$post->slug);
-            $title = $post->getTranslation('title',$user_selected_language);
+            $title = Str::words($post->getTranslation('title',$user_selected_language),10);
             $date = date('M d, Y',strtotime($post->created_at));
 
             $category_markup = '';
