@@ -18,6 +18,7 @@ use App\PageBuilder\Helpers\RepeaterField;
 use App\PageBuilder\Helpers\Traits\RepeaterHelper;
 use App\PageBuilder\PageBuilderBase;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
+use Illuminate\Support\Str;
 
 class AboutSectionStyleOne extends PageBuilderBase
 {
@@ -133,7 +134,7 @@ class AboutSectionStyleOne extends PageBuilderBase
         $title = SanitizeInput::esc_html($this->setting_item('title_'.$current_lang));
         $subtitle = SanitizeInput::esc_html($this->setting_item('subtitle_'.$current_lang) ?? '');
         $designation = SanitizeInput::esc_html($this->setting_item('designation_'.$current_lang) ?? '');
-        $description = SanitizeInput::kses_basic($this->setting_item('description_'.$current_lang) ?? '');
+        $description = Str::words(strip_tags($this->setting_item('description_'.$current_lang),55));
 
         $facebook_url = SanitizeInput::kses_basic($this->setting_item('facebook_url') ?? '');
         $twitter_url = SanitizeInput::kses_basic($this->setting_item('twitter_url') ?? '');

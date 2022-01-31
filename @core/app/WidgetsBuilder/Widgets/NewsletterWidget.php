@@ -64,13 +64,14 @@ class NewsletterWidget extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['title_' . $user_selected_language] ?? '';
+        $widget_title = purify_html( $settings['title_' . $user_selected_language] ?? '');
         $widget_description = $settings['description_' . $user_selected_language] ?? '';
         $form_action = route('frontend.subscribe.newsletter');
         $csrf = csrf_token();
 
 
      return <<<HTML
+        <div class="col-sm-8 col-md-7 col-lg-6 col-xl-3">
            <div class="footer-widget">
                 <h4 class="widget-title">{$widget_title}</h4>
                 <div class="footer-content">
@@ -93,6 +94,7 @@ class NewsletterWidget extends WidgetBase
                     </div>
                 </div>
             </div>
+         </div>
 
 HTML;
 

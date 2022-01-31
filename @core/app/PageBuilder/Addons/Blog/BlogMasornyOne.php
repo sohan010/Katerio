@@ -161,18 +161,19 @@ class BlogMasornyOne extends PageBuilderBase
         }
 
         $item_markup = '';
-        foreach ($blogs as $item) {
+        $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
+        foreach ($blogs as $key=> $item) {
             $image_markup = render_image_markup_by_attachment_id($item->image, '');
             $route = route('frontend.blog.single', $item->slug);
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title', $current_lang) ?? ''),9);
             $date = date('M d, Y', strtotime($item->created_at));
 
             $category_markup2 = '';
-            $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
-            foreach ($item->category_id as $key2=> $catItem) {
+
+            foreach ($item->category_id as $catItem) {
                 $category2 = $catItem->getTranslation('title', $current_lang);
                 $category_route2 = route('frontend.blog.category', ['id' => $catItem->id, 'any' => Str::slug($catItem->title)]);
-                $category_markup2 .= '<a class="category-style-01 v-02 '.$colors[$key2 % count($colors)].'"  href="' . $category_route2 . '">' . $category2 . '</a>';
+                $category_markup2 .= '<a class="category-style-01 v-02 '.$colors[$key % count($colors)].'"  href="' . $category_route2 . '">' . $category2 . '</a>';
             }
 
 

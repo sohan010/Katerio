@@ -73,8 +73,8 @@ class NewsletterWidgetTwo extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['title_' . $user_selected_language] ?? '';
-        $widget_description = $settings['description_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['title_' . $user_selected_language] ?? '');
+        $widget_description = purify_html($settings['description_' . $user_selected_language] ?? '');
         $widget_icon = $settings['icon'] ?? '';
         $form_action = route('frontend.subscribe.newsletter');
         $csrf = csrf_token();

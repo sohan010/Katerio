@@ -154,7 +154,7 @@ class BlogSliderThree extends PageBuilderBase
         $blog_markup = '';
         foreach ($blogs as $item){
 
-            $image = render_image_markup_by_attachment_id($item->image);
+            $image = render_background_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single',$item->slug);
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),11);
             $date = date('M d, Y',strtotime($item->created_at));
@@ -176,7 +176,7 @@ class BlogSliderThree extends PageBuilderBase
                 <div class="tag-box left">
                    {$category_markup}
                 </div>
-               {$image}
+              <div class="background-img" {$image} data-height="300"></div>
             </div>
             <div class="content">
                 <div class="post-meta color-black">

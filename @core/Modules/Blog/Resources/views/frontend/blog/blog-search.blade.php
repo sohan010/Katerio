@@ -1,6 +1,7 @@
 @extends('frontend.frontend-page-master')
 @section('page-title')
-    {{__('Search For: ')}} {{$search_term}}
+    <li class="list-item"><a href="#">{{__('Search For')}}</a></li>
+    <li class="list-item"><a href="#">{{$search_term}}</a></li>
 @endsection
 
 @section('site-title')
@@ -8,7 +9,7 @@
 @endsection
 
 @section('custom-page-title')
-    {{__('Search For: ')}} {!! '<span class="text-primary">'.$search_term.'</span>'  !!}
+    {{$search_term}}
 @endsection
 
 @section('page-meta-data')
@@ -64,10 +65,10 @@
                         @endforeach
                     </div>
                         <div class="col-lg-12">
-                            <div class="pagination" data-padding-top="50">
-                                <ul class="pagination-list">
+                            <div class="pagination " data-padding-top="50">
+                                <div class="pagination-wrapper">
                                     {{$all_blogs->links()}}
-                                </ul>
+                                </div>
                             </div>
                         </div>
                 </div>

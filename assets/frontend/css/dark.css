@@ -891,6 +891,10 @@
     border-color: #FFC12D;
 }
 
+.hamburger-c {
+    background-color: #151C2B;
+}
+
 
 /* dark responsive */
 
@@ -949,4 +953,72 @@
     .navbar-area.nav-style-01 .nav-container .navbar-collapse .navbar-nav li.current-menu-item.menu-item-has-children:before {
         color: #FFC12D !important;
     }
+}
+
+
+.widget-poll.voting-custom{
+    color: #FFF;
+}
+
+.footer-area .about_us_widget .content .info{
+    color: #fff !important;
+}
+
+.single-copyright-item{
+    color: #fff;
+}
+
+.topbar-item span{
+    color: #fff;
+}
+
+.dynamic-page-content-wrap p{
+    color: #fff;
+}
+
+.custom-form-builder-form  label{
+    color: #fff;
+}
+
+.custom-form-builder-form  ::placeholder{
+    color: #fff;
+}
+
+
+.details-one-page-para span {
+    color: #fff;
+    opacity: 0.7;
+}
+
+.blog-details-area-wrapper .social-link-list .list-item a {
+    color: #a7a7a7;
+}
+
+.custom-login .login-form p {
+    color: #f9f9f9;
+}
+
+.ajax-partial-login-form .int {
+    color: #fff;
+    opacity: 0.9;
+}
+
+footer.footer-area.style-01 .single-info-item .icon i {
+    color: #FFC12D !important;
+}
+
+.author-area-wrapper {
+    background-color: #081131 !important;
+}
+
+.text-dark {
+    color: #b3b1b1 !important;
+}
+
+.details-one-page-para p{
+    color: #FFFFFF;
+}
+
+.footer-widget .single-info-item .details{
+    color: #FFFFFF;
 }

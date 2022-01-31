@@ -571,3 +571,4 @@ function w3_open() {
     document.getElementById("mySidebar").style.transform = "translateX(-100%)";
   }
 
+

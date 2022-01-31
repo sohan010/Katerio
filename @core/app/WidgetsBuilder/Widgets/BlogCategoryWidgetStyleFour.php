@@ -56,7 +56,7 @@ class BlogCategoryWidgetStyleFour extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['widget_title_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['widget_title_' . $user_selected_language] ?? '');
         $category_items = $settings['category_items'] ?? '';
 
         $blog_categories = BlogCategory::where('status','publish')->orderBy('id', 'DESC')->take($category_items)->get();

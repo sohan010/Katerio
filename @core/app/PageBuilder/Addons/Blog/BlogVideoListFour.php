@@ -158,7 +158,7 @@ class BlogVideoListFour extends PageBuilderBase
             $title = $item->getTranslation('title',$current_lang);
             $title_2 = Str::words($item->getTranslation('title',$current_lang),12);
             $blog_url = route('frontend.blog.single',$item->slug);
-            $description = Str::words(strip_tags($item->getTranslation('blog_content',$current_lang)),55);
+            $description = Str::words(strip_tags($item->getTranslation('blog_content',$current_lang)),115);
             $video_url = $item->video_url ?? '';
             $date = date('M d, Y',strtotime($item->created_at));
             $bg_image = render_background_image_markup_by_attachment_id($item->image);

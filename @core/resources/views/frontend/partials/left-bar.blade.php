@@ -3,9 +3,15 @@
         <button onclick="w3_close()" class="close-h w3-bar-item w3-large"> &times;</button>
         <div class="main-content">
             <div class="logo-wrapper">
+                @if(get_static_option('site_frontend_dark_mode') == 'on')
                 <a href="{{url('/')}}">
-                    {!! render_image_markup_by_attachment_id(get_static_option('site_logo')) !!}
+                    {!! render_image_markup_by_attachment_id(get_static_option('site_white_logo')) !!}
                 </a>
+                @else
+                    <a href="{{url('/')}}">
+                        {!! render_image_markup_by_attachment_id(get_static_option('site_logo')) !!}
+                    </a>
+               @endif
             </div>
 
             <div class="widget-area-wrapper">

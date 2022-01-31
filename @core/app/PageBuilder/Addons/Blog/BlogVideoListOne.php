@@ -158,6 +158,8 @@ class BlogVideoListOne extends PageBuilderBase
             $left_static_icon = asset('assets/frontend/img/videos/play-icon/02.svg');
             $right_static_icon = asset('assets/frontend/img/videos/play-icon/01.svg');
 
+
+
             if( !is_null($item->video_url) && $key > 3) {
                 $big_portion_single_blog_video.= self::bigSingleBlog($bg_image, $video_url, $titleForBigItem, $blog_url, $date, $created_by, $created_by_image, $created_by_url, $comment_condition_check,$right_static_icon);
             }else {

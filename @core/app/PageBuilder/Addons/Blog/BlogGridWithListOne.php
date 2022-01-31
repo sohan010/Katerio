@@ -155,7 +155,7 @@ class BlogGridWithListOne extends PageBuilderBase
         foreach ($TopStories as $key=> $item) {
             $image = render_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single', $item->slug);
-            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title', $current_lang)), 10);
+            $title = Str::limit(SanitizeInput::esc_html($item->getTranslation('title', $current_lang)),55);
             $date = date('M d, Y', strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
 
@@ -240,7 +240,7 @@ TOPLIST;
 
                 $Timage = render_image_markup_by_attachment_id($Titem->image);
                 $Troute = route('frontend.blog.single', $Titem->slug);
-                $Ttitle = Str::words(SanitizeInput::esc_html($Titem->getTranslation('title', $current_lang)), 10);
+                $Ttitle =  Str::limit(SanitizeInput::esc_html($Titem->getTranslation('title', $current_lang)),55);
                 $Tdate = date('M d, Y', strtotime($Titem->created_at));
                 $Tcreated_by = $Titem->author ?? __('Anonymous');
 

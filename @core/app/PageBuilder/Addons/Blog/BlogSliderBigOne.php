@@ -139,8 +139,12 @@ class BlogSliderBigOne extends PageBuilderBase
         $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
 
-        $blogs = Blog::whereIn('id',$blog_qty)->where('status','publish');
 
+        $blogs = Blog::usingLocale($current_lang)->query();
+
+        if (!empty($blog_qty)){
+            $blogs->whereIn('id', $blog_qty)->where('status','publish');
+        }
         $blogs =$blogs->orderBy($order_by,$order);
         if(!empty($items)){
             $blogs = $blogs->take($items)->get();
@@ -149,9 +153,10 @@ class BlogSliderBigOne extends PageBuilderBase
         }
 
 
+
         $blog_markup = '';
-        $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
-        foreach ($blogs as $key=> $item){
+
+        foreach ($blogs as $item){
 
             $bg_image = render_background_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single',$item->slug);
@@ -175,7 +180,8 @@ class BlogSliderBigOne extends PageBuilderBase
 
 
             $category_markup = '';
-            foreach ($item->category_id as  $cat){
+            $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
+            foreach ($item->category_id as $key=> $cat){
                 $category = $cat->getTranslation('title',$current_lang);
                 $category_route = route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)]);
                 $category_markup.='<a class="category-style-01 '.$colors[$key % count($colors)].'" href="'.$category_route.'"> '.$category.'</a>';
@@ -190,6 +196,8 @@ class BlogSliderBigOne extends PageBuilderBase
             $created_by_url = !is_null($user_id) ?  route('frontend.user.created.blog', ['user' => $item->created_by, 'id' => $user_id]) : route('frontend.blog.single',$item->slug);
             $comment_count = BlogComment::where('blog_id',$item->id)->count();
             $comment_condition_check = $comment_count == 0 ? 0 : $comment_count;
+
+
 
 
  $blog_markup .= <<<HTML

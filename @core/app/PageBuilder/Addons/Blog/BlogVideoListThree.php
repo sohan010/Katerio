@@ -81,9 +81,6 @@ class BlogVideoListThree extends PageBuilderBase
             'info' => __('you can select your desired blogs or leave it empty')
         ]);
 
-
-
-
         $output .= Select::get([
             'name' => 'order_by',
             'label' => __('Order By'),
@@ -165,7 +162,7 @@ class BlogVideoListThree extends PageBuilderBase
         $big_portion_single_blog_video = '';
         $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
         foreach ($videos as $key=> $item){
-            $image = render_image_markup_by_attachment_id($item->image);
+            $image = render_background_image_markup_by_attachment_id($item->image);
             $title = Str::words($item->getTranslation('title',$current_lang),9);
             $blog_url = route('frontend.blog.single',$item->slug);
             $video_url = $item->video_url ?? '';
@@ -195,7 +192,7 @@ class BlogVideoListThree extends PageBuilderBase
                 <div class="tag-box position-top-left">
                    {$category_markup}
                 </div>
-               {$image}
+                <div class="background-img"{$image} data-height="268"> </div>
                 <a href="{$video_url}"
                     class="play-icon icon-style-01 magnific-inst mfp-iframe hide-x">
                     <img src="{$left_static_icon}" alt="">

@@ -228,7 +228,7 @@ ITEM;
             <h3 class="title">{$heading_text}</h3>
         </div>
 
-        <div class="latest-video-index-02-slider-inst slick-main">
+        <div class="latest-video-index-02-slider-inst slick-main latest-vieos-area-wrapper index-02">
             {$video_markup}
         </div>
     </div>

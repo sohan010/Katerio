@@ -56,44 +56,48 @@ class BlogInstagramWidget extends WidgetBase
         // TODO: Implement frontend_render() method.
         $user_selected_language = get_user_lang();
         $widget_saved_values = $this->get_settings();
-        $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
+        $widget_title = purify_html($this->setting_item('widget_title_' . $user_selected_language) ?? '');
         $post_items = $widget_saved_values['post_items'] ?? '';
-
-        $before = $this->widget_before('widget_archive'); //render widget before content
 
 
         $instagram_data = InstagramFeed::fetch($post_items);
 
-        if(!$instagram_data){
+        if (!$instagram_data) {
             return '';
         }
 
         $output = '';
-        foreach($instagram_data->data ?? [] as $item){
-            $output.= '<li class="content-item">
-                        <a href="'.$item->media_url.'">
-                         <img src="'.$item->media_url.'" src="'.$item->media_url.'" alt="">
-                        </a>
-                    </li>';
-        }
+        foreach ($instagram_data->data ?? [] as $item) {
+            $url = $item->media_url;
 
-    $after = $this->widget_after();
+            
+ $output.= <<<LIST
+    <li class="content-item">
+        <a href="{$url}">
+              <img src="{$url}" src="" alt="">
+        </a>
+    </li>
+LIST;
+}
+
+
+
  return <<<HTML
-
-{$before}
+  <div class="col-sm-8 col-md-7 col-lg-6 col-xl-3">
     <div class="footer-widget">
     <h4 class="widget-title">{$widget_title}</h4>
         <ul class="footer-content-list instragram">
             {$output}
         </ul>
     </div>
- {$after}
+  </div>
+
 HTML;
 
 
+ 
 
-
-    }
+}
 
     public function widget_title()
     {

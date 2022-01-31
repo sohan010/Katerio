@@ -67,7 +67,7 @@ class MostVisitedBlogThreeWidget extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['heading_text_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['heading_text_' . $user_selected_language] ?? '');
         $blog_items = $settings['blog_items'] ?? '';
 
         $blog_posts = Blog::where(['status' => 'publish'])->take($blog_items)->orderBy('views','desc')->get();

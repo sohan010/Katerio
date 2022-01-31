@@ -1,7 +1,8 @@
 @extends('frontend.frontend-page-master')
 
 @section('page-title')
-    {{__('Category : ').$category_name}}
+    <li class="list-item"><a href="#">{{__('Category')}}</a></li>
+    <li class="list-item"><a href="#">{{$category_name}}</a></li>
 @endsection
 
 @section('site-title')
@@ -9,7 +10,7 @@
 @endsection
 
 @section('custom-page-title')
-    {{__('Category : ').$category_name}}
+    {{$category_name}}
 @endsection
 
 @section('page-meta-data')
@@ -67,10 +68,11 @@
 
                         <!-- pagination area start -->
                         <div class="col-lg-12">
-                            <div class="pagination" data-padding-top="50">
-                                <ul class="pagination-list">
+                            <div class="pagination " data-padding-top="50">
+                                <div class="pagination-wrapper">
                                     {{$all_blogs->links()}}
-                                </ul>
+                                </div>
+
                             </div>
                         </div>
                         @endif

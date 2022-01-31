@@ -127,11 +127,13 @@
                             labels:labels,
                             datasets: [{
                                 label: '<?php echo e(__('View Raised')); ?>',
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                backgroundColor:  'rgb(245, 40, 145,0.8)',
                                 borderColor: 'rgba(54, 162, 235, 1)',
                                 data: chartdata,
                             }]
                         }
+
+
                     }
                 );
             }
@@ -157,9 +159,8 @@
                             datasets: [{
                                 data: chartdata,
                                 backgroundColor: [
-                                    'rgb(239, 154, 154)',
-                                    'rgb(240, 98, 146)',
-                                    'rgb(128, 203, 196)'
+                                    'rgb(245, 40, 145,0.8)',
+
                                 ],
                                 hoverOffset: 4
                             }]
@@ -185,24 +186,27 @@
                 new Chart(
                     document.getElementById('visited_country_show'),
                     {
-                        type: 'bar',
+                        type: 'scatter',
                         data: {
+
                             labels:labels,
                             datasets: [{
                                 label: '<?php echo e(__('View Raised')); ?>',
-                                backgroundColor:  'rgba(255, 99, 132, 0.2)',
+                                backgroundColor:  'rgba(245, 99, 132, 0.2)',
                                 borderColor:   'rgba(255, 99, 132, 1)',
                                 data: chartdata,
                             }]
+
+
                         }
-
-
                     }
                 );
                 
                 
             }
         });
+
+
 
         //By OS
         $.ajax({

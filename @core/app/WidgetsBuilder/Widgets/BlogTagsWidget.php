@@ -60,7 +60,7 @@ class BlogTagsWidget extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['widget_title_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['widget_title_' . $user_selected_language] ?? '');
         $tag_items = $settings['tag_items'] ?? '';
 
         $blog_tags = Tag::orderBy('id', 'DESC')->take($tag_items)->get();

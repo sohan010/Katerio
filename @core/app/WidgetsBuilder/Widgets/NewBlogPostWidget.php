@@ -59,7 +59,7 @@ class NewBlogPostWidget extends WidgetBase
     {
         //Implement frontend_render() method.
         $user_selected_language = get_user_lang();
-        $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
+        $widget_title =  purify_html($this->setting_item('widget_title_' . $user_selected_language) ?? '');
         $post_items = $this->setting_item('post_items') ?? '';
 
         $blog_posts = Blog::where(['status' => 'publish'])->orderBy('id','DESC')->take($post_items)->get();

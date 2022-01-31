@@ -76,11 +76,12 @@
 
                         <div class="col-lg-12">
                             <div class="pagination" data-padding-top="50">
-                                <ul class="pagination-list">
+                                <div class="pagination-wrapper">
                                     <?php echo e($all_blogs->links()); ?>
 
-                                </ul>
+                                </div>
                             </div>
+
                         </div>
                         <?php endif; ?>
                     </div>

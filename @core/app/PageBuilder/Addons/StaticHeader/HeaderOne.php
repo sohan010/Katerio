@@ -103,6 +103,7 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
         $settings = $this->get_settings();
         $current_lang = LanguageHelper::user_lang_slug();
 
+
         $blog = $this->setting_item('blogs') ?? [];
         $order_by = SanitizeInput::esc_html($this->setting_item('order_by'));
         $order = SanitizeInput::esc_html($this->setting_item('order'));
@@ -121,7 +122,8 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
 
 
         $blog_markup = '';
-        foreach ($blogs as $item) {
+        $category_button_color = ['bg-color-f','bg-color-a','bg-color-d'];
+        foreach ($blogs as $key=> $item) {
 
             $bg_image_markup = render_background_image_markup_by_attachment_id($item->image, '');
             $route = route('frontend.blog.single', $item->slug);
@@ -145,8 +147,8 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
             $created_by_image = $user_image ? $user_image : $avatar_image;
 
             $category_markup = '';
-            $category_button_color = ['bg-color-a','bg-color-d','bg-color-f'];
-            foreach ($item->category_id as $key=> $cat) {
+
+            foreach ($item->category_id as $cat) {
                 $category = $cat->getTranslation('title', $current_lang);
                 $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
                 $category_markup .= ' <a class="category-style-01 '.$category_button_color[$key % count($category_button_color)].'" href="' . $category_route . '">' . $category . '</a>';
@@ -163,6 +165,7 @@ class HeaderOne extends \App\PageBuilder\PageBuilderBase
 
             $comment_count = BlogComment::where('blog_id',$item->id)->count();
             $comment_condition_check = $comment_count == 0 ? 0 : $comment_count;
+
 
    $blog_markup .= <<<HTML
         <div class="col-lg-4">

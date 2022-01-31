@@ -355,3 +355,92 @@ ul {
     margin-right: 0px;
     margin-left: 15px;
 }
+
+.hamburger-c {
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+}
+
+.hamburger-c .close-h {
+    left: 0;
+    right: auto;
+}
+
+.footer-area li.single-info-item .icon{
+    margin-left: 14px;
+
+}
+
+.footer-area li.single-info-item .details{
+    color: #fff;
+}
+
+button.btn-default.btn-rounded.newsletter-submit-btn-footer {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+}
+
+.custom-input-wrapper input.form-control.email {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.navbar-area.custom-style-02 .nav-container .navbar-collapse .navbar-nav > li.menu-item-has-children::before {
+    right: auto;
+    left: 5px;
+}
+
+.navbar-area.custom-style-02 .nav-container .navbar-collapse .navbar-nav > li.menu-item-has-children > a {
+    padding-right: 30px;
+    padding-left: 38px;
+}
+
+.vote-button-content button#submit_vote_btn {
+    margin-left: 15px;
+}
+
+.widget-area-wrapper .widget .widget-title.style-02::after {
+    right: 100%;
+    left: auto;
+}
+
+.autocomplete-search-data {
+    position: absolute;
+    left: auto;
+    right: 0;
+}
+
+select#langchange {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='royalblue'><polygon points='0,0 10,0 5,5'/></svg>");
+    background-repeat: no-repeat;
+    background-position-y: 60%;
+    background-position-x: 7%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.topbar-inner select#langchange {
+    height: 33px;
+    width: 90px;
+    padding: 0 8px 0 15px;
+}
+
+.navbar-area.custom-style-02 .nav-right-content .search .search-bar {
+    left: 0;
+    right: auto;
+}
+
+.navbar-area.custom-style-02 .nav-right-content .search .search-bar .menu-search-form .item-search {
+    margin-right: 70px;
+    width: 86%;
+}
+
+.navbar-area .hamburger-menu-wrapper.right-side {
+    margin-right: 35px;
+    margin-left: 0;
+}

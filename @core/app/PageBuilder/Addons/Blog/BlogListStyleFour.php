@@ -142,7 +142,7 @@ class BlogListStyleFour extends PageBuilderBase
 
         $list_markup = '';
         $single_big_markup = '';
-
+        $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
         foreach ($blogs as $key=> $item) {
 
             $image = render_image_markup_by_attachment_id($item->image,'','thumb');
@@ -151,11 +151,11 @@ class BlogListStyleFour extends PageBuilderBase
             $title = Str::words($item->getTranslation('title', $current_lang), 12);
 
             $category_markup = '';
-            $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
-            foreach ($item->category_id as $key2=> $cat) {
+
+            foreach ($item->category_id as $cat) {
                 $category = $cat->getTranslation('title', $current_lang);
                 $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
-                $category_markup .= '<a class="category-style-01 v-02 -02 ' . $colors[$key2 % count($colors)] . '" href="' . $category_route . '">' . $category . '</a>';
+                $category_markup .= '<a class="category-style-01 v-02 -02 ' . $colors[$key % count($colors)] . '" href="' . $category_route . '">' . $category . '</a>';
             }
 
             if ($item->created_by === 'user') {

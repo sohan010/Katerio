@@ -98,7 +98,7 @@ class BlogController extends Controller
                     }
                     $action .= General::viewAnalytics(route('admin.blog.view.analytics',$row->id));
 
-                    $action .= General::viewComments(route('admin.blog.comments.view',$row->id));
+                    $action .= General::viewComments(route('admin.blog.comments.view',$row->id),$row->id);
                     return $action;
                 })
                 ->rawColumns(['action','checkbox','image','status','category','title'])

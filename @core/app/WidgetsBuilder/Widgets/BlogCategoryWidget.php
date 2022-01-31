@@ -63,7 +63,7 @@ class BlogCategoryWidget extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['widget_title_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['widget_title_' . $user_selected_language]);
         $category_items = $settings['category_items'] ?? '';
 
         $blog_categories = BlogCategory::where('status','publish')->orderBy('id', 'DESC')->take($category_items)->get();
@@ -71,7 +71,7 @@ class BlogCategoryWidget extends WidgetBase
         $category_markup = '';
         foreach ($blog_categories as $item){
 
-            $title = $item->getTranslation('title',$user_selected_language);
+            $title = purify_html($item->getTranslation('title',$user_selected_language));
             $category_image = render_image_markup_by_attachment_id($item->image);
             $url = route('frontend.blog.category', ['id' => $item->id,'any' => Str::slug($item->title)]);
             $bol = Blog::whereJsonContains('category_id',(string) $item->id)->count();

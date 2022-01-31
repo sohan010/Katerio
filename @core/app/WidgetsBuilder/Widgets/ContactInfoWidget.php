@@ -55,53 +55,55 @@ class ContactInfoWidget extends WidgetBase
         // TODO: Implement frontend_render() method.
         $user_selected_language = get_user_lang();
         $widget_saved_values = $this->get_settings();
-        $widget_title =  $this->setting_item('widget_title_' . $user_selected_language) ?? '';
-        $location =  $this->setting_item('location_' . $user_selected_language) ?? '';
-        $phone =  $this->setting_item('phone_' . $user_selected_language) ?? '';
-        $email = $this->setting_item('email_' . $user_selected_language) ?? '';
+        $widget_title =  purify_html($this->setting_item('widget_title_' . $user_selected_language) ?? '');
+        $location =  purify_html($this->setting_item('location_' . $user_selected_language) ?? '');
+        $phone =  purify_html($this->setting_item('phone_' . $user_selected_language) ?? '');
+        $email = purify_html($this->setting_item('email_' . $user_selected_language) ?? '');
 
 
-        $output = $this->widget_before(); //render widget before content
+  return <<<HTML
+    <div class="col-sm-8 col-md-7 col-lg-6 col-xl-3">
+     <div class="footer-widget">
+    
+    <h4 class="widget-title">{$widget_title}</h4>
+        <ul class="contact_info_list">
 
-        if (!empty($widget_title)){
-            $output .= '<div class="footer-widget"><h4 class="widget-title">'.purify_html($widget_title).'</h4>';
-        }
-        $output .= '<ul class="contact_info_list">';
-        if(!empty($location)){
-            $output .= ' <li class="single-info-item">
+             <li class="single-info-item">
                     <div class="icon">
                        <i class="las la-home"></i>
                     </div>
                     <div class="details">
-                        '.purify_html($location).'
+                      {$location}
                     </div>
-                </li>';
-        }
-        if(!empty($phone)){
-            $output .= '<li class="single-info-item">
+                </li>
+        
+
+               <li class="single-info-item">
                     <div class="icon">
                        <i class="las la-phone-volume"></i>
                     </div>
                     <div class="details">
-                       '.purify_html($phone).'
+                      {$phone}
                     </div>
-                </li>';
-        }
-        if(!empty($email)){
-            $output .= '<li class="single-info-item">
+                </li>
+       
+                <li class="single-info-item">
                     <div class="icon">
                        <i class="las la-envelope-open"></i>
                     </div>
                     <div class="details">
-                       '.purify_html($email).'
+                      {$email}
                     </div>
-                </li>';
-        }
-        $output .= '</ul> </div>';
+                </li>
+       
+               </ul> 
+       </div>
+       </div>
 
-        $output .= $this->widget_after(); // render widget after content
 
-        return $output;
+HTML;
+
+
     }
 
     public function widget_title()

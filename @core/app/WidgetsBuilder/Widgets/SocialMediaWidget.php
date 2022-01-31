@@ -102,16 +102,16 @@ class SocialMediaWidget extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['widget_title_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['widget_title_' . $user_selected_language] ?? '');
 
         $facebook_icon = $settings['facebook_icon'];
-        $facebook_url =  $settings['facebook_url'];
+        $facebook_url =  purify_html( $settings['facebook_url']);
         $twitter_icon = $settings['twitter_icon'];
-        $twitter_url =  $settings['twitter_url'];
+        $twitter_url =  purify_html($settings['twitter_url']);
         $instagram_icon = $settings['instagram_icon'];
-        $instagram_url =  $settings['instagram_url'];
+        $instagram_url =  purify_html($settings['instagram_url']);
         $youtube_icon = $settings['youtube_icon'];
-        $youtube_url =  $settings['youtube_url'];
+        $youtube_url =  purify_html($settings['youtube_url']);
 
         $social_data = [
             $facebook_icon => $facebook_url,

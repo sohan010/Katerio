@@ -276,7 +276,7 @@ private function leftBarBlogVideo($left_blog_video){
 
     if(!empty($left_blog_video)){
         $blogVideo = Blog::where('id',$left_blog_video)->where('status','publish')->first();
-        $image = render_image_markup_by_attachment_id($blogVideo->image);
+        $image = render_background_image_markup_by_attachment_id($blogVideo->image);
         $video_url = $blogVideo->video_url;
         $static_icon = 'assets/frontend/img/videos/play-icon/02.svg';
     }
@@ -285,7 +285,9 @@ private function leftBarBlogVideo($left_blog_video){
 
        <div class="image-blog-style-01">
             <div class="img-box video-blog">
-               {$image}
+              <div class="background-img" {$image} data-height="295">
+               
+            </div>
                 <a href="{$video_url}"
                     class="play-icon icon-style-01 magnific-inst mfp-iframe">
                     <img src="{$static_icon}" alt="">
@@ -305,7 +307,7 @@ private function centerBlog($center_single_blog){
     $bg_image = render_background_image_markup_by_attachment_id($centerBlog->image);
     $route = route('frontend.blog.single', $centerBlog->slug);
     $title = Str::words($centerBlog->getTranslation('title', $current_lang), 15);
-    $description = Str::words(SanitizeInput::esc_html($centerBlog->getTranslation('blog_content', $current_lang)),50);
+    $description = Str::words(SanitizeInput::esc_html($centerBlog->getTranslation('blog_content', $current_lang)),48);
     $created_by = SanitizeInput::esc_html($centerBlog->author ?? __('Anonymous'));
     $date = date('M d, Y', strtotime($centerBlog->created_at));
 

@@ -27,17 +27,19 @@
             <div class="form-group btn-wrapper">
                 <button type="submit" id="login_btn" class="submit-btn btn-default"><?php echo e(get_static_option('blog_single_page_login_button_'.$user_select_lang_slug.'_text')); ?></button>
             </div>
-            <div class="row mb-4 rmber-area">
-                <div class="col-6">
-                    <div class="custom-control custom-checkbox mr-sm-2 text-left">
-                        <input type="checkbox" name="remember" class="custom-control-input" id="remember">
-                        <label class="custom-control-label" for="remember"><?php echo e(__('Remember Me')); ?></label>
+
+            <div class="row mb-4 rmber-area ajax-partial-login-form">
+                    <div class="col-6">
+                        <div class="custom-control custom-checkbox mr-sm-2 text-left">
+                            <input type="checkbox" name="remember" class="custom-control-input" id="remember">
+                            <label class="custom-control-label int" for="remember"><?php echo e(__('Remember Me')); ?></label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 text-right">
-                    <a class="d-block" href="<?php echo e(route('user.register')); ?>"><?php echo e(__('Create New account?')); ?></a>
-                    <a href="<?php echo e(route('user.forget.password')); ?>"><?php echo e(__('Forgot Password?')); ?></a>
-                </div>
+                    <div class="col-6 text-right">
+                        <a class="d-block int" href="<?php echo e(route('user.register')); ?>"><?php echo e(__('Create New account?')); ?></a>
+                        <a href="<?php echo e(route('user.forget.password')); ?>" class="int"><?php echo e(__('Forgot Password?')); ?></a>
+                    </div>
+
                 <div class="col-lg-12">
                     <div class="social-login-wrap">
                         <?php if(get_static_option('enable_facebook_login')): ?>

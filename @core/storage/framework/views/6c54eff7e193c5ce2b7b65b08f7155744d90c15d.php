@@ -2,7 +2,7 @@
     <div class="footer-top">
         <div class="container custom-container-01">
             <div class="row">
-                <?php echo render_frontend_sidebar('footer_01',['column' => true]); ?>
+                  <?php echo render_frontend_sidebar('footer_01',['column' => true]); ?>
 
             </div>
         </div>
@@ -20,7 +20,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

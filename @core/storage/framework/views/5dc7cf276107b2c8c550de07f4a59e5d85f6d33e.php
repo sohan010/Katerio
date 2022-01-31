@@ -19,7 +19,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-inner">
                     <div class="content">
-                       <h3 class="title"><?php echo e($page_post->title ?? ''); ?> <?php echo $__env->yieldContent('custom-page-title'); ?> </h3>
+                       <h3 class="title"><?php echo $page_post->title ?? ''; ?> <?php echo $__env->yieldContent('custom-page-title'); ?> </h3>
                         <ul class="page-list">
                             <li class="list-item"><a href="<?php echo e(url('/')); ?>"><?php echo e(__('Home')); ?></a></li>
                             <?php if(Route::currentRouteName() === 'frontend.dynamic.page' &&  request()->path() !== get_page_slug(get_static_option('blog_page'),'blog')): ?>

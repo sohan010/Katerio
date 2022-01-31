@@ -1,4 +1,4 @@
-<section class="dynamic-page-content-area padding-100">
+<section class="dynamic-page-content-area" data-padding-top="100" data-padding-bottom="70">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

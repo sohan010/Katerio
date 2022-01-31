@@ -1,9 +1,10 @@
 @extends('frontend.frontend-page-master')
 
 @section('page-title')
-    {{__('Tags : ').$tag_name}}
+    <li class="list-item"><a href="#">{{__('Tags')}}</a></li>
+    <li class="list-item"><a href="#">{{$tag_name}}</a></li>
 @endsection
-
+s
 @section('page-meta-data')
     {!! render_site_meta() !!}
     {!! render_site_title($tag_name) !!}
@@ -14,12 +15,11 @@
 @endsection
 
 @section('custom-page-title')
-    {{__('Tags : ').$tag_name}}
+    {{$tag_name}}
 @endsection
 
 @section('content')
 
-{{-- ================================================================================================================================================================= --}}
 
     <div class="blog-list-wrapper sports-blog-list-wrapper" data-padding-top="100" data-padding-bottom="100">
         <div class="container">
@@ -70,10 +70,12 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="pagination" data-padding-top="50">
-                                    <ul class="pagination-list">
+                                <div class="pagination " data-padding-top="50">
+                                    <div class="pagination-wrapper">
                                         {{$all_blogs->links()}}
-                                    </ul>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

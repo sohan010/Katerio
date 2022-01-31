@@ -124,7 +124,7 @@ class HeaderTwo extends \App\PageBuilder\PageBuilderBase
         $blog_single_big_markup = '';
         foreach ($blogs as $keyMain => $item) {
 
-            $image = render_image_markup_by_attachment_id($item->image);
+            $bg_list_image = render_background_image_markup_by_attachment_id($item->image);
             $bg_image = render_background_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single', $item->slug);
             $title = Str::words($item->getTranslation('title', $current_lang), 13);
@@ -179,7 +179,9 @@ $blog_markup .= <<<ITEM
             <div class="tag-box left">
               {$category_markup}
             </div>
-           {$image}
+    
+           <div class="background-img"{$bg_list_image} data-height="427"></div>
+
             <span class="overlay"></span>
         </div>
         <div class="content">

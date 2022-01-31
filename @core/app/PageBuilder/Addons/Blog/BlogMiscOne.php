@@ -363,7 +363,7 @@ private function LeftVideos($left_blogs,$left_items){
         foreach ($item->category_id as $cat) {
             $category = $cat->getTranslation('title', $current_lang);
             $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
-            $category_markup .= '<a href="' . $category_route . '"><span class="text">' . $category . '</span></a>';
+            $category_markup .= ' <li class="post-meta-item"><a href="' . $category_route . '"><span class="text">' . $category . '</span></a> </li>';
         }
 
 
@@ -387,9 +387,9 @@ private function LeftVideos($left_blogs,$left_items){
                 <li class="post-meta-item date">
                     <span class="text">{$date}</span>
                 </li>
-                <li class="post-meta-item">
+               
                      {$category_markup}    
-                </li>
+              
             </ul>
         </div>
         <h4 class="title">

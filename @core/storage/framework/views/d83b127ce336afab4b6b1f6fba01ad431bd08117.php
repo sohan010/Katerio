@@ -3,10 +3,17 @@
         <button onclick="w3_close()" class="close-h w3-bar-item w3-large"> &times;</button>
         <div class="main-content">
             <div class="logo-wrapper">
+                <?php if(get_static_option('site_frontend_dark_mode') == 'on'): ?>
                 <a href="<?php echo e(url('/')); ?>">
-                    <?php echo render_image_markup_by_attachment_id(get_static_option('site_logo')); ?>
+                    <?php echo render_image_markup_by_attachment_id(get_static_option('site_white_logo')); ?>
 
                 </a>
+                <?php else: ?>
+                    <a href="<?php echo e(url('/')); ?>">
+                        <?php echo render_image_markup_by_attachment_id(get_static_option('site_logo')); ?>
+
+                    </a>
+               <?php endif; ?>
             </div>
 
             <div class="widget-area-wrapper">

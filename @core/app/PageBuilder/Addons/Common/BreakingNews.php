@@ -59,6 +59,17 @@ class BreakingNews extends PageBuilderBase
 
         $output .= $this->admin_language_tab_end(); //have to end language tab
 
+        $output .= Select::get([
+            'name' => 'style',
+            'label' => __('News Style'),
+            'options' => [
+                '1' => __('Style One'),
+                '2' => __('Style Two'),
+            ],
+            'value' => $widget_saved_values['style'] ?? null,
+            'info' => __('set breaking news style from here')
+        ]);
+
 
         $output .= Slider::get([
             'name' => 'padding_top',
@@ -87,6 +98,7 @@ class BreakingNews extends PageBuilderBase
         $settings = $this->get_settings();
         $current_lang = LanguageHelper::user_lang_slug();
         $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
+        $style = SanitizeInput::esc_html($this->setting_item('style'));
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
         $news_title = SanitizeInput::esc_html($this->setting_item('news_title' . $current_lang));
 
@@ -105,7 +117,7 @@ if(!empty(get_static_option('blog_breaking_news_show_hide_all'))) {
     return <<<HTML
 
     <div class="container custom-container-01" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
-        <div class="live-news-update-area-wrapper style-02 margin-top-30">
+        <div class="live-news-update-area-wrapper style-0{$style} margin-top-30">
             <div class="title-box">
                 <h4 class="title">{$news_title}</h4>
                 <span class="background-style-01"></span>

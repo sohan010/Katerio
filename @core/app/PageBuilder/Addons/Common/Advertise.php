@@ -145,9 +145,9 @@ use LanguageFallbackForPageBuilder;
        <div class="container " data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
        <div class="row">
        <div class="col-lg-12">
-        <div class="widget widget-add add-banner-x add-1 home_advertisement mt-5 wow animated zoomIn" data-wow-delay=".3s">
+        <div class="widget widget-add add-banner-x add-1 home_advertisement wow animated zoomIn" data-wow-delay=".3s">
         <input type="hidden" id="add_id" value="$add->id"> 
-           <div class="single-banner-ads {$custom_container}">
+           <div class="single-banner-ads ads-banner-box {$custom_container}">
            {$add_markup}
         </div>
         </div>

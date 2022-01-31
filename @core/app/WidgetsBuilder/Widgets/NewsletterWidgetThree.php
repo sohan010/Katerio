@@ -92,9 +92,9 @@ class NewsletterWidgetThree extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['title_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['title_' . $user_selected_language] ?? '');
         $background = $settings['background'] ?? '';
-        $widget_description = $settings['description_' . $user_selected_language] ?? '';
+        $widget_description =purify_html( $settings['description_' . $user_selected_language] ?? '');
         $widget_image = render_image_markup_by_attachment_id( $settings['image']);
         $form_action = route('frontend.subscribe.newsletter');
         $csrf = csrf_token();

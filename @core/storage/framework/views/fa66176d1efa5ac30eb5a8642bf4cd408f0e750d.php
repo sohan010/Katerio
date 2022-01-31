@@ -81,10 +81,13 @@
                             <?php endif; ?>
 
                         <?php if(!empty(get_static_option('dark_mode_show_hide'))): ?>
+                            <?php
+                                $condition = get_static_option('site_frontend_dark_mode') == 'on' ? 'dark night-symbol' : 'day-symbol';
+                            ?>
                         <div class="topbar-item">
                             <label class="switch yes">
                                 <input id="frontend_darkmode" type="checkbox" data-mode=<?php echo e(get_static_option('site_frontend_dark_mode')); ?> <?php if(get_static_option('site_frontend_dark_mode') == 'on'): ?> checked <?php else: ?> <?php endif; ?>>
-                                <span class="slider-color-mode onff"></span>
+                                <span class="slider-color-mode onff <?php echo e($condition); ?>"></span>
                             </label>
                         </div>
                         <?php endif; ?>

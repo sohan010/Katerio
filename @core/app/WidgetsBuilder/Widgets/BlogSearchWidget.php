@@ -49,7 +49,7 @@ class BlogSearchWidget extends WidgetBase
         $user_selected_language = get_user_lang();
         $widget_saved_values = $this->get_settings();
 
-        $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
+        $widget_title = purify_html($this->setting_item('widget_title_' . $user_selected_language) ?? '');
 
         $output = $this->widget_before(); //render widget before content
 

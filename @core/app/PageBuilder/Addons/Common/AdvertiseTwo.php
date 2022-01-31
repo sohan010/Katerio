@@ -74,7 +74,7 @@ use LanguageFallbackForPageBuilder;
             'label' => __('Advertisement Alignment'),
             'options' => [
                 '' => __('left'),
-                'leaderboard' => __('Center'),
+                'ads-banner-box' => __('Center'),
             ],
             'value' => $widget_saved_values['container_class'] ?? null,
             'info' => __('set Advertisement Container')

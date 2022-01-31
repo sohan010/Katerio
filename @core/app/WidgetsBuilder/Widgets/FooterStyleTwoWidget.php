@@ -74,10 +74,10 @@ class FooterStyleTwoWidget extends WidgetBase
 
         $logo = render_image_markup_by_attachment_id($image_url);
         $logo_url = url('/');
-        $facebook_url = $widget_saved_values['facebook_url'] ?? '';
-        $twitter_url = $widget_saved_values['twitter_url'] ?? '';
-        $instagram_url = $widget_saved_values['instagram_url'] ?? '';
-        $google_url = $widget_saved_values['google_url'] ?? '';
+        $facebook_url = purify_html($widget_saved_values['facebook_url'] ?? '');
+        $twitter_url = purify_html($widget_saved_values['twitter_url'] ?? '');
+        $instagram_url = purify_html($widget_saved_values['instagram_url'] ?? '');
+        $google_url = purify_html($widget_saved_values['google_url'] ?? '');
 
 
         $output = $this->widget_before(); //render widget before content

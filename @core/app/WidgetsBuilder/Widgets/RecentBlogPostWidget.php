@@ -62,7 +62,7 @@ class RecentBlogPostWidget extends WidgetBase
         $user_selected_language = get_user_lang();
         $widget_saved_values = $this->get_settings();
 
-        $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
+        $widget_title = purify_html($this->setting_item('widget_title_' . $user_selected_language) ?? '');
         $post_items = $this->setting_item('post_items') ?? '';
 
         $blog_posts = Blog::where(['status' => 'publish'])->take($post_items)->get();

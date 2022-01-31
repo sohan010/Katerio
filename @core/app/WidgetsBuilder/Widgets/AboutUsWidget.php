@@ -64,24 +64,27 @@ class AboutUsWidget extends WidgetBase
         $widget_saved_values = $this->get_settings();
         $description = $widget_saved_values['description_' . $user_selected_language] ?? '';
         $image_val = $widget_saved_values['site_logo'] ?? '';
-
         $image_val = $widget_saved_values['site_logo'] ?? '';
         $foot_logo1 = render_image_markup_by_attachment_id($image_val, 'footer-logo');
-        $condition_for_logo = get_static_option('site_frontend_dark_mode')  == 'on' ? render_image_markup_by_attachment_id(get_static_option('site_white_logo')) : $foot_logo1;
+        $root_url = url('/');
 
-        $output = $this->widget_before(); //render widget before content
-        $output .='<div class="footer-widget widget">';
 
-        $output .='<div class="about_us_widget style-01">';
-        $output .= $condition_for_logo;
-        $output .= '<div class="content"><p class="info">' .  purify_html($description) . '</p></div>';
-        $output .= '</div>';
-        $output .= '</div>';
+return <<<HTML
+  <div class="col-sm-8 col-md-7 col-lg-6 col-xl-3">
+    <div class="footer-widget">
+        <div class="logo-wrapper">
+            <a href="{$root_url}" class="logo">
+               {$foot_logo1}
+            </a>
+        </div>
+        <div class="content">
+            <p class="info">{$description}</p>
+        </div>
+    </div>
+</div>
 
-        $output .= $this->widget_after(); // render widget after content
-
-        return $output;
-    }
+HTML;
+}
 
     public function widget_title(){
         return __('About Us');

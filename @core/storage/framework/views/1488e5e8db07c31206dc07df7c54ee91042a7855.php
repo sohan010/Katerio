@@ -51,7 +51,7 @@
 
 <?php $__env->startSection('content'); ?>
 
-<div class="blog-details-area-wrapper v-02" data-padding-top="100" data-padding-bottom="100">
+<div class="blog-details-area-wrapper v-02" data-padding-top="88" data-padding-bottom="100">
         <div class="container">
         <div class="row">
             <?php if($blog_post->visibility == 'public' ): ?>

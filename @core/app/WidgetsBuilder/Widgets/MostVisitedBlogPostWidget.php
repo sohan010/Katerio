@@ -67,7 +67,7 @@ class MostVisitedBlogPostWidget extends WidgetBase
     {
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
-        $widget_title = $settings['heading_text_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['heading_text_' . $user_selected_language] ?? '');
         $blog_items = $settings['blog_items'] ?? '';
 
         $blog_posts = Blog::where(['status' => 'publish'])->take($blog_items)->orderBy('views','desc')->get();
@@ -84,7 +84,7 @@ class MostVisitedBlogPostWidget extends WidgetBase
             foreach ($post->category_id as $cat){
                 $category = $cat->getTranslation('title',$user_selected_language);
                 $category_route = route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)]);
-                $category_markup.=  ' <a href="'.$category_route.'"><i class="las la-tag icon"></i><span class="text">'.$category.'</span></a>';
+                $category_markup.=  '  <li class="post-meta-item date"><a href="'.$category_route.'"><i class="las la-tag icon"></i><span class="text">'.$category.'</span></a> </li>';
             }
 
      $blogs_markup.=  <<<LIST
@@ -98,9 +98,9 @@ class MostVisitedBlogPostWidget extends WidgetBase
                     </h4>
                     <div class="post-meta">
                         <ul class="post-meta-list">
-                            <li class="post-meta-item date">
+                           
                                 {$category_markup}
-                            </li>
+                           
                             <li class="post-meta-item date">
                                 <i class="lar la-clock icon"></i>
                                 <span class="text">{$date}</span>

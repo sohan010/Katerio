@@ -81,7 +81,7 @@ class PollVotingWidget extends WidgetBase
         $user_selected_language = get_user_lang();
         $widget_saved_values = $this->get_settings();
 
-        $widget_title = $widget_saved_values['widget_title_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($widget_saved_values['widget_title_' . $user_selected_language] ?? '');
         $header_style = $widget_saved_values['header_style'] ?? '';
         $polls = Poll::where(['status'=> 1, 'id'=> $widget_saved_values['question'] ])->orderBy('id', 'DESC')->first();
         if (is_null($polls)){

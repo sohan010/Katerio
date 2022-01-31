@@ -87,6 +87,7 @@ class BannerTwo extends PageBuilderBase
         $image_markup = render_image_markup_by_attachment_id($image_id,null,'full');
 
 
+
    return <<<HTML
 
     <div class="ads-banner-area-wrapper leaderboard" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}"

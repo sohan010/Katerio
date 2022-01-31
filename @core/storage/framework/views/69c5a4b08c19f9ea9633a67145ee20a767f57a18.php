@@ -1,7 +1,7 @@
 
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Search For: ')); ?> <?php echo e($search_term); ?>
-
+    <li class="list-item"><a href="#"><?php echo e(__('Search For')); ?></a></li>
+    <li class="list-item"><a href="#"><?php echo e($search_term); ?></a></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('site-title'); ?>
@@ -10,7 +10,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('custom-page-title'); ?>
-    <?php echo e(__('Search For: ')); ?> <?php echo '<span class="text-primary">'.$search_term.'</span>'; ?>
+    <?php echo e($search_term); ?>
 
 <?php $__env->stopSection(); ?>
 
@@ -71,11 +71,11 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                         <div class="col-lg-12">
-                            <div class="pagination" data-padding-top="50">
-                                <ul class="pagination-list">
+                            <div class="pagination " data-padding-top="50">
+                                <div class="pagination-wrapper">
                                     <?php echo e($all_blogs->links()); ?>
 
-                                </ul>
+                                </div>
                             </div>
                         </div>
                 </div>

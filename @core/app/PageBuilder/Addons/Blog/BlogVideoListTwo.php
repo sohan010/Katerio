@@ -219,7 +219,7 @@ class BlogVideoListTwo extends PageBuilderBase
 
     <li class="single-blog-post-item">
         <div class="thumb video-blog">
-            {$image}
+             {$image}
             <a href="{$video_url}"
                 class="play-icon icon-style-01 magnific-inst mfp-iframe">
                 <img src="{$left_static_icon}" alt="">

@@ -4,6 +4,7 @@
 namespace App\Helpers\DataTableHelpers;
 
 
+use App\BlogComment;
 use App\Helpers\LanguageHelper;
 use http\Env\Request;
 
@@ -67,11 +68,13 @@ HTML;
 
 }
 
-    public static function viewComments($url){
+    public static function viewComments($route,$id){
 
-        $test = __('View Comments');
+        $commentsCOunt = BlogComment::where('blog_id',$id)->count();
+
+        $test = __('View Comments') . '<strong class="text-white"> ('.$commentsCOunt.') </strong>';
         return <<<HTML
-        <a class="btn btn-success btn-sm mb-3 mr-1" href="{$url}">
+        <a class="btn btn-success btn-sm mb-3 mr-1" href="{$route}">
             {$test}
         </a>
 HTML;

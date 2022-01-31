@@ -105,6 +105,29 @@ class BlogSliderFour extends PageBuilderBase
             'info' => __('you can set header style from here')
         ]);
 
+        $output .= Select::get([
+            'name' => 'layout_style',
+            'label' => __('Layout Style'),
+            'options' => [
+                'popular-news-index-04-inst' => __('Style One'),
+                'feature-news-index-04-inst' => __('Style Two'),
+            ],
+            'value' => $widget_saved_values['header_style'] ?? null,
+            'info' => __('you can set header style from here')
+        ]);
+
+        $output .= Select::get([
+            'name' => 'image_style',
+            'label' => __('Image Style'),
+            'options' => [
+                'medium' => __('Medium Size'),
+                'extra_medium' => __('Extra Medium'),
+            ],
+            'value' => $widget_saved_values['image_style'] ?? null,
+            'info' => __('you can set image style from here')
+        ]);
+
+
         $output .= Slider::get([
             'name' => 'padding_top',
             'label' => __('Padding Top'),
@@ -135,6 +158,8 @@ class BlogSliderFour extends PageBuilderBase
         $order = SanitizeInput::esc_html($this->setting_item('order'));
         $items = SanitizeInput::esc_html($this->setting_item('items'));
         $header_style = SanitizeInput::esc_html($this->setting_item('header_style'));
+        $layout_style = SanitizeInput::esc_html($this->setting_item('layout_style'));
+        $image_style = SanitizeInput::esc_html($this->setting_item('image_style'));
         $heading_text= SanitizeInput::esc_html($this->setting_item('heading_text_'.$current_lang));
         $padding_top = SanitizeInput::esc_html($this->setting_item('padding_top'));
         $padding_bottom = SanitizeInput::esc_html($this->setting_item('padding_bottom'));
@@ -156,6 +181,12 @@ class BlogSliderFour extends PageBuilderBase
         foreach ($blogs as $item){
 
             $image = render_image_markup_by_attachment_id($item->image);
+            $bg = render_background_image_markup_by_attachment_id($item->image);
+            $bg_markup = '  <div class="background-img" '.$bg.' data-height="350"></div>';
+
+            $image_condition = $image_style == 'medium' ? $image : $bg_markup;
+
+
             $route = route('frontend.blog.single',$item->slug);
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),12);
             $date = date('M d, Y',strtotime($item->created_at));
@@ -164,7 +195,7 @@ class BlogSliderFour extends PageBuilderBase
             foreach ($item->category_id as $key=> $cat) {
                 $category = $cat->getTranslation('title', $current_lang);
                 $category_route = route('frontend.blog.category', ['id' => $cat->id, 'any' => Str::slug($cat->title)]);
-                $category_markup .= '<a href="' . $category_route . '"><span class="text">' . $category . '</span></a>';
+                $category_markup .= '<li class="post-meta-item"><a href="' . $category_route . '"><span class="text">' . $category . '</span></a> </li>';
             }
 
 
@@ -183,7 +214,7 @@ $blog_markup .= <<<ITEM
   <div class="slick-item">
         <div class="blog-grid-style-03 small">
             <div class="img-box">
-               {$image}
+              {$image_condition}
             </div>
             <div class="content">
                 <h4 class="title">
@@ -199,9 +230,9 @@ $blog_markup .= <<<ITEM
                         <li class="post-meta-item date">
                             <span class="text">{$date}</span>
                         </li>
-                        <li class="post-meta-item">
+                     
                           {$category_markup}
-                        </li>
+                       
                     </ul>
                 </div>
             </div>
@@ -226,7 +257,7 @@ ITEM;
                 </div>
             </div>
 
-            <div class="slick-main popular-news-index-04-inst">
+            <div class="slick-main {$layout_style}">
                 {$blog_markup}
             </div>
         </div>

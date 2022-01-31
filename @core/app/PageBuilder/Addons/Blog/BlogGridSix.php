@@ -201,7 +201,7 @@ class BlogGridSix extends PageBuilderBase
         $colors = ['bg-color-e','bg-color-a','bg-color-b','bg-color-g','bg-color-c'];
         foreach ($blogs as $key=> $item){
 
-            $image = render_image_markup_by_attachment_id($item->image);
+            $image = render_background_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single',$item->slug);
             $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),9);
             $date = date('M d, Y',strtotime($item->created_at));
@@ -224,7 +224,7 @@ class BlogGridSix extends PageBuilderBase
                 <div class="tag-box position-top-left">
                  {$category_markup}
                 </div>
-               {$image}
+               <div class="background-img" {$image} data-height="275"></div>
                 <span class="overlay"></span>
             </div>
             <div class="content">

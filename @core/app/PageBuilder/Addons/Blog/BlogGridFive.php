@@ -191,7 +191,7 @@ class BlogGridFive extends PageBuilderBase
 
             $image = render_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single',$item->slug);
-            $title = SanitizeInput::esc_html($item->getTranslation('title',$current_lang));
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),10);
             $date = date('M d, Y',strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
 
@@ -199,7 +199,7 @@ class BlogGridFive extends PageBuilderBase
             foreach ($item->category_id as $cat){
                 $category = $cat->getTranslation('title',$current_lang);
                 $category_route = route('frontend.blog.category',['id'=> $cat->id,'any'=> Str::slug($cat->title)]);
-                $category_markup.='<a href="'.$category_route.'"><span class="text">'.$category.'</span></a>';
+                $category_markup.='<li class="post-meta-item"><a href="'.$category_route.'"><span class="text">'.$category.'</span></a></li>';
             }
 
             if ($item->created_by === 'user') {
@@ -232,9 +232,9 @@ class BlogGridFive extends PageBuilderBase
                         <li class="post-meta-item date">
                             <span class="text">{$date}</span>
                         </li>
-                        <li class="post-meta-item">
+                      
                            {$category_markup}
-                        </li>
+                      
                     </ul>
                 </div>
             </div>

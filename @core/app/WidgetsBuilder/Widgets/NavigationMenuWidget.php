@@ -64,7 +64,7 @@ class NavigationMenuWidget extends WidgetBase
         // TODO: Implement frontend_render() method.
         $user_selected_language = get_user_lang();
         $widget_saved_values = $this->get_settings();
-        $widget_title =  $this->setting_item('widget_title_'. $user_selected_language) ?? '';
+        $widget_title = purify_html($this->setting_item('widget_title_'. $user_selected_language) ?? '');
         $menu_id = $this->setting_item('menu_id') ?? '';
 
         $output = $this->widget_before(); //render widget before content

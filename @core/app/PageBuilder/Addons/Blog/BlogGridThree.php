@@ -162,9 +162,9 @@ class BlogGridThree extends PageBuilderBase
         $blog_markup = '';
         foreach ($blogs as $item){
 
-            $image = render_image_markup_by_attachment_id($item->image,'','grid');
+            $image = render_background_image_markup_by_attachment_id($item->image);
             $route = route('frontend.blog.single',$item->slug);
-            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),9);
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),7);
             $date = date('M d, Y',strtotime($item->created_at));
             $created_by = $item->author ?? __('Anonymous');
 
@@ -190,7 +190,7 @@ class BlogGridThree extends PageBuilderBase
     <div class="col-md-6 {$columns}">
         <div class="blog-grid-style-03 small-02">
             <div class="img-box">
-               {$image}
+              <div class="background-img"{$image} data-height="250"></div>
             </div>
             <div class="content">
                 <div class="post-meta">

@@ -82,7 +82,7 @@ class RssBlogFeed extends WidgetBase
         $settings = $this->get_settings();
         $user_selected_language = get_user_lang();
 
-        $widget_title = $settings['heading_text_' . $user_selected_language] ?? '';
+        $widget_title = purify_html($settings['heading_text_' . $user_selected_language] ?? '');
         $header_style = $settings['header_style'] ?? '';
         $feed_url = $settings['feed_url'] ?? '';
         $feed_items = $settings['items'] ?? '';

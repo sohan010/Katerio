@@ -25,7 +25,9 @@
     </div>
 </div>
 
-<p class="info info-01">{!! $blog_post->blog_content ?? '' !!} </p>
+<div class="details-one-page-para">
+    <p class="info info-01">{!!   $blog_post->blog_content ?? '' !!} </p>
+</div>
 
 @php
     $tags_arr = json_decode($blog_post->tag_id);

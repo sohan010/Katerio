@@ -3,6 +3,7 @@
 
 namespace App\PageBuilder\Addons\Common;
 use App\Blog;
+use App\Helpers\LanguageHelper;
 use App\Helpers\SanitizeInput;
 use App\PageBuilder\Fields\Notice;
 use App\PageBuilder\Fields\Number;
@@ -11,6 +12,7 @@ use App\PageBuilder\Fields\Slider;
 use App\PageBuilder\Fields\Switcher;
 use App\PageBuilder\PageBuilderBase;
 use App\PageBuilder\Traits\LanguageFallbackForPageBuilder;
+use Illuminate\Support\Str;
 
 class VideoGridOne extends PageBuilderBase
 {
@@ -81,9 +83,9 @@ class VideoGridOne extends PageBuilderBase
             'name' => 'pagination_alignment',
             'label' => __('Pagination Alignment'),
             'options' => [
-                'text-left' => __('Left'),
+                'justify-content-start' => __('Left'),
                 'text-center' => __('Center'),
-                'end-text' => __('Right'),
+                'justify-content-end' => __('Right'),
             ],
             'value' => $widget_saved_values['pagination_alignment'] ?? null,
             'info' => __('set pagination alignment'),
@@ -112,6 +114,7 @@ class VideoGridOne extends PageBuilderBase
 
     public function frontend_render()
     {
+        $current_lang = LanguageHelper::user_lang_slug();
         $order_by = SanitizeInput::esc_html($this->setting_item('order_by'));
         $order = SanitizeInput::esc_html($this->setting_item('order'));
         $items = SanitizeInput::esc_html($this->setting_item('items'));
@@ -130,7 +133,7 @@ class VideoGridOne extends PageBuilderBase
 
         $pagination_markup = '';
         if (!empty($pagination_status) && !empty($items)){
-            $pagination_markup = '<div class="col-lg-12 mt-5"><div class="pagination-wrapper '.$pagination_alignment.'">'.$videos->links().'</div></div>';
+            $pagination_markup = '<div class="col-lg-12 mt-5"><div class="pagination-wrapper '.$pagination_alignment .'">'.$videos->links().'</div></div>';
         }
 
         if(!empty($items)){
@@ -139,8 +142,8 @@ class VideoGridOne extends PageBuilderBase
 
         $video_markup = '';
         foreach ($videos as $item){
-            $image = render_image_markup_by_attachment_id($item->image, '','full');
-            $title = $item->title ?? __('No Title');
+            $image = render_background_image_markup_by_attachment_id($item->image);
+            $title = Str::words(SanitizeInput::esc_html($item->getTranslation('title',$current_lang)),10);
             $blog_url = route('frontend.blog.single',$item->slug);
             $video_url = $item->video_url ?? '';
             $video_duration = $item->video_duration ?? '';
@@ -154,7 +157,7 @@ class VideoGridOne extends PageBuilderBase
             <a href="{$video_url }"class="play-icon icon-style-01 magnific-inst mfp-iframe"></a>
             
             <div class="img-box">
-              {$image}
+                <div class="background-img"{$image} data-height="275"></div>
             </div>
             
             <div class="content">
@@ -176,7 +179,7 @@ HTML;
          <div class="video-grid two-column" data-padding-top="{$padding_top}" data-padding-bottom="{$padding_bottom}">
             <div class="row">
                  {$video_markup}
-                 {$pagination_markup}
+                   {$pagination_markup}
             </div>
          </div>
    

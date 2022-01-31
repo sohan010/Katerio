@@ -1,10 +1,10 @@
 
 
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e(__('Tags : ').$tag_name); ?>
-
+    <li class="list-item"><a href="#"><?php echo e(__('Tags')); ?></a></li>
+    <li class="list-item"><a href="#"><?php echo e($tag_name); ?></a></li>
 <?php $__env->stopSection(); ?>
-
+s
 <?php $__env->startSection('page-meta-data'); ?>
     <?php echo render_site_meta(); ?>
 
@@ -18,12 +18,11 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('custom-page-title'); ?>
-    <?php echo e(__('Tags : ').$tag_name); ?>
+    <?php echo e($tag_name); ?>
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-
 
 
     <div class="blog-list-wrapper sports-blog-list-wrapper" data-padding-top="100" data-padding-bottom="100">
@@ -76,11 +75,13 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="pagination" data-padding-top="50">
-                                    <ul class="pagination-list">
+                                <div class="pagination " data-padding-top="50">
+                                    <div class="pagination-wrapper">
                                         <?php echo e($all_blogs->links()); ?>
 
-                                    </ul>
+
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

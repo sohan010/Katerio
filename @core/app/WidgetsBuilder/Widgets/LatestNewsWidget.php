@@ -50,54 +50,57 @@ class LatestNewsWidget extends WidgetBase
         return $output;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function frontend_render()
     {
-        //Implement frontend_render() method.
-
         $user_selected_language = get_user_lang();
-        $widget_title = $this->setting_item('widget_title_' . $user_selected_language) ?? '';
+        $widget_title = purify_html($this->setting_item('widget_title_' . $user_selected_language) ?? '');
         $post_items = $this->setting_item('post_items') ?? '';
         $blog_posts = Blog::where(['status' => 'publish'])->take($post_items)->get();
 
-        $output = $this->widget_before(); //render widget before content
-
-        $output .= ' <div class="footer-widget">';
-        if (!empty($widget_title)) {
-            $output .= '<h4 class="widget-title">' .purify_html($widget_title) . '</h4>';
-        }
-        $output .= '<div class="recent-blog-post-style-01">';
-
+        $list_item = '';
         foreach ($blog_posts as $post) {
+            $title = Str::words($post->getTranslation('title', $user_selected_language), 8);
             $image = render_image_markup_by_attachment_id($post->image);
-            $output.= '<div class="single-blog-post-item">
-                       <div class="thumb">
-                            '.$image.'
-                        </div>
-                        <div class="content">
-                            <h4 class="title">
-                                <a href="' . route('frontend.blog.single',$post->slug) . '">'.Str::words($post->getTranslation('title',$user_selected_language),8).'</a>
-                            </h4>
-                            <div class="post-meta">
-                                <ul class="post-meta-list style-02">
-                                    <li class="post-meta-item date">
-                                        <span class="text">'.date('d M, Y',strtotime($post->created_at)).'</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        
+            $route = route('frontend.blog.single', $post->slug);
+            $date = date('d M, Y', strtotime($post->created_at));
 
-                     </div>';
-        }
-        $output .= '</div>';
-        $output .= '</div>';
 
-        $output .= $this->widget_after(); // render widget after content
-        return $output;
-    }
+            $list_item .= <<<LIST
+    <li class="single-blog-post-item">
+            <div class="thumb">
+               {$image}
+            </div>
+            <div class="content">
+                <h4 class="title">
+                    <a href="{$route}">{$title}</a>
+                </h4>
+                <div class="post-meta">
+                    <ul class="post-meta-list style-02">
+                        <li class="post-meta-item date">
+                            <span class="text">{$date}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+LIST;
+
+}
+
+
+ return <<<HTML
+  <div class="col-sm-8 col-md-7 col-lg-6 col-xl-3">
+    <div class="footer-widget">
+        <h4 class="widget-title">{$widget_title}</h4>
+        <ul class="recent-blog-post-style-01">
+            {$list_item}
+        </ul>
+    </div>
+    </div>
+
+HTML;
+ }
+
 
     public function widget_title()
     {

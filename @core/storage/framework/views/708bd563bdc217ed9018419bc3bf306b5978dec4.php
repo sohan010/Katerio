@@ -6,12 +6,13 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('page-title'); ?>
-    <?php echo e($author_info->name); ?>
 
+    <li class="list-item"><a href="#"><?php echo e(__('Author')); ?></a></li>
+    <li class="list-item"><a href="#"><?php echo e($author_info->name); ?></a></li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('custom-page-title'); ?>
-    <?php echo e($author_info->name); ?> : <?php echo e(__('Author')); ?>
+    <?php echo e($author_info->name); ?>
 
 <?php $__env->stopSection(); ?>
 

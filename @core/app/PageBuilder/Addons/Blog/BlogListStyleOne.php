@@ -190,6 +190,8 @@ class BlogListStyleOne extends PageBuilderBase
             $comment_count = BlogComment::where('blog_id',$item->id)->count();
             $comment_condition_check = $comment_count == 0 ? 0 : $comment_count;
 
+
+
  $blog_markup .= <<<HTML
       <div class="single-recent-stories-wrap" >
                 <div class="blog-list-style-01">

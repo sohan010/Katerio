@@ -19,7 +19,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb-inner">
                     <div class="content">
-                       <h3 class="title">{{$page_post->title ?? ''}} @yield('custom-page-title') </h3>
+                       <h3 class="title">{!! $page_post->title ?? ''!!} @yield('custom-page-title') </h3>
                         <ul class="page-list">
                             <li class="list-item"><a href="{{url('/')}}">{{ __('Home') }}</a></li>
                             @if(Route::currentRouteName() === 'frontend.dynamic.page' &&  request()->path() !== get_page_slug(get_static_option('blog_page'),'blog'))

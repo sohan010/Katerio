@@ -58,7 +58,17 @@
     @endif
 
 <script>
-    $('[data-toggle="tooltip"]').tooltip({'placement': 'top','color':'green'});
+
+    //RTL RIGHT INner Bar
+    var enable_rtl = "{{get_user_lang_direction() === 'rtl'}}";
+    if(enable_rtl){
+        document.getElementById("mySidebar").style.transform = "translateX(100%)";
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.transform = "translateX(100%)";
+        }
+    }
+
 </script>
 
     @include('frontend.partials.inline-scripts')

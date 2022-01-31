@@ -5,11 +5,13 @@
 @endsection
 
 @section('page-title')
-    {{$author_info->name}}
+
+    <li class="list-item"><a href="#">{{__('Author')}}</a></li>
+    <li class="list-item"><a href="#">{{$author_info->name}}</a></li>
 @endsection
 
 @section('custom-page-title')
-    {{$author_info->name}} : {{__('Author')}}
+    {{$author_info->name}}
 @endsection
 
 @section('page-meta-data')
